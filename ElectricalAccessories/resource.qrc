@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>icon/file6.png</file>
+        <file>icon/file7.png</file>
+        <file>icon/file17.png</file>
+        <file>icon/file19.png</file>
+        <file>icon/14.png</file>
+        <file>icon/9.png</file>
+    </qresource>
+    <qresource prefix="/image">
+        <file>image/wlite.jpg</file>
+        <file>image/SGS.jpg</file>
+        <file>image/SGS01.jpg</file>
+    </qresource>
+    <qresource prefix="/other">
+        <file>zh_CN.qm</file>
+        <file>zh_CN.ts</file>
+    </qresource>
+</RCC>

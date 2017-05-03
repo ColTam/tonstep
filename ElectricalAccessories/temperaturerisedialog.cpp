@@ -1,0 +1,1114 @@
+﻿#include "temperaturerisedialog.h"
+#include "mLoadThread.h"
+#include "Collect.h"
+#include "titlebar.h"
+#include "ui_temperaturerisedialog.h"
+#include "countdown.h"
+
+#include <QAxObject>
+#include <QDateTime>
+#include <Windows.h>
+
+TemperatureRiseDialog::TemperatureRiseDialog(time_t hour, int num, QString Im, QWidget *parent) :
+    QDialog(parent),duration(hour),flag(num),widgetCount(--num),_Im(Im),
+    ui(new Ui::TemperatureRiseDialog)
+{
+    ui->setupUi(this);
+
+    _miniDateWidget = new MiniDateWidget(this);
+    _miniDateWidget->move(0, (this->height() - _miniDateWidget->height()) *5/8);
+    _miniDateWidget->show();
+
+    this->loadCount = 0;
+    this->failNumber = 0;
+    this->timeCount = 0;
+    this->m_currentIn = "";
+    oldTemperatureRise_list.clear();
+    setTargetTime();
+    _worksheet = NULL;
+    savePngSecess = false;
+
+    _threadA = NULL;
+    _mLoadThreadA = NULL;
+    _threadB = NULL;
+    _mLoadThreadB = NULL;
+    _threadC = NULL;
+    _mLoadThreadC = NULL;
+
+    initDialogTitle();
+
+    _mMessage = new QMessageWidget(this);
+    _mMessage->setMinimumSize(718,26);
+    _mMessage->setGeometry(1,510,718,26);
+    _mMessage->show();
+
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->stackedWidget->setCurrentIndex(TRISE_STACKWIDGET_TC);
+    on_toolButton_tc_clicked();
+}
+
+TemperatureRiseDialog::~TemperatureRiseDialog()
+{
+    if (servo == "A") {
+//        delete _mLoadThreadA;
+        _mLoadThreadA = NULL;
+        delete _threadA;
+        _threadA = NULL;
+    } else if (servo == "B") {
+//        delete _mLoadThreadB;
+        _mLoadThreadB = NULL;
+        delete _threadB;
+        _threadB = NULL;
+    } else if (servo == "C") {
+//        delete _mLoadThreadC;
+        _mLoadThreadC = NULL;
+        delete _threadC;
+        _threadC = NULL;
+    }
+
+    delete _mMessage;
+    delete _titleBar;
+    delete _miniDateWidget;
+    delete ui;
+}
+
+void TemperatureRiseDialog::initDialogTitle()
+{
+    this->setWindowFlags(Qt::FramelessWindowHint);
+
+    _titleBar = new TitleBar(this, 1);
+    this->installEventFilter(_titleBar);
+
+    this->resize(720, 540);
+    this->setWindowIcon(QIcon(WINDOW_ICON));
+
+    QPalette mPalette(palette());
+    mPalette.setColor(QPalette::Background, QColor(64,66,68));
+    this->setAutoFillBackground(true);
+    this->setPalette(mPalette);
+
+    QVBoxLayout *titleVBoxLayout = new QVBoxLayout();
+    titleVBoxLayout->addWidget(_titleBar);
+    titleVBoxLayout->addStretch(0);
+    titleVBoxLayout->setSpacing(0);
+    titleVBoxLayout->setContentsMargins(0, 0, 0, 0);
+
+    connect(_titleBar, SIGNAL(maximizeClicked()), this, SLOT(maximizedWidget()));
+    connect(_titleBar, SIGNAL(restoreClicked()), this, SLOT(restoreWidget()));
+    connect(_titleBar, SIGNAL(closeClicked()), this, SLOT(closeWidget()));
+
+    ui->gridLayout_4->addLayout(titleVBoxLayout, 0, 0, Qt::AlignTop);
+    ui->gridLayout_3->setGeometry(QRect(0, 26, 720, 514));
+
+    this->setLayout(ui->gridLayout_4);
+
+}
+
+void TemperatureRiseDialog::setTargetTime()
+{
+    _currentTime = QDateTime::currentDateTime();//第一次记录时的时间，用于打印excel表格中的时间
+
+#if 1
+    int secs = duration * 60 * 60 + 3;
+#else
+    int secs = duration * 20 + 3; //测试用时间
+#endif
+    _objectTime = _currentTime.addSecs(secs);
+    _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
+}
+
+void TemperatureRiseDialog::initCustomPlot()
+{
+    ui->tableWidget->clear();
+    this->loadCount = 0;
+
+    ui->customplot->clearGraphs();
+    ui->customplot->xAxis->setLabel(tr("Time ( 5s )"));
+    ui->customplot->yAxis->setLabel(tr("Temperatur Rise ( °C )"));
+    ui->customplot->legend->setVisible(true);
+    ui->customplot->legend->setFont(QFont("Helvetica", 9));
+    ui->customplot->legend->setRowSpacing(-3);
+    ui->customplot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
+                                    QCP::iSelectLegend | QCP::iSelectPlottables);
+
+    for (int i = 0; i < temperatureRiseCount_list.count(); i++)
+    {
+        ui->customplot->addGraph();
+        QString ch = "CH" + QString::number(temperatureRiseCount_list.at(i));
+        ui->customplot->graph(i)->setName(ch);
+        ui->customplot->graph(i)->setPen(QPen(QColor(qSin(i*1+1.2)*80+80,qSin(i*0.3+0)*80+80,qSin(i*0.3+1.5)*80+80)));
+        ui->customplot->graph(i)->setLineStyle((QCPGraph::lsLine));
+        ui->customplot->graph(i)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssPlus, 3));
+    }
+
+    QBrush backRole;
+    backRole.setColor(QColor(50,50,50));
+    backRole.setStyle(Qt::SolidPattern);
+    ui->customplot->setBackground(backRole);
+
+    ui->customplot->xAxis->setRange(-77,5);
+    ui->customplot->yAxis->setRange(-2.5,100.25);
+
+    connect(ui->customplot, SIGNAL(legendDoubleClick(QCPLegend*,QCPAbstractLegendItem*,QMouseEvent*)), this, SLOT(legendDoubleClick(QCPLegend*,QCPAbstractLegendItem*)));
+    connect(ui->customplot, SIGNAL(selectionChangedByUser()), this, SLOT(selectionChanged()));
+    connect(ui->customplot, SIGNAL(mousePress(QMouseEvent*)), this, SLOT(mousePress()));
+}
+
+void TemperatureRiseDialog::threadQuit()
+{
+    if (servo == "A") {
+        _threadA->quit();
+        if(!_threadA->wait(5000)) {
+            _threadA->terminate();
+            _threadA->wait();
+        }
+    } else if (servo == "B") {
+        _threadB->quit();
+        if(!_threadB->wait(5000)) {
+            _threadB->terminate();
+            _threadB->wait();
+        }
+    } else if (servo == "C") {
+        _threadC->quit();
+        if(!_threadC->wait(5000)) {
+            _threadC->terminate();
+            _threadC->wait();
+        }
+    }
+}
+
+void TemperatureRiseDialog::arrivalTime()
+{
+    QDateTime time = QDateTime::currentDateTime();
+    if (time.operator >=(_objectTime)) {
+        saveCustomPlotData(time);
+
+        if (!_Im.toInt()){
+            if (widgetCount--) {
+                {
+                    CountDown countDown(_miniDateWidget->groupbox->title());
+                    countDown.exec();
+                }
+                setTargetTime();
+                initCustomPlot();
+                Collect::CutToLE(servo);
+//                Collect::PowerStart();
+                Collect::LoadStart(servo);
+                emit loadStart(5000);
+            } else {
+                threadQuit();
+//                Collect::PowerStart();
+                {
+                    CountDown countDown(_miniDateWidget->groupbox->title());
+                    countDown.exec();
+                }
+                Collect::CutToLN(servo);
+                closeEffect();
+            }
+        } else {
+            if (flag == 4) {
+                if (widgetCount--) {
+                    {
+                        CountDown countDown(_miniDateWidget->groupbox->title());
+                        countDown.exec();
+                    }
+                    setTargetTime();
+                    initCustomPlot();
+                    if (!(widgetCount%2)) {
+                        Collect::CutToLE(servo);
+//                        Collect::PowerStart();
+                        Collect::LoadStart(servo);
+                        emit loadStart(5000);
+                    } else {
+                        Collect::ComponentsNoShortCut(servo);
+                        Collect::SetLoad(SET_LPF_RESISTIVE_884, _Im, servo);
+                        this->m_currentIn = _Im;
+//                        Collect::PowerStart();
+                        Collect::LoadStart(servo);
+                        emit loadStart(5000);
+                    }
+                } else {
+                    threadQuit();
+//                    Collect::PowerStart();
+                    {
+                        CountDown countDown(_miniDateWidget->groupbox->title());
+                        countDown.exec();
+                    }
+                    Collect::CutToLN(servo);
+                    closeEffect();
+                }
+            } else if (flag == 2) {
+                if (widgetCount--) {
+                    {
+                        CountDown countDown(_miniDateWidget->groupbox->title());
+                        countDown.exec();
+                    }
+                    setTargetTime();
+                    initCustomPlot();
+                    Collect::ComponentsNoShortCut(servo);
+                    Collect::SetLoad(SET_LPF_RESISTIVE_884, _Im, servo);
+                    this->m_currentIn = _Im;
+//                    Collect::PowerStart();
+                    Collect::LoadStart(servo);
+                    emit loadStart(5000);
+                } else {
+                    threadQuit();
+//                    Collect::PowerStart();
+                    {
+                        CountDown countDown(_miniDateWidget->groupbox->title());
+                        countDown.exec();
+                    }
+                    Collect::CutToLN(servo);
+                    closeEffect();
+                }
+            }
+        }
+    }
+}
+
+void TemperatureRiseDialog::closeEffect()
+{
+    QPropertyAnimation *animation = new QPropertyAnimation(this, "windowOpacity");
+    animation->setDuration(999);
+    animation->setStartValue(1);
+    animation->setEndValue(0);
+    animation->start();
+
+    connect(animation, SIGNAL(finished()), this, SLOT(close()));
+}
+
+QString TemperatureRiseDialog::to26AlphabetString(int data)
+{
+    QChar ch = data + 0x40;//A:0x41
+    return QString(ch);
+}
+
+void TemperatureRiseDialog::convertToColName(int data, QString &res)
+{
+    int tempData = data / 26;
+
+    if (1 == tempData && 26 == data){
+        res = to26AlphabetString(data);
+        return;
+    } else if (tempData > 0) {
+        int mode = data % 26;
+        if (0 == mode) {
+            --tempData;
+            mode = 26;
+        }
+        convertToColName(mode,res);
+        convertToColName(tempData,res);
+    } else {
+        res = (to26AlphabetString(data) + res);
+    }
+}
+
+void TemperatureRiseDialog::rangeToWrite(QString itemName, column_t column, QVariantList variantList, QString head, QColor color, bool judge)
+{
+    if (itemName.isEmpty() || variantList.isEmpty()) return;
+
+    QList<QList<QVariant>> m_datas;
+    QVariantList port;
+    port.append(itemName);
+    m_datas.append(port);
+
+    for(int i=0;i<variantList.size();i++)
+    {
+        QList<QVariant> rows;
+        if (judge) {
+            if (variantList.at(i) > 0) {
+                rows.append(QVariant("Fail"));
+            } else {
+                rows.append(QVariant("Pass"));
+            }
+        } else {
+            rows.append(variantList.at(i));
+        }
+        m_datas.append(rows);
+    }
+
+    int col = column;
+    int row = m_datas.size();
+    QString rangStr1;
+    QString rangStr2;
+    convertToColName(col,rangStr1);
+    rangStr1.replace("@", "Z");
+    rangStr2 = rangStr1;
+    rangStr1 += head + ":" + rangStr1 + QString::number(row+head.toInt()-1);
+    QAxObject* range = _worksheet->querySubObject("Range(const QString&)",rangStr1);
+
+    if (NULL == range || range->isNull()) {
+        return;
+    }
+
+    QVariantList vars;
+    for (int i=0;i<row;i++)
+    {
+        vars.append(QVariant(m_datas[i]));
+    }
+
+    range->setProperty("Value", vars);
+    range->setProperty("HorizontalAlignment", -4108);
+
+    QAxObject *Borders = range->querySubObject("Borders");//Interior background; Borders border; Font font;
+    Borders->setProperty("Color", color);
+}
+
+void TemperatureRiseDialog::writeExcel(const QString fileName)
+{
+    QString name = fileName+".xlsx";
+//    QDir::toNativeSeparators(name);
+    name.replace("/", "\\");
+
+    QAxObject excel("Excel.Application");
+    if (excel.isNull()) excel.setControl("ET.Application");
+    excel.setProperty("Visible", false);
+    excel.setProperty("DisplayAlerts", false);
+
+    QAxObject *workbooks = excel.querySubObject("WorkBooks");
+    workbooks->dynamicCall("Add");
+    QAxObject *workbook = excel.querySubObject("ActiveWorkBook");
+    _worksheet = workbook->querySubObject("WorkSheets(int)", 1);
+
+    this->temperatureRiseCOne_list.clear();
+    QVariantList var;
+    for (int graphCount = 0; graphCount < temperatureRiseCount_list.count(); graphCount++)
+    {
+        if (graphCount == 0) {
+            QTime time = QTime(_currentTime.time().hour(), _currentTime.time().minute(), _currentTime.time().second());
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                if (time.second() + 5 > 59) {
+                    if (time.minute() + 1 == 60) {
+                        time.setHMS(time.hour()+1,time.minute()+1-60,time.second()+5-60);
+                    } else {
+                        time.setHMS(time.hour(),time.minute()+1,time.second()+5-60);
+                    }
+                } else {
+                    time.setHMS(time.hour(),time.minute(),time.second()+5);
+                }
+//                time.addSecs(5 * (i+1));
+                var.append(QVariant(time.toString()));
+            }
+            rangeToWrite("Time", 1, var, "1");
+            var.clear();
+
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                var.append(ui->customplot->graph(graphCount)->dataMainValue(i));
+            }
+            rangeToWrite("CH"+QString::number(temperatureRiseCount_list.at(graphCount)), 2, var, "1", QColor(255,192,0));
+            var.clear();//Room Temperature;
+        } else if (temperatureRiseCount_list.at(graphCount) == roomTemperatureRiseC) {
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                var.append(ui->customplot->graph(graphCount)->dataMainValue(i));
+            }
+            rangeToWrite("CH"+QString::number(temperatureRiseCount_list.at(graphCount)), 3, var, "1", QColor(255,192,0));
+            var.clear();
+        } else if (graphCount < temperatureRiseCount_list.indexOf(roomTemperatureRiseC)){
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                var.append(ui->customplot->graph(graphCount)->dataMainValue(i));
+            }
+            rangeToWrite("CH"+QString::number(temperatureRiseCount_list.at(graphCount)), 4*graphCount+0, var, "1", QColor(68,114,196));
+            var.clear();
+
+            temperatureRiseCHxxx_list.clear();
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                double t = ui->customplot->graph(graphCount)->dataMainValue(i) - ui->customplot->graph(temperatureRiseCount_list.indexOf(1))->dataMainValue(i);
+                temperatureRiseCHxxx_list << t;
+                var.append(t);
+            }
+            qSort(temperatureRiseCHxxx_list);
+            this->temperatureRiseCOne_list << temperatureRiseCHxxx_list.at(temperatureRiseCHxxx_list.size()-1);
+            rangeToWrite("TempR", 4*graphCount+1, var, "1", QColor(68,114,196));
+            var.clear();
+
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                var.append(temperatureRiseUpper_list.at(graphCount));
+            }
+            rangeToWrite("MaxTR", 4*graphCount+2, var, "1", QColor(68,114,196));
+            var.clear();
+
+            QString temperatureRiseUpper = temperatureRiseUpper_list.at(graphCount);
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                double t = ui->customplot->graph(graphCount)->dataMainValue(i) - ui->customplot->graph(temperatureRiseCount_list.indexOf(1))->dataMainValue(i) - temperatureRiseUpper.toDouble();
+                if (t > 0){
+                    cellsToWrite(i+2,4*graphCount+3,QColor(174,77,80));
+                }
+                var.append(t);
+
+            }
+            rangeToWrite("P/F", 4*graphCount+3, var, "1", QColor(112,173,71), true);
+            var.clear();
+        } else if (graphCount > temperatureRiseCount_list.indexOf(roomTemperatureRiseC)){
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                var.append(ui->customplot->graph(graphCount)->dataMainValue(i));
+            }
+            if (roomTemperatureRiseC == 1) {
+                rangeToWrite("CH"+QString::number(temperatureRiseCount_list.at(graphCount)), 4*(graphCount)+0, var, "1", QColor(68,114,196));
+            } else {
+                rangeToWrite("CH"+QString::number(temperatureRiseCount_list.at(graphCount)), 4*(graphCount-1)+0, var, "1", QColor(68,114,196));
+            }
+            var.clear();
+
+            temperatureRiseCHxxx_list.clear();
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                double t = ui->customplot->graph(graphCount)->dataMainValue(i) - ui->customplot->graph(temperatureRiseCount_list.indexOf(roomTemperatureRiseC))->dataMainValue(i);
+                temperatureRiseCHxxx_list << t;
+                var.append(t);
+            }
+            qSort(temperatureRiseCHxxx_list);
+            this->temperatureRiseCOne_list << temperatureRiseCHxxx_list.at(temperatureRiseCHxxx_list.size()-1);
+            if (roomTemperatureRiseC == 1) {
+                rangeToWrite("TempR", 4*(graphCount)+1, var, "1", QColor(68,114,196));
+            } else {
+                rangeToWrite("TempR", 4*(graphCount-1)+1, var, "1", QColor(68,114,196));
+            }
+            var.clear();
+
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                var.append(temperatureRiseUpper_list.at(graphCount));
+            }
+            if (roomTemperatureRiseC == 1) {
+                rangeToWrite("MaxTR", 4*(graphCount)+2, var, "1", QColor(68,114,196));
+            } else {
+                rangeToWrite("MaxTR", 4*(graphCount-1)+2, var, "1", QColor(68,114,196));
+            }
+            var.clear();
+
+            QString temperatureRiseUpper = temperatureRiseUpper_list.at(graphCount);
+            for (int i = 0; i <= this->loadCount; i++)
+            {
+                double t = ui->customplot->graph(graphCount)->dataMainValue(i) - ui->customplot->graph(temperatureRiseCount_list.indexOf(roomTemperatureRiseC))->dataMainValue(i) - temperatureRiseUpper.toDouble();
+                if (t > 0){
+                    if (roomTemperatureRiseC == 1) {
+                        cellsToWrite(i+2,4*(graphCount)+3,QColor(174,77,80));
+                    } else {
+                        cellsToWrite(i+2,4*(graphCount-1)+3,QColor(174,77,80));
+                    }
+                }
+                var.append(t);
+
+            }
+            if (roomTemperatureRiseC == 1) {
+                rangeToWrite("P/F", 4*(graphCount)+3, var, "1", QColor(112,173,71), true);
+            } else {
+                rangeToWrite("P/F", 4*(graphCount-1)+3, var, "1", QColor(112,173,71), true);
+            }
+            var.clear();
+        }
+    }
+
+    for (int i = 0; i <= this->loadCount; i++)
+    {
+        var.append(ui->tableWidget->item(i, 0)->text());
+    }
+    if (roomTemperatureRiseC == 1)
+        rangeToWrite("Voltage", temperatureRiseCount_list.count()*4+1, var, "1", QColor(68,114,196));
+    else
+        rangeToWrite("Voltage", (temperatureRiseCount_list.count()-1)*4+1, var, "1", QColor(68,114,196));
+    var.clear();
+
+    for (int i = 0; i <= this->loadCount; i++)
+    {
+        var.append(ui->tableWidget->item(i, 1)->text());
+    }
+    if (roomTemperatureRiseC == 1)
+        rangeToWrite("Current", temperatureRiseCount_list.count()*4+2, var, "1", QColor(68,114,196));
+    else
+        rangeToWrite("Current", (temperatureRiseCount_list.count()-1)*4+2, var, "1", QColor(68,114,196));
+    var.clear();
+
+    for (int i = 0; i < temperatureRiseCount_list.count(); i++)
+    {
+        if (temperatureRiseCount_list.at(i) != 1 && temperatureRiseCount_list.at(i) != roomTemperatureRiseC) {
+            var.append(ui->customplot->graph(i)->name());
+        }
+    }
+    rangeToWrite("Port", 1, var, QString::number(this->loadCount+5), QColor(220,220,220));
+    var.clear();
+
+    for (int i = 0; i < temperatureRiseCount_list.count(); i++)
+    {
+        if (temperatureRiseCount_list.at(i) != 1 && temperatureRiseCount_list.at(i) != roomTemperatureRiseC) {
+            var.append(temperatureRiseRemark_list.at(i));
+        }
+    }
+    rangeToWrite("Remark", 2, var, QString::number(this->loadCount+5), QColor(220,220,220));
+    var.clear();
+
+    for (int i = 0; i < temperatureRiseCOne_list.size(); i++)
+    {
+        var.append(temperatureRiseCOne_list.at(i));
+    }
+    rangeToWrite("TempR", 3, var, QString::number(this->loadCount+5), QColor(220,220,220));
+    var.clear();
+
+    for (int i = 0; i < temperatureRiseCount_list.count(); i++)
+    {
+        if (temperatureRiseCount_list.at(i) != 1 && temperatureRiseCount_list.at(i) != roomTemperatureRiseC) {
+            var.append(temperatureRiseUpper_list.at(i));
+        }
+    }
+    rangeToWrite("MaxTR", 4, var, QString::number(this->loadCount+5), QColor(220,220,220));
+    var.clear();
+
+    temperatureRiseUpper_lists.clear();
+    temperatureRiseUpper_lists = temperatureRiseUpper_list;
+    temperatureRiseUpper_lists.removeAt(temperatureRiseCount_list.indexOf(roomTemperatureRiseC));
+    if (roomTemperatureRiseC != 1)
+        temperatureRiseUpper_lists.removeAt(temperatureRiseCount_list.indexOf(1));
+    for (int i = 0; i < temperatureRiseCOne_list.size(); i++)
+    {
+        QString tc = temperatureRiseUpper_lists.at(i);
+        double t = temperatureRiseCOne_list.at(i) - tc.toDouble();
+        var.append(t);
+        if (t > 0) {
+            cellsToWrite(i+this->loadCount+6,6,QColor(174,77,80));
+            this->failNumber++;
+        }
+    }
+    rangeToWrite("Bad", 5, var, QString::number(this->loadCount+5), QColor(237,125,49));
+    rangeToWrite("P/F", 6, var, QString::number(this->loadCount+5), QColor(112,173,71), true);
+    var.clear();
+
+    QAxObject *worksheets = workbook->querySubObject("Sheets");
+    int sheetCount = worksheets->property("Count").toInt();    // GET WORKSHEETS COUNT
+    QAxObject *lastSheet = worksheets->querySubObject("Item(int)", sheetCount);
+    QAxObject *workSheet = worksheets->querySubObject("Add(QVariant)", lastSheet->asVariant());
+    lastSheet->dynamicCall("Move(QVariant)", workSheet->asVariant());
+
+    _worksheet = workbook->querySubObject("WorkSheets(int)", 2);
+    QAxObject *cell = _worksheet->querySubObject("Shapes");
+
+    if (savePngSecess){
+        QString p = fileName+".png";
+        p.replace("/", "\\");
+        cell->dynamicCall("AddPicture(QString&, bool, bool, double, double, double, double",p,true,true,0,0,718,440);
+    } else {
+        QAxObject *range = workSheet->querySubObject("Cells(int, int)", 2, 2);
+        range->dynamicCall("SetValue(const QVariant&)", QVariant(tr("The picture save failed.")));
+    }
+
+    workbook->dynamicCall("SaveAs(const QString&)", name);
+    workbook->dynamicCall("Close(Boolean)", false);
+    excel.dynamicCall("Quit(void)");
+}
+
+void TemperatureRiseDialog::cellsToWrite(row_t row, column_t column, QColor color)
+{
+    QAxObject *cell = _worksheet->querySubObject("Cells(int, int)", row, column);
+    QAxObject *font = cell->querySubObject("Font");
+    font->setProperty("Color", color);
+
+    delete font;
+    delete cell;
+}
+
+void TemperatureRiseDialog::saveCustomPlotData(QDateTime time)
+{
+    QString name = this->windowTitle().mid(this->windowTitle().indexOf("-")+1);
+    name.remove(name.indexOf("cfg"), 15);
+    switch (this->windowTitle().right(5).mid(0,2).toInt()) {
+    case 19:
+    {
+        if (servo == "A") {
+            name += "data/beforeTest/servoA/" + time.toString("MM_dd_hh_mm");
+        } else if (servo == "B") {
+            name += "data/beforeTest/servoB/" + time.toString("MM_dd_hh_mm");
+        } else if (servo == "C") {
+            name += "data/beforeTest/servoC/" + time.toString("MM_dd_hh_mm");
+        }
+        break;
+    }
+    case 22:
+    {
+        if (servo == "A") {
+            name += "data/afterTest/servoA/" + time.toString("MM_dd_hh_mm");
+        } else if (servo == "B") {
+            name += "data/afterTest/servoB/" + time.toString("MM_dd_hh_mm");
+        } else if (servo == "C") {
+            name += "data/afterTest/servoC/" + time.toString("MM_dd_hh_mm");
+        }
+        break;
+    }
+    }
+//        if (ui->customplot->saveJpg(name+".jpg"))
+//            qDebug() << "save sucess";
+//        if (ui->customplot->saveBmp(name+".bmp"))
+//            qDebug() << "save sucess";
+//        if (ui->customplot->savePdf(name+".pdf"))
+//            qDebug() << "save sucess";
+    ui->customplot->rescaleAxes(true);
+    ui->customplot->xAxis->setRange(0,this->loadCount);
+    ui->customplot->replot();
+
+    savePngSecess = ui->customplot->savePng(name+".png");
+
+    --this->loadCount;
+    emit loadStop();
+//        Collect::PowerStop();
+    Collect::LoadStop(servo);
+    Collect::CutToLN(servo);
+
+//        qDebug() << QDateTime::currentDateTime();
+    writeExcel(name);
+//        qDebug() << QDateTime::currentDateTime();
+}
+
+void TemperatureRiseDialog::maximizedWidget()
+{
+    _mMessage->setGeometry(1, 101, QApplication::desktop()->width()-2, 26);
+}
+
+void TemperatureRiseDialog::restoreWidget()
+{
+    if (_miniDateWidget->x() > 720) {
+        _miniDateWidget->move(524, _miniDateWidget->y());
+    }
+    if (_miniDateWidget->y() > 540) {
+        _miniDateWidget->move(_miniDateWidget->x(), 419);
+    }
+    _mMessage->setGeometry(1,510,718,26);
+}
+
+void TemperatureRiseDialog::closeWidget()
+{
+    QMessageBox msgBox(QMessageBox::Warning,tr("close"),tr("Is about to quit the test!\nWhether to save the data ?"));
+    msgBox.setStandardButtons(QMessageBox::Save|QMessageBox::Ignore|QMessageBox::Cancel);
+    msgBox.setButtonText(QMessageBox::Save,tr("Save"));
+    msgBox.setButtonText(QMessageBox::Ignore,tr("Ignore"));
+    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
+    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
+
+    int ret = msgBox.exec();
+
+    if (ret == QMessageBox::Save) {
+        saveCustomPlotData(QDateTime::currentDateTime());
+    } else if (ret == QMessageBox::Cancel) {
+        return;
+    }
+
+    emit loadStop();
+    threadQuit();
+
+//    Collect::PowerStop();
+    Collect::LoadStop(servo);
+    closeEffect();
+}
+
+void TemperatureRiseDialog::updateLoad(QString volt, QString load)
+{
+    arrivalTime();
+
+    if (!volt.isEmpty()) {
+        QString _voltage = QString::number(volt.right(11).left(4).toInt(nullptr, 16)/10) + " V";
+        QString _frequency = QString::number(volt.right(6).left(4).toInt(nullptr, 16)/10) + " Hz";
+
+        ui->lineEdit_volt->setText(_voltage);
+        ui->lineEdit_frequency->setText(_frequency);
+    }
+
+    if (!load.isEmpty()) {
+        load.replace("\r\n", '\0');
+
+        QStringList load_list;
+        load_list << load.split(",");
+
+        ui->tableWidget->setRowCount(this->loadCount-1);
+        ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+
+        QString vol = load_list.at(0);
+        vol = QString::number(vol.toDouble());
+
+        QString cur = load_list.at(1);
+        cur = QString::number(cur.toDouble());
+
+        QString lpf = load_list.at(2);
+        lpf = QString::number(lpf.toDouble()/10,'f',2);
+
+        _miniDateWidget->setText(vol,cur,lpf);
+
+        QTableWidgetItem *volt      = new QTableWidgetItem(vol+" V");
+        QTableWidgetItem *current   = new QTableWidgetItem(cur+" A");
+        QTableWidgetItem *LPF       = new QTableWidgetItem(lpf+" ");
+
+        volt->setTextAlignment(     Qt::AlignHCenter |Qt::AlignVCenter);
+        LPF->setTextAlignment(      Qt::AlignHCenter |Qt::AlignVCenter);
+        current->setTextAlignment(  Qt::AlignHCenter |Qt::AlignVCenter);
+
+        ui->tableWidget->setItem(this->loadCount-1,0,volt);
+        ui->tableWidget->setItem(this->loadCount-1,1,current);
+        ui->tableWidget->setItem(this->loadCount-1,2,LPF);
+        ui->tableWidget->scrollToBottom();
+#if 1
+        if (vol.toDouble() == 0 || cur.toDouble() == 0) {
+            QDateTime temp = _objectTime;
+
+            if (3599 - QDateTime::currentDateTime().msecsTo(temp)/1000 < 20) {
+                return;
+            }
+
+            //            emit temperatureRiseStop();
+            _objectTime = QDateTime::currentDateTime();
+            Collect::stateWarning();
+            Collect::LoadStop(servo);
+            emit loadStop();
+
+            if (QDateTime::currentDateTime().msecsTo(temp)/1000/60 >= 56){
+                QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Not detected current!\nPlease check the sample!"));
+                msgBox.setStandardButtons(QMessageBox::Ok);
+                msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
+                msgBox.setWindowIcon(QIcon(WINDOW_ICON));
+
+                msgBox.exec();
+                //                emit temperatureRiseStart();
+                _objectTime = temp.addSecs(_objectTime.time().secsTo(QTime::currentTime()));
+
+                _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
+                Collect::SetLoad(SET_LPF_RESISTIVE_884, m_currentIn, servo);
+                emit loadStart(5000);
+                Collect::LoadStart(servo);
+            } else {
+                QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Not detected current!\nPlease check the sample!\nContinue test on 'Yes'!"));
+                msgBox.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
+                msgBox.setButtonText(QMessageBox::Yes,tr("Yes"));
+                msgBox.setButtonText(QMessageBox::No,tr("No"));
+                msgBox.setWindowIcon(QIcon(WINDOW_ICON));
+
+                int ret = msgBox.exec();
+
+                if (ret == QMessageBox::Yes) {
+                    //                    emit temperatureRiseStart();
+                   _objectTime = temp.addSecs(_objectTime.time().secsTo(QTime::currentTime()));
+
+                    _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
+
+                    Collect::SetLoad(SET_LPF_RESISTIVE_884, m_currentIn, servo);
+
+                    emit loadStart(5000);
+                    Collect::LoadStart(servo);
+                } else {
+                    threadQuit();
+                    Collect::LoadStop(servo);
+                    failNumber = -1;
+                    closeEffect();
+                }
+            }
+            Collect::stateRunning();
+        }
+#endif
+    }
+}
+
+void TemperatureRiseDialog::updateTC(QStringList list)
+{
+    int sec = 5 * (++this->timeCount);
+
+    QTime t(0, 0, 0);
+    _mMessage->setText(tr("Test Time :") + t.addSecs(sec).toString());
+    if (_mMessage->isHidden())
+        _mMessage->show();
+
+    if (QDateTime::currentDateTime().operator >=(_objectTime)) {
+//        qDebug() << "432";
+        oldTemperatureRise_list.clear();
+        return;
+    }
+
+    if (!list.isEmpty()) {
+//        qDebug() << list;
+        for (int i = 0; i < temperatureRiseCount_list.count(); i++)
+        {
+            if (temperatureRiseCount_list.at(i) <= 10) {
+                for(int j = 0; j < list.count(); j++)
+                {
+                    QString tc;
+                    if (list.size() < 20 && !oldTemperatureRise_list.isEmpty()) {
+                        tc = oldTemperatureRise_list.at(j);
+                    } else {
+                        tc = list.at(j);
+                    }
+
+                    if (tc.mid(3,3).toInt() == temperatureRiseCount_list.at(i)) {
+                        double value = tc.mid(19).toDouble();
+                        if (value < 0){
+                            if (!ui->customplot->graph(i)->dataMainValue(this->loadCount))
+                                ui->customplot->graph(i)->addData(this->loadCount+1, 0);
+                        } else {
+                            if (!ui->customplot->graph(i)->dataMainValue(this->loadCount))
+                                ui->customplot->graph(i)->addData(this->loadCount+1, value);
+                        }
+                    }
+                }
+            } else {
+                for(int j = 0; j < list.count(); j++)
+                {
+                    QString tc;
+                    if (list.size() < 20 && !oldTemperatureRise_list.isEmpty()) {
+                        tc = oldTemperatureRise_list.at(j);
+                    } else {
+                        tc = list.at(j);
+                    }
+
+                    if (tc.mid(3,3).toInt() == temperatureRiseCount_list.at(i)+90) {
+                        double value = tc.mid(19).toDouble();
+                        if (value < 0){
+                            if (!ui->customplot->graph(i)->dataMainValue(this->loadCount)) {
+                                ui->customplot->graph(i)->addData(this->loadCount+1, 0);
+                            }
+                        } else {
+                            if (!ui->customplot->graph(i)->dataMainValue(this->loadCount)) {
+                                ui->customplot->graph(i)->addData(this->loadCount+1, value);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ui->customplot->rescaleAxes();
+    ui->customplot->xAxis->setRange(this->loadCount+7.25,77,Qt::AlignRight);
+    ui->customplot->yAxis->setRange(-2.5,100.25);
+    ui->customplot->replot();
+
+    if (list.size() >= 20) {
+        qDebug() << "update oldTemperature rise";
+        oldTemperatureRise_list = list;
+    }
+
+    this->loadCount+=1;
+}
+
+void TemperatureRiseDialog::temprtatureRiseUpper(QStringList upper_tc_list, int roomTC)
+{
+    this->roomTemperatureRiseC = roomTC;
+    temperatureRiseCount_list.clear();
+    temperatureRiseUpper_list.clear();
+    temperatureRiseRemark_list.clear();
+
+    for (int i = 0; i < upper_tc_list.count(); i++)
+    {
+        QString tc = upper_tc_list.at(i);
+        if (tc.left(1).toInt()) {
+            temperatureRiseCount_list << i+1;
+            temperatureRiseUpper_list << tc.mid(1, tc.indexOf("#")-1);
+            temperatureRiseRemark_list << tc.mid(tc.indexOf("#")+1);
+        }
+    }
+
+    initCustomPlot();
+
+    servo = this->windowTitle().right(2).mid(0,1);
+    QString str = this->windowTitle().right(11).left(8) + tr(" Servo-") + servo;
+    _miniDateWidget->groupbox->setTitle(str);
+    if (!_threadA && servo == "A") {
+        _threadA        = new QThread(this);
+        _mLoadThreadA   = new mLoadThread();
+        _mLoadThreadA->moveToThread(_threadA);
+
+        connect(_threadA, SIGNAL(started()), _mLoadThreadA, SLOT(readData()));
+        connect(_mLoadThreadA, SIGNAL(updateData(QString,QString)), this, SLOT(updateLoad(QString,QString)));
+        connect(_mLoadThreadA, SIGNAL(changeVoltage(QString)), this, SLOT(voltageChange(QString)));
+
+        connect(this, SIGNAL(temperatureRisePortA(QString)),    _mLoadThreadA, SLOT(loadServo(QString)));
+        connect(this, SIGNAL(loadStart(int)),                   _mLoadThreadA, SLOT(mLoadTimerStart(int)));
+        connect(this, SIGNAL(loadStop()),                       _mLoadThreadA, SLOT(mLoadTimerStop()));
+
+        this->m_currentIn = devInformation.at(2).value.In;
+        emit temperatureRisePortA(servo);
+        _threadA->start();
+    } else if (!_threadB && servo == "B") {
+        _threadB        = new QThread(this);
+        _mLoadThreadB   = new mLoadThread();
+        _mLoadThreadB->moveToThread(_threadB);
+
+        connect(_threadB, SIGNAL(started()), _mLoadThreadB, SLOT(readData()));
+        connect(_mLoadThreadB, SIGNAL(updateData(QString,QString)), this, SLOT(updateLoad(QString,QString)));
+        connect(_mLoadThreadB, SIGNAL(changeVoltage(QString)), this, SLOT(voltageChange(QString)));
+
+        connect(this, SIGNAL(temperatureRisePortB(QString)),    _mLoadThreadB, SLOT(loadServo(QString)));
+        connect(this, SIGNAL(loadStart(int)),                   _mLoadThreadB, SLOT(mLoadTimerStart(int)));
+        connect(this, SIGNAL(loadStop()),                       _mLoadThreadB, SLOT(mLoadTimerStop()));
+
+        this->m_currentIn = devInformation.at(3).value.In;
+        emit temperatureRisePortB(servo);
+        _threadB->start();
+    } else if (!_threadC && servo == "C") {
+        _threadC        = new QThread(this);
+        _mLoadThreadC   = new mLoadThread();
+        _mLoadThreadC->moveToThread(_threadC);
+
+        connect(_threadC, SIGNAL(started()), _mLoadThreadC, SLOT(readData()));
+        connect(_mLoadThreadC, SIGNAL(updateData(QString,QString)), this, SLOT(updateLoad(QString,QString)));
+        connect(_mLoadThreadC, SIGNAL(changeVoltage(QString)), this, SLOT(voltageChange(QString)));
+
+        connect(this, SIGNAL(temperatureRisePortC(QString)),    _mLoadThreadC, SLOT(loadServo(QString)));
+        connect(this, SIGNAL(loadStart(int)),                   _mLoadThreadC, SLOT(mLoadTimerStart(int)));
+        connect(this, SIGNAL(loadStop()),                       _mLoadThreadC, SLOT(mLoadTimerStop()));
+
+        this->m_currentIn = devInformation.at(4).value.In;
+        emit temperatureRisePortC(servo);
+        _threadC->start();
+    }
+
+    emit this->loadStart(5000);
+}
+
+void TemperatureRiseDialog::legendDoubleClick(QCPLegend *legend, QCPAbstractLegendItem *item)
+{
+    Q_UNUSED(legend)
+
+    if (item) {
+        QCPPlottableLegendItem *plItem = qobject_cast<QCPPlottableLegendItem*>(item);
+        bool ok;
+        QString newName = QInputDialog::getText(this, "QCustomPlot example", "New graph name:", QLineEdit::Normal, plItem->plottable()->name(), &ok);
+        if (ok) {
+            plItem->plottable()->setName(newName);
+            ui->customplot->replot();
+        }
+    }
+}
+
+void TemperatureRiseDialog::selectionChanged()
+{
+    if (ui->customplot->xAxis->selectedParts().testFlag(QCPAxis::spAxis) || ui->customplot->xAxis->selectedParts().testFlag(QCPAxis::spTickLabels) ||
+            ui->customplot->xAxis2->selectedParts().testFlag(QCPAxis::spAxis) || ui->customplot->xAxis2->selectedParts().testFlag(QCPAxis::spTickLabels))
+    {
+        ui->customplot->xAxis2->setSelectedParts(QCPAxis::spAxis|QCPAxis::spTickLabels);
+        ui->customplot->xAxis->setSelectedParts(QCPAxis::spAxis|QCPAxis::spTickLabels);
+    }
+
+    if (ui->customplot->yAxis->selectedParts().testFlag(QCPAxis::spAxis) || ui->customplot->yAxis->selectedParts().testFlag(QCPAxis::spTickLabels) ||
+            ui->customplot->yAxis2->selectedParts().testFlag(QCPAxis::spAxis) || ui->customplot->yAxis2->selectedParts().testFlag(QCPAxis::spTickLabels))
+    {
+        ui->customplot->yAxis2->setSelectedParts(QCPAxis::spAxis|QCPAxis::spTickLabels);
+        ui->customplot->yAxis->setSelectedParts(QCPAxis::spAxis|QCPAxis::spTickLabels);
+    }
+
+    for (int i=0; i<ui->customplot->graphCount(); ++i)
+    {
+        QCPGraph *graph = ui->customplot->graph(i);
+        QCPPlottableLegendItem *item = ui->customplot->legend->itemWithPlottable(graph);
+        if (item->selected() || graph->selected()) {
+            item->setSelected(true);
+            graph->setSelection(QCPDataSelection(graph->data()->dataRange()));
+        }
+    }
+}
+
+void TemperatureRiseDialog::mousePress()
+{
+    if (ui->customplot->xAxis->selectedParts().testFlag(QCPAxis::spAxis)) {
+        ui->customplot->axisRect()->setRangeDrag(ui->customplot->xAxis->orientation());
+    } else if (ui->customplot->yAxis->selectedParts().testFlag(QCPAxis::spAxis)) {
+        ui->customplot->axisRect()->setRangeDrag(ui->customplot->yAxis->orientation());
+    } else {
+        ui->customplot->axisRect()->setRangeDrag(Qt::Horizontal|Qt::Vertical);
+    }
+}
+
+void TemperatureRiseDialog::voltageChange(QString v)
+{
+    emit temperatureRiseStop();
+//    emit loadStop();
+    Collect::SetVolt(v);
+
+    Collect::PowerStart();
+//    if (servo == "A") {
+//        _mLoadThreadA->isFirst = true;
+//    } else if (servo == "B") {
+//        _mLoadThreadB->isFirst = true;
+//    } else if (servo == "C") {
+//        _mLoadThreadC->isFirst = true;
+//    }
+    emit temperatureRiseStart();
+    Sleep(1000);
+    emit loadStart(5000);
+}
+
+void TemperatureRiseDialog::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+    case Qt::Key_F2:
+    {
+        if (_miniDateWidget->isHidden()) {
+            _miniDateWidget->show();
+        } else {
+            _miniDateWidget->hide();
+        }
+        break;
+    }
+    case Qt::Key_1:
+    {
+        on_toolButton_tc_clicked();
+        break;
+    }
+    case Qt::Key_2:
+    {
+        on_toolButton_load_clicked();
+        break;
+    }
+    case Qt::Key_3:
+    {
+        on_toolButton_volt_clicked();
+        break;
+    }
+    default:
+        QWidget::keyPressEvent(event);
+    }
+}
+
+void TemperatureRiseDialog::closeEvent(QCloseEvent *event)
+{
+    Q_UNUSED(event);
+
+    Collect::CutToLN(servo);
+
+    if (servo == "A") {
+        emit clauseFinishedA(failNumber);
+    } else if (servo == "B") {
+        emit clauseFinishedB(failNumber);
+    } else if (servo == "C") {
+        emit clauseFinishedC(failNumber);
+    }
+
+    this->~TemperatureRiseDialog();
+}
+
+void TemperatureRiseDialog::on_toolButton_tc_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(TRISE_STACKWIDGET_TC);
+
+    ui->toolButton_tc->setStyleSheet(TRISE_BUTTON_RESET);
+    ui->toolButton_volt->setStyleSheet(TRISE_BUTTON_INIT);
+    ui->toolButton_load->setStyleSheet(TRISE_BUTTON_INIT);
+}
+
+void TemperatureRiseDialog::on_toolButton_load_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(TRISE_STACKWIDGET_LOAD);
+
+    ui->toolButton_load->setStyleSheet(TRISE_BUTTON_RESET);
+    ui->toolButton_volt->setStyleSheet(TRISE_BUTTON_INIT);
+    ui->toolButton_tc->setStyleSheet(TRISE_BUTTON_INIT);
+}
+
+void TemperatureRiseDialog::on_toolButton_volt_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(TRISE_STACKWIDGET_VOLT);
+
+    ui->toolButton_volt->setStyleSheet(TRISE_BUTTON_RESET);
+    ui->toolButton_load->setStyleSheet(TRISE_BUTTON_INIT);
+    ui->toolButton_tc->setStyleSheet(TRISE_BUTTON_INIT);
+}
