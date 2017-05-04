@@ -165,8 +165,6 @@ void Collect::SetVolt(const QString volt)
 
 void Collect::SetLoad(const QString LPFactor, const QString current, const QString servo, bool record)
 {
-    if (!record)
-        qDebug() << "!record current :" << current;
     QString _load;
     QString lpf;
     if (LPFactor == "104") {
@@ -213,19 +211,19 @@ void Collect::SetLoad(const QString LPFactor, const QString current, const QStri
 
     if (servo == "A") {
         if (record) {
-            currentA = current.left(2);
+            currentA = current.left(4);
             loadPowerFactorA = lpf;
         }
         CollectControl::HardSend(devInformation.at(2).com, _load.toLatin1().data());
     } else if (servo == "B") {
         if (record) {
-            currentB = current.left(2);
+            currentB = current.left(4);
             loadPowerFactorB = lpf;
         }
         CollectControl::HardSend(devInformation.at(3).com, _load.toLatin1().data());
     } else if (servo == "C") {
         if (record) {
-            currentC = current.left(2);
+            currentC = current.left(4);
             loadPowerFactorC = lpf;
         }
         CollectControl::HardSend(devInformation.at(4).com, _load.toLatin1().data());

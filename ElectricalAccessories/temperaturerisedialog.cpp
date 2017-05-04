@@ -1,4 +1,4 @@
-ï»¿#include "temperaturerisedialog.h"
+#include "temperaturerisedialog.h"
 #include "mLoadThread.h"
 #include "Collect.h"
 #include "titlebar.h"
@@ -107,12 +107,12 @@ void TemperatureRiseDialog::initDialogTitle()
 
 void TemperatureRiseDialog::setTargetTime()
 {
-    _currentTime = QDateTime::currentDateTime();//ç¬¬ä¸€æ¬¡è®°å½•æ—¶çš„æ—¶é—´ï¼Œç”¨äºŽæ‰“å°excelè¡¨æ ¼ä¸­çš„æ—¶é—´
+    _currentTime = QDateTime::currentDateTime();//µÚÒ»´Î¼ÇÂ¼Ê±µÄÊ±¼ä£¬ÓÃÓÚ´òÓ¡excel±í¸ñÖÐµÄÊ±¼ä
 
 #if 1
     int secs = duration * 60 * 60 + 3;
 #else
-    int secs = duration * 20 + 3; //æµ‹è¯•ç”¨æ—¶é—´
+    int secs = duration * 80 + 3; //²âÊÔÓÃÊ±¼ä
 #endif
     _objectTime = _currentTime.addSecs(secs);
     _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
@@ -125,7 +125,7 @@ void TemperatureRiseDialog::initCustomPlot()
 
     ui->customplot->clearGraphs();
     ui->customplot->xAxis->setLabel(tr("Time ( 5s )"));
-    ui->customplot->yAxis->setLabel(tr("Temperatur Rise ( Â°C )"));
+    ui->customplot->yAxis->setLabel(tr("Temperatur Rise ( ¡ãC )"));
     ui->customplot->legend->setVisible(true);
     ui->customplot->legend->setFont(QFont("Helvetica", 9));
     ui->customplot->legend->setRowSpacing(-3);
@@ -193,12 +193,12 @@ void TemperatureRiseDialog::arrivalTime()
                 setTargetTime();
                 initCustomPlot();
                 Collect::CutToLE(servo);
-//                Collect::PowerStart();
+                Collect::PowerStart();
                 Collect::LoadStart(servo);
                 emit loadStart(5000);
             } else {
                 threadQuit();
-//                Collect::PowerStart();
+                Collect::PowerStart();
                 {
                     CountDown countDown(_miniDateWidget->groupbox->title());
                     countDown.exec();
@@ -217,20 +217,20 @@ void TemperatureRiseDialog::arrivalTime()
                     initCustomPlot();
                     if (!(widgetCount%2)) {
                         Collect::CutToLE(servo);
-//                        Collect::PowerStart();
+                        Collect::PowerStart();
                         Collect::LoadStart(servo);
                         emit loadStart(5000);
                     } else {
                         Collect::ComponentsNoShortCut(servo);
                         Collect::SetLoad(SET_LPF_RESISTIVE_884, _Im, servo);
                         this->m_currentIn = _Im;
-//                        Collect::PowerStart();
+                        Collect::PowerStart();
                         Collect::LoadStart(servo);
                         emit loadStart(5000);
                     }
                 } else {
                     threadQuit();
-//                    Collect::PowerStart();
+                    Collect::PowerStart();
                     {
                         CountDown countDown(_miniDateWidget->groupbox->title());
                         countDown.exec();
@@ -249,12 +249,12 @@ void TemperatureRiseDialog::arrivalTime()
                     Collect::ComponentsNoShortCut(servo);
                     Collect::SetLoad(SET_LPF_RESISTIVE_884, _Im, servo);
                     this->m_currentIn = _Im;
-//                    Collect::PowerStart();
+                    Collect::PowerStart();
                     Collect::LoadStart(servo);
                     emit loadStart(5000);
                 } else {
                     threadQuit();
-//                    Collect::PowerStart();
+                    Collect::PowerStart();
                     {
                         CountDown countDown(_miniDateWidget->groupbox->title());
                         countDown.exec();
@@ -447,6 +447,8 @@ void TemperatureRiseDialog::writeExcel(const QString fileName)
                 double t = ui->customplot->graph(graphCount)->dataMainValue(i) - ui->customplot->graph(temperatureRiseCount_list.indexOf(1))->dataMainValue(i) - temperatureRiseUpper.toDouble();
                 if (t > 0){
                     cellsToWrite(i+2,4*graphCount+3,QColor(174,77,80));
+                } else {
+                	cellsToWrite(i+2,4*graphCount+3,QColor(112,173,71));
                 }
                 var.append(t);
 
@@ -502,6 +504,12 @@ void TemperatureRiseDialog::writeExcel(const QString fileName)
                     } else {
                         cellsToWrite(i+2,4*(graphCount-1)+3,QColor(174,77,80));
                     }
+                } else {
+                	if (roomTemperatureRiseC == 1) {
+                        cellsToWrite(i+2,4*(graphCount)+3,QColor(112,173,71));
+                    } else {
+                        cellsToWrite(i+2,4*(graphCount-1)+3,QColor(112,173,71));
+                    }
                 }
                 var.append(t);
 
@@ -517,7 +525,8 @@ void TemperatureRiseDialog::writeExcel(const QString fileName)
 
     for (int i = 0; i <= this->loadCount; i++)
     {
-        var.append(ui->tableWidget->item(i, 0)->text());
+        if (ui->tableWidget->item(i, 0))
+            var.append(ui->tableWidget->item(i, 0)->text());
     }
     if (roomTemperatureRiseC == 1)
         rangeToWrite("Voltage", temperatureRiseCount_list.count()*4+1, var, "1", QColor(68,114,196));
@@ -527,7 +536,8 @@ void TemperatureRiseDialog::writeExcel(const QString fileName)
 
     for (int i = 0; i <= this->loadCount; i++)
     {
-        var.append(ui->tableWidget->item(i, 1)->text());
+        if (ui->tableWidget->item(i, 1))
+            var.append(ui->tableWidget->item(i, 1)->text());
     }
     if (roomTemperatureRiseC == 1)
         rangeToWrite("Current", temperatureRiseCount_list.count()*4+2, var, "1", QColor(68,114,196));
@@ -663,11 +673,10 @@ void TemperatureRiseDialog::saveCustomPlotData(QDateTime time)
 
     --this->loadCount;
     emit loadStop();
-//        Collect::PowerStop();
+    Collect::PowerStop();
     Collect::LoadStop(servo);
     Collect::CutToLN(servo);
 
-//        qDebug() << QDateTime::currentDateTime();
     writeExcel(name);
 //        qDebug() << QDateTime::currentDateTime();
 }
@@ -799,9 +808,7 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
                    _objectTime = temp.addSecs(_objectTime.time().secsTo(QTime::currentTime()));
 
                     _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
-
                     Collect::SetLoad(SET_LPF_RESISTIVE_884, m_currentIn, servo);
-
                     emit loadStart(5000);
                     Collect::LoadStart(servo);
                 } else {
