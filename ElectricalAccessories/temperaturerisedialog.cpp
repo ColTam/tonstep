@@ -353,6 +353,13 @@ void TemperatureRiseDialog::rangeToWrite(QString itemName, column_t column, QVar
 
     QAxObject *Borders = range->querySubObject("Borders");//Interior background; Borders border; Font font;
     Borders->setProperty("Color", color);
+
+    if (itemName == "TempR") {
+        QString rangStr = "=MAX(" + rangStr2 + "2:" + rangStr2 + QString::number(row) + ")";
+        QAxObject *cells = _worksheet->querySubObject("Cells(int, int)", row+1, col);
+        cells->setProperty("Value", QVariant(rangStr));
+        cells->setProperty("HorizontalAlignment", -4108);
+    }
 }
 
 void TemperatureRiseDialog::writeExcel(const QString fileName)

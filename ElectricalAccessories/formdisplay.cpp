@@ -640,21 +640,21 @@ void FormDisplay::uartTips()
 
     if (devInformation.at(2).data.isEmpty()){
         ui->checkBox_A->setChecked(false);
-        tips += tr("Load (#4),");
+        tips += tr("Load (Servo-A),");
     } else {
         ui->checkBox_A->setChecked(true);
     }
 
     if (devInformation.at(3).data.isEmpty()){
         ui->checkBox_B->setChecked(false);
-        tips += tr("Load (#5),");
+        tips += tr("Load (Servo-B),");
     } else {
         ui->checkBox_B->setChecked(true);
     }
 
     if (devInformation.at(4).data.isEmpty()){
         ui->checkBox_C->setChecked(false);
-        tips += tr("Load (#3),");
+        tips += tr("Load (Servo-C),");
     } else {
         ui->checkBox_C->setChecked(true);
     }
