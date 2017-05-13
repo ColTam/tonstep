@@ -8,19 +8,8 @@
 #include <QEvent>
 
 mTRCRThread::mTRCRThread(QObject *parent) : QObject(parent)
+  ,oldTc("")
 {
-    oldTc = "";
-//    "EATTDATE 17/03/10TTTIME 10:53:45.300 TTN 0001    掳C       +00000219E-01TT\
-//N 0002    掳C       +00000221E-01TTN 0003    掳C       +00000222E-01TT\
-//N 0004    掳C       +00000221E-01TTN 0005    掳C       +00000220E-01TT\
-//N 0006    掳C       +00000221E-01TTN 0007    掳C       +00000221E-01TT\
-//N 0008    掳C       +00000221E-01TTN 0009    掳C       +00000221E-01TT\
-//N 0010    掳C       +00000221E-01TTN 0101    掳C       +00000221E-01TT\
-//N 0102    掳C       -00000221E-01TTN 0103    掳C       +00000221E-01TT\
-//N 0104    掳C       +00000222E-01TTN 0105    掳C       +00000221E-01TT\
-//N 0106    掳C       +00000221E-01TTN 0107    掳C       +00000220E-01TT\
-//N 0108    掳C       +00000221E-01TTN 0109    掳C       +00000220E-01TT\
-//N 0110    掳C       +00000221E-01TTEN";
 }
 
 mTRCRThread::~mTRCRThread()

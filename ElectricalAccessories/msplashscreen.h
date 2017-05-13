@@ -3,7 +3,9 @@
 
 #include <QSplashScreen>
 
+#ifdef _MSC_BUILD
 #pragma execution_character_set("utf-8")
+#endif
 
 class QLabel;
 class QProgressBar;
@@ -24,9 +26,6 @@ public:
 private:
     QProgressBar *mProgressBar;         /*!* \brief 进度条对象 */
     QLabel *mLabel;                     /*!* \brief 便签对象 */
-
-private slots:
-    void progressChanged(int);          /*!* \brief 刷新进度条 */
 };
 
 #endif // MSPLASHSCREEN_H

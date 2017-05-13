@@ -12,7 +12,9 @@
 
 #include <QWidget>
 
+#ifdef _MSC_BUILD
 #pragma execution_character_set("utf-8")
+#endif
 
 class QPropertyAnimation;
 class QThread;

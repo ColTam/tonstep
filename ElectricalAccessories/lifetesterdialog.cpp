@@ -15,23 +15,21 @@
 #include <QThread>
 
 LifeTesterDialog::LifeTesterDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::LifeTesterDialog)
+    QDialog(parent)
+    ,ui(new Ui::LifeTesterDialog)
+  ,loadCount(0)
+  ,judgeCount1(0)
+  ,judgeCount2(0)
+  ,errorCount(0)
+  ,oldPosition("")
+  ,_threadA(nullptr)
+  ,_mLoadThreadA(nullptr)
+  ,_threadB(nullptr)
+  ,_mLoadThreadB(nullptr)
+  ,_threadC(nullptr)
+  ,_mLoadThreadC(nullptr)
 {
     ui->setupUi(this);
-
-    loadCount = 0;
-    judgeCount1 = 0;
-    judgeCount2 = 0;
-    errorCount = 0;
-    oldPosition = "";
-
-    _threadA = NULL;
-    _mLoadThreadA = NULL;
-    _threadB = NULL;
-    _mLoadThreadB = NULL;
-    _threadC = NULL;
-    _mLoadThreadC = NULL;
 
     initDialogTitle();
 

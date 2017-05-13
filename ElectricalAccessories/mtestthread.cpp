@@ -7,10 +7,10 @@
 #include <QEvent>
 
 mTestThread::mTestThread(QObject *parent) : QObject(parent)
+    , oldNumberA("000000000064\r\n")
+    , oldNumberB("000000000064\r\n")
+    , oldNumberC("000000000064\r\n")
 {
-    oldNumberA = "000000000064\r\n";
-    oldNumberB = "000000000064\r\n";
-    oldNumberC = "000000000064\r\n";
 }
 
 mTestThread::~mTestThread()

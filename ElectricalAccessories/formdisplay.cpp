@@ -22,16 +22,16 @@
 QString FormDisplay::dirName = "";
 
 FormDisplay::FormDisplay(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::FormDisplay)
+    QWidget(parent)
+  , ui(new Ui::FormDisplay)
+  , isOld(PROJECT_CONDITION_NEW)
+  , isAuto(0)
+  , isManual(0)
+  , mServo(servoA)
 {
     ui->setupUi(this);
 
     //value
-    isOld = PROJECT_CONDITION_NEW;
-    isAuto = false;
-    isManual = false;
-    mServo = servoA;
     mFileNameListA.clear();
     mFileNameListB.clear();
     mFileNameListC.clear();
@@ -46,7 +46,7 @@ FormDisplay::FormDisplay(QWidget *parent) :
     ui->lineEdit_itemId->setFocus();
     ui->lineEdit_itemId->selectAll();
 
-    {
+    {//special mode --unused
         ui->checkBox_breaking->setEnabled(false);
         ui->checkBox_temp->setEnabled(false);
         ui->checkBox_breaking_2->setEnabled(false);
@@ -106,11 +106,11 @@ FormDisplay::FormDisplay(QWidget *parent) :
     mMessage = new QMessageWidget(this);
     mMessage->setMinimumSize(958,26);
     mMessage->setGeometry(1,646,958,26);
+    //    mMessage->hide();
 
     m_helpWidget = new HelpWidget(this);
     m_helpWidget->setGeometry(7, 7, 943, 633);
     m_helpWidget->hide();
-    //    mMessage->hide();
     if (connectSTAS) {
         mMessage->show();
         mMessage->setText(tr("Connect STAS Sucess !"));
@@ -131,21 +131,27 @@ FormDisplay::FormDisplay(QWidget *parent) :
     englishAction = new QAction();
     englishAction->setText(tr("English"));
 //    pathAction->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_E));
-    connect(englishAction, SIGNAL(triggered(bool)), this, SLOT(clickedEnglishAction()));
 
     chineseAction = new QAction();
     chineseAction->setText(tr("Chinese"));
-//    pathAction->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_C));
-    connect(chineseAction, SIGNAL(triggered(bool)), this, SLOT(clickedChineseAction()));
 
     pathAction = new QAction();
     pathAction->setText(tr("Path"));
-//    pathAction->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_P));
-    connect(pathAction, SIGNAL(triggered(bool)), this, SLOT(clickedPathAction()));
 
     RegistrationAction = new QAction();
     RegistrationAction->setText(tr("Registration Code"));
-    connect(RegistrationAction, SIGNAL(triggered(bool)), this, SLOT(clickedRegistrationAction()));
+
+    connect(englishAction, SIGNAL(triggered(bool)), this, SLOT(clickedEnglishAction()));
+    connect(chineseAction, SIGNAL(triggered(bool)), this, SLOT(clickedChineseAction()));
+    connect(pathAction, &QAction::triggered, [this]() {
+        mPathDialog->defaultPathLineEdit->setText(dirName);
+        mPathDialog->currentPathLineEdit->setText(dirName);
+        mPathDialog->exec();
+    });
+    connect(RegistrationAction, &QAction::triggered, [this]() {
+        mRegistration->m_lineEdit->setText(Collect::registrNumber);
+        mRegistration->exec();
+    });
 
     popMenu->addAction(englishAction);
     popMenu->addAction(chineseAction);
@@ -560,9 +566,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
     }
     }
 
-    if (isAuto) {
-        isAuto = false;
-    }
+    if (isAuto) isAuto = false;
 
     qSort(mFileNameListA.begin(), mFileNameListA.end());
     qSort(mFileNameListB.begin(), mFileNameListB.end());
@@ -572,9 +576,8 @@ void FormDisplay::addItemIcon(QString Image, int goal)
 
 bool FormDisplay::isChecked(QTableWidgetItem *item)
 {
-    if (item->checkState() == Qt::Checked){
+    if (item->checkState() == Qt::Checked)
         return true;
-    }
 
     return false;
 }
@@ -700,7 +703,7 @@ void FormDisplay::uartTips()
 
 void FormDisplay::enterMain()
 {
-    if (ui->lineEdit_itemId->text().isEmpty()){
+    if (ui->lineEdit_itemId->text().isEmpty()){//判断项目ID是否填写
         mMessage->show();
         mMessage->setText(tr("Please Enter The Project ID."));
         ui->lineEdit_itemId->setFocus();
@@ -708,7 +711,7 @@ void FormDisplay::enterMain()
         return;
     }
 
-    fileSize = dirName.size();
+    fileSize = dirName.size();//判断目录情况，是否存在，存在则提示进入，否则直接创建
     QDir workDir(dirName);
     if (workDir.exists(ui->lineEdit_itemId->text())){
         QMessageBox msgBox(QMessageBox::Question,tr("Question"),tr("Project has been in existence, whether to continue?"));
@@ -1124,7 +1127,7 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
 {
     QString _servo = fileName.right(2).mid(0,1);
 
-    if (number == -1) {
+    if (number == -1) {//用户中断测试
         if (_servo == "A") {
             for (int i = dirNameListA.count(); i > 0; i--) {
                 dirNameListA.removeFirst();
@@ -1150,7 +1153,7 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
             mPiecesPowerListC->setAcceptDrops(true);
             mPiecesPowerListC->setDragEnabled(true);
         }
-    } else {
+    } else {//继续项目测试
         if (fileName.right(5).mid(0,2) == "19" && mPlug == 1) {
             Collect::AlarmOpen();
             QMessageBox msgBox(QMessageBox::Warning,tr(" Electrical Accessories Test Automation Program"),
@@ -1192,11 +1195,11 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
 
     if (ui->toolButton_start->isEnabled() &&
             ui->toolButton_start_2->isEnabled() &&
-            ui->toolButton_start_3->isEnabled()) {
+            ui->toolButton_start_3->isEnabled()) {//所有测试完成 停止线程读取
         Collect::PowerStop();
         Collect::stateStand();
         emit tTimerStop(0,0);
-    } else {
+    } else {//判断未测试项目，只保留未测试数据读取
         int r = 0, e = 0;
         if (dirNameListA.count() > 0 && _servo != "A") {
             if (dirNameListA.count()>0)
@@ -1251,7 +1254,7 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
         if ((_servo == "A" && dirNameListA.count() > 0) ||
                 (_servo == "B" && dirNameListB.count() > 0) ||
                 (_servo == "C" && dirNameListC.count() > 0)) {
-            if (number > 0) {
+            if (number > 0) {//温升测试number端口Fail， 用户选择是否继续测试
                 QMessageBox msgBox(QMessageBox::Warning,tr("Fail"),tr("Temperature rise test result is: Fail!\nWhether to continue to operate?"));
                 msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
                 msgBox.setButtonText(QMessageBox::Ok,tr("Yes"));
@@ -1831,19 +1834,6 @@ void FormDisplay::clickedChineseAction()
     msgBox.setWindowIcon(QIcon(WINDOW_ICON));
 
     msgBox.exec();
-}
-
-void FormDisplay::clickedPathAction()
-{
-    mPathDialog->defaultPathLineEdit->setText(dirName);
-    mPathDialog->currentPathLineEdit->setText(dirName);
-    mPathDialog->exec();
-}
-
-void FormDisplay::clickedRegistrationAction()
-{
-    mRegistration->m_lineEdit->setText(Collect::registrNumber);
-    mRegistration->exec();
 }
 
 void FormDisplay::on_toolButton_save19_clicked()

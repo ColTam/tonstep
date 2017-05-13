@@ -11,7 +11,19 @@
 
 TemperatureRiseDialog::TemperatureRiseDialog(time_t hour, int num, QString Im, QWidget *parent) :
     QDialog(parent),duration(hour),flag(num),widgetCount(--num),_Im(Im),
-    ui(new Ui::TemperatureRiseDialog)
+    ui(new Ui::TemperatureRiseDialog),
+    loadCount(0),
+    failNumber(0),
+    timeCount(0),
+    m_currentIn(""),
+    _worksheet(nullptr),
+    savePngSecess(0),
+    _threadA(nullptr),
+    _mLoadThreadA(nullptr),
+    _threadB(nullptr),
+    _mLoadThreadB(nullptr),
+    _threadC(nullptr),
+    _mLoadThreadC(nullptr)
 {
     ui->setupUi(this);
 
@@ -19,21 +31,8 @@ TemperatureRiseDialog::TemperatureRiseDialog(time_t hour, int num, QString Im, Q
     _miniDateWidget->move(0, (this->height() - _miniDateWidget->height()) *5/8);
     _miniDateWidget->show();
 
-    this->loadCount = 0;
-    this->failNumber = 0;
-    this->timeCount = 0;
-    this->m_currentIn = "";
     oldTemperatureRise_list.clear();
     setTargetTime();
-    _worksheet = NULL;
-    savePngSecess = false;
-
-    _threadA = NULL;
-    _mLoadThreadA = NULL;
-    _threadB = NULL;
-    _mLoadThreadB = NULL;
-    _threadC = NULL;
-    _mLoadThreadC = NULL;
 
     initDialogTitle();
 
@@ -363,7 +362,7 @@ void TemperatureRiseDialog::rangeToWrite(QString itemName, column_t column, QVar
 }
 
 void TemperatureRiseDialog::writeExcel(const QString fileName)
-{
+{//通过 QAxObject + Excel VBA来实现操作excal
     QString name = fileName+".xlsx";
 //    QDir::toNativeSeparators(name);
     name.replace("/", "\\");

@@ -61,7 +61,9 @@
 #include <QTableWidget>
 #include <QWidget>
 
+#ifdef _MSC_BUILD
 #pragma execution_character_set("utf-8")
+#endif
 
 class HelpWidget;
 
@@ -127,8 +129,6 @@ public slots:
 protected slots:
     void clickedEnglishAction();                /*!* \brief 使界面显示英语 */
     void clickedChineseAction();                /*!* \brief 使界面显示中文 */
-    void clickedPathAction();                   /*!* \brief 使编辑路径界面 */
-    void clickedRegistrationAction();           /*!* \brief 使编辑注册码界面 */
 
 private slots:
     void on_pushButton_login1_clicked();        /*!* \brief IEC60320选择按钮 */

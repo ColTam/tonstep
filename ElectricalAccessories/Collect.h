@@ -27,7 +27,9 @@
 #include <QObject>
 
 #pragma once
+#ifdef _MSC_BUILD
 #pragma execution_character_set("utf-8")
+#endif
 
 typedef struct {
     QString Pf;     //功率因素

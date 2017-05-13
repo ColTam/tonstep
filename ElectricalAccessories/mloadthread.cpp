@@ -9,16 +9,16 @@
 #include <QTime>
 
 mLoadThread::mLoadThread(QObject *parent) : QObject(parent)
+  ,isFirst(true)
+  ,isOn(false)
+  ,isOff(false)
+  ,oldVole("VF:09C4 01F4\r\n")
+  ,oldLoadA("0.0000, 0.0000, 0.0000\r\n")
+  ,oldLoadB("0.0000, 0.0000, 0.0000\r\n")
+  ,oldLoadC("0.0000, 0.0000, 0.0000\r\n")
+  ,trLoadU(0.1)
+  ,trLoadD(-0.1)
 {
-    isFirst = true;
-    isOn = false;
-    isOff = false;
-    oldVole = "VF:09C4 01F4\r\n";
-    oldLoadA = "0.0000, 0.0000, 0.0000\r\n";
-    oldLoadB = "0.0000, 0.0000, 0.0000\r\n";
-    oldLoadC = "0.0000, 0.0000, 0.0000\r\n";
-    trLoadU = 0.1;
-    trLoadD = -0.1;
 }
 
 mLoadThread::~mLoadThread()

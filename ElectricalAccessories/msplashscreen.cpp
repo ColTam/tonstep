@@ -16,7 +16,7 @@ mSplashScreen::mSplashScreen(const QPixmap &pixmap) : QSplashScreen(pixmap)
     mProgressBar->setStyleSheet("QProgressBar{border: 2px solid rgb(216,216,218); border-radius: 4px; text-align:center; background:rgb(50, 50, 50);}"
                                 "QProgressBar::chunk {background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a); border-radius: 3px;}");
 
-    connect(mProgressBar, SIGNAL(valueChanged(int)), this, SLOT(progressChanged(int)));
+    connect(mProgressBar, &QProgressBar::valueChanged, [this]() {repaint();});//更新进度条显示
 
     mLabel = new QLabel(this);
     mLabel->setGeometry(1,this->height()-23,this->width()-2,23);
@@ -38,9 +38,4 @@ void mSplashScreen::setProgress(int value)
 void mSplashScreen::setLabelTest(QString str)
 {
     mLabel->setText(str);
-}
-
-void mSplashScreen::progressChanged(int)
-{
-    repaint();
 }

@@ -8,9 +8,8 @@
 #include <QMouseEvent>
 
 MiniDateWidget::MiniDateWidget(QWidget *parent) : QWidget(parent)
+  ,isPressed(0)
 {
-    isPressed = false;
-
     resize(196, 121);
     setAutoFillBackground(true);
     setStyleSheet("background: rgba(20, 20, 20, 30%)");

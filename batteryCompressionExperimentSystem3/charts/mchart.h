@@ -20,7 +20,7 @@ public:
     ~mChart();
 
 signals:
-    void savep();
+    void savep(QString);
     void readFinished();
 
 public slots:
@@ -29,7 +29,7 @@ public slots:
 private Q_SLOTS:
     void m_timerStartSlot();
     void m_timerStopSlot();
-    void saveDataSlot();
+    void saveDataSlot(QString file);
 
 private:
     QTimer m_timer;

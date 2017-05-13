@@ -17,35 +17,29 @@ pathDialog::pathDialog(QWidget *parent) : QDialog(parent)
     this->setWindowIcon(QIcon(WINDOW_ICON));
     this->setStyleSheet("#titleLabel {color: rgba(212,212,212, 80%);}");
 
-    pathLabel = new QLabel(this);
-    pathLabel->setText(tr("Default Path:"));
+    pathLabel = new QLabel(tr("Default Path:"), this);
     pathLabel->setGeometry(10, 10, 81, 22);
 
     defaultPathLineEdit = new QLineEdit(this);
     defaultPathLineEdit->setGeometry(10, 30, 381, 21);
 
-    pathPushButton = new QPushButton(this);
-    pathPushButton->setText(tr("Browse..."));
+    pathPushButton = new QPushButton(tr("Browse..."),this);
     pathPushButton->setGeometry(400, 29, 75, 23);
 //    pathPushButton->setEnabled(false);
 
-    pathLabel_2 = new QLabel(this);
-    pathLabel_2->setText(tr("Current Path:"));
+    pathLabel_2 = new QLabel(tr("Current Path:"),this);
     pathLabel_2->setGeometry(10, 60, 81, 22);
 
     currentPathLineEdit = new QLineEdit(this);
     currentPathLineEdit->setGeometry(10, 80, 381, 21);
 
-    pathPushButton_2 = new QPushButton(this);
-    pathPushButton_2->setText(tr("Browse..."));
+    pathPushButton_2 = new QPushButton(tr("Browse..."),this);
     pathPushButton_2->setGeometry(400, 79, 75, 23);
 
-    savePushButton = new QPushButton(this);
-    savePushButton->setText(tr("save"));
+    savePushButton = new QPushButton(tr("save"),this);
     savePushButton->setGeometry(290, 120, 75, 23);
 
-    closePushButton = new QPushButton(this);
-    closePushButton->setText(tr("close"));
+    closePushButton = new QPushButton(tr("close"),this);
     closePushButton->setGeometry(380, 120, 75, 23);
 
     connect(pathPushButton, SIGNAL(clicked(bool)), this, SLOT(defaultClicked()));

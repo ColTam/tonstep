@@ -36,22 +36,24 @@
    <property name="styleSheet">
     <string notr="true">QWidget {background-color: rgb(255, 255, 255);}
 #page_login {border-image: url(:/image/image/wlite.jpg);}
-#page_main {border-image: url(:/image/Icon/background/black.jpg);}
-#page_19 {border-image: url(:/image/Icon/background/black.jpg);}
-#page_20 {border-image: url(:/image/Icon/background/black.jpg);}
-#page_21 {border-image: url(:/image/Icon/background/black.jpg);}
-#page_22 {border-image: url(:/image/Icon/background/black.jpg);}
+#page_main {border-image: url(:/image/);}
+#page_19 {border-image: url(:/image/);}
+#page_20 {border-image: url(:/image/);}
+#page_21 {border-image: url(:/image/);}
+#page_22 {border-image: url(:/image/);}
+
 QGroupBox {
 border:1px solid rgb(130,135,144);
 border-radius: 5px;
 margin-top: 1.5ex;}
+
 QGroupBox::title { 
 subcontrol-origin: margin;
 subcontrol-position: top left;
 left:10px;      
 margin-left: 0px;
-padding:0 1px;
-}
+padding:0 1px;}
+
 QGroupBox::{}</string>
    </property>
    <property name="frameShape">
@@ -64,7 +66,7 @@ QGroupBox::{}</string>
     <number>2</number>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QGroupBox" name="groupBox_login">
@@ -3454,7 +3456,7 @@ Temperature Rise Arguments</string>
         <x>199</x>
         <y>20</y>
         <width>481</width>
-        <height>118</height>
+        <height>126</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_36">
@@ -3734,7 +3736,7 @@ Temperature Rise Arguments</string>
         <x>199</x>
         <y>20</y>
         <width>481</width>
-        <height>182</height>
+        <height>194</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_37">
@@ -7293,7 +7295,7 @@ Breake Capacity Arguments</string>
         <x>200</x>
         <y>20</y>
         <width>481</width>
-        <height>118</height>
+        <height>126</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_34">
@@ -7465,7 +7467,7 @@ Breake Capacity Arguments</string>
         <x>199</x>
         <y>20</y>
         <width>481</width>
-        <height>182</height>
+        <height>194</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_31">
@@ -7805,7 +7807,7 @@ Normal Operation Arguments</string>
         <x>200</x>
         <y>20</y>
         <width>481</width>
-        <height>118</height>
+        <height>126</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
@@ -7968,7 +7970,7 @@ Normal Operation Arguments</string>
         <x>200</x>
         <y>20</y>
         <width>481</width>
-        <height>182</height>
+        <height>194</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_29">
@@ -10397,7 +10399,7 @@ Normal Operation Arguments</string>
         <x>10</x>
         <y>15</y>
         <width>267</width>
-        <height>51</height>
+        <height>52</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_30">

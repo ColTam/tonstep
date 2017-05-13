@@ -29,7 +29,7 @@ mChart::mChart(QGraphicsItem *parent) :
     m_splineSeries->append(m_x, m_y);
 
     QValueAxis *xAxis = new QValueAxis();
-    xAxis->setRange(-4, 20);
+    xAxis->setRange(-5, 20);
     xAxis->setTickCount(6);
     xAxis->setMinorTickCount(4);
     xAxis->setLabelFormat("%d");
@@ -67,7 +67,7 @@ mChart::~mChart()
 void mChart::handleTimeout()
 {
     qDebug() << QTime::currentTime().toString("hh-mm-ss-zzz");
-    qreal x = plotArea().width()/24;
+    qreal x = plotArea().width()/25;
     m_x+= 1;
     m_y = qrand() % 300 + 50;
     m_splineSeries->append(m_x, m_y);
@@ -98,8 +98,12 @@ void mChart::m_timerStartSlot()
         m_x = 0;
         m_y = 0;
 
-        this->axisX()->setRange(-4, 20);
+        this->axisX()->setRange(-5, 25);
         this->axisY()->setRange(0, 200);
+    } else if (m_x >= 19 && m_x < 600) {
+        this->axisX()->setRange(m_x-24, m_x+1);
+    } else {
+        this->axisX()->setRange(-5, 25);
     }
 
     m_timer.start(100);
@@ -110,11 +114,11 @@ void mChart::m_timerStopSlot()
     m_timer.stop();
 }
 
-void mChart::saveDataSlot()
+void mChart::saveDataSlot(QString file)
 {
     this->axisX()->setRange(0, m_x);
     for (int i = 0; i < dataList.size(); i++)
         qDebug() << dataList.at(i).y();
 
-    emit savep();
+    emit savep(file);
 }
