@@ -26,10 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
     widget.cpp \
-    charts/mchart.cpp
+    charts/mchart.cpp \
+    test.c
 
 HEADERS  += widget.h \
-    charts/mchart.h
+    charts/mchart.h \
+    test.h
 
 RESOURCES += \
     res.qrc

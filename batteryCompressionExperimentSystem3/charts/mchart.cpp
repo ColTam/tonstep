@@ -93,13 +93,7 @@ void mChart::handleTimeout()
 void mChart::m_timerStartSlot()
 {
     if (m_x >= 600) {
-        m_splineSeries->clear();
-        m_rangeY = 0;
-        m_x = 0;
-        m_y = 0;
-
-        this->axisX()->setRange(-5, 25);
-        this->axisY()->setRange(0, 200);
+        splineClear();
     } else if (m_x >= 19 && m_x < 600) {
         this->axisX()->setRange(m_x-24, m_x+1);
     } else {
@@ -121,4 +115,36 @@ void mChart::saveDataSlot(QString file)
         qDebug() << dataList.at(i).y();
 
     emit savep(file);
+}
+
+void mChart::paintPressure(QString p)
+{
+    qDebug() << QTime::currentTime().toString("hh-mm-ss-zzz");
+    qreal x = plotArea().width()/(30.0/2);
+    m_x+= 2;
+    m_y = p.toInt(nullptr, 16);
+    m_splineSeries->append(m_x, m_y);
+
+    if (m_x > 19) {
+        scroll(x, 0);
+    }
+
+    if (m_rangeY < m_y) {
+        m_rangeY = m_y;
+    }
+    this->axisY()->setRange(0, m_rangeY + 20);
+
+    dataList.clear();
+    dataList = m_splineSeries->points();
+}
+
+void mChart::splineClear()
+{
+    m_splineSeries->clear();
+    m_rangeY = 0;
+    m_x = 0;
+    m_y = 0;
+
+    this->axisX()->setRange(-5, 25);
+    this->axisY()->setRange(0, 200);
 }

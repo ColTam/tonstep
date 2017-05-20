@@ -1,4 +1,6 @@
 ﻿#include "widget.h"
+#include "mtimer.h"
+#include "test.h"
 #include "charts/mchart.h"
 
 #include <QComboBox>
@@ -16,9 +18,9 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLegend>
 #include <QBitArray>
-#include <QModbusClient>
-#include <QModbusRtuSerialMaster>
 #include <QFileDialog>
+#include <QThread>
+#include <QTime>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent),
@@ -29,6 +31,7 @@ Widget::Widget(QWidget *parent)
       m_stepUpNumberLineEdit(createWriteLineEdit()),
       m_pressureDropLineEdit(createWriteLineEdit()),
       m_testPatternLineEdit(createWriteLineEdit()),
+      m_currentPressureLineEdit(createReadLineEdit()),
       m_maxPressureLineEdit(createReadLineEdit()),
       m_writeArgumentPushButton(new QPushButton(tr("设置参数"))),
       m_readArgumentPushButton(new QPushButton(tr("读取参数"))),
@@ -36,13 +39,10 @@ Widget::Widget(QWidget *parent)
       m_stopPushButton(new QPushButton(tr("停止"))),
       m_savePushButton(new QPushButton(tr("保存"))),
       m_on_off_uartPushButton(new QPushButton(tr("打开"))),
-      m_themeComboBox(createThemeComboBox()),
       m_uartComboBox(createUartComboBox()),
       m_serialPort(nullptr),
-      m_modbusClient(new QModbusRtuSerialMaster(this)),
-      m_setDataUnit(QModbusDataUnit(static_cast<QModbusDataUnit::RegisterType> (2), 0, 10)),
-      m_getDataUnit(QModbusDataUnit(static_cast<QModbusDataUnit::RegisterType> (2), 0, 10)),
-      m_readDataUnit(QModbusDataUnit(static_cast<QModbusDataUnit::RegisterType> (2), 0, 10))
+      getArgument(false),
+      getPressure(false)
 {
     connectSignals();
 
@@ -95,8 +95,8 @@ Widget::Widget(QWidget *parent)
 
     QHBoxLayout *midHLayout = new QHBoxLayout();
     midHLayout->addSpacing(10);
-    midHLayout->addWidget(new QLabel(tr("Theme:")));
-    midHLayout->addWidget(m_themeComboBox);
+    midHLayout->addWidget(new QLabel(tr("当前气压:")));
+    midHLayout->addWidget(m_currentPressureLineEdit);
     midHLayout->addStretch();
     midHLayout->addWidget(new QLabel(tr("串口号:")));
     midHLayout->addWidget(m_uartComboBox);
@@ -108,7 +108,7 @@ Widget::Widget(QWidget *parent)
     m_chart = createSplineChart();
     m_chartView = new QChartView(m_chart);
     m_chartView->setRenderHint(QPainter::Antialiasing);
-
+    m_chartView->chart()->setTheme(QChart::ChartThemeBlueIcy);
 
     QHBoxLayout *bottomHLayout = new QHBoxLayout();
     bottomHLayout->addSpacing(20);
@@ -136,6 +136,9 @@ Widget::Widget(QWidget *parent)
     this->setFont(font);
 
     setLayout(baseLayout);
+
+    m_timer = new QTimer();
+    connect(m_timer, &QTimer::timeout, this, &Widget::m_timerout);
 }
 
 Widget::~Widget()
@@ -157,7 +160,7 @@ QLineEdit *Widget::createReadLineEdit() const
 {
     QLineEdit *lineEdit = new QLineEdit();
     lineEdit->setPlaceholderText("0 PSL");
-    lineEdit->setMaximumWidth(5*FONTSIZE+3);
+    lineEdit->setMaximumWidth(5*FONTSIZE+8);
     lineEdit->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
     lineEdit->setReadOnly(true);
 
@@ -180,26 +183,36 @@ QComboBox *Widget::createThemeComboBox() const
 
 void Widget::connectSignals()
 {
-    connect(m_themeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(themeChanged()));
     connect(m_on_off_uartPushButton, SIGNAL(clicked(bool)), this, SLOT(openUartSlot()));
     connect(m_writeArgumentPushButton, SIGNAL(clicked(bool)), this, SLOT(writeArgumentSlot()));
-    connect(m_readArgumentPushButton, SIGNAL(clicked(bool)), this, SLOT(readArgumentSlot()));
+    connect(m_readArgumentPushButton, &QPushButton::clicked, [this]() {
+        getArgument = true;
+    });
     connect(m_startPushButton, &QPushButton::clicked, [this]() {
-        emit m_timerStart();
+        i = 0;
+        mNewData.clear();
         m_startPushButton->setEnabled(false);
         m_stopPushButton->setEnabled(true);
-
         m_stateLabel->setPixmap(QPixmap(":/image/icon/on"));
+
+        QByteArray data;//启动测试机
+        String2Hex("0A 06 00 07 00 01 F8 B0", data);
+        if (m_serialPort != nullptr) {
+            m_serialPort->write(data);
+        }
     });
     connect(m_stopPushButton, &QPushButton::clicked, [this]() {
-        emit m_timerStop();
+        i = 0;
+        mNewData.clear();
+        QByteArray data;//停止测试机
+        String2Hex("0A 06 00 07 00 00 39 70", data);
+        if (m_serialPort != nullptr && getPressure) {
+            m_serialPort->write(data);
+        }
         m_stopPushButton->setEnabled(false);
         m_startPushButton->setEnabled(true);
 
         m_stateLabel->setPixmap(QPixmap(":/image/icon/off"));
-    });
-    connect(m_modbusClient, &QModbusClient::errorOccurred, [this](QModbusDevice::Error) {
-        qDebug() << m_modbusClient->errorString();
     });
     connect(m_savePushButton, &QPushButton::clicked, [this](){
         emit m_dataSave(QFileDialog::getSaveFileName(nullptr, "Save", "./", tr("Image (*.png)")));
@@ -209,7 +222,6 @@ void Widget::connectSignals()
 QChart *Widget::createSplineChart() const
 {
     // spine chart
-
     mChart *chart = new mChart;
 //        chart->setTitle(tr("SplineSeries"));
     chart->legend()->hide();
@@ -224,6 +236,8 @@ QChart *Widget::createSplineChart() const
         m_startPushButton->setEnabled(true);
         m_stopPushButton->setEnabled(false);
     });
+    connect(this, SIGNAL(updatePressure(QString)), chart, SLOT(paintPressure(QString)));
+    connect(m_startPushButton, &QPushButton::clicked, chart, &mChart::splineClear);
 
     return chart;
 }
@@ -232,7 +246,6 @@ QLabel *Widget::createState() const
 {
     QLabel *label = new QLabel();
     label->setPixmap(QPixmap(":/image/icon/off"));
-//    label->setMinimumSize(67,33);
 
     return label;
 }
@@ -255,55 +268,20 @@ QComboBox *Widget::createUartComboBox() const
     return box;
 }
 
-void Widget::themeChanged()
-{
-    QChart::ChartTheme theme = (QChart::ChartTheme) m_themeComboBox->itemData(m_themeComboBox->currentIndex()).toInt();
-
-    m_chartView->chart()->setTheme(theme);
-#if 0
-    QPalette pal = window()->palette();
-    if (theme == QChart::ChartThemeLight) {
-        pal.setColor(QPalette::Window, QRgb(0xf0f0f0));
-        pal.setColor(QPalette::WindowText, QRgb(0x404044));
-    } else if (theme == QChart::ChartThemeDark) {
-        pal.setColor(QPalette::Window, QRgb(0x121218));
-        pal.setColor(QPalette::WindowText, QRgb(0xd6d6d6));
-    } else if (theme == QChart::ChartThemeBlueCerulean) {
-        pal.setColor(QPalette::Window, QRgb(0x40434a));
-        pal.setColor(QPalette::WindowText, QRgb(0xd6d6d6));
-    } else if (theme == QChart::ChartThemeBrownSand) {
-        pal.setColor(QPalette::Window, QRgb(0x9e8965));
-        pal.setColor(QPalette::WindowText, QRgb(0x404044));
-    } else if (theme == QChart::ChartThemeBlueNcs) {
-        pal.setColor(QPalette::Window, QRgb(0x018bba));
-        pal.setColor(QPalette::WindowText, QRgb(0x404044));
-    } else if (theme == QChart::ChartThemeHighContrast) {
-        pal.setColor(QPalette::Window, QRgb(0xffab03));
-        pal.setColor(QPalette::WindowText, QRgb(0x181818));
-    } else if (theme == QChart::ChartThemeBlueIcy) {
-        pal.setColor(QPalette::Window, QRgb(0xcee7f0));
-        pal.setColor(QPalette::WindowText, QRgb(0x404044));
-    } else {
-        pal.setColor(QPalette::Window, QRgb(0xf0f0f0));
-        pal.setColor(QPalette::WindowText, QRgb(0x404044));
-    }
-    window()->setPalette(pal);
-#endif
-}
-
+//保存曲线图
 void Widget::savepn(QString file)
 {
     QPixmap pix = this->grab(QRect(m_chartView->geometry()));
     if (pix.save(file,"png"))
         qDebug() << "secces";
 }
-
+//打开串口
 void Widget::openUartSlot()
 {
-    qDebug() << "uart";
-    if (m_uartComboBox->count()<1)
+    if (m_uartComboBox->count()<1) {
         return;
-#ifndef MODBUS
+    }
+
     if (m_on_off_uartPushButton->text() == "打开"){
         //串口设置
         m_serialPort = new QSerialPort;//创建QSerialPort对象
@@ -317,11 +295,19 @@ void Widget::openUartSlot()
         m_serialPort->setParity(QSerialPort::NoParity);//设置串口校验位
         m_serialPort->setStopBits(QSerialPort::OneStop);//设置串口停止位
         m_serialPort->setFlowControl(QSerialPort::NoFlowControl);//设置流控制
+        connect(m_serialPort, SIGNAL(readyRead()), this, SLOT(readArgumentSlot()));
         //界面设置
         m_on_off_uartPushButton->setText(tr("关闭"));
         m_startPushButton->setEnabled(true);
-    }
-    else{
+
+        if (!m_timer->isActive())
+            m_timer->start(100);
+
+        getArgument = true;
+    } else {
+        if (m_timer->isActive())
+            m_timer->stop();
+
         m_serialPort->close();
         delete m_serialPort;
         m_serialPort = nullptr;
@@ -329,143 +315,266 @@ void Widget::openUartSlot()
         m_on_off_uartPushButton->setText(tr("打开"));
         m_startPushButton->setEnabled(false);
     }
-#else
-    if (!m_modbusClient)
-        return;
-
-    if (m_modbusClient->state() != QModbusDevice::ConnectedState) {
-        m_modbusClient->setConnectionParameter(
-                    QModbusDevice::SerialPortNameParameter,m_uartComboBox->currentText());
-        m_modbusClient->setConnectionParameter(
-                    QModbusDevice::SerialParityParameter,QSerialPort::NoParity);
-        m_modbusClient->setConnectionParameter(
-                    QModbusDevice::SerialBaudRateParameter,QSerialPort::Baud115200);
-        m_modbusClient->setConnectionParameter(
-                    QModbusDevice::SerialDataBitsParameter,QSerialPort::Data8);
-        m_modbusClient->setConnectionParameter(
-                    QModbusDevice::SerialStopBitsParameter,QSerialPort::OneStop);
-
-        m_modbusClient->setTimeout(120);//超时时间
-        m_modbusClient->setNumberOfRetries(1);//重试次数
-
-        if (!m_modbusClient->connectDevice()) {
-            m_on_off_uartPushButton->setText(tr("打开"));
-            m_startPushButton->setEnabled(false);
-        } else {
-            m_on_off_uartPushButton->setText(tr("关闭"));
-            m_startPushButton->setEnabled(true);
-        }
-    } else {
-        m_modbusClient->disconnectDevice();
-        m_on_off_uartPushButton->setText(tr("打开"));
-        m_startPushButton->setEnabled(false);
-    }
-#endif
 }
-
+//向串口写入数据--设置参数
 void Widget::writeArgumentSlot()
 {
-    qDebug() << "write";
-#ifndef MODBUS
     if (!m_serialPort->isOpen()){
-        qDebug() << tr("SerialPort not open")
+        qDebug() << tr("SerialPort not open");
         return;
     }
 
-    QString str = "SET_PARAM:"+QString("%1 %2 %3 %4 %5 %6 000 000 000 000")
-            .arg(m_initatingPressureLineEdit->text().toInt(), 3, 10, QLatin1Char('0'))
-            .arg(m_stageStepUpLineEdit->text().toInt(), 3, 10, QLatin1Char('0'))
-            .arg(m_stageTimeLineEdit->text().toInt(), 3, 10, QLatin1Char('0'))
-            .arg(m_stepUpNumberLineEdit->text().toInt(), 3, 10, QLatin1Char('0'))
-            .arg(m_pressureDropLineEdit->text().toInt(), 3, 10, QLatin1Char('0'))
-            .arg(m_testPatternLineEdit->text().toInt(), 3, 10, QLatin1Char('0'));
-    m_serialPort->write(str.toLatin1().data());
-#else
-    if (!m_modbusClient)
-        return;
+    {// 0.
+        char ch[] = {0x0a, 0x06, 0x00, 0x00, 0x00, 0x00};
+        QString dataBit = QString::number(m_initatingPressureLineEdit->text().toInt(), 16);
 
-    QBitArray m_coils(10);
-    m_coils.setBit(2, true);
-    m_coils.setBit(3, true);
-    m_coils.setBit(7, true);
-    for (uint i = 0; i < m_setDataUnit.valueCount(); i++) {
-            m_setDataUnit.setValue(i, m_coils[i + m_setDataUnit.startAddress()]);
-    }
-
-    if (auto *reply = m_modbusClient->sendWriteRequest(m_setDataUnit, 10)) {
-        if (!reply->isFinished()) {
-            connect(reply, &QModbusReply::finished, this, [this, reply]() {
-                if (reply->error() == QModbusDevice::ProtocolError) {
-                    qDebug() << tr("Write response error: %1 (Mobus exception: 0x%2)")
-                        .arg(reply->errorString()).arg(reply->rawResult().exceptionCode());
-                } else if (reply->error() != QModbusDevice::NoError) {
-                    qDebug() << tr("Write response error: %1 (code: 0x%2)").
-                        arg(reply->errorString()).arg(reply->error(), -1, 16);
-                }
-                reply->deleteLater();
-            });
-        } else {
-            // broadcast replies return immediately
-            reply->deleteLater();
+        if (dataBit.toInt(nullptr, 16) > 50) {
+            dataBit = QString::number(50, 16);
+        } else if (dataBit.toInt(nullptr, 16) <= 0) {
+            dataBit = "00";
         }
-    } else {
-        qDebug() << tr("Write error: ") + m_modbusClient->errorString();
-    }
-#endif
-}
+        m_initatingPressureLineEdit->setText(QString::number(dataBit.toInt(nullptr,16)));
+        if (dataBit.size() == 1)
+            dataBit.prepend("0");
 
+        ch[5] = toAscii(dataBit.toInt(nullptr, 16));
+        QString checkBit = QString::number(CRC16(ch, 6), 16);
+        QString dataByte = QString("0a 06 00 00 00 %1 %2 %3").arg(
+                dataBit,checkBit.mid(2,2),checkBit.mid(0,2));
+
+        QByteArray data;
+        String2Hex(dataByte, data);
+
+        if (m_serialPort->isOpen())
+            m_serialPort->write(data);
+    }
+
+    {// 1.
+        char ch[] = {0x0a, 0x06, 0x00, 0x01, 0x00, 0x00};
+        QString dataBit = QString::number(m_stageStepUpLineEdit->text().toInt(), 16);
+
+        if (dataBit.toInt(nullptr, 16) > 50) {
+            dataBit = QString::number(50, 16);
+        } else if (dataBit.toInt(nullptr, 16) < 5) {
+            dataBit = "05";
+        }
+        m_stageStepUpLineEdit->setText(QString::number(dataBit.toInt(nullptr,16)));
+        if (dataBit.size() == 1)
+            dataBit.prepend("0");
+
+        ch[5] = toAscii(dataBit.toInt(nullptr, 16));
+        QString checkBit = QString::number(CRC16(ch, 6), 16);
+        QString dataByte = QString("0a 06 00 01 00 %1 %2 %3").arg(
+                dataBit,checkBit.mid(2,2),checkBit.mid(0,2));
+
+        QByteArray data;
+        String2Hex(dataByte, data);
+
+        if (m_serialPort->isOpen())
+            m_serialPort->write(data);
+    }
+
+    {// 2.
+        char ch[] = {0x0a, 0x06, 0x00, 0x02, 0x00, 0x00};
+        QString dataBit = QString::number(m_stageTimeLineEdit->text().toInt(), 16);
+
+        if (dataBit.toInt(nullptr, 16) > 50) {
+            dataBit = QString::number(50, 16);
+        } else if (dataBit.toInt(nullptr, 16) < 1) {
+            dataBit = "01";
+        }
+        m_stageTimeLineEdit->setText(QString::number(dataBit.toInt(nullptr,16)));
+        if (dataBit.size() == 1)
+            dataBit.prepend("0");
+
+        ch[5] = toAscii(dataBit.toInt(nullptr, 16));
+        QString checkBit = QString::number(CRC16(ch, 6), 16);
+        QString dataByte = QString("0a 06 00 02 00 %1 %2 %3").arg(
+                dataBit,checkBit.mid(2,2),checkBit.mid(0,2));
+
+        QByteArray data;
+        String2Hex(dataByte, data);
+
+        if (m_serialPort->isOpen())
+            m_serialPort->write(data);
+    }
+
+    {// 3.
+        char ch[] = {0x0a, 0x06, 0x00, 0x03, 0x00, 0x00};
+        QString dataBit = QString::number(m_stepUpNumberLineEdit->text().toInt(), 16);
+
+        if (dataBit.toInt(nullptr, 16) > 99) {
+            dataBit = QString::number(99, 16);
+        } else if (dataBit.toInt(nullptr, 16) < 1) {
+            dataBit = "01";
+        }
+        m_stepUpNumberLineEdit->setText(QString::number(dataBit.toInt(nullptr,16)));
+        if (dataBit.size() == 1)
+            dataBit.prepend("0");
+
+        ch[5] = toAscii(dataBit.toInt(nullptr, 16));
+        QString checkBit = QString::number(CRC16(ch, 6), 16);
+        QString dataByte = QString("0a 06 00 03 00 %1 %2 %3").arg(
+                dataBit,checkBit.mid(2,2),checkBit.mid(0,2));
+
+        QByteArray data;
+        String2Hex(dataByte, data);
+
+        if (m_serialPort->isOpen())
+            m_serialPort->write(data);
+    }
+
+    {// 4.
+        char ch[] = {0x0a, 0x06, 0x00, 0x04, 0x00, 0x00};
+        QString dataBit = QString::number(m_pressureDropLineEdit->text().toInt(), 16);
+
+        if (dataBit.toInt(nullptr, 16) > 99) {
+            dataBit = QString::number(99, 16);
+        } else if (dataBit.toInt(nullptr, 16) < 1) {
+            dataBit = "01";
+        }
+        m_pressureDropLineEdit->setText(QString::number(dataBit.toInt(nullptr,16)));
+        if (dataBit.size() == 1)
+            dataBit.prepend("0");
+
+        ch[5] = toAscii(dataBit.toInt(nullptr, 16));
+        QString checkBit = QString::number(CRC16(ch, 6), 16);
+        QString dataByte = QString("0a 06 00 04 00 %1 %2 %3").arg(
+                dataBit,checkBit.mid(2,2),checkBit.mid(0,2));
+
+        QByteArray data;
+        String2Hex(dataByte, data);
+
+        if (m_serialPort->isOpen())
+            m_serialPort->write(data);
+    }
+
+    {// 5.
+        char ch[] = {0x0a, 0x06, 0x00, 0x05, 0x00, 0x00};
+        QString dataBit = QString::number(m_testPatternLineEdit->text().toInt(), 16);
+
+        if (dataBit.toInt(nullptr, 16) > 1) {
+            dataBit = "01";
+        } else if (dataBit.toInt(nullptr, 16) < 1) {
+            dataBit = "00";
+        }
+        m_testPatternLineEdit->setText(QString::number(dataBit.toInt(nullptr,16)));
+        if (dataBit.size() == 1)
+            dataBit.prepend("0");
+
+        ch[5] = toAscii(dataBit.toInt(nullptr, 16));
+        QString checkBit = QString::number(CRC16(ch, 6), 16);
+        QString dataByte = QString("0a 06 00 05 00 %1 %2 %3").arg(
+                dataBit,checkBit.mid(2,2),checkBit.mid(0,2));
+
+        QByteArray data;
+        String2Hex(dataByte, data);
+
+        if (m_serialPort->isOpen())
+            m_serialPort->write(data);
+    }
+}
+//串口读取到的数据
 void Widget::readArgumentSlot()
 {
-    qDebug() << "read";
-#ifndef MODBUS
-    if (!m_serialPort->isOpen()){
-        qDebug() << tr("SerialPort not open")
-        return;
+    QByteArray temp = m_serialPort->readAll();
+    QDataStream out(&temp,QIODevice::ReadWrite);    //将字节数组读入
+
+    while(!out.atEnd())
+    {
+        qint8 outChar = 0;
+        out>>outChar;   //每字节填充一次，直到结束
+        //十六进制的转换
+        QString str = QString("%1").arg(outChar & 0xFF,2,16,QLatin1Char('0')).toUpper() + " ";
+        mNewData += str;
     }
 
-    QByteArray buffer;
-    buffer = m_serialPort->readAll();
-    if (!buffer.isEmpty()) {
-        qDebug() << buffer;
+    if (mNewData.size() == 75) {
+        mData = mNewData;
+        mNewData.clear();
     }
-#else
-    if (!m_modbusClient)
-        return;
 
-    if (auto *reply = m_modbusClient->sendReadRequest(m_getDataUnit, 10)) {
-        if (!reply->isFinished())
-            connect(reply, &QModbusReply::finished, this, &Widget::readReady);
-        else
-            delete reply; // broadcast replies return immediately
+    if (++i >= 2) {
+        dealData(mData);
+        i=0;
+    }
+}
+//实时接收数据
+void Widget::m_timerout()
+{
+    if (m_serialPort->isOpen()) {
+        QByteArray data;
+        String2Hex("0A 03 00 00 00 0A C4 B6", data);
+        m_serialPort->write(data);
     } else {
-        qDebug() << tr("Read error: ") + m_modbusClient->errorString();
+        qDebug() << tr("SerialPort not open");
     }
-#endif
+}
+//引用他人已实现函数 串口以16进制发送数据字符串转换函数
+void Widget::String2Hex(QString str, QByteArray &senddata)
+{
+    int hexdata,lowhexdata;
+    int hexdatalen = 0;
+    int len = str.length();
+    senddata.resize(len/2);
+    char lstr,hstr;
+    for(int i=0; i<len; )
+    {
+        //char lstr,
+        hstr=str[i].toLatin1();//qt5.8版本代替.toAscii()的函数
+        if(hstr == ' ') {
+            i++;
+            continue;
+        }
+        i++;
+        if(i >= len)
+            break;
+        lstr = str[i].toLatin1();
+        hexdata = ConvertHexChar(hstr);
+        lowhexdata = ConvertHexChar(lstr);
+        if((hexdata == 16) || (lowhexdata == 16))
+            break;
+        else
+            hexdata = hexdata*16+lowhexdata;
+        i++;
+        senddata[hexdatalen] = (char)hexdata;
+        hexdatalen++;
+    }
+    senddata.resize(hexdatalen);
 }
 
-void Widget::readReady()
+char Widget::ConvertHexChar(char ch)
 {
-    auto reply = qobject_cast<QModbusReply *>(sender());
-    if (!reply)
-        return;
+    if((ch >= '0') && (ch <= '9'))
+        return ch-0x30;
+    else if((ch >= 'A') && (ch <= 'F'))
+        return ch-'A'+10;
+    else if((ch >= 'a') && (ch <= 'f'))
+        return ch-'a'+10;
+    else return (-1);
+}
+//数据处理函数
+void Widget::dealData(QString str)
+{
+    getPressure = str.mid(55,1).toInt();
+//    qDebug() << str.mid(55,1) << str << str.size();
 
-    if (reply->error() == QModbusDevice::NoError) {
-        const QModbusDataUnit unit = reply->result();
-        for (uint i = 0; i < unit.valueCount(); i++) {
-            const QString entry = tr("Address: %1, Value: %2").arg(unit.startAddress())
-                                     .arg(QString::number(unit.value(i),
-                                          unit.registerType() <= QModbusDataUnit::Coils ? 10 : 16));
-            qDebug() << entry;
-        }
-    } else if (reply->error() == QModbusDevice::ProtocolError) {
-        qDebug() << tr("Read response error: %1 (Mobus exception: 0x%2)").
-                                    arg(reply->errorString()).
-                                    arg(reply->rawResult().exceptionCode(), -1, 16);
-    } else {
-        qDebug() << tr("Read response error: %1 (code: 0x%2)").
-                                    arg(reply->errorString()).
-                                    arg(reply->error(), -1, 16);
+    m_maxPressureLineEdit->setText(QString("%1 PSL").arg((str.mid(45,2)+str.mid(48,2)).toInt(nullptr,16)));
+    m_currentPressureLineEdit->setText(QString("%1 PSL").arg((str.mid(57,2)+str.mid(60,2)).toInt(nullptr,16)));//54 60 66
+
+    if (getArgument) {
+        m_initatingPressureLineEdit->setText(QString("%1").arg(str.mid(12,2).toInt(nullptr, 16)));
+        m_stageStepUpLineEdit->setText(QString("%1").arg(str.mid(18,2).toInt(nullptr, 16)));
+        m_stageTimeLineEdit->setText(QString("%1").arg(str.mid(24,2).toInt(nullptr, 16)));
+        m_stepUpNumberLineEdit->setText(QString("%1").arg(str.mid(30,2).toInt(nullptr, 16)));
+        m_pressureDropLineEdit->setText(QString("%1").arg(str.mid(36,2).toInt(nullptr, 16)));
+        m_testPatternLineEdit->setText(QString("%1").arg(str.mid(42,2).toInt(nullptr, 16)));
+        getArgument = !getArgument;
     }
 
-    reply->deleteLater();
+    if (getPressure) {
+        emit updatePressure(str.mid(57,2)+str.mid(60,2));
+    } else {
+        m_stopPushButton->click();
+    }
 }

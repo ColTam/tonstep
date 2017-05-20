@@ -1,7 +1,7 @@
 ﻿#ifndef WIDGET_H
 #define WIDGET_H
 
-#define MODBUS
+//#define MODBUS
 #define FONTSIZE 16
 
 #include <QtWidgets/QWidget>
@@ -9,6 +9,8 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QModbusDataUnit>
+#include <QThread>
+#include <QTimer>
 
 #ifdef _MSC_BUILD
 #pragma execution_character_set("utf-8")
@@ -37,11 +39,14 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = 0);
     ~Widget();
+    int i = 0;
 
 Q_SIGNALS:
     void m_timerStart();
     void m_timerStop();
     void m_dataSave(QString);
+
+    void updatePressure(QString);
 
 private:
     void connectSignals();
@@ -52,14 +57,17 @@ private:
     QComboBox *createThemeComboBox() const;
     QChart *createSplineChart() const;
 
+    void String2Hex(QString str, QByteArray &senddata);
+    char ConvertHexChar(char ch);
+    void dealData(QString str);
+
 private Q_SLOTS:
-    void themeChanged();
     void savepn(QString file);
     void openUartSlot();
     void writeArgumentSlot();
     void readArgumentSlot();
 
-    void readReady();
+    void m_timerout();
 
 private:
     QLabel* m_stateLabel;
@@ -70,6 +78,7 @@ private:
     QLineEdit* m_stepUpNumberLineEdit;
     QLineEdit* m_pressureDropLineEdit;
     QLineEdit* m_testPatternLineEdit;
+    QLineEdit* m_currentPressureLineEdit;
     QLineEdit* m_maxPressureLineEdit;
 
     QPushButton* m_writeArgumentPushButton;
@@ -79,17 +88,18 @@ private:
     QPushButton* m_savePushButton;
     QPushButton* m_on_off_uartPushButton;
 
-    QComboBox* m_themeComboBox;
     QComboBox* m_uartComboBox;
 
     QChart *m_chart;
     QChartView *m_chartView;
 
     QSerialPort *m_serialPort;
-    QModbusClient *m_modbusClient;
-    QModbusDataUnit m_setDataUnit;
-    QModbusDataUnit m_getDataUnit;
-    QModbusDataUnit m_readDataUnit;
+    QString mNewData;
+    QString mData;
+
+    bool getArgument;
+    bool getPressure;
+    QTimer *m_timer;
 };
 
 #endif // WIDGET_H

@@ -25,11 +25,14 @@ signals:
 
 public slots:
     void handleTimeout();
+    void splineClear();
 
 private Q_SLOTS:
     void m_timerStartSlot();
     void m_timerStopSlot();
     void saveDataSlot(QString file);
+
+    void paintPressure(QString p);
 
 private:
     QTimer m_timer;

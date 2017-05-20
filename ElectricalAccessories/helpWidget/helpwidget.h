@@ -36,12 +36,12 @@ protected:
 
 private:
     QFrame* m_frame;            /*!* \brief 框架 */
-    QLabel* m_toRunLabel;       /*!* \brief 待命框说明 */
-    QLabel* m_toHaveLabel;      /*!* \brief 备选框说明 */
-    QLabel* m_toStartLabel;     /*!* \brief 开始按钮说明 */
-    QLabel* m_toServoLabel;     /*!* \brief 伺服选择说明 */
-    QLabel* m_toDawdlerLabel;   /*!* \brief 懒人模式说明 */
-    QLabel* m_toFunctionLabel;  /*!* \brief 功能流程说明 */
+//    QLabel* m_toRunLabel;       /*!* \brief 待命框说明 */
+//    QLabel* m_toHaveLabel;      /*!* \brief 备选框说明 */
+//    QLabel* m_toStartLabel;     /*!* \brief 开始按钮说明 */
+//    QLabel* m_toServoLabel;     /*!* \brief 伺服选择说明 */
+//    QLabel* m_toDawdlerLabel;   /*!* \brief 懒人模式说明 */
+//    QLabel* m_toFunctionLabel;  /*!* \brief 功能流程说明 */
 };
 
 #endif // HELPWIDGET_H
