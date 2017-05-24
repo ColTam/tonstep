@@ -170,6 +170,7 @@ FormDisplay::~FormDisplay()
     delete popMenu;
     delete mRegistration;
     delete mPathDialog;
+    delete m_helpWidget;
     delete mMessage;
     delete ui;
 }
@@ -1870,6 +1871,8 @@ void FormDisplay::on_toolButton_save22_clicked()
 
 void FormDisplay::on_pushButton_login1_clicked()
 {
+    auto list = this->children();
+    qDebug() << list;
     mPlug = IEC60320;
     enterMain();
 }

@@ -135,6 +135,10 @@ public:
     /*!* \brief 清空寿命测试机测试计数  */
     static void TestClearNumber(const QString servo);
 
+    enum AlarmState{
+        open = true,
+        close = !open
+    };
     /*!* \brief 打开蜂鸣器 */
     static void AlarmOpen();
     /*!* \brief 关闭蜂鸣器 */
@@ -182,6 +186,8 @@ public:
     static QString loadPowerFactorB;
     /*!* \brief 伺服C对应负载功率因素值 */
     static QString loadPowerFactorC;
+
+    static AlarmState mAlarm;
 };
 
 #endif // COLLECT_H

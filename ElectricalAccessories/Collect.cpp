@@ -25,6 +25,7 @@ QString Collect::loadPowerFactorA = "";
 QString Collect::loadPowerFactorB = "";
 QString Collect::loadPowerFactorC = "";
 
+Collect::AlarmState Collect::mAlarm = Collect::open;
 //Collect::devState Collect::d_s;
 
 Collect::Collect(QObject *parent) : QObject(parent)
@@ -479,12 +480,18 @@ void Collect::TestClearNumber(const QString servo)
 
 void Collect::AlarmOpen()
 {
-    CollectControl::SetIoStatus(0, 7, 1);
+    if (!mAlarm) {
+        CollectControl::SetIoStatus(0, 7, 1);
+        mAlarm = Collect::open;
+    }
 }
 
 void Collect::AlarmClose()
 {
-    CollectControl::SetIoStatus(0, 7, 0);
+    if (mAlarm) {
+        CollectControl::SetIoStatus(0, 7, 0);
+        mAlarm = Collect::close;
+    }
 }
 
 void Collect::TestAlarmClose(QString servo)
