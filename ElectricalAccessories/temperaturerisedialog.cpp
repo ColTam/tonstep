@@ -773,11 +773,11 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
                 return;
             }
 
+            emit loadStop();
             //            emit temperatureRiseStop();
             _objectTime = QDateTime::currentDateTime();
             Collect::stateWarning();
             Collect::LoadStop(servo);
-            emit loadStop();
 
             if (QDateTime::currentDateTime().msecsTo(temp)/1000/60 >= 56){
                 QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Not detected current!\nPlease check the sample!"));
@@ -791,8 +791,8 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
 
                 _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
                 Collect::SetLoad(SET_LPF_RESISTIVE_884, m_currentIn, servo);
-                emit loadStart(5000);
                 Collect::LoadStart(servo);
+                emit loadStart(5000);
             } else {
                 QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Not detected current!\nPlease check the sample!\nContinue test on 'Yes'!"));
                 msgBox.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
@@ -808,8 +808,8 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
 
                     _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
                     Collect::SetLoad(SET_LPF_RESISTIVE_884, m_currentIn, servo);
-                    emit loadStart(5000);
                     Collect::LoadStart(servo);
+                    emit loadStart(5000);
                 } else {
                     threadQuit();
                     Collect::LoadStop(servo);

@@ -25,27 +25,21 @@ FormDisplay::FormDisplay(QWidget *parent) :
     QWidget(parent)
   , ui(new Ui::FormDisplay)
   , isOld(PROJECT_CONDITION_NEW)
-  , isAuto(0)
-  , isManual(0)
-  , mServo(servoA)
+  , isAuto(0), isManual(0), mServo(servoA)
 {
     ui->setupUi(this);
-
     //value
     mFileNameListA.clear();
     mFileNameListB.clear();
     mFileNameListC.clear();
-
     //widget
     ui->lineEdit_itemId->setContextMenuPolicy(Qt::NoContextMenu);
     ui->lineEdit_itemId->setMaxLength(ITEM_ID_LENGTH);
     ui->tabWidget->setCurrentIndex(TABWIDGET_SERVOA);
-
     //login
     ui->stackedWidget->setCurrentIndex(STACKWIDGET_LOGIN);
     ui->lineEdit_itemId->setFocus();
     ui->lineEdit_itemId->selectAll();
-
     {//special mode --unused
         ui->checkBox_breaking->setEnabled(false);
         ui->checkBox_temp->setEnabled(false);
@@ -55,7 +49,6 @@ FormDisplay::FormDisplay(QWidget *parent) :
         ui->checkBox_normal_2->setEnabled(false);
         ui->checkBox_normalTemp->setEnabled(false);
     }
-
     //clause 19
     ui->label_tempIm->hide();
     ui->lineEdit_tempIm->hide();
@@ -125,8 +118,8 @@ FormDisplay::FormDisplay(QWidget *parent) :
     mRegistration = new RegistrationCode();
 
     popMenu = new QMenu();
-    popMenu->setStyleSheet("background: rgba(220,220,220,80%);"
-                           "selection-color: rgb(28,28,58);");
+    popMenu->setStyleSheet("background: rgba(240,240,240,80%);"
+                           "selection-color: rgb(68,68,68);");
 
     englishAction = new QAction();
     englishAction->setText(tr("English"));
