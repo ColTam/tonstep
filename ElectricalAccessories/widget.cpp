@@ -41,6 +41,7 @@ Widget::Widget(QWidget *parent) :
     Collect::CutToLN("B");
     Collect::CutToLN("C");
     Collect::AlarmClose();
+    Collect::TestDisplayOpen();
 
     //init widget
     initWidget();

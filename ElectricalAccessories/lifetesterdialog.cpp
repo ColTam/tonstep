@@ -788,6 +788,7 @@ void LifeTesterDialog::errorLoadStop()
 void LifeTesterDialog::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
+    Collect::TestDisplayOpen();
 
     if (servo == "A")       {
         emit clauseFinishedA(0);

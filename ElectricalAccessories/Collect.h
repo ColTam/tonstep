@@ -141,7 +141,9 @@ public:
     static void AlarmClose();
     static void TestAlarmClose(QString servo);
 
+    /*!* \brief 寿命测试机开启触摸屏显示 */
     static void TestDisplayOpen();
+    /*!* \brief 寿命测试机关闭触摸屏显示 */
     static void TestDisplayClose();
 
     /*!* \brief 获取正确温升数据 过滤温升外的数据 */
