@@ -133,24 +133,14 @@ protected slots:
 private slots:
     void on_pushButton_login1_clicked();        /*!* \brief IEC60320选择按钮 */
     void on_pushButton_login2_clicked();        /*!* \brief IEC60884选择按钮 */
-    void on_pushButton_clicked();               /*!* \brief 伺服A懒人模式按钮 */
-    void on_pushButton_2_clicked();             /*!* \brief 伺服B懒人模式按钮 */
-    void on_pushButton_3_clicked();             /*!* \brief 伺服C懒人模式按钮 */
+    void on_pushButton_clicked();               /*!* \brief 懒人模式按钮 */
     void on_pushButton_4_clicked();             /*!* \brief 串口号保存按钮 */
     void on_pushButton_5_clicked();             /*!* \brief 串口通讯状态刷新按钮 */
     void on_pushButton_6_clicked();             /*!* \brief 登陆界面下拉菜单按钮 */
-    void on_toolButton_19_clicked();            /*!* \brief 章节19模块伺服A选择按钮 */
-    void on_toolButton_20_clicked();            /*!* \brief 章节20模块伺服A选择按钮 */
-    void on_toolButton_21_clicked();            /*!* \brief 章节21模块伺服A选择按钮 */
-    void on_toolButton_22_clicked();            /*!* \brief 章节21.1模块伺服A选择按钮 */
-    void on_toolButton_23_clicked();            /*!* \brief 章节19模块伺服B选择按钮 */
-    void on_toolButton_24_clicked();            /*!* \brief 章节20模块伺服B选择按钮 */
-    void on_toolButton_25_clicked();            /*!* \brief 章节21模块伺服B选择按钮 */
-    void on_toolButton_26_clicked();            /*!* \brief 章节21.1模块伺服B选择按钮 */
-    void on_toolButton_27_clicked();            /*!* \brief 章节19模块伺服C选择按钮 */
-    void on_toolButton_28_clicked();            /*!* \brief 章节20模块伺服C选择按钮 */
-    void on_toolButton_29_clicked();            /*!* \brief 章节21模块伺服C选择按钮 */
-    void on_toolButton_30_clicked();            /*!* \brief 章节21.1模块伺服C选择按钮 */
+    void on_toolButton_19_clicked();            /*!* \brief 章节19模块参数设置打开按钮 */
+    void on_toolButton_20_clicked();            /*!* \brief 章节20模块参数设置打开按钮 */
+    void on_toolButton_21_clicked();            /*!* \brief 章节21模块参数设置打开按钮 */
+    void on_toolButton_22_clicked();            /*!* \brief 章节21.1模块参数设置打开按钮 */
     void on_toolButton_save19_clicked();        /*!* \brief 884 温升参数保存按钮 */
     void on_toolButton_save20_clicked();        /*!* \brief 884 分断参数保存按钮 */
     void on_toolButton_save21_clicked();        /*!* \brief 884 正常操作参数保存按钮 */
@@ -161,15 +151,7 @@ private slots:
     void on_toolButtonSave_clicked();           /*!* \brief 884 懒人模式参数保存按钮 */
     void on_toolButtonSave_2_clicked();         /*!* \brief 320 懒人模式参数保存按钮 */
     void on_toolButton_close_clicked();         /*!* \brief 项目退出按钮 */
-    void on_toolButton_close_19_clicked();      /*!* \brief 884 温升退出编辑按钮 */
-    void on_toolButton_close_20_clicked();      /*!* \brief 884 分断退出编辑按钮 */
-    void on_toolButton_close_21_clicked();      /*!* \brief 884 正常操作退出编辑按钮 */
-    void on_toolButton_close_22_clicked();      /*!* \brief 884 操作后温升退出编辑按钮 */
-    void on_toolButton_close_23_clicked();      /*!* \brief 320 温升退出编辑按钮 */
-    void on_toolButton_close_24_clicked();      /*!* \brief 320 分断退出编辑按钮 */
-    void on_toolButton_close_25_clicked();      /*!* \brief 320 正常操作退出编辑按钮 */
-    void on_toolButton_close_26_clicked();      /*!* \brief 884 懒人模式退出编辑按钮 */
-    void on_toolButton_close_27_clicked();      /*!* \brief 320 懒人模式退出编辑按钮 */
+    void onCloseEditClicked();                  /*!* \brief 退出编辑按钮 */
     void on_toolButton_start_clicked();         /*!* \brief 伺服A启动测试按钮 */
     void on_toolButton_start_2_clicked();       /*!* \brief 伺服B启动测试按钮 */
     void on_toolButton_start_3_clicked();       /*!* \brief 伺服C启动测试按钮 */

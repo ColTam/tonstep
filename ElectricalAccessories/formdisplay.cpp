@@ -1989,61 +1989,7 @@ void FormDisplay::on_toolButton_close_clicked()
     dirName = dirName.left(fileSize);
 }
 
-void FormDisplay::on_toolButton_close_19_clicked()
-{
-    QMessageBox msgBox(QMessageBox::Question,tr("Quit"),tr("Whether out of the editor?"));
-    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
-    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-    int ret = msgBox.exec();
-
-    if (ret == QMessageBox::Cancel) {
-        return;
-    }
-
-    isOld = PROJECT_CONDITION_NEW;
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
-}
-
-void FormDisplay::on_toolButton_close_20_clicked()
-{
-    QMessageBox msgBox(QMessageBox::Question,tr("Quit"),tr("Whether out of the editor?"));
-    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
-    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-    int ret = msgBox.exec();
-
-    if (ret == QMessageBox::Cancel) {
-        return;
-    }
-
-    isOld = PROJECT_CONDITION_NEW;
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
-}
-
-void FormDisplay::on_toolButton_close_21_clicked()
-{
-    QMessageBox msgBox(QMessageBox::Question,tr("Quit"),tr("Whether out of the editor?"));
-    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
-    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-    int ret = msgBox.exec();
-
-    if (ret == QMessageBox::Cancel) {
-        return;
-    }
-
-    isOld = PROJECT_CONDITION_NEW;
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
-}
-
-void FormDisplay::on_toolButton_close_22_clicked()
+void FormDisplay::onCloseEditClicked()
 {
     QMessageBox msgBox(QMessageBox::Question,tr("Quit"),tr("Whether out of the editor?"));
     msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
@@ -3169,24 +3115,6 @@ void FormDisplay::on_toolButton_save19_2_clicked()
     addItemIcon(IMAGE_CLAUSE19, CLAUSE_19);
 }
 
-void FormDisplay::on_toolButton_close_23_clicked()
-{
-    QMessageBox msgBox(QMessageBox::Question,tr("Quit"),tr("Whether out of the editor?"));
-    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
-    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-    int ret = msgBox.exec();
-
-    if (ret == QMessageBox::Cancel) {
-        return;
-    }
-
-    isOld = PROJECT_CONDITION_NEW;
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
-}
-
 void FormDisplay::on_lineEdit_breakingVn_2_textChanged(const QString &arg1)
 {
     if (!ui->checkBox_breaking_2->isChecked()) {
@@ -3306,24 +3234,6 @@ void FormDisplay::on_lineEdit_breakingIn_t_2_textChanged(const QString &arg1)
 void FormDisplay::on_toolButton_save20_2_clicked()
 {
     addItemIcon(IMAGE_CLAUSE20, CLAUSE_20);
-}
-
-void FormDisplay::on_toolButton_close_24_clicked()
-{
-    QMessageBox msgBox(QMessageBox::Question,tr("Quit"),tr("Whether out of the editor?"));
-    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
-    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-    int ret = msgBox.exec();
-
-    if (ret == QMessageBox::Cancel) {
-        return;
-    }
-
-    isOld = PROJECT_CONDITION_NEW;
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
 }
 
 void FormDisplay::on_lineEdit_normalVn_2_textChanged(const QString &arg1)
@@ -3489,24 +3399,6 @@ void FormDisplay::on_toolButton_save21_2_clicked()
     addItemIcon(IMAGE_CLAUSE21, CLAUSE_21);
 }
 
-void FormDisplay::on_toolButton_close_25_clicked()
-{
-    QMessageBox msgBox(QMessageBox::Question,tr("Quit"),tr("Whether out of the editor?"));
-    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
-    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-    int ret = msgBox.exec();
-
-    if (ret == QMessageBox::Cancel) {
-        return;
-    }
-
-    isOld = PROJECT_CONDITION_NEW;
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
-}
-
 void FormDisplay::on_tabWidget_currentChanged(int index)
 {
     switch (index) {
@@ -3526,126 +3418,6 @@ void FormDisplay::on_tabWidget_currentChanged(int index)
         break;
     }
     }
-}
-
-void FormDisplay::on_toolButton_23_clicked()
-{
-    switch (mPlug) {
-    case IEC60320:
-    {
-        clause19_2_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE19_320);
-        break;
-    }
-    case IEC60884:
-    {
-        clause19_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE19_884);
-        break;
-    }
-    }
-}
-
-void FormDisplay::on_toolButton_24_clicked()
-{
-    switch (mPlug) {
-    case IEC60320:
-    {
-        clause20_2_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE20_320);
-        break;
-    }
-    case IEC60884:
-    {
-        clause20_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE20_884);
-        break;
-    }
-    }
-}
-
-void FormDisplay::on_toolButton_25_clicked()
-{
-    switch (mPlug) {
-    case IEC60320:
-    {
-        clause21_2_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE21_320);
-        break;
-    }
-    case IEC60884:
-    {
-        clause21_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE21_884);
-        break;
-    }
-    }
-}
-
-void FormDisplay::on_toolButton_26_clicked()
-{
-    clause22_clear();
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE22_884);
-}
-
-void FormDisplay::on_toolButton_27_clicked()
-{
-    switch (mPlug) {
-    case IEC60320:
-    {
-        clause19_2_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE19_320);
-        break;
-    }
-    case IEC60884:
-    {
-        clause19_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE19_884);
-        break;
-    }
-    }
-}
-
-void FormDisplay::on_toolButton_28_clicked()
-{
-    switch (mPlug) {
-    case IEC60320:
-    {
-        clause20_2_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE20_320);
-        break;
-    }
-    case IEC60884:
-    {
-        clause20_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE20_884);
-        break;
-    }
-    }
-}
-
-void FormDisplay::on_toolButton_29_clicked()
-{
-    switch (mPlug) {
-    case IEC60320:
-    {
-        clause21_2_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE21_320);
-        break;
-    }
-    case IEC60884:
-    {
-        clause21_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE21_884);
-        break;
-    }
-    }
-}
-
-void FormDisplay::on_toolButton_30_clicked()
-{
-    clause22_clear();
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE22_884);
 }
 
 void FormDisplay::on_toolButton_start_2_clicked()
@@ -4118,24 +3890,6 @@ void FormDisplay::on_lineEdit_normalTVn_t_textChanged(const QString &arg1)
     }
 }
 
-void FormDisplay::on_toolButton_close_26_clicked()
-{
-    QMessageBox msgBox(QMessageBox::Question,tr("Quit"),tr("Whether out of the editor?"));
-    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
-    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-    int ret = msgBox.exec();
-
-    if (ret == QMessageBox::Cancel) {
-        return;
-    }
-
-    isOld = PROJECT_CONDITION_NEW;
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
-}
-
 void FormDisplay::on_toolButtonSave_clicked()
 {
     if (mServo == servoA) {
@@ -4180,82 +3934,6 @@ void FormDisplay::on_toolButtonSave_clicked()
         moveToZone(mPiecesViewListC->item(mFileNameListC.indexOf("clause22_C0")-3));
 
 //        on_toolButton_start_3_clicked();
-    }
-}
-
-void FormDisplay::on_pushButton_2_clicked()
-{
-    QMessageBox msgBox(QMessageBox::Question,tr(" Electrical Accessories Test Automation Program"),tr("Whether to start Auto?"));
-    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
-    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-    int ret = msgBox.exec();
-
-    if (ret == QMessageBox::Cancel) {
-        return;
-    }
-
-    switch (mPlug) {
-    case IEC60320:
-    {
-        ui->tableWidget_2->hide();
-        ui->toolButtonSave_2->setEnabled(false);
-
-        IEC320_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_320AUTO);
-        break;
-    }
-    case IEC60884:
-    {
-        ui->labelIm->hide();
-        ui->lineEditIm->hide();
-        ui->tableWidget->hide();
-        ui->toolButtonSave->setEnabled(false);
-
-        IEC884_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_884AUTO);
-        break;
-    }
-    }
-}
-
-void FormDisplay::on_pushButton_3_clicked()
-{
-    QMessageBox msgBox(QMessageBox::Question,tr(" Electrical Accessories Test Automation Program"),tr("Whether to start Auto?"));
-    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
-    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-    int ret = msgBox.exec();
-
-    if (ret == QMessageBox::Cancel) {
-        return;
-    }
-
-    switch (mPlug) {
-    case IEC60320:
-    {
-        ui->tableWidget_2->hide();
-        ui->toolButtonSave_2->setEnabled(false);
-
-        IEC320_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_320AUTO);
-        break;
-    }
-    case IEC60884:
-    {
-        ui->labelIm->hide();
-        ui->lineEditIm->hide();
-        ui->tableWidget->hide();
-        ui->toolButtonSave->setEnabled(false);
-
-        IEC884_clear();
-        ui->stackedWidget->setCurrentIndex(STACKWIDGET_884AUTO);
-        break;
-    }
     }
 }
 
@@ -5185,24 +4863,6 @@ void FormDisplay::on_tabWidget_tabBarClicked(int index)
     }
 
     oldTabWidgetIndex = index;
-}
-
-void FormDisplay::on_toolButton_close_27_clicked()
-{
-    QMessageBox msgBox(QMessageBox::Question,tr("Quit"),tr("Whether out of the editor?"));
-    msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-    msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
-    msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-    int ret = msgBox.exec();
-
-    if (ret == QMessageBox::Cancel) {
-        return;
-    }
-
-    isOld = PROJECT_CONDITION_NEW;
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
 }
 
 void FormDisplay::on_pushButton_5_clicked()
