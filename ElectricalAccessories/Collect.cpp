@@ -49,15 +49,15 @@ bool Collect::ConnectToSTAS()
 
 QString Collect::setLoadLPF275_6(int com_t, QString current)
 {
-    CollectControl::HardSend(com_t, QString("SET%110%0%\r").toLatin1().data()); //set the L
+    CollectControl::HardCommand(com_t, QString("SET%110%0%\r").toLatin1().data()); //set the L
 /*    if (current == "2.5") {
         CollectControl::HardSend(com_t, QString("SET%102%3%\r").toLatin1().data());
         return "SET%101%30%\r";
     } else */if (current == "6") {
-        CollectControl::HardSend(com_t, QString("SET%102%9%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%9%\r").toLatin1().data());
         return "SET%101%73%\r";
     } else if (current == "20") {
-        CollectControl::HardSend(com_t, QString("SET%102%25%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%25%\r").toLatin1().data());
         return "SET%101%195%\r";
     }
     return QString("SET%101%%1%\r").arg(current.toDouble()*10+1);
@@ -65,45 +65,45 @@ QString Collect::setLoadLPF275_6(int com_t, QString current)
 
 QString Collect::setLoadLPF250_8(int com_t, QString current)
 {
-    CollectControl::HardSend(com_t, QString("SET%110%0%\r").toLatin1().data()); //set the L
+    CollectControl::HardCommand(com_t, QString("SET%110%0%\r").toLatin1().data()); //set the L
     if (current == "1") {
-        CollectControl::HardSend(com_t, QString("SET%102%2%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%2%\r").toLatin1().data());
         return "SET%101%11%\r";
     } else if (current == "2.5") {
-        CollectControl::HardSend(com_t, QString("SET%102%6%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%6%\r").toLatin1().data());
         return "SET%101%28%\r";
     } else if (current == "3") {
-        CollectControl::HardSend(com_t, QString("SET%102%7%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%7%\r").toLatin1().data());
         return "SET%101%34%\r";
     } else if (current == "4") {
-        CollectControl::HardSend(com_t, QString("SET%102%9%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%9%\r").toLatin1().data());
         return "SET%101%42%\r";
     } else if (current == "6") {
-        CollectControl::HardSend(com_t, QString("SET%102%15%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%15%\r").toLatin1().data());
         return "SET%101%63%\r";
     } else if (current == "10") {
-        CollectControl::HardSend(com_t, QString("SET%102%26%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%26%\r").toLatin1().data());
         return "SET%101%101%\r";
     } else if (current == "12") {
-        CollectControl::HardSend(com_t, QString("SET%102%32%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%32%\r").toLatin1().data());
         return "SET%101%122%\r";
     } else if (current == "13") {
-        CollectControl::HardSend(com_t, QString("SET%102%36%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%36%\r").toLatin1().data());
         return "SET%101%133%\r";
     } else if (current == "16") {
-        CollectControl::HardSend(com_t, QString("SET%102%48%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%48%\r").toLatin1().data());
         return "SET%101%164%\r";
     } else if (current == "22") {
-        CollectControl::HardSend(com_t, QString("SET%102%79%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%79%\r").toLatin1().data());
         return "SET%101%238%\r";
     } else if (current == "25") {
-        CollectControl::HardSend(com_t, QString("SET%102%109%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%109%\r").toLatin1().data());
         return "SET%101%265%\r";
     } else if (current == "31") {
-        CollectControl::HardSend(com_t, QString("SET%102%190%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%190%\r").toLatin1().data());
         return "SET%101%354%\r";
     } else if (current == "32") {
-        CollectControl::HardSend(com_t, QString("SET%102%192%\r").toLatin1().data());
+        CollectControl::HardCommand(com_t, QString("SET%102%192%\r").toLatin1().data());
         return "SET%101%369%\r";
     }
     return QString("SET%101%%1%\r").arg(current.toDouble()*10+1);

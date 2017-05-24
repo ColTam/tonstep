@@ -443,10 +443,13 @@ void Widget::temperatureRise(QString fileName)
             list << in.readLine();
         itemFile.close();
 
-        _collect->SetVolt(Vn);
+        if (_mTRCRThread->mtRCRIsActive()) {
+            emit tRCRTimerStop();
+        }
         _collect->SetLoad(SET_LPF_RESISTIVE_884, In, mServo);
-        _collect->PowerStart();
         _collect->LoadStart(mServo);
+        _collect->SetVolt(Vn);
+        _collect->PowerStart();
 
         if (mServo == "A")
             recordValue(2, SET_LPF_RESISTIVE_884, In, "", "", "", "");
@@ -504,9 +507,6 @@ void Widget::breakingCapacityTest(QString fileName, int iec)
             emit testTimerStop();
         }
         _collect->TestClearNumber(mServo);
-
-        _collect->SetVolt(Vn);
-
         if (iec) {
             _collect->SetLoad(SET_LPF_INDUCTIVE_0_6, In, mServo);
             if (mServo == "A")
@@ -536,10 +536,11 @@ void Widget::breakingCapacityTest(QString fileName, int iec)
                     recordValue(7, SET_LPF_RESISTIVE_320, In, Nu, Rate, Position, Time);
             }
         }
+        _collect->LoadStart(mServo);
         _collect->SetTest(CLAUSE_20_HANDLENUMBER, Rate, Position, Time, mServo);
         _collect->TestComeBackToOrigin(mServo);
+        _collect->SetVolt(Vn);
         _collect->PowerStart();
-        _collect->LoadStart(mServo);
 
         newLifeTesterDialog(fileName, mServo);
     }
@@ -571,15 +572,15 @@ void Widget::normalOperation(QString fileName)
         }
         _collect->TestClearNumber(mServo);
 
-        _collect->SetVolt(Vn);
         _collect->SetLoad(SET_LPF_INDUCTIVE_0_8, In, mServo);
         if (Nu == "10000")
             _collect->SetTest(CLAUSE_21_HANDLENUMBER_884_FIRST, Rate, Position, Time, mServo);//共5000次  先进行2250 再进行剩下操作
         else
             _collect->SetTest(Nu, Rate, Position, Time, mServo);
         _collect->TestComeBackToOrigin(mServo);
-        _collect->PowerStart();
         _collect->LoadStart(mServo);
+        _collect->SetVolt(Vn);
+        _collect->PowerStart();
 
         if (mServo == "A")
             if (Nu == "10000") {
@@ -626,10 +627,13 @@ void Widget::normalOperationTemperatureRise(QString fileName)
             list << in.readLine();
         itemFile.close();
 
-        _collect->SetVolt(Vn);
+        if (_mTRCRThread->mtRCRIsActive()) {
+            emit tRCRTimerStop();
+        }
         _collect->SetLoad(SET_LPF_RESISTIVE_884, In, mServo);
-        _collect->PowerStart();
         _collect->LoadStart(mServo);
+        _collect->SetVolt(Vn);
+        _collect->PowerStart();
 
         if (mServo == "A")
             recordValue(2, SET_LPF_RESISTIVE_884, In, "", "", "", "");
@@ -670,10 +674,13 @@ void Widget::linkerTemperature(QString fileName)
         itemFile.close();
 
         if (In.toDouble() > 0.2) {
-            _collect->SetVolt(Vn);
+            if (_mTRCRThread->mtRCRIsActive()) {
+                emit tRCRTimerStop();
+            }
             _collect->SetLoad(SET_LPF_RESISTIVE_884, In, mServo);
-            _collect->PowerStart();
             _collect->LoadStart(mServo);
+            _collect->SetVolt(Vn);
+            _collect->PowerStart();
 
             if (mServo == "A")
                 recordValue(2, SET_LPF_RESISTIVE_884, In, "", "", "", "");
@@ -683,7 +690,6 @@ void Widget::linkerTemperature(QString fileName)
                 recordValue(4, SET_LPF_RESISTIVE_884, In, "", "", "", "");
 
             newTemperatureDialog(Hours.toInt(), fileName, list, rT2, mServo, 1);
-
             if (!_mTRCRThread->mtRCRIsActive()) {
                 emit tRCRTimerStart();
             }
@@ -720,8 +726,6 @@ void Widget::linkerNormalOperation(QString fileName)
 
             newLifeTesterDialog(fileName, mServo);
         } else if (0.2 < In.toDouble()) {
-            _collect->SetVolt(Vn);
-
             if (In.toDouble() < 10) {
                 _collect->SetLoad(SET_LPF_INDUCTIVE_0_6, In, mServo);
                 if (mServo == "A") {
@@ -765,14 +769,15 @@ void Widget::linkerNormalOperation(QString fileName)
                     }
                 }
             }
+            _collect->LoadStart(mServo);
             if (Nu == "8000") {
                 _collect->SetTest(CLAUSE_21_HANDLENUMBER_320_ONLOAD, Rate, Position, "30", mServo);
             } else {
                 _collect->SetTest(Nu, Rate, Position, "30", mServo);
             }
             _collect->TestComeBackToOrigin(mServo);
+            _collect->SetVolt(Vn);
             _collect->PowerStart();
-            _collect->LoadStart(mServo);
 
             newLifeTesterDialog(fileName, mServo);
         }
