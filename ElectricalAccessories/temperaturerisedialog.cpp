@@ -1,4 +1,4 @@
-#include "temperaturerisedialog.h"
+ï»¿#include "temperaturerisedialog.h"
 #include "mLoadThread.h"
 #include "Collect.h"
 #include "titlebar.h"
@@ -106,12 +106,12 @@ void TemperatureRiseDialog::initDialogTitle()
 
 void TemperatureRiseDialog::setTargetTime()
 {
-    _currentTime = QDateTime::currentDateTime();//µÚÒ»´Î¼ÇÂ¼Ê±µÄÊ±¼ä£¬ÓÃÓÚ´òÓ¡excel±í¸ñÖÐµÄÊ±¼ä
+    _currentTime = QDateTime::currentDateTime();//ç¬¬ä¸€æ¬¡è®°å½•æ—¶çš„æ—¶é—´ï¼Œç”¨äºŽæ‰“å°excelè¡¨æ ¼ä¸­çš„æ—¶é—´
 
 #if 1
     int secs = duration * 60 * 60 + 3;
 #else
-    int secs = duration * 80 + 3; //²âÊÔÓÃÊ±¼ä
+    int secs = duration * 80 + 3; //æµ‹è¯•ç”¨æ—¶é—´
 #endif
     _objectTime = _currentTime.addSecs(secs);
     _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
@@ -124,7 +124,7 @@ void TemperatureRiseDialog::initCustomPlot()
 
     ui->customplot->clearGraphs();
     ui->customplot->xAxis->setLabel(tr("Time ( 5s )"));
-    ui->customplot->yAxis->setLabel(tr("Temperatur Rise ( ¡ãC )"));
+    ui->customplot->yAxis->setLabel(tr("Temperatur Rise ( Â°C )"));
     ui->customplot->legend->setVisible(true);
     ui->customplot->legend->setFont(QFont("Helvetica", 9));
     ui->customplot->legend->setRowSpacing(-3);
@@ -362,7 +362,7 @@ void TemperatureRiseDialog::rangeToWrite(QString itemName, column_t column, QVar
 }
 
 void TemperatureRiseDialog::writeExcel(const QString fileName)
-{//Í¨¹ý QAxObject + Excel VBAÀ´ÊµÏÖ²Ù×÷excal
+{//é€šè¿‡ QAxObject + Excel VBAæ¥å®žçŽ°æ“ä½œexcal
     QString name = fileName+".xlsx";
 //    QDir::toNativeSeparators(name);
     name.replace("/", "\\");
@@ -447,7 +447,7 @@ void TemperatureRiseDialog::writeExcel(const QString fileName)
                 if (t > 0){
                     cellsToWrite(i+2,4*graphCount+3,QColor(174,77,80));
                 } else {
-                	cellsToWrite(i+2,4*graphCount+3,QColor(112,173,71));
+                    cellsToWrite(i+2,4*graphCount+3,QColor(112,173,71));
                 }
                 var.append(t);
 
@@ -504,7 +504,7 @@ void TemperatureRiseDialog::writeExcel(const QString fileName)
                         cellsToWrite(i+2,4*(graphCount-1)+3,QColor(174,77,80));
                     }
                 } else {
-                	if (roomTemperatureRiseC == 1) {
+                    if (roomTemperatureRiseC == 1) {
                         cellsToWrite(i+2,4*(graphCount)+3,QColor(112,173,71));
                     } else {
                         cellsToWrite(i+2,4*(graphCount-1)+3,QColor(112,173,71));

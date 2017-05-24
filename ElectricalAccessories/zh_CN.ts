@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
@@ -47,764 +47,764 @@ Whether or not to continue to leave?</source>
 <context>
     <name>FormDisplay</name>
     <message>
-        <location filename="formdisplay.ui" line="93"/>
+        <location filename="formdisplay.ui" line="95"/>
         <source>Login</source>
         <translation>登 录</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="110"/>
+        <location filename="formdisplay.ui" line="112"/>
         <source>Project ID：</source>
         <translation>项目编号:</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="143"/>
-        <location filename="formdisplay.cpp" line="705"/>
+        <location filename="formdisplay.ui" line="145"/>
+        <location filename="formdisplay.cpp" line="701"/>
         <source>Please Enter The Project ID.</source>
         <translation>请输入项目编号.</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="174"/>
+        <location filename="formdisplay.ui" line="176"/>
         <source>IEC:60320</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="208"/>
+        <location filename="formdisplay.ui" line="210"/>
         <source>IEC:60884</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="260"/>
+        <location filename="formdisplay.ui" line="262"/>
         <source>SGS-CSTC Standards Technical Services Co., Ltd.</source>
         <translation>通标标准技术服务有限公司.</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="288"/>
+        <location filename="formdisplay.ui" line="290"/>
         <source>Electrical Accessories Test Automation Program</source>
         <translation>电器附件测试自动化程序</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="331"/>
-        <location filename="formdisplay.ui" line="1905"/>
-        <location filename="formdisplay.ui" line="3410"/>
-        <location filename="formdisplay.ui" line="3920"/>
-        <location filename="formdisplay.ui" line="4591"/>
-        <location filename="formdisplay.ui" line="6036"/>
-        <location filename="formdisplay.ui" line="7224"/>
-        <location filename="formdisplay.ui" line="7731"/>
-        <location filename="formdisplay.ui" line="8979"/>
-        <location filename="formdisplay.ui" line="11232"/>
+        <location filename="formdisplay.ui" line="333"/>
+        <location filename="formdisplay.ui" line="1907"/>
+        <location filename="formdisplay.ui" line="3412"/>
+        <location filename="formdisplay.ui" line="3922"/>
+        <location filename="formdisplay.ui" line="4593"/>
+        <location filename="formdisplay.ui" line="6038"/>
+        <location filename="formdisplay.ui" line="7226"/>
+        <location filename="formdisplay.ui" line="7733"/>
+        <location filename="formdisplay.ui" line="8981"/>
+        <location filename="formdisplay.ui" line="11234"/>
         <source>Back</source>
         <translation>返 回</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="363"/>
+        <location filename="formdisplay.ui" line="365"/>
         <source>Servo-A</source>
         <translation>伺服(A)</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="445"/>
-        <location filename="formdisplay.ui" line="679"/>
-        <location filename="formdisplay.ui" line="943"/>
+        <location filename="formdisplay.ui" line="447"/>
+        <location filename="formdisplay.ui" line="681"/>
+        <location filename="formdisplay.ui" line="945"/>
         <source>start</source>
         <translation>启 动</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="512"/>
-        <location filename="formdisplay.ui" line="807"/>
-        <location filename="formdisplay.ui" line="1071"/>
+        <location filename="formdisplay.ui" line="514"/>
+        <location filename="formdisplay.ui" line="809"/>
+        <location filename="formdisplay.ui" line="1073"/>
         <source>GroupBox</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="542"/>
-        <location filename="formdisplay.ui" line="900"/>
-        <location filename="formdisplay.ui" line="1094"/>
-        <location filename="formdisplay.ui" line="8271"/>
-        <location filename="formdisplay.ui" line="10595"/>
+        <location filename="formdisplay.ui" line="544"/>
+        <location filename="formdisplay.ui" line="902"/>
+        <location filename="formdisplay.ui" line="1096"/>
+        <location filename="formdisplay.ui" line="8273"/>
+        <location filename="formdisplay.ui" line="10597"/>
         <source>Temperature Rise</source>
         <translation>温 升</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="8395"/>
-        <location filename="formdisplay.ui" line="10834"/>
+        <location filename="formdisplay.ui" line="8397"/>
+        <location filename="formdisplay.ui" line="10836"/>
         <source>Breake Capacity</source>
         <translation>分 断</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="636"/>
-        <location filename="formdisplay.ui" line="876"/>
-        <location filename="formdisplay.ui" line="1118"/>
-        <location filename="formdisplay.ui" line="8628"/>
-        <location filename="formdisplay.ui" line="10392"/>
+        <location filename="formdisplay.ui" line="638"/>
+        <location filename="formdisplay.ui" line="878"/>
+        <location filename="formdisplay.ui" line="1120"/>
+        <location filename="formdisplay.ui" line="8630"/>
+        <location filename="formdisplay.ui" line="10394"/>
         <source>Normal Operation</source>
         <translation>正常操作</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="573"/>
-        <location filename="formdisplay.ui" line="827"/>
-        <location filename="formdisplay.ui" line="1142"/>
+        <location filename="formdisplay.ui" line="575"/>
+        <location filename="formdisplay.ui" line="829"/>
+        <location filename="formdisplay.ui" line="1144"/>
         <source>Breaking Capacity</source>
         <translation>分断容量</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="653"/>
-        <location filename="formdisplay.ui" line="917"/>
-        <location filename="formdisplay.ui" line="1187"/>
+        <location filename="formdisplay.ui" line="655"/>
+        <location filename="formdisplay.ui" line="919"/>
+        <location filename="formdisplay.ui" line="1189"/>
         <source>Auto</source>
         <translation>一键式</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="659"/>
+        <location filename="formdisplay.ui" line="661"/>
         <source>Servo-B</source>
         <translation>伺服(B)</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="923"/>
+        <location filename="formdisplay.ui" line="925"/>
         <source>Servo-C</source>
         <translation>伺服(C)</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1193"/>
+        <location filename="formdisplay.ui" line="1195"/>
         <source>Set The UART</source>
         <translation>串口设置</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1851"/>
-        <location filename="formdisplay.ui" line="1932"/>
-        <location filename="formdisplay.ui" line="3392"/>
-        <location filename="formdisplay.ui" line="3941"/>
-        <location filename="formdisplay.ui" line="4612"/>
-        <location filename="formdisplay.ui" line="6015"/>
-        <location filename="formdisplay.ui" line="7203"/>
-        <location filename="formdisplay.ui" line="7752"/>
-        <location filename="formdisplay.ui" line="8221"/>
-        <location filename="formdisplay.ui" line="10539"/>
+        <location filename="formdisplay.ui" line="1853"/>
+        <location filename="formdisplay.ui" line="1934"/>
+        <location filename="formdisplay.ui" line="3394"/>
+        <location filename="formdisplay.ui" line="3943"/>
+        <location filename="formdisplay.ui" line="4614"/>
+        <location filename="formdisplay.ui" line="6017"/>
+        <location filename="formdisplay.ui" line="7205"/>
+        <location filename="formdisplay.ui" line="7754"/>
+        <location filename="formdisplay.ui" line="8223"/>
+        <location filename="formdisplay.ui" line="10541"/>
         <source>Save</source>
         <translation>保 存</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2235"/>
-        <location filename="formdisplay.ui" line="4909"/>
-        <location filename="formdisplay.ui" line="6346"/>
-        <location filename="formdisplay.ui" line="9685"/>
-        <location filename="formdisplay.ui" line="11432"/>
+        <location filename="formdisplay.ui" line="2237"/>
+        <location filename="formdisplay.ui" line="4911"/>
+        <location filename="formdisplay.ui" line="6348"/>
+        <location filename="formdisplay.ui" line="9687"/>
+        <location filename="formdisplay.ui" line="11434"/>
         <source>CH101</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2240"/>
-        <location filename="formdisplay.ui" line="4914"/>
-        <location filename="formdisplay.ui" line="6351"/>
-        <location filename="formdisplay.ui" line="9690"/>
-        <location filename="formdisplay.ui" line="11437"/>
+        <location filename="formdisplay.ui" line="2242"/>
+        <location filename="formdisplay.ui" line="4916"/>
+        <location filename="formdisplay.ui" line="6353"/>
+        <location filename="formdisplay.ui" line="9692"/>
+        <location filename="formdisplay.ui" line="11439"/>
         <source>CH102</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2245"/>
-        <location filename="formdisplay.ui" line="4919"/>
-        <location filename="formdisplay.ui" line="6356"/>
-        <location filename="formdisplay.ui" line="9695"/>
-        <location filename="formdisplay.ui" line="11442"/>
+        <location filename="formdisplay.ui" line="2247"/>
+        <location filename="formdisplay.ui" line="4921"/>
+        <location filename="formdisplay.ui" line="6358"/>
+        <location filename="formdisplay.ui" line="9697"/>
+        <location filename="formdisplay.ui" line="11444"/>
         <source>CH103</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2250"/>
-        <location filename="formdisplay.ui" line="4924"/>
-        <location filename="formdisplay.ui" line="6361"/>
-        <location filename="formdisplay.ui" line="9700"/>
-        <location filename="formdisplay.ui" line="11447"/>
+        <location filename="formdisplay.ui" line="2252"/>
+        <location filename="formdisplay.ui" line="4926"/>
+        <location filename="formdisplay.ui" line="6363"/>
+        <location filename="formdisplay.ui" line="9702"/>
+        <location filename="formdisplay.ui" line="11449"/>
         <source>CH104</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2255"/>
-        <location filename="formdisplay.ui" line="4929"/>
-        <location filename="formdisplay.ui" line="6366"/>
-        <location filename="formdisplay.ui" line="9705"/>
-        <location filename="formdisplay.ui" line="11452"/>
+        <location filename="formdisplay.ui" line="2257"/>
+        <location filename="formdisplay.ui" line="4931"/>
+        <location filename="formdisplay.ui" line="6368"/>
+        <location filename="formdisplay.ui" line="9707"/>
+        <location filename="formdisplay.ui" line="11454"/>
         <source>CH105</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2260"/>
-        <location filename="formdisplay.ui" line="4934"/>
-        <location filename="formdisplay.ui" line="6371"/>
-        <location filename="formdisplay.ui" line="9710"/>
-        <location filename="formdisplay.ui" line="11457"/>
+        <location filename="formdisplay.ui" line="2262"/>
+        <location filename="formdisplay.ui" line="4936"/>
+        <location filename="formdisplay.ui" line="6373"/>
+        <location filename="formdisplay.ui" line="9712"/>
+        <location filename="formdisplay.ui" line="11459"/>
         <source>CH106</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2265"/>
-        <location filename="formdisplay.ui" line="4939"/>
-        <location filename="formdisplay.ui" line="6376"/>
-        <location filename="formdisplay.ui" line="9715"/>
-        <location filename="formdisplay.ui" line="11462"/>
+        <location filename="formdisplay.ui" line="2267"/>
+        <location filename="formdisplay.ui" line="4941"/>
+        <location filename="formdisplay.ui" line="6378"/>
+        <location filename="formdisplay.ui" line="9717"/>
+        <location filename="formdisplay.ui" line="11464"/>
         <source>CH107</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2270"/>
-        <location filename="formdisplay.ui" line="4944"/>
-        <location filename="formdisplay.ui" line="6381"/>
-        <location filename="formdisplay.ui" line="9720"/>
-        <location filename="formdisplay.ui" line="11467"/>
+        <location filename="formdisplay.ui" line="2272"/>
+        <location filename="formdisplay.ui" line="4946"/>
+        <location filename="formdisplay.ui" line="6383"/>
+        <location filename="formdisplay.ui" line="9722"/>
+        <location filename="formdisplay.ui" line="11469"/>
         <source>CH108</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2275"/>
-        <location filename="formdisplay.ui" line="4949"/>
-        <location filename="formdisplay.ui" line="6386"/>
-        <location filename="formdisplay.ui" line="9725"/>
-        <location filename="formdisplay.ui" line="11472"/>
+        <location filename="formdisplay.ui" line="2277"/>
+        <location filename="formdisplay.ui" line="4951"/>
+        <location filename="formdisplay.ui" line="6388"/>
+        <location filename="formdisplay.ui" line="9727"/>
+        <location filename="formdisplay.ui" line="11474"/>
         <source>CH109</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2280"/>
-        <location filename="formdisplay.ui" line="4954"/>
-        <location filename="formdisplay.ui" line="6391"/>
-        <location filename="formdisplay.ui" line="9730"/>
-        <location filename="formdisplay.ui" line="11477"/>
+        <location filename="formdisplay.ui" line="2282"/>
+        <location filename="formdisplay.ui" line="4956"/>
+        <location filename="formdisplay.ui" line="6393"/>
+        <location filename="formdisplay.ui" line="9732"/>
+        <location filename="formdisplay.ui" line="11479"/>
         <source>CH110</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2295"/>
-        <location filename="formdisplay.ui" line="4969"/>
-        <location filename="formdisplay.ui" line="6406"/>
-        <location filename="formdisplay.ui" line="9745"/>
-        <location filename="formdisplay.ui" line="11492"/>
+        <location filename="formdisplay.ui" line="2297"/>
+        <location filename="formdisplay.ui" line="4971"/>
+        <location filename="formdisplay.ui" line="6408"/>
+        <location filename="formdisplay.ui" line="9747"/>
+        <location filename="formdisplay.ui" line="11494"/>
         <source>Remark</source>
         <translation>备 注</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2314"/>
-        <location filename="formdisplay.ui" line="2344"/>
-        <location filename="formdisplay.ui" line="2374"/>
-        <location filename="formdisplay.ui" line="2404"/>
-        <location filename="formdisplay.ui" line="2434"/>
-        <location filename="formdisplay.ui" line="2464"/>
-        <location filename="formdisplay.ui" line="2494"/>
-        <location filename="formdisplay.ui" line="2524"/>
-        <location filename="formdisplay.ui" line="2554"/>
-        <location filename="formdisplay.ui" line="2584"/>
-        <location filename="formdisplay.ui" line="2614"/>
-        <location filename="formdisplay.ui" line="2644"/>
-        <location filename="formdisplay.ui" line="2674"/>
-        <location filename="formdisplay.ui" line="2704"/>
-        <location filename="formdisplay.ui" line="2734"/>
-        <location filename="formdisplay.ui" line="2764"/>
-        <location filename="formdisplay.ui" line="2794"/>
-        <location filename="formdisplay.ui" line="2824"/>
-        <location filename="formdisplay.ui" line="2854"/>
-        <location filename="formdisplay.ui" line="2884"/>
-        <location filename="formdisplay.ui" line="4988"/>
-        <location filename="formdisplay.ui" line="5018"/>
-        <location filename="formdisplay.ui" line="5048"/>
-        <location filename="formdisplay.ui" line="5078"/>
-        <location filename="formdisplay.ui" line="5108"/>
-        <location filename="formdisplay.ui" line="5138"/>
-        <location filename="formdisplay.ui" line="5168"/>
-        <location filename="formdisplay.ui" line="5198"/>
-        <location filename="formdisplay.ui" line="5228"/>
-        <location filename="formdisplay.ui" line="5258"/>
-        <location filename="formdisplay.ui" line="5288"/>
-        <location filename="formdisplay.ui" line="5318"/>
-        <location filename="formdisplay.ui" line="5348"/>
-        <location filename="formdisplay.ui" line="5378"/>
-        <location filename="formdisplay.ui" line="5408"/>
-        <location filename="formdisplay.ui" line="5438"/>
-        <location filename="formdisplay.ui" line="5468"/>
-        <location filename="formdisplay.ui" line="5498"/>
-        <location filename="formdisplay.ui" line="5528"/>
-        <location filename="formdisplay.ui" line="5558"/>
-        <location filename="formdisplay.ui" line="6425"/>
-        <location filename="formdisplay.ui" line="6455"/>
-        <location filename="formdisplay.ui" line="6485"/>
-        <location filename="formdisplay.ui" line="6515"/>
-        <location filename="formdisplay.ui" line="6545"/>
-        <location filename="formdisplay.ui" line="6575"/>
-        <location filename="formdisplay.ui" line="6605"/>
-        <location filename="formdisplay.ui" line="6635"/>
-        <location filename="formdisplay.ui" line="6665"/>
-        <location filename="formdisplay.ui" line="6695"/>
-        <location filename="formdisplay.ui" line="6725"/>
-        <location filename="formdisplay.ui" line="6755"/>
-        <location filename="formdisplay.ui" line="6785"/>
-        <location filename="formdisplay.ui" line="6815"/>
-        <location filename="formdisplay.ui" line="6845"/>
-        <location filename="formdisplay.ui" line="6875"/>
-        <location filename="formdisplay.ui" line="6905"/>
-        <location filename="formdisplay.ui" line="6935"/>
-        <location filename="formdisplay.ui" line="6965"/>
-        <location filename="formdisplay.ui" line="6995"/>
-        <location filename="formdisplay.ui" line="9764"/>
-        <location filename="formdisplay.ui" line="9794"/>
-        <location filename="formdisplay.ui" line="9824"/>
-        <location filename="formdisplay.ui" line="9854"/>
-        <location filename="formdisplay.ui" line="9884"/>
-        <location filename="formdisplay.ui" line="9914"/>
-        <location filename="formdisplay.ui" line="9944"/>
-        <location filename="formdisplay.ui" line="9974"/>
-        <location filename="formdisplay.ui" line="10004"/>
-        <location filename="formdisplay.ui" line="10034"/>
-        <location filename="formdisplay.ui" line="10064"/>
-        <location filename="formdisplay.ui" line="10094"/>
-        <location filename="formdisplay.ui" line="10124"/>
-        <location filename="formdisplay.ui" line="10154"/>
-        <location filename="formdisplay.ui" line="10184"/>
-        <location filename="formdisplay.ui" line="10214"/>
-        <location filename="formdisplay.ui" line="10244"/>
-        <location filename="formdisplay.ui" line="10274"/>
-        <location filename="formdisplay.ui" line="10304"/>
-        <location filename="formdisplay.ui" line="10334"/>
-        <location filename="formdisplay.ui" line="11511"/>
-        <location filename="formdisplay.ui" line="11541"/>
-        <location filename="formdisplay.ui" line="11571"/>
-        <location filename="formdisplay.ui" line="11601"/>
-        <location filename="formdisplay.ui" line="11631"/>
-        <location filename="formdisplay.ui" line="11661"/>
-        <location filename="formdisplay.ui" line="11691"/>
-        <location filename="formdisplay.ui" line="11721"/>
-        <location filename="formdisplay.ui" line="11751"/>
-        <location filename="formdisplay.ui" line="11781"/>
-        <location filename="formdisplay.ui" line="11811"/>
-        <location filename="formdisplay.ui" line="11841"/>
-        <location filename="formdisplay.ui" line="11871"/>
-        <location filename="formdisplay.ui" line="11901"/>
-        <location filename="formdisplay.ui" line="11931"/>
-        <location filename="formdisplay.ui" line="11961"/>
-        <location filename="formdisplay.ui" line="11991"/>
-        <location filename="formdisplay.ui" line="12021"/>
-        <location filename="formdisplay.ui" line="12051"/>
-        <location filename="formdisplay.ui" line="12081"/>
+        <location filename="formdisplay.ui" line="2316"/>
+        <location filename="formdisplay.ui" line="2346"/>
+        <location filename="formdisplay.ui" line="2376"/>
+        <location filename="formdisplay.ui" line="2406"/>
+        <location filename="formdisplay.ui" line="2436"/>
+        <location filename="formdisplay.ui" line="2466"/>
+        <location filename="formdisplay.ui" line="2496"/>
+        <location filename="formdisplay.ui" line="2526"/>
+        <location filename="formdisplay.ui" line="2556"/>
+        <location filename="formdisplay.ui" line="2586"/>
+        <location filename="formdisplay.ui" line="2616"/>
+        <location filename="formdisplay.ui" line="2646"/>
+        <location filename="formdisplay.ui" line="2676"/>
+        <location filename="formdisplay.ui" line="2706"/>
+        <location filename="formdisplay.ui" line="2736"/>
+        <location filename="formdisplay.ui" line="2766"/>
+        <location filename="formdisplay.ui" line="2796"/>
+        <location filename="formdisplay.ui" line="2826"/>
+        <location filename="formdisplay.ui" line="2856"/>
+        <location filename="formdisplay.ui" line="2886"/>
+        <location filename="formdisplay.ui" line="4990"/>
+        <location filename="formdisplay.ui" line="5020"/>
+        <location filename="formdisplay.ui" line="5050"/>
+        <location filename="formdisplay.ui" line="5080"/>
+        <location filename="formdisplay.ui" line="5110"/>
+        <location filename="formdisplay.ui" line="5140"/>
+        <location filename="formdisplay.ui" line="5170"/>
+        <location filename="formdisplay.ui" line="5200"/>
+        <location filename="formdisplay.ui" line="5230"/>
+        <location filename="formdisplay.ui" line="5260"/>
+        <location filename="formdisplay.ui" line="5290"/>
+        <location filename="formdisplay.ui" line="5320"/>
+        <location filename="formdisplay.ui" line="5350"/>
+        <location filename="formdisplay.ui" line="5380"/>
+        <location filename="formdisplay.ui" line="5410"/>
+        <location filename="formdisplay.ui" line="5440"/>
+        <location filename="formdisplay.ui" line="5470"/>
+        <location filename="formdisplay.ui" line="5500"/>
+        <location filename="formdisplay.ui" line="5530"/>
+        <location filename="formdisplay.ui" line="5560"/>
+        <location filename="formdisplay.ui" line="6427"/>
+        <location filename="formdisplay.ui" line="6457"/>
+        <location filename="formdisplay.ui" line="6487"/>
+        <location filename="formdisplay.ui" line="6517"/>
+        <location filename="formdisplay.ui" line="6547"/>
+        <location filename="formdisplay.ui" line="6577"/>
+        <location filename="formdisplay.ui" line="6607"/>
+        <location filename="formdisplay.ui" line="6637"/>
+        <location filename="formdisplay.ui" line="6667"/>
+        <location filename="formdisplay.ui" line="6697"/>
+        <location filename="formdisplay.ui" line="6727"/>
+        <location filename="formdisplay.ui" line="6757"/>
+        <location filename="formdisplay.ui" line="6787"/>
+        <location filename="formdisplay.ui" line="6817"/>
+        <location filename="formdisplay.ui" line="6847"/>
+        <location filename="formdisplay.ui" line="6877"/>
+        <location filename="formdisplay.ui" line="6907"/>
+        <location filename="formdisplay.ui" line="6937"/>
+        <location filename="formdisplay.ui" line="6967"/>
+        <location filename="formdisplay.ui" line="6997"/>
+        <location filename="formdisplay.ui" line="9766"/>
+        <location filename="formdisplay.ui" line="9796"/>
+        <location filename="formdisplay.ui" line="9826"/>
+        <location filename="formdisplay.ui" line="9856"/>
+        <location filename="formdisplay.ui" line="9886"/>
+        <location filename="formdisplay.ui" line="9916"/>
+        <location filename="formdisplay.ui" line="9946"/>
+        <location filename="formdisplay.ui" line="9976"/>
+        <location filename="formdisplay.ui" line="10006"/>
+        <location filename="formdisplay.ui" line="10036"/>
+        <location filename="formdisplay.ui" line="10066"/>
+        <location filename="formdisplay.ui" line="10096"/>
+        <location filename="formdisplay.ui" line="10126"/>
+        <location filename="formdisplay.ui" line="10156"/>
+        <location filename="formdisplay.ui" line="10186"/>
+        <location filename="formdisplay.ui" line="10216"/>
+        <location filename="formdisplay.ui" line="10246"/>
+        <location filename="formdisplay.ui" line="10276"/>
+        <location filename="formdisplay.ui" line="10306"/>
+        <location filename="formdisplay.ui" line="10336"/>
+        <location filename="formdisplay.ui" line="11513"/>
+        <location filename="formdisplay.ui" line="11543"/>
+        <location filename="formdisplay.ui" line="11573"/>
+        <location filename="formdisplay.ui" line="11603"/>
+        <location filename="formdisplay.ui" line="11633"/>
+        <location filename="formdisplay.ui" line="11663"/>
+        <location filename="formdisplay.ui" line="11693"/>
+        <location filename="formdisplay.ui" line="11723"/>
+        <location filename="formdisplay.ui" line="11753"/>
+        <location filename="formdisplay.ui" line="11783"/>
+        <location filename="formdisplay.ui" line="11813"/>
+        <location filename="formdisplay.ui" line="11843"/>
+        <location filename="formdisplay.ui" line="11873"/>
+        <location filename="formdisplay.ui" line="11903"/>
+        <location filename="formdisplay.ui" line="11933"/>
+        <location filename="formdisplay.ui" line="11963"/>
+        <location filename="formdisplay.ui" line="11993"/>
+        <location filename="formdisplay.ui" line="12023"/>
+        <location filename="formdisplay.ui" line="12053"/>
+        <location filename="formdisplay.ui" line="12083"/>
         <source>K</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3260"/>
-        <location filename="formdisplay.ui" line="3347"/>
-        <location filename="formdisplay.ui" line="3473"/>
-        <location filename="formdisplay.ui" line="5895"/>
-        <location filename="formdisplay.ui" line="5980"/>
-        <location filename="formdisplay.ui" line="6164"/>
-        <location filename="formdisplay.ui" line="6212"/>
-        <location filename="formdisplay.ui" line="7309"/>
-        <location filename="formdisplay.ui" line="9280"/>
-        <location filename="formdisplay.ui" line="9573"/>
-        <location filename="formdisplay.ui" line="11149"/>
-        <location filename="formdisplay.ui" line="11320"/>
+        <location filename="formdisplay.ui" line="3262"/>
+        <location filename="formdisplay.ui" line="3349"/>
+        <location filename="formdisplay.ui" line="3475"/>
+        <location filename="formdisplay.ui" line="5897"/>
+        <location filename="formdisplay.ui" line="5982"/>
+        <location filename="formdisplay.ui" line="6166"/>
+        <location filename="formdisplay.ui" line="6214"/>
+        <location filename="formdisplay.ui" line="7311"/>
+        <location filename="formdisplay.ui" line="9282"/>
+        <location filename="formdisplay.ui" line="9575"/>
+        <location filename="formdisplay.ui" line="11151"/>
+        <location filename="formdisplay.ui" line="11322"/>
         <source>130/250/440(V)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3270"/>
-        <location filename="formdisplay.ui" line="3486"/>
-        <location filename="formdisplay.ui" line="5905"/>
-        <location filename="formdisplay.ui" line="6174"/>
-        <location filename="formdisplay.ui" line="7322"/>
-        <location filename="formdisplay.ui" line="9290"/>
-        <location filename="formdisplay.ui" line="11159"/>
+        <location filename="formdisplay.ui" line="3272"/>
+        <location filename="formdisplay.ui" line="3488"/>
+        <location filename="formdisplay.ui" line="5907"/>
+        <location filename="formdisplay.ui" line="6176"/>
+        <location filename="formdisplay.ui" line="7324"/>
+        <location filename="formdisplay.ui" line="9292"/>
+        <location filename="formdisplay.ui" line="11161"/>
         <source>0-32(A)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3224"/>
-        <location filename="formdisplay.ui" line="5915"/>
-        <location filename="formdisplay.ui" line="6128"/>
-        <location filename="formdisplay.ui" line="9300"/>
-        <location filename="formdisplay.ui" line="11169"/>
+        <location filename="formdisplay.ui" line="3226"/>
+        <location filename="formdisplay.ui" line="5917"/>
+        <location filename="formdisplay.ui" line="6130"/>
+        <location filename="formdisplay.ui" line="9302"/>
+        <location filename="formdisplay.ui" line="11171"/>
         <source>H</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="8245"/>
+        <location filename="formdisplay.ui" line="8247"/>
         <source>Plug Socket Auto Arguments</source>
         <translation>插头插座一键式参数</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3237"/>
-        <location filename="formdisplay.ui" line="3584"/>
-        <location filename="formdisplay.ui" line="4535"/>
-        <location filename="formdisplay.ui" line="5859"/>
-        <location filename="formdisplay.ui" line="6141"/>
-        <location filename="formdisplay.ui" line="7391"/>
-        <location filename="formdisplay.ui" line="7894"/>
-        <location filename="formdisplay.ui" line="9244"/>
-        <location filename="formdisplay.ui" line="11087"/>
+        <location filename="formdisplay.ui" line="3239"/>
+        <location filename="formdisplay.ui" line="3586"/>
+        <location filename="formdisplay.ui" line="4537"/>
+        <location filename="formdisplay.ui" line="5861"/>
+        <location filename="formdisplay.ui" line="6143"/>
+        <location filename="formdisplay.ui" line="7393"/>
+        <location filename="formdisplay.ui" line="7896"/>
+        <location filename="formdisplay.ui" line="9246"/>
+        <location filename="formdisplay.ui" line="11089"/>
         <source>Rated Voltage(Vn)：</source>
         <translation>额定电压(Vn)：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3250"/>
-        <location filename="formdisplay.ui" line="3558"/>
-        <location filename="formdisplay.ui" line="4460"/>
-        <location filename="formdisplay.ui" line="5872"/>
-        <location filename="formdisplay.ui" line="6154"/>
-        <location filename="formdisplay.ui" line="7404"/>
-        <location filename="formdisplay.ui" line="7907"/>
-        <location filename="formdisplay.ui" line="9257"/>
-        <location filename="formdisplay.ui" line="11126"/>
+        <location filename="formdisplay.ui" line="3252"/>
+        <location filename="formdisplay.ui" line="3560"/>
+        <location filename="formdisplay.ui" line="4462"/>
+        <location filename="formdisplay.ui" line="5874"/>
+        <location filename="formdisplay.ui" line="6156"/>
+        <location filename="formdisplay.ui" line="7406"/>
+        <location filename="formdisplay.ui" line="7909"/>
+        <location filename="formdisplay.ui" line="9259"/>
+        <location filename="formdisplay.ui" line="11128"/>
         <source>Rated Current(In)：</source>
         <translation>额定电流(In)：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3214"/>
-        <location filename="formdisplay.ui" line="5885"/>
-        <location filename="formdisplay.ui" line="6118"/>
-        <location filename="formdisplay.ui" line="9270"/>
-        <location filename="formdisplay.ui" line="11139"/>
+        <location filename="formdisplay.ui" line="3216"/>
+        <location filename="formdisplay.ui" line="5887"/>
+        <location filename="formdisplay.ui" line="6120"/>
+        <location filename="formdisplay.ui" line="9272"/>
+        <location filename="formdisplay.ui" line="11141"/>
         <source>Test Time(H)：</source>
         <translation>测试时间(H)：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1217"/>
+        <location filename="formdisplay.ui" line="1219"/>
         <source>Power Supply</source>
         <translation>电 源</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1303"/>
+        <location filename="formdisplay.ui" line="1305"/>
         <source>Paperless Recorder</source>
         <translation>无纸记录仪</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2014"/>
-        <location filename="formdisplay.ui" line="3670"/>
-        <location filename="formdisplay.ui" line="4020"/>
-        <location filename="formdisplay.ui" line="4729"/>
-        <location filename="formdisplay.ui" line="7090"/>
-        <location filename="formdisplay.ui" line="7649"/>
-        <location filename="formdisplay.ui" line="8162"/>
-        <location filename="formdisplay.ui" line="8347"/>
-        <location filename="formdisplay.ui" line="8544"/>
-        <location filename="formdisplay.ui" line="8764"/>
-        <location filename="formdisplay.ui" line="8869"/>
-        <location filename="formdisplay.ui" line="10429"/>
-        <location filename="formdisplay.ui" line="10626"/>
-        <location filename="formdisplay.ui" line="10852"/>
+        <location filename="formdisplay.ui" line="2016"/>
+        <location filename="formdisplay.ui" line="3672"/>
+        <location filename="formdisplay.ui" line="4022"/>
+        <location filename="formdisplay.ui" line="4731"/>
+        <location filename="formdisplay.ui" line="7092"/>
+        <location filename="formdisplay.ui" line="7651"/>
+        <location filename="formdisplay.ui" line="8164"/>
+        <location filename="formdisplay.ui" line="8349"/>
+        <location filename="formdisplay.ui" line="8546"/>
+        <location filename="formdisplay.ui" line="8766"/>
+        <location filename="formdisplay.ui" line="8871"/>
+        <location filename="formdisplay.ui" line="10431"/>
+        <location filename="formdisplay.ui" line="10628"/>
+        <location filename="formdisplay.ui" line="10854"/>
         <source>Load &amp; Power Factor：</source>
         <translation>负载及功率因素：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2030"/>
-        <location filename="formdisplay.ui" line="3657"/>
-        <location filename="formdisplay.ui" line="4054"/>
-        <location filename="formdisplay.ui" line="4716"/>
-        <location filename="formdisplay.ui" line="7106"/>
-        <location filename="formdisplay.ui" line="7662"/>
-        <location filename="formdisplay.ui" line="8149"/>
-        <location filename="formdisplay.ui" line="8302"/>
-        <location filename="formdisplay.ui" line="8518"/>
-        <location filename="formdisplay.ui" line="8777"/>
-        <location filename="formdisplay.ui" line="8901"/>
-        <location filename="formdisplay.ui" line="10489"/>
-        <location filename="formdisplay.ui" line="10639"/>
-        <location filename="formdisplay.ui" line="10865"/>
+        <location filename="formdisplay.ui" line="2032"/>
+        <location filename="formdisplay.ui" line="3659"/>
+        <location filename="formdisplay.ui" line="4056"/>
+        <location filename="formdisplay.ui" line="4718"/>
+        <location filename="formdisplay.ui" line="7108"/>
+        <location filename="formdisplay.ui" line="7664"/>
+        <location filename="formdisplay.ui" line="8151"/>
+        <location filename="formdisplay.ui" line="8304"/>
+        <location filename="formdisplay.ui" line="8520"/>
+        <location filename="formdisplay.ui" line="8779"/>
+        <location filename="formdisplay.ui" line="8903"/>
+        <location filename="formdisplay.ui" line="10491"/>
+        <location filename="formdisplay.ui" line="10641"/>
+        <location filename="formdisplay.ui" line="10867"/>
         <source>Test Voltage(Vn)：</source>
         <translation>测试电压(Vn)：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2046"/>
-        <location filename="formdisplay.ui" line="3683"/>
-        <location filename="formdisplay.ui" line="4083"/>
-        <location filename="formdisplay.ui" line="4742"/>
-        <location filename="formdisplay.ui" line="7122"/>
-        <location filename="formdisplay.ui" line="7610"/>
-        <location filename="formdisplay.ui" line="8110"/>
-        <location filename="formdisplay.ui" line="8318"/>
-        <location filename="formdisplay.ui" line="8531"/>
-        <location filename="formdisplay.ui" line="8751"/>
-        <location filename="formdisplay.ui" line="8936"/>
-        <location filename="formdisplay.ui" line="10445"/>
-        <location filename="formdisplay.ui" line="10613"/>
-        <location filename="formdisplay.ui" line="10878"/>
+        <location filename="formdisplay.ui" line="2048"/>
+        <location filename="formdisplay.ui" line="3685"/>
+        <location filename="formdisplay.ui" line="4085"/>
+        <location filename="formdisplay.ui" line="4744"/>
+        <location filename="formdisplay.ui" line="7124"/>
+        <location filename="formdisplay.ui" line="7612"/>
+        <location filename="formdisplay.ui" line="8112"/>
+        <location filename="formdisplay.ui" line="8320"/>
+        <location filename="formdisplay.ui" line="8533"/>
+        <location filename="formdisplay.ui" line="8753"/>
+        <location filename="formdisplay.ui" line="8938"/>
+        <location filename="formdisplay.ui" line="10447"/>
+        <location filename="formdisplay.ui" line="10615"/>
+        <location filename="formdisplay.ui" line="10880"/>
         <source>Test Current(In)：</source>
         <translation>测试电流(In)：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2059"/>
-        <location filename="formdisplay.ui" line="4755"/>
-        <location filename="formdisplay.ui" line="7135"/>
-        <location filename="formdisplay.ui" line="8360"/>
-        <location filename="formdisplay.ui" line="8882"/>
-        <location filename="formdisplay.ui" line="10410"/>
-        <location filename="formdisplay.cpp" line="3222"/>
-        <location filename="formdisplay.cpp" line="3382"/>
+        <location filename="formdisplay.ui" line="2061"/>
+        <location filename="formdisplay.ui" line="4757"/>
+        <location filename="formdisplay.ui" line="7137"/>
+        <location filename="formdisplay.ui" line="8362"/>
+        <location filename="formdisplay.ui" line="8884"/>
+        <location filename="formdisplay.ui" line="10412"/>
+        <location filename="formdisplay.cpp" line="3133"/>
+        <location filename="formdisplay.cpp" line="3275"/>
         <source>Resistive Load</source>
         <translation>阻性负载</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2949"/>
-        <location filename="formdisplay.ui" line="3449"/>
-        <location filename="formdisplay.ui" line="4221"/>
-        <location filename="formdisplay.ui" line="5620"/>
-        <location filename="formdisplay.ui" line="6100"/>
-        <location filename="formdisplay.ui" line="7288"/>
-        <location filename="formdisplay.ui" line="7800"/>
-        <location filename="formdisplay.ui" line="9005"/>
-        <location filename="formdisplay.ui" line="11069"/>
+        <location filename="formdisplay.ui" line="2951"/>
+        <location filename="formdisplay.ui" line="3451"/>
+        <location filename="formdisplay.ui" line="4223"/>
+        <location filename="formdisplay.ui" line="5622"/>
+        <location filename="formdisplay.ui" line="6102"/>
+        <location filename="formdisplay.ui" line="7290"/>
+        <location filename="formdisplay.ui" line="7802"/>
+        <location filename="formdisplay.ui" line="9007"/>
+        <location filename="formdisplay.ui" line="11071"/>
         <source>Setting</source>
         <translation>设 置</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3063"/>
-        <location filename="formdisplay.ui" line="4335"/>
-        <location filename="formdisplay.ui" line="5734"/>
-        <location filename="formdisplay.ui" line="9119"/>
+        <location filename="formdisplay.ui" line="3065"/>
+        <location filename="formdisplay.ui" line="4337"/>
+        <location filename="formdisplay.ui" line="5736"/>
+        <location filename="formdisplay.ui" line="9121"/>
         <source>Type</source>
         <translation>附加类型</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3068"/>
-        <location filename="formdisplay.ui" line="4340"/>
-        <location filename="formdisplay.ui" line="5739"/>
-        <location filename="formdisplay.ui" line="9124"/>
+        <location filename="formdisplay.ui" line="3070"/>
+        <location filename="formdisplay.ui" line="4342"/>
+        <location filename="formdisplay.ui" line="5741"/>
+        <location filename="formdisplay.ui" line="9126"/>
         <source>Wire area</source>
         <translation>横截面积</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3073"/>
-        <location filename="formdisplay.ui" line="4345"/>
-        <location filename="formdisplay.ui" line="5744"/>
-        <location filename="formdisplay.ui" line="9129"/>
+        <location filename="formdisplay.ui" line="3075"/>
+        <location filename="formdisplay.ui" line="4347"/>
+        <location filename="formdisplay.ui" line="5746"/>
+        <location filename="formdisplay.ui" line="9131"/>
         <source>Rewirable fixed accessories</source>
         <translation>可拆线固定式电器附件</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3095"/>
-        <location filename="formdisplay.ui" line="4367"/>
-        <location filename="formdisplay.ui" line="5766"/>
-        <location filename="formdisplay.ui" line="9151"/>
+        <location filename="formdisplay.ui" line="3097"/>
+        <location filename="formdisplay.ui" line="4369"/>
+        <location filename="formdisplay.ui" line="5768"/>
+        <location filename="formdisplay.ui" line="9153"/>
         <source>Rewirable portable accessories</source>
         <translation>可拆线移动式电器附件</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3117"/>
-        <location filename="formdisplay.ui" line="4389"/>
-        <location filename="formdisplay.ui" line="5788"/>
-        <location filename="formdisplay.ui" line="9173"/>
+        <location filename="formdisplay.ui" line="3119"/>
+        <location filename="formdisplay.ui" line="4391"/>
+        <location filename="formdisplay.ui" line="5790"/>
+        <location filename="formdisplay.ui" line="9175"/>
         <source>Non-rewirable portable socket-outlets</source>
         <translation>不可拆线移动式插座</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3145"/>
-        <location filename="formdisplay.ui" line="4417"/>
-        <location filename="formdisplay.ui" line="5816"/>
-        <location filename="formdisplay.ui" line="9201"/>
+        <location filename="formdisplay.ui" line="3147"/>
+        <location filename="formdisplay.ui" line="4419"/>
+        <location filename="formdisplay.ui" line="5818"/>
+        <location filename="formdisplay.ui" line="9203"/>
         <source>Non-rewitable plugs</source>
         <translation>不可拆线插头</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3182"/>
-        <location filename="formdisplay.ui" line="5934"/>
+        <location filename="formdisplay.ui" line="3184"/>
+        <location filename="formdisplay.ui" line="5936"/>
         <source>L-N/L-E </source>
         <translation>L-N/L-E 切换</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3337"/>
-        <location filename="formdisplay.ui" line="5970"/>
-        <location filename="formdisplay.ui" line="6202"/>
-        <location filename="formdisplay.ui" line="9557"/>
-        <location filename="formdisplay.ui" line="11310"/>
+        <location filename="formdisplay.ui" line="3339"/>
+        <location filename="formdisplay.ui" line="5972"/>
+        <location filename="formdisplay.ui" line="6204"/>
+        <location filename="formdisplay.ui" line="9559"/>
+        <location filename="formdisplay.ui" line="11312"/>
         <source>Room Temperature(No.2)：</source>
         <translation>第二室温：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3350"/>
-        <location filename="formdisplay.ui" line="5983"/>
-        <location filename="formdisplay.ui" line="6215"/>
-        <location filename="formdisplay.ui" line="9576"/>
-        <location filename="formdisplay.ui" line="11323"/>
+        <location filename="formdisplay.ui" line="3352"/>
+        <location filename="formdisplay.ui" line="5985"/>
+        <location filename="formdisplay.ui" line="6217"/>
+        <location filename="formdisplay.ui" line="9578"/>
+        <location filename="formdisplay.ui" line="11325"/>
         <source>1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3372"/>
-        <location filename="formdisplay.ui" line="3893"/>
-        <location filename="formdisplay.ui" line="4568"/>
-        <location filename="formdisplay.ui" line="5947"/>
-        <location filename="formdisplay.ui" line="7023"/>
-        <location filename="formdisplay.ui" line="7695"/>
-        <location filename="formdisplay.ui" line="8195"/>
+        <location filename="formdisplay.ui" line="3374"/>
+        <location filename="formdisplay.ui" line="3895"/>
+        <location filename="formdisplay.ui" line="4570"/>
+        <location filename="formdisplay.ui" line="5949"/>
+        <location filename="formdisplay.ui" line="7025"/>
+        <location filename="formdisplay.ui" line="7697"/>
+        <location filename="formdisplay.ui" line="8197"/>
         <source>Specific</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3571"/>
-        <location filename="formdisplay.ui" line="4548"/>
-        <location filename="formdisplay.ui" line="7417"/>
-        <location filename="formdisplay.ui" line="7920"/>
-        <location filename="formdisplay.ui" line="9338"/>
-        <location filename="formdisplay.ui" line="11100"/>
+        <location filename="formdisplay.ui" line="3573"/>
+        <location filename="formdisplay.ui" line="4550"/>
+        <location filename="formdisplay.ui" line="7419"/>
+        <location filename="formdisplay.ui" line="7922"/>
+        <location filename="formdisplay.ui" line="9340"/>
+        <location filename="formdisplay.ui" line="11102"/>
         <source>Rate(0.1mm/s)：</source>
         <translation>速度(0.1mm/s)：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3597"/>
-        <location filename="formdisplay.ui" line="4508"/>
-        <location filename="formdisplay.ui" line="7430"/>
-        <location filename="formdisplay.ui" line="7933"/>
-        <location filename="formdisplay.ui" line="9325"/>
-        <location filename="formdisplay.ui" line="11113"/>
+        <location filename="formdisplay.ui" line="3599"/>
+        <location filename="formdisplay.ui" line="4510"/>
+        <location filename="formdisplay.ui" line="7432"/>
+        <location filename="formdisplay.ui" line="7935"/>
+        <location filename="formdisplay.ui" line="9327"/>
+        <location filename="formdisplay.ui" line="11115"/>
         <source>Position(mm)：</source>
         <translation>行 程(mm)：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3295"/>
-        <location filename="formdisplay.ui" line="9398"/>
+        <location filename="formdisplay.ui" line="3297"/>
+        <location filename="formdisplay.ui" line="9400"/>
         <source>Current(Im)：</source>
         <translation>电 流(Im)：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3195"/>
-        <location filename="formdisplay.ui" line="9473"/>
+        <location filename="formdisplay.ui" line="3197"/>
+        <location filename="formdisplay.ui" line="9475"/>
         <source>Incorporated Components</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2040"/>
-        <location filename="formdisplay.ui" line="3305"/>
-        <location filename="formdisplay.ui" line="3331"/>
-        <location filename="formdisplay.ui" line="3788"/>
-        <location filename="formdisplay.ui" line="4796"/>
-        <location filename="formdisplay.ui" line="5964"/>
-        <location filename="formdisplay.ui" line="6196"/>
-        <location filename="formdisplay.ui" line="7116"/>
-        <location filename="formdisplay.ui" line="7519"/>
-        <location filename="formdisplay.ui" line="8312"/>
-        <location filename="formdisplay.ui" line="8592"/>
-        <location filename="formdisplay.ui" line="8949"/>
-        <location filename="formdisplay.ui" line="9414"/>
-        <location filename="formdisplay.ui" line="9551"/>
-        <location filename="formdisplay.ui" line="10439"/>
-        <location filename="formdisplay.ui" line="10687"/>
-        <location filename="formdisplay.ui" line="11304"/>
+        <location filename="formdisplay.ui" line="2042"/>
+        <location filename="formdisplay.ui" line="3307"/>
+        <location filename="formdisplay.ui" line="3333"/>
+        <location filename="formdisplay.ui" line="3790"/>
+        <location filename="formdisplay.ui" line="4798"/>
+        <location filename="formdisplay.ui" line="5966"/>
+        <location filename="formdisplay.ui" line="6198"/>
+        <location filename="formdisplay.ui" line="7118"/>
+        <location filename="formdisplay.ui" line="7521"/>
+        <location filename="formdisplay.ui" line="8314"/>
+        <location filename="formdisplay.ui" line="8594"/>
+        <location filename="formdisplay.ui" line="8951"/>
+        <location filename="formdisplay.ui" line="9416"/>
+        <location filename="formdisplay.ui" line="9553"/>
+        <location filename="formdisplay.ui" line="10441"/>
+        <location filename="formdisplay.ui" line="10689"/>
+        <location filename="formdisplay.ui" line="11306"/>
         <source>A</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2087"/>
-        <location filename="formdisplay.ui" line="2103"/>
-        <location filename="formdisplay.ui" line="3762"/>
-        <location filename="formdisplay.ui" line="3797"/>
-        <location filename="formdisplay.ui" line="4073"/>
-        <location filename="formdisplay.ui" line="4102"/>
-        <location filename="formdisplay.ui" line="4786"/>
-        <location filename="formdisplay.ui" line="4802"/>
-        <location filename="formdisplay.ui" line="7163"/>
-        <location filename="formdisplay.ui" line="7179"/>
-        <location filename="formdisplay.ui" line="7509"/>
-        <location filename="formdisplay.ui" line="7528"/>
-        <location filename="formdisplay.ui" line="7993"/>
-        <location filename="formdisplay.ui" line="8028"/>
-        <location filename="formdisplay.ui" line="8044"/>
-        <location filename="formdisplay.ui" line="8289"/>
-        <location filename="formdisplay.ui" line="8337"/>
-        <location filename="formdisplay.ui" line="8582"/>
-        <location filename="formdisplay.ui" line="8601"/>
-        <location filename="formdisplay.ui" line="8817"/>
-        <location filename="formdisplay.ui" line="8833"/>
-        <location filename="formdisplay.ui" line="8926"/>
-        <location filename="formdisplay.ui" line="8955"/>
-        <location filename="formdisplay.ui" line="10464"/>
-        <location filename="formdisplay.ui" line="10511"/>
-        <location filename="formdisplay.ui" line="10677"/>
-        <location filename="formdisplay.ui" line="10696"/>
-        <location filename="formdisplay.ui" line="10918"/>
-        <location filename="formdisplay.ui" line="10934"/>
-        <location filename="formdisplay.ui" line="11004"/>
+        <location filename="formdisplay.ui" line="2089"/>
+        <location filename="formdisplay.ui" line="2105"/>
+        <location filename="formdisplay.ui" line="3764"/>
+        <location filename="formdisplay.ui" line="3799"/>
+        <location filename="formdisplay.ui" line="4075"/>
+        <location filename="formdisplay.ui" line="4104"/>
+        <location filename="formdisplay.ui" line="4788"/>
+        <location filename="formdisplay.ui" line="4804"/>
+        <location filename="formdisplay.ui" line="7165"/>
+        <location filename="formdisplay.ui" line="7181"/>
+        <location filename="formdisplay.ui" line="7511"/>
+        <location filename="formdisplay.ui" line="7530"/>
+        <location filename="formdisplay.ui" line="7995"/>
+        <location filename="formdisplay.ui" line="8030"/>
+        <location filename="formdisplay.ui" line="8046"/>
+        <location filename="formdisplay.ui" line="8291"/>
+        <location filename="formdisplay.ui" line="8339"/>
+        <location filename="formdisplay.ui" line="8584"/>
+        <location filename="formdisplay.ui" line="8603"/>
+        <location filename="formdisplay.ui" line="8819"/>
+        <location filename="formdisplay.ui" line="8835"/>
+        <location filename="formdisplay.ui" line="8928"/>
+        <location filename="formdisplay.ui" line="8957"/>
+        <location filename="formdisplay.ui" line="10466"/>
+        <location filename="formdisplay.ui" line="10513"/>
+        <location filename="formdisplay.ui" line="10679"/>
+        <location filename="formdisplay.ui" line="10698"/>
+        <location filename="formdisplay.ui" line="10920"/>
+        <location filename="formdisplay.ui" line="10936"/>
+        <location filename="formdisplay.ui" line="11006"/>
         <source>0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2917"/>
-        <location filename="formdisplay.ui" line="6234"/>
-        <location filename="formdisplay.ui" line="9526"/>
-        <location filename="formdisplay.ui" line="11254"/>
+        <location filename="formdisplay.ui" line="2919"/>
+        <location filename="formdisplay.ui" line="6236"/>
+        <location filename="formdisplay.ui" line="9528"/>
+        <location filename="formdisplay.ui" line="11256"/>
         <source>C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2145"/>
-        <location filename="formdisplay.ui" line="4819"/>
-        <location filename="formdisplay.ui" line="6256"/>
-        <location filename="formdisplay.ui" line="9595"/>
-        <location filename="formdisplay.ui" line="11342"/>
+        <location filename="formdisplay.ui" line="2147"/>
+        <location filename="formdisplay.ui" line="4821"/>
+        <location filename="formdisplay.ui" line="6258"/>
+        <location filename="formdisplay.ui" line="9597"/>
+        <location filename="formdisplay.ui" line="11344"/>
         <source>-270~400</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3043"/>
-        <location filename="formdisplay.ui" line="4315"/>
-        <location filename="formdisplay.ui" line="5714"/>
-        <location filename="formdisplay.ui" line="9099"/>
+        <location filename="formdisplay.ui" line="3045"/>
+        <location filename="formdisplay.ui" line="4317"/>
+        <location filename="formdisplay.ui" line="5716"/>
+        <location filename="formdisplay.ui" line="9101"/>
         <source>01</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3048"/>
-        <location filename="formdisplay.ui" line="4320"/>
-        <location filename="formdisplay.ui" line="5719"/>
-        <location filename="formdisplay.ui" line="9104"/>
+        <location filename="formdisplay.ui" line="3050"/>
+        <location filename="formdisplay.ui" line="4322"/>
+        <location filename="formdisplay.ui" line="5721"/>
+        <location filename="formdisplay.ui" line="9106"/>
         <source>02</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3053"/>
-        <location filename="formdisplay.ui" line="4325"/>
-        <location filename="formdisplay.ui" line="5724"/>
-        <location filename="formdisplay.ui" line="9109"/>
+        <location filename="formdisplay.ui" line="3055"/>
+        <location filename="formdisplay.ui" line="4327"/>
+        <location filename="formdisplay.ui" line="5726"/>
+        <location filename="formdisplay.ui" line="9111"/>
         <source>03</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3058"/>
-        <location filename="formdisplay.ui" line="4330"/>
-        <location filename="formdisplay.ui" line="5729"/>
-        <location filename="formdisplay.ui" line="9114"/>
+        <location filename="formdisplay.ui" line="3060"/>
+        <location filename="formdisplay.ui" line="4332"/>
+        <location filename="formdisplay.ui" line="5731"/>
+        <location filename="formdisplay.ui" line="9116"/>
         <source>04</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="116"/>
+        <location filename="formdisplay.cpp" line="109"/>
         <source>Connect STAS Sucess !</source>
         <translation>STAS连接成功!</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="119"/>
+        <location filename="formdisplay.cpp" line="112"/>
         <source>Connect STAS False !</source>
         <translation>STAS连接失败!</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="132"/>
+        <location filename="formdisplay.cpp" line="125"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="137"/>
+        <location filename="formdisplay.cpp" line="129"/>
         <source>Chinese</source>
         <translation>中 文</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="142"/>
+        <location filename="formdisplay.cpp" line="132"/>
         <source>Path</source>
         <translation>路 径</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="147"/>
+        <location filename="formdisplay.cpp" line="135"/>
         <source>Registration Code</source>
         <translation>注册码</translation>
     </message>
     <message>
+        <location filename="formdisplay.cpp" line="628"/>
+        <location filename="formdisplay.cpp" line="629"/>
+        <location filename="formdisplay.cpp" line="630"/>
+        <location filename="formdisplay.cpp" line="631"/>
         <location filename="formdisplay.cpp" line="632"/>
-        <location filename="formdisplay.cpp" line="633"/>
-        <location filename="formdisplay.cpp" line="634"/>
-        <location filename="formdisplay.cpp" line="635"/>
-        <location filename="formdisplay.cpp" line="636"/>
         <source>disabled</source>
         <translation>不可用</translation>
     </message>
@@ -821,342 +821,304 @@ Whether or not to continue to leave?</source>
         <translation type="vanished">负载(#3),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="665"/>
+        <location filename="formdisplay.cpp" line="661"/>
         <source>Life Tester (servoA),</source>
         <translation>寿命测试仪(servoA),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="674"/>
+        <location filename="formdisplay.cpp" line="670"/>
         <source>Life Tester (servoB),</source>
         <translation>寿命测试仪(servoB),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="683"/>
+        <location filename="formdisplay.cpp" line="679"/>
         <source>Life Tester (servoC),</source>
         <translation>寿命测试仪(servoC),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="691"/>
-        <location filename="formdisplay.cpp" line="1156"/>
-        <location filename="formdisplay.cpp" line="3977"/>
-        <location filename="formdisplay.cpp" line="4198"/>
-        <location filename="formdisplay.cpp" line="4236"/>
-        <location filename="formdisplay.cpp" line="4941"/>
-        <location filename="formdisplay.cpp" line="4953"/>
-        <location filename="formdisplay.cpp" line="4965"/>
-        <location filename="formdisplay.cpp" line="4977"/>
-        <location filename="formdisplay.cpp" line="4989"/>
-        <location filename="formdisplay.cpp" line="5001"/>
-        <location filename="formdisplay.cpp" line="5177"/>
+        <location filename="formdisplay.cpp" line="687"/>
+        <location filename="formdisplay.cpp" line="1152"/>
+        <location filename="formdisplay.cpp" line="3732"/>
+        <location filename="formdisplay.cpp" line="4602"/>
+        <location filename="formdisplay.cpp" line="4614"/>
+        <location filename="formdisplay.cpp" line="4626"/>
+        <location filename="formdisplay.cpp" line="4638"/>
+        <location filename="formdisplay.cpp" line="4650"/>
+        <location filename="formdisplay.cpp" line="4662"/>
+        <location filename="formdisplay.cpp" line="4838"/>
         <source> Electrical Accessories Test Automation Program</source>
         <translation>电器附件测试自动化程序</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="714"/>
+        <location filename="formdisplay.cpp" line="710"/>
         <source>Question</source>
         <translation>请 求</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="714"/>
+        <location filename="formdisplay.cpp" line="710"/>
         <source>Project has been in existence, whether to continue?</source>
         <translation>项目已存在, 是否继续?</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="904"/>
+        <location filename="formdisplay.cpp" line="900"/>
         <source>Please make sure to delete the item!</source>
         <translation>请确认删除项目!</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1157"/>
+        <location filename="formdisplay.cpp" line="1153"/>
         <source>End of the test, please replace the test gauge or plug socket!</source>
         <translation>测试结束, 请更换测试用量规或插头插座!</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1255"/>
+        <location filename="formdisplay.cpp" line="1251"/>
         <source>Fail</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1255"/>
+        <location filename="formdisplay.cpp" line="1251"/>
         <source>Temperature rise test result is: Fail!
 Whether to continue to operate?</source>
         <translation>温升测试结果: Fail
 是否继续操作?</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1257"/>
+        <location filename="formdisplay.cpp" line="1253"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1258"/>
+        <location filename="formdisplay.cpp" line="1254"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1814"/>
-        <location filename="formdisplay.cpp" line="1828"/>
+        <location filename="formdisplay.cpp" line="1810"/>
+        <location filename="formdisplay.cpp" line="1824"/>
         <source>Language</source>
         <translation>语 言</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1814"/>
-        <location filename="formdisplay.cpp" line="1828"/>
+        <location filename="formdisplay.cpp" line="1810"/>
+        <location filename="formdisplay.cpp" line="1824"/>
         <source>The language change will take effect after a restart of program.</source>
         <translation>语言变更会在程序重启后生效.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1972"/>
+        <location filename="formdisplay.cpp" line="1955"/>
         <source>Whether out of the project?</source>
         <translation>是否退出本项目?</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1963"/>
-        <location filename="formdisplay.cpp" line="2083"/>
-        <location filename="formdisplay.cpp" line="2093"/>
-        <location filename="formdisplay.cpp" line="2114"/>
-        <location filename="formdisplay.cpp" line="2130"/>
-        <location filename="formdisplay.cpp" line="2140"/>
-        <location filename="formdisplay.cpp" line="3664"/>
-        <location filename="formdisplay.cpp" line="3680"/>
-        <location filename="formdisplay.cpp" line="3690"/>
-        <location filename="formdisplay.cpp" line="3712"/>
-        <location filename="formdisplay.cpp" line="3722"/>
-        <location filename="formdisplay.cpp" line="3743"/>
-        <location filename="formdisplay.cpp" line="3759"/>
-        <location filename="formdisplay.cpp" line="3769"/>
-        <location filename="formdisplay.cpp" line="3791"/>
-        <location filename="formdisplay.cpp" line="3801"/>
+        <location filename="formdisplay.cpp" line="1946"/>
+        <location filename="formdisplay.cpp" line="2012"/>
+        <location filename="formdisplay.cpp" line="2022"/>
+        <location filename="formdisplay.cpp" line="2043"/>
+        <location filename="formdisplay.cpp" line="2059"/>
+        <location filename="formdisplay.cpp" line="2069"/>
+        <location filename="formdisplay.cpp" line="3419"/>
+        <location filename="formdisplay.cpp" line="3435"/>
+        <location filename="formdisplay.cpp" line="3445"/>
+        <location filename="formdisplay.cpp" line="3467"/>
+        <location filename="formdisplay.cpp" line="3477"/>
+        <location filename="formdisplay.cpp" line="3498"/>
+        <location filename="formdisplay.cpp" line="3514"/>
+        <location filename="formdisplay.cpp" line="3524"/>
+        <location filename="formdisplay.cpp" line="3546"/>
+        <location filename="formdisplay.cpp" line="3556"/>
         <source>Error</source>
         <translation>错 误</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2083"/>
-        <location filename="formdisplay.cpp" line="3664"/>
-        <location filename="formdisplay.cpp" line="3743"/>
+        <location filename="formdisplay.cpp" line="2012"/>
+        <location filename="formdisplay.cpp" line="3419"/>
+        <location filename="formdisplay.cpp" line="3498"/>
         <source>Connect STAS False!
 Please after the restart to try again.</source>
         <translation>连接STAS失败！
 请重启后再试.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2093"/>
-        <location filename="formdisplay.cpp" line="3680"/>
-        <location filename="formdisplay.cpp" line="3759"/>
+        <location filename="formdisplay.cpp" line="2022"/>
+        <location filename="formdisplay.cpp" line="3435"/>
+        <location filename="formdisplay.cpp" line="3514"/>
         <source>Power Supply UART was disabled!
 Please check and update the UART Set.</source>
         <translation>电源串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2114"/>
+        <location filename="formdisplay.cpp" line="2043"/>
         <source>Load(#4) UART was disabled!
 Please check and update the UART Set.</source>
         <translation>负载(#4)串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2130"/>
-        <location filename="formdisplay.cpp" line="3712"/>
-        <location filename="formdisplay.cpp" line="3791"/>
+        <location filename="formdisplay.cpp" line="2059"/>
+        <location filename="formdisplay.cpp" line="3467"/>
+        <location filename="formdisplay.cpp" line="3546"/>
         <source>Paperless Recorder UART was disabled!
 Please check and update the UART Set.</source>
         <translation>无纸记录仪串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2140"/>
-        <location filename="formdisplay.cpp" line="3722"/>
-        <location filename="formdisplay.cpp" line="3801"/>
+        <location filename="formdisplay.cpp" line="2069"/>
+        <location filename="formdisplay.cpp" line="3477"/>
+        <location filename="formdisplay.cpp" line="3556"/>
         <source>Life Tester UART was disabled!
 Please check and update the UART Set.</source>
         <translation>寿命测试机串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="3690"/>
+        <location filename="formdisplay.cpp" line="3445"/>
         <source>Load(#5) UART was disabled!
 Please check and update the UART Set.</source>
         <translation>负载(#5)串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="3769"/>
+        <location filename="formdisplay.cpp" line="3524"/>
         <source>Load(#3) UART was disabled!
 Please check and update the UART Set.</source>
         <translation>负载(#3)串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4978"/>
+        <location filename="formdisplay.cpp" line="4639"/>
         <source>Please enter the correct Load(servoA) parameters!
 E.g, COM0</source>
         <translation>请输入正确的负载(伺服A)串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4990"/>
+        <location filename="formdisplay.cpp" line="4651"/>
         <source>Please enter the correct Load(servoB) parameters!
 E.g, COM0</source>
         <translation>请输入正确的负载(伺服B)串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="5002"/>
+        <location filename="formdisplay.cpp" line="4663"/>
         <source>Please enter the correct Load(servoC) parameters!
 E.g, COM0</source>
         <translation>请输入正确的负载(伺服C)串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="694"/>
-        <location filename="formdisplay.cpp" line="716"/>
-        <location filename="formdisplay.cpp" line="906"/>
-        <location filename="formdisplay.cpp" line="1159"/>
-        <location filename="formdisplay.cpp" line="1816"/>
-        <location filename="formdisplay.cpp" line="1830"/>
-        <location filename="formdisplay.cpp" line="1965"/>
-        <location filename="formdisplay.cpp" line="1974"/>
-        <location filename="formdisplay.cpp" line="2006"/>
+        <location filename="formdisplay.cpp" line="690"/>
+        <location filename="formdisplay.cpp" line="712"/>
+        <location filename="formdisplay.cpp" line="902"/>
+        <location filename="formdisplay.cpp" line="1155"/>
+        <location filename="formdisplay.cpp" line="1812"/>
+        <location filename="formdisplay.cpp" line="1826"/>
+        <location filename="formdisplay.cpp" line="1948"/>
+        <location filename="formdisplay.cpp" line="1957"/>
+        <location filename="formdisplay.cpp" line="1989"/>
+        <location filename="formdisplay.cpp" line="2014"/>
         <location filename="formdisplay.cpp" line="2024"/>
-        <location filename="formdisplay.cpp" line="2042"/>
-        <location filename="formdisplay.cpp" line="2060"/>
-        <location filename="formdisplay.cpp" line="2085"/>
-        <location filename="formdisplay.cpp" line="2095"/>
-        <location filename="formdisplay.cpp" line="2116"/>
-        <location filename="formdisplay.cpp" line="2132"/>
-        <location filename="formdisplay.cpp" line="2142"/>
-        <location filename="formdisplay.cpp" line="3186"/>
-        <location filename="formdisplay.cpp" line="3325"/>
-        <location filename="formdisplay.cpp" line="3506"/>
-        <location filename="formdisplay.cpp" line="3666"/>
-        <location filename="formdisplay.cpp" line="3682"/>
-        <location filename="formdisplay.cpp" line="3692"/>
-        <location filename="formdisplay.cpp" line="3714"/>
-        <location filename="formdisplay.cpp" line="3724"/>
-        <location filename="formdisplay.cpp" line="3745"/>
-        <location filename="formdisplay.cpp" line="3761"/>
-        <location filename="formdisplay.cpp" line="3771"/>
-        <location filename="formdisplay.cpp" line="3793"/>
-        <location filename="formdisplay.cpp" line="3803"/>
-        <location filename="formdisplay.cpp" line="3979"/>
-        <location filename="formdisplay.cpp" line="4135"/>
-        <location filename="formdisplay.cpp" line="4200"/>
-        <location filename="formdisplay.cpp" line="4238"/>
-        <location filename="formdisplay.cpp" line="4944"/>
-        <location filename="formdisplay.cpp" line="4956"/>
-        <location filename="formdisplay.cpp" line="4968"/>
-        <location filename="formdisplay.cpp" line="4980"/>
-        <location filename="formdisplay.cpp" line="4992"/>
-        <location filename="formdisplay.cpp" line="5004"/>
-        <location filename="formdisplay.cpp" line="5179"/>
-        <location filename="formdisplay.cpp" line="5204"/>
+        <location filename="formdisplay.cpp" line="2045"/>
+        <location filename="formdisplay.cpp" line="2061"/>
+        <location filename="formdisplay.cpp" line="2071"/>
+        <location filename="formdisplay.cpp" line="3421"/>
+        <location filename="formdisplay.cpp" line="3437"/>
+        <location filename="formdisplay.cpp" line="3447"/>
+        <location filename="formdisplay.cpp" line="3469"/>
+        <location filename="formdisplay.cpp" line="3479"/>
+        <location filename="formdisplay.cpp" line="3500"/>
+        <location filename="formdisplay.cpp" line="3516"/>
+        <location filename="formdisplay.cpp" line="3526"/>
+        <location filename="formdisplay.cpp" line="3548"/>
+        <location filename="formdisplay.cpp" line="3558"/>
+        <location filename="formdisplay.cpp" line="3734"/>
+        <location filename="formdisplay.cpp" line="4605"/>
+        <location filename="formdisplay.cpp" line="4617"/>
+        <location filename="formdisplay.cpp" line="4629"/>
+        <location filename="formdisplay.cpp" line="4641"/>
+        <location filename="formdisplay.cpp" line="4653"/>
+        <location filename="formdisplay.cpp" line="4665"/>
+        <location filename="formdisplay.cpp" line="4840"/>
         <source>Ok</source>
         <translation>确 定</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="608"/>
+        <location filename="formdisplay.cpp" line="604"/>
         <source>Power Supply,</source>
         <translation>电源,</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="615"/>
+        <location filename="formdisplay.cpp" line="611"/>
         <source>Paperless Recorder,</source>
         <translation>无纸记录仪,</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="643"/>
+        <location filename="formdisplay.cpp" line="639"/>
         <source>Load (Servo-A),</source>
         <translation>负载(伺服A),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="650"/>
+        <location filename="formdisplay.cpp" line="646"/>
         <source>Load (Servo-B),</source>
         <translation>负载(伺服B),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="657"/>
+        <location filename="formdisplay.cpp" line="653"/>
         <source>Load (Servo-C),</source>
         <translation>负载(伺服C),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="692"/>
+        <location filename="formdisplay.cpp" line="688"/>
         <source>Connection fail! Check the serial port, please.</source>
         <translation>连接失败! 请检查串口.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="717"/>
-        <location filename="formdisplay.cpp" line="907"/>
-        <location filename="formdisplay.cpp" line="1975"/>
-        <location filename="formdisplay.cpp" line="2007"/>
-        <location filename="formdisplay.cpp" line="2025"/>
-        <location filename="formdisplay.cpp" line="2043"/>
-        <location filename="formdisplay.cpp" line="2061"/>
-        <location filename="formdisplay.cpp" line="3187"/>
-        <location filename="formdisplay.cpp" line="3326"/>
-        <location filename="formdisplay.cpp" line="3507"/>
-        <location filename="formdisplay.cpp" line="3980"/>
-        <location filename="formdisplay.cpp" line="4136"/>
-        <location filename="formdisplay.cpp" line="4201"/>
-        <location filename="formdisplay.cpp" line="4239"/>
-        <location filename="formdisplay.cpp" line="5205"/>
+        <location filename="formdisplay.cpp" line="713"/>
+        <location filename="formdisplay.cpp" line="903"/>
+        <location filename="formdisplay.cpp" line="1958"/>
+        <location filename="formdisplay.cpp" line="1990"/>
+        <location filename="formdisplay.cpp" line="3735"/>
         <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="904"/>
+        <location filename="formdisplay.cpp" line="900"/>
         <source>Delete</source>
         <translation>删 除</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1963"/>
+        <location filename="formdisplay.cpp" line="1946"/>
         <source>The project is testing.
 Please be patient.</source>
         <translation>本工程测试中.
 请耐心等待.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1972"/>
+        <location filename="formdisplay.cpp" line="1955"/>
         <source>Exit</source>
         <translation>退 出</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2004"/>
-        <location filename="formdisplay.cpp" line="2022"/>
-        <location filename="formdisplay.cpp" line="2040"/>
-        <location filename="formdisplay.cpp" line="2058"/>
-        <location filename="formdisplay.cpp" line="3184"/>
-        <location filename="formdisplay.cpp" line="3323"/>
-        <location filename="formdisplay.cpp" line="3504"/>
-        <location filename="formdisplay.cpp" line="4133"/>
-        <location filename="formdisplay.cpp" line="5202"/>
+        <location filename="formdisplay.cpp" line="1987"/>
         <source>Quit</source>
         <translation>退 出</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2004"/>
-        <location filename="formdisplay.cpp" line="2022"/>
-        <location filename="formdisplay.cpp" line="2040"/>
-        <location filename="formdisplay.cpp" line="2058"/>
-        <location filename="formdisplay.cpp" line="3184"/>
-        <location filename="formdisplay.cpp" line="3323"/>
-        <location filename="formdisplay.cpp" line="3504"/>
-        <location filename="formdisplay.cpp" line="4133"/>
-        <location filename="formdisplay.cpp" line="5202"/>
+        <location filename="formdisplay.cpp" line="1987"/>
         <source>Whether out of the editor?</source>
         <translation>是否离开当前工程?</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2078"/>
-        <location filename="formdisplay.cpp" line="3675"/>
-        <location filename="formdisplay.cpp" line="3703"/>
-        <location filename="formdisplay.cpp" line="3754"/>
-        <location filename="formdisplay.cpp" line="3782"/>
+        <location filename="formdisplay.cpp" line="2007"/>
+        <location filename="formdisplay.cpp" line="3430"/>
+        <location filename="formdisplay.cpp" line="3458"/>
+        <location filename="formdisplay.cpp" line="3509"/>
+        <location filename="formdisplay.cpp" line="3537"/>
         <source>Please Add Item!</source>
         <translation>请添加项目!</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="3362"/>
+        <location filename="formdisplay.cpp" line="3255"/>
         <source>4000</source>
         <translation></translation>
     </message>
@@ -1165,502 +1127,463 @@ Please be patient.</source>
         <translation type="vanished">感性负载(1.0)</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="3977"/>
-        <location filename="formdisplay.cpp" line="4198"/>
-        <location filename="formdisplay.cpp" line="4236"/>
+        <location filename="formdisplay.cpp" line="3732"/>
         <source>Whether to start Auto?</source>
         <translation>是否启动一键式操作?</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4942"/>
+        <location filename="formdisplay.cpp" line="4603"/>
         <source>Please enter the correct Power Supply parameters!
 E.g, COM0</source>
         <translation>请输入正确的电源串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4954"/>
+        <location filename="formdisplay.cpp" line="4615"/>
         <source>Please enter the correct Paperless Recorder parameters!
 E.g, COM0</source>
         <translation>请输入正确的无纸记录仪串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4966"/>
+        <location filename="formdisplay.cpp" line="4627"/>
         <source>Please enter the correct life tester parameters!
 E.g, COM0</source>
         <translation>请输入正确的寿命测试机串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="5177"/>
+        <location filename="formdisplay.cpp" line="4838"/>
         <source>The UART data has changed, please update.</source>
         <translation>串口线已更改，请更新.</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2300"/>
-        <location filename="formdisplay.ui" line="4974"/>
-        <location filename="formdisplay.ui" line="6411"/>
-        <location filename="formdisplay.ui" line="9750"/>
-        <location filename="formdisplay.ui" line="11497"/>
+        <location filename="formdisplay.ui" line="2302"/>
+        <location filename="formdisplay.ui" line="4976"/>
+        <location filename="formdisplay.ui" line="6413"/>
+        <location filename="formdisplay.ui" line="9752"/>
+        <location filename="formdisplay.ui" line="11499"/>
         <source>25</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1270"/>
-        <location filename="formdisplay.ui" line="1315"/>
-        <location filename="formdisplay.ui" line="1429"/>
+        <location filename="formdisplay.ui" line="1272"/>
+        <location filename="formdisplay.ui" line="1317"/>
+        <location filename="formdisplay.ui" line="1431"/>
         <source>Uart：</source>
         <translation>串 口：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1286"/>
-        <location filename="formdisplay.ui" line="1375"/>
-        <location filename="formdisplay.ui" line="1458"/>
+        <location filename="formdisplay.ui" line="1288"/>
+        <location filename="formdisplay.ui" line="1377"/>
+        <location filename="formdisplay.ui" line="1460"/>
         <source>Statu：</source>
         <translation>状 态：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1392"/>
+        <location filename="formdisplay.ui" line="1394"/>
         <source>Life Tester</source>
         <translation>寿命测试机</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1476"/>
+        <location filename="formdisplay.ui" line="1478"/>
         <source>Servo(C)</source>
         <translation>伺服(C)</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1488"/>
-        <location filename="formdisplay.ui" line="1612"/>
-        <location filename="formdisplay.ui" line="1796"/>
+        <location filename="formdisplay.ui" line="1490"/>
+        <location filename="formdisplay.ui" line="1614"/>
+        <location filename="formdisplay.ui" line="1798"/>
         <source>Load Statu：</source>
         <translation>负载状态：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1504"/>
-        <location filename="formdisplay.ui" line="1656"/>
-        <location filename="formdisplay.ui" line="1780"/>
+        <location filename="formdisplay.ui" line="1506"/>
+        <location filename="formdisplay.ui" line="1658"/>
+        <location filename="formdisplay.ui" line="1782"/>
         <source>Load Uart：</source>
         <translation>负载串口：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1520"/>
-        <location filename="formdisplay.ui" line="1685"/>
-        <location filename="formdisplay.ui" line="1764"/>
+        <location filename="formdisplay.ui" line="1522"/>
+        <location filename="formdisplay.ui" line="1687"/>
+        <location filename="formdisplay.ui" line="1766"/>
         <source>Test Statu：</source>
         <translation>测试机状态：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1600"/>
+        <location filename="formdisplay.ui" line="1602"/>
         <source>Servo(B)</source>
         <translation>伺服(B)</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1727"/>
+        <location filename="formdisplay.ui" line="1729"/>
         <source>Servo(A)</source>
         <translation>伺服(A)</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1864"/>
+        <location filename="formdisplay.ui" line="1866"/>
         <source>Update</source>
         <translation>更 新</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2024"/>
-        <location filename="formdisplay.ui" line="3753"/>
-        <location filename="formdisplay.ui" line="4774"/>
-        <location filename="formdisplay.ui" line="7100"/>
-        <location filename="formdisplay.ui" line="7500"/>
-        <location filename="formdisplay.ui" line="8296"/>
-        <location filename="formdisplay.ui" line="8573"/>
-        <location filename="formdisplay.ui" line="8914"/>
-        <location filename="formdisplay.ui" line="10483"/>
-        <location filename="formdisplay.ui" line="10668"/>
+        <location filename="formdisplay.ui" line="2026"/>
+        <location filename="formdisplay.ui" line="3755"/>
+        <location filename="formdisplay.ui" line="4776"/>
+        <location filename="formdisplay.ui" line="7102"/>
+        <location filename="formdisplay.ui" line="7502"/>
+        <location filename="formdisplay.ui" line="8298"/>
+        <location filename="formdisplay.ui" line="8575"/>
+        <location filename="formdisplay.ui" line="8916"/>
+        <location filename="formdisplay.ui" line="10485"/>
+        <location filename="formdisplay.ui" line="10670"/>
         <source>V</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3134"/>
-        <location filename="formdisplay.ui" line="4406"/>
-        <location filename="formdisplay.ui" line="5805"/>
-        <location filename="formdisplay.ui" line="9190"/>
+        <location filename="formdisplay.ui" line="3136"/>
+        <location filename="formdisplay.ui" line="4408"/>
+        <location filename="formdisplay.ui" line="5807"/>
+        <location filename="formdisplay.ui" line="9192"/>
         <source>0.5/0.75/1/1.5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3162"/>
-        <location filename="formdisplay.ui" line="4434"/>
-        <location filename="formdisplay.ui" line="5833"/>
-        <location filename="formdisplay.ui" line="9218"/>
+        <location filename="formdisplay.ui" line="3164"/>
+        <location filename="formdisplay.ui" line="4436"/>
+        <location filename="formdisplay.ui" line="5835"/>
+        <location filename="formdisplay.ui" line="9220"/>
         <source>Tinsel/0.5/0.75/1/1.5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2185"/>
-        <location filename="formdisplay.ui" line="4859"/>
-        <location filename="formdisplay.ui" line="6296"/>
-        <location filename="formdisplay.ui" line="9635"/>
-        <location filename="formdisplay.ui" line="11382"/>
+        <location filename="formdisplay.ui" line="2187"/>
+        <location filename="formdisplay.ui" line="4861"/>
+        <location filename="formdisplay.ui" line="6298"/>
+        <location filename="formdisplay.ui" line="9637"/>
+        <location filename="formdisplay.ui" line="11384"/>
         <source>CH01</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="604"/>
-        <location filename="formdisplay.ui" line="851"/>
-        <location filename="formdisplay.ui" line="1169"/>
+        <location filename="formdisplay.ui" line="606"/>
+        <location filename="formdisplay.ui" line="853"/>
+        <location filename="formdisplay.ui" line="1171"/>
         <source>After the Operation
  Temperature Rise</source>
         <translation>正常操作后温升</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2128"/>
+        <location filename="formdisplay.ui" line="2130"/>
         <source>Plug Socket
 Temperature Rise Arguments</source>
         <translation>插头插座
 温升测试参数</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2190"/>
-        <location filename="formdisplay.ui" line="4864"/>
-        <location filename="formdisplay.ui" line="6301"/>
-        <location filename="formdisplay.ui" line="9640"/>
-        <location filename="formdisplay.ui" line="11387"/>
+        <location filename="formdisplay.ui" line="2192"/>
+        <location filename="formdisplay.ui" line="4866"/>
+        <location filename="formdisplay.ui" line="6303"/>
+        <location filename="formdisplay.ui" line="9642"/>
+        <location filename="formdisplay.ui" line="11389"/>
         <source>CH02</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2195"/>
-        <location filename="formdisplay.ui" line="4869"/>
-        <location filename="formdisplay.ui" line="6306"/>
-        <location filename="formdisplay.ui" line="9645"/>
-        <location filename="formdisplay.ui" line="11392"/>
+        <location filename="formdisplay.ui" line="2197"/>
+        <location filename="formdisplay.ui" line="4871"/>
+        <location filename="formdisplay.ui" line="6308"/>
+        <location filename="formdisplay.ui" line="9647"/>
+        <location filename="formdisplay.ui" line="11394"/>
         <source>CH03</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2200"/>
-        <location filename="formdisplay.ui" line="4874"/>
-        <location filename="formdisplay.ui" line="6311"/>
-        <location filename="formdisplay.ui" line="9650"/>
-        <location filename="formdisplay.ui" line="11397"/>
+        <location filename="formdisplay.ui" line="2202"/>
+        <location filename="formdisplay.ui" line="4876"/>
+        <location filename="formdisplay.ui" line="6313"/>
+        <location filename="formdisplay.ui" line="9652"/>
+        <location filename="formdisplay.ui" line="11399"/>
         <source>CH04</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2205"/>
-        <location filename="formdisplay.ui" line="4879"/>
-        <location filename="formdisplay.ui" line="6316"/>
-        <location filename="formdisplay.ui" line="9655"/>
-        <location filename="formdisplay.ui" line="11402"/>
+        <location filename="formdisplay.ui" line="2207"/>
+        <location filename="formdisplay.ui" line="4881"/>
+        <location filename="formdisplay.ui" line="6318"/>
+        <location filename="formdisplay.ui" line="9657"/>
+        <location filename="formdisplay.ui" line="11404"/>
         <source>CH05</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2210"/>
-        <location filename="formdisplay.ui" line="4884"/>
-        <location filename="formdisplay.ui" line="6321"/>
-        <location filename="formdisplay.ui" line="9660"/>
-        <location filename="formdisplay.ui" line="11407"/>
+        <location filename="formdisplay.ui" line="2212"/>
+        <location filename="formdisplay.ui" line="4886"/>
+        <location filename="formdisplay.ui" line="6323"/>
+        <location filename="formdisplay.ui" line="9662"/>
+        <location filename="formdisplay.ui" line="11409"/>
         <source>CH06</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2215"/>
-        <location filename="formdisplay.ui" line="4889"/>
-        <location filename="formdisplay.ui" line="6326"/>
-        <location filename="formdisplay.ui" line="9665"/>
-        <location filename="formdisplay.ui" line="11412"/>
+        <location filename="formdisplay.ui" line="2217"/>
+        <location filename="formdisplay.ui" line="4891"/>
+        <location filename="formdisplay.ui" line="6328"/>
+        <location filename="formdisplay.ui" line="9667"/>
+        <location filename="formdisplay.ui" line="11414"/>
         <source>CH07</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2220"/>
-        <location filename="formdisplay.ui" line="4894"/>
-        <location filename="formdisplay.ui" line="6331"/>
-        <location filename="formdisplay.ui" line="9670"/>
-        <location filename="formdisplay.ui" line="11417"/>
+        <location filename="formdisplay.ui" line="2222"/>
+        <location filename="formdisplay.ui" line="4896"/>
+        <location filename="formdisplay.ui" line="6333"/>
+        <location filename="formdisplay.ui" line="9672"/>
+        <location filename="formdisplay.ui" line="11419"/>
         <source>CH08</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2225"/>
-        <location filename="formdisplay.ui" line="4899"/>
-        <location filename="formdisplay.ui" line="6336"/>
-        <location filename="formdisplay.ui" line="9675"/>
-        <location filename="formdisplay.ui" line="11422"/>
+        <location filename="formdisplay.ui" line="2227"/>
+        <location filename="formdisplay.ui" line="4901"/>
+        <location filename="formdisplay.ui" line="6338"/>
+        <location filename="formdisplay.ui" line="9677"/>
+        <location filename="formdisplay.ui" line="11424"/>
         <source>CH09</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2230"/>
-        <location filename="formdisplay.ui" line="4904"/>
-        <location filename="formdisplay.ui" line="6341"/>
-        <location filename="formdisplay.ui" line="9680"/>
-        <location filename="formdisplay.ui" line="11427"/>
+        <location filename="formdisplay.ui" line="2232"/>
+        <location filename="formdisplay.ui" line="4906"/>
+        <location filename="formdisplay.ui" line="6343"/>
+        <location filename="formdisplay.ui" line="9682"/>
+        <location filename="formdisplay.ui" line="11429"/>
         <source>CH10</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3518"/>
-        <location filename="formdisplay.ui" line="4470"/>
-        <location filename="formdisplay.ui" line="7354"/>
-        <location filename="formdisplay.ui" line="7857"/>
-        <location filename="formdisplay.ui" line="9367"/>
-        <location filename="formdisplay.ui" line="11198"/>
+        <location filename="formdisplay.ui" line="3520"/>
+        <location filename="formdisplay.ui" line="4472"/>
+        <location filename="formdisplay.ui" line="7356"/>
+        <location filename="formdisplay.ui" line="7859"/>
+        <location filename="formdisplay.ui" line="9369"/>
+        <location filename="formdisplay.ui" line="11200"/>
         <source>mm</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3499"/>
-        <location filename="formdisplay.ui" line="4486"/>
-        <location filename="formdisplay.ui" line="7335"/>
-        <location filename="formdisplay.ui" line="7838"/>
-        <location filename="formdisplay.ui" line="9348"/>
-        <location filename="formdisplay.ui" line="11179"/>
+        <location filename="formdisplay.ui" line="3501"/>
+        <location filename="formdisplay.ui" line="4488"/>
+        <location filename="formdisplay.ui" line="7337"/>
+        <location filename="formdisplay.ui" line="7840"/>
+        <location filename="formdisplay.ui" line="9350"/>
+        <location filename="formdisplay.ui" line="11181"/>
         <source>mm/s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3842"/>
-        <location filename="formdisplay.ui" line="4186"/>
-        <location filename="formdisplay.ui" line="7573"/>
-        <location filename="formdisplay.ui" line="8073"/>
-        <location filename="formdisplay.ui" line="8487"/>
-        <location filename="formdisplay.ui" line="8720"/>
-        <location filename="formdisplay.ui" line="10792"/>
-        <location filename="formdisplay.ui" line="11033"/>
+        <location filename="formdisplay.ui" line="3844"/>
+        <location filename="formdisplay.ui" line="4188"/>
+        <location filename="formdisplay.ui" line="7575"/>
+        <location filename="formdisplay.ui" line="8075"/>
+        <location filename="formdisplay.ui" line="8489"/>
+        <location filename="formdisplay.ui" line="8722"/>
+        <location filename="formdisplay.ui" line="10794"/>
+        <location filename="formdisplay.ui" line="11035"/>
         <source>s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3807"/>
-        <location filename="formdisplay.ui" line="7538"/>
-        <location filename="formdisplay.ui" line="8452"/>
-        <location filename="formdisplay.ui" line="10757"/>
+        <location filename="formdisplay.ui" line="3809"/>
+        <location filename="formdisplay.ui" line="7540"/>
+        <location filename="formdisplay.ui" line="8454"/>
+        <location filename="formdisplay.ui" line="10759"/>
         <source>100</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="7773"/>
+        <location filename="formdisplay.ui" line="7775"/>
         <source>Connector
 Normal Operation Arguments</source>
         <translation>连接器
 正常操作参数</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="8860"/>
+        <location filename="formdisplay.ui" line="8862"/>
         <source>After the Operation Temperature Rise</source>
         <translation>正常操作后温升</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="9448"/>
+        <location filename="formdisplay.ui" line="9450"/>
         <source>L-N/L-E</source>
         <translation>L-N/L-E 切换</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2923"/>
-        <location filename="formdisplay.ui" line="5594"/>
-        <location filename="formdisplay.ui" line="6240"/>
-        <location filename="formdisplay.ui" line="9532"/>
-        <location filename="formdisplay.ui" line="11260"/>
+        <location filename="formdisplay.ui" line="2925"/>
+        <location filename="formdisplay.ui" line="5596"/>
+        <location filename="formdisplay.ui" line="6242"/>
+        <location filename="formdisplay.ui" line="9534"/>
+        <location filename="formdisplay.ui" line="11262"/>
         <source>Upper Of Temperature Rise</source>
         <translation>温升上限值</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2285"/>
-        <location filename="formdisplay.ui" line="4959"/>
-        <location filename="formdisplay.ui" line="6396"/>
-        <location filename="formdisplay.ui" line="9735"/>
-        <location filename="formdisplay.ui" line="11482"/>
+        <location filename="formdisplay.ui" line="2287"/>
+        <location filename="formdisplay.ui" line="4961"/>
+        <location filename="formdisplay.ui" line="6398"/>
+        <location filename="formdisplay.ui" line="9737"/>
+        <location filename="formdisplay.ui" line="11484"/>
         <source>Maximum Value</source>
         <translation>最大值</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="2290"/>
-        <location filename="formdisplay.ui" line="4964"/>
-        <location filename="formdisplay.ui" line="6401"/>
-        <location filename="formdisplay.ui" line="9740"/>
-        <location filename="formdisplay.ui" line="11487"/>
+        <location filename="formdisplay.ui" line="2292"/>
+        <location filename="formdisplay.ui" line="4966"/>
+        <location filename="formdisplay.ui" line="6403"/>
+        <location filename="formdisplay.ui" line="9742"/>
+        <location filename="formdisplay.ui" line="11489"/>
         <source>Unit</source>
         <translation>单位</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="1971"/>
-        <location filename="formdisplay.ui" line="3633"/>
-        <location filename="formdisplay.ui" line="4008"/>
-        <location filename="formdisplay.ui" line="4673"/>
-        <location filename="formdisplay.ui" line="7047"/>
-        <location filename="formdisplay.ui" line="7460"/>
-        <location filename="formdisplay.ui" line="7963"/>
+        <location filename="formdisplay.ui" line="1973"/>
+        <location filename="formdisplay.ui" line="3635"/>
+        <location filename="formdisplay.ui" line="4010"/>
+        <location filename="formdisplay.ui" line="4675"/>
+        <location filename="formdisplay.ui" line="7049"/>
+        <location filename="formdisplay.ui" line="7462"/>
+        <location filename="formdisplay.ui" line="7965"/>
         <source>Show</source>
         <translation>显 示</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3772"/>
-        <location filename="formdisplay.ui" line="7484"/>
-        <location filename="formdisplay.ui" line="8003"/>
-        <location filename="formdisplay.ui" line="8557"/>
-        <location filename="formdisplay.ui" line="10652"/>
-        <location filename="formdisplay.ui" line="10896"/>
-        <location filename="formdisplay.cpp" line="1767"/>
-        <location filename="formdisplay.cpp" line="1768"/>
-        <location filename="formdisplay.cpp" line="3220"/>
-        <location filename="formdisplay.cpp" line="3373"/>
+        <location filename="formdisplay.ui" line="3774"/>
+        <location filename="formdisplay.ui" line="7486"/>
+        <location filename="formdisplay.ui" line="8005"/>
+        <location filename="formdisplay.ui" line="8559"/>
+        <location filename="formdisplay.ui" line="10654"/>
+        <location filename="formdisplay.ui" line="10898"/>
+        <location filename="formdisplay.cpp" line="1763"/>
+        <location filename="formdisplay.cpp" line="1764"/>
+        <location filename="formdisplay.cpp" line="3131"/>
+        <location filename="formdisplay.cpp" line="3266"/>
         <source>Inductive Load(0.6)</source>
         <translation>感性负载(0.6)</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3709"/>
-        <location filename="formdisplay.ui" line="4112"/>
-        <location filename="formdisplay.ui" line="7623"/>
-        <location filename="formdisplay.ui" line="8123"/>
-        <location filename="formdisplay.ui" line="8413"/>
-        <location filename="formdisplay.ui" line="8646"/>
-        <location filename="formdisplay.ui" line="10731"/>
-        <location filename="formdisplay.ui" line="10982"/>
+        <location filename="formdisplay.ui" line="3711"/>
+        <location filename="formdisplay.ui" line="4114"/>
+        <location filename="formdisplay.ui" line="7625"/>
+        <location filename="formdisplay.ui" line="8125"/>
+        <location filename="formdisplay.ui" line="8415"/>
+        <location filename="formdisplay.ui" line="8648"/>
+        <location filename="formdisplay.ui" line="10733"/>
+        <location filename="formdisplay.ui" line="10984"/>
         <source>Operating Number：</source>
         <translation>操作次数：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3696"/>
-        <location filename="formdisplay.ui" line="4141"/>
-        <location filename="formdisplay.ui" line="7636"/>
-        <location filename="formdisplay.ui" line="8136"/>
-        <location filename="formdisplay.ui" line="8439"/>
-        <location filename="formdisplay.ui" line="8675"/>
-        <location filename="formdisplay.ui" line="10744"/>
-        <location filename="formdisplay.ui" line="10956"/>
+        <location filename="formdisplay.ui" line="3698"/>
+        <location filename="formdisplay.ui" line="4143"/>
+        <location filename="formdisplay.ui" line="7638"/>
+        <location filename="formdisplay.ui" line="8138"/>
+        <location filename="formdisplay.ui" line="8441"/>
+        <location filename="formdisplay.ui" line="8677"/>
+        <location filename="formdisplay.ui" line="10746"/>
+        <location filename="formdisplay.ui" line="10958"/>
         <source>Operating Speed：</source>
         <translation>操作速率：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3722"/>
-        <location filename="formdisplay.ui" line="4173"/>
-        <location filename="formdisplay.ui" line="7675"/>
-        <location filename="formdisplay.ui" line="8175"/>
-        <location filename="formdisplay.ui" line="8426"/>
-        <location filename="formdisplay.ui" line="8688"/>
-        <location filename="formdisplay.ui" line="10718"/>
-        <location filename="formdisplay.ui" line="10969"/>
+        <location filename="formdisplay.ui" line="3724"/>
+        <location filename="formdisplay.ui" line="4175"/>
+        <location filename="formdisplay.ui" line="7677"/>
+        <location filename="formdisplay.ui" line="8177"/>
+        <location filename="formdisplay.ui" line="8428"/>
+        <location filename="formdisplay.ui" line="8690"/>
+        <location filename="formdisplay.ui" line="10720"/>
+        <location filename="formdisplay.ui" line="10971"/>
         <source>Conduction Time：</source>
         <translation>“通” 时间：</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3876"/>
+        <location filename="formdisplay.ui" line="3878"/>
         <source>Plug Socket
 Breake CapacityArguments</source>
         <translation>插头插座
 分断容量测试参数</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3975"/>
+        <location filename="formdisplay.ui" line="3977"/>
         <source>Plug Socket
 Normal Operation Arguments</source>
         <translation>插头插座
 正常操作参数</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="4038"/>
-        <location filename="formdisplay.ui" line="8795"/>
+        <location filename="formdisplay.ui" line="4040"/>
+        <location filename="formdisplay.ui" line="8797"/>
         <source>Inductive Load(0.8)</source>
         <translation>感性负载(0.8)</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="10563"/>
+        <location filename="formdisplay.ui" line="10565"/>
         <source>Connector Auto Arguments</source>
         <translation>连接器一键式参数</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="3823"/>
-        <location filename="formdisplay.ui" line="4154"/>
-        <location filename="formdisplay.ui" line="7554"/>
-        <location filename="formdisplay.ui" line="8054"/>
-        <location filename="formdisplay.ui" line="8468"/>
-        <location filename="formdisplay.ui" line="8701"/>
-        <location filename="formdisplay.ui" line="10773"/>
-        <location filename="formdisplay.ui" line="11014"/>
+        <location filename="formdisplay.ui" line="3825"/>
+        <location filename="formdisplay.ui" line="4156"/>
+        <location filename="formdisplay.ui" line="7556"/>
+        <location filename="formdisplay.ui" line="8056"/>
+        <location filename="formdisplay.ui" line="8470"/>
+        <location filename="formdisplay.ui" line="8703"/>
+        <location filename="formdisplay.ui" line="10775"/>
+        <location filename="formdisplay.ui" line="11016"/>
         <source>/min</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="4125"/>
-        <location filename="formdisplay.ui" line="8659"/>
+        <location filename="formdisplay.ui" line="4127"/>
+        <location filename="formdisplay.ui" line="8661"/>
         <source>10000</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="4646"/>
+        <location filename="formdisplay.ui" line="4648"/>
         <source>Plug Socket
 After the Operation Temperature Rise Arguments</source>
         <translation>插头插座
 正常操作后温升参数</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="6073"/>
+        <location filename="formdisplay.ui" line="6075"/>
         <source>Connector
 Temperature Rise Arguments</source>
         <translation>连接器
 温升测试参数</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="7261"/>
+        <location filename="formdisplay.ui" line="7263"/>
         <source>Connector
 Breake Capacity Arguments</source>
         <translation>连接器
 分断容量测试参数</translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="7557"/>
-        <location filename="formdisplay.ui" line="8057"/>
-        <location filename="formdisplay.ui" line="10776"/>
-        <location filename="formdisplay.ui" line="11017"/>
+        <location filename="formdisplay.ui" line="7559"/>
+        <location filename="formdisplay.ui" line="8059"/>
+        <location filename="formdisplay.ui" line="10778"/>
+        <location filename="formdisplay.ui" line="11019"/>
         <source>30</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.ui" line="7576"/>
-        <location filename="formdisplay.ui" line="8076"/>
-        <location filename="formdisplay.ui" line="10795"/>
-        <location filename="formdisplay.ui" line="11036"/>
+        <location filename="formdisplay.ui" line="7578"/>
+        <location filename="formdisplay.ui" line="8078"/>
+        <location filename="formdisplay.ui" line="10797"/>
+        <location filename="formdisplay.ui" line="11038"/>
         <source>1.5</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
-    <name>HelpWidget</name>
-    <message>
-        <location filename="helpWidget/helpwidget.cpp" line="58"/>
-        <source>Be running modul</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="helpWidget/helpwidget.cpp" line="59"/>
-        <source>Be having modul</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="helpWidget/helpwidget.cpp" line="60"/>
-        <source>Be starting modul</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="helpWidget/helpwidget.cpp" line="61"/>
-        <source>Servo[A;B;C] optional modules</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="helpWidget/helpwidget.cpp" line="62"/>
-        <source>Dawdler modul</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="helpWidget/helpwidget.cpp" line="63"/>
-        <source>Function modul: 
-1:Temperature rise.
-2:Breaking capacity.
-3:Normal operation.
-4:....</source>
         <translation></translation>
     </message>
 </context>
@@ -1763,86 +1686,86 @@ Breake Capacity Arguments</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="187"/>
-        <location filename="lifetesterdialog.cpp" line="344"/>
-        <location filename="lifetesterdialog.cpp" line="478"/>
+        <location filename="lifetesterdialog.cpp" line="185"/>
+        <location filename="lifetesterdialog.cpp" line="342"/>
+        <location filename="lifetesterdialog.cpp" line="476"/>
         <source>Servo(%1) Current often connected!
 Continue test on &apos;OK&apos;!</source>
         <translation>伺服(%1)电流常通!
 按&apos;确认&apos;继续!</translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="255"/>
-        <location filename="lifetesterdialog.cpp" line="416"/>
-        <location filename="lifetesterdialog.cpp" line="534"/>
+        <location filename="lifetesterdialog.cpp" line="253"/>
+        <location filename="lifetesterdialog.cpp" line="414"/>
+        <location filename="lifetesterdialog.cpp" line="532"/>
         <source>Servo(%1)Current often borken!
 Continue test on &apos;OK&apos;!</source>
         <translation>伺服(%1)电流常断!
 按&apos;确认&apos;继续!</translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="313"/>
-        <location filename="lifetesterdialog.cpp" line="385"/>
+        <location filename="lifetesterdialog.cpp" line="311"/>
+        <location filename="lifetesterdialog.cpp" line="383"/>
         <source>Please replace the test gauge or plug socket(Servo%1)!
 Continue test on &apos;OK&apos;!</source>
         <translation>请更换伺服(%1)测试用量规或插头插座!
 按&apos;确认&apos;继续!</translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="586"/>
+        <location filename="lifetesterdialog.cpp" line="584"/>
         <source>close</source>
         <translation>关 闭</translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="586"/>
+        <location filename="lifetesterdialog.cpp" line="584"/>
         <source>In the test!
 Are you sure break off test?</source>
         <translation>测试中!
 确定中断测试?</translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="189"/>
-        <location filename="lifetesterdialog.cpp" line="257"/>
-        <location filename="lifetesterdialog.cpp" line="315"/>
-        <location filename="lifetesterdialog.cpp" line="346"/>
-        <location filename="lifetesterdialog.cpp" line="387"/>
-        <location filename="lifetesterdialog.cpp" line="418"/>
-        <location filename="lifetesterdialog.cpp" line="480"/>
-        <location filename="lifetesterdialog.cpp" line="536"/>
-        <location filename="lifetesterdialog.cpp" line="588"/>
+        <location filename="lifetesterdialog.cpp" line="187"/>
+        <location filename="lifetesterdialog.cpp" line="255"/>
+        <location filename="lifetesterdialog.cpp" line="313"/>
+        <location filename="lifetesterdialog.cpp" line="344"/>
+        <location filename="lifetesterdialog.cpp" line="385"/>
+        <location filename="lifetesterdialog.cpp" line="416"/>
+        <location filename="lifetesterdialog.cpp" line="478"/>
+        <location filename="lifetesterdialog.cpp" line="534"/>
+        <location filename="lifetesterdialog.cpp" line="586"/>
         <source>Ok</source>
         <translation>确 定</translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="186"/>
-        <location filename="lifetesterdialog.cpp" line="254"/>
-        <location filename="lifetesterdialog.cpp" line="312"/>
-        <location filename="lifetesterdialog.cpp" line="343"/>
-        <location filename="lifetesterdialog.cpp" line="384"/>
-        <location filename="lifetesterdialog.cpp" line="415"/>
-        <location filename="lifetesterdialog.cpp" line="477"/>
-        <location filename="lifetesterdialog.cpp" line="533"/>
+        <location filename="lifetesterdialog.cpp" line="184"/>
+        <location filename="lifetesterdialog.cpp" line="252"/>
+        <location filename="lifetesterdialog.cpp" line="310"/>
+        <location filename="lifetesterdialog.cpp" line="341"/>
+        <location filename="lifetesterdialog.cpp" line="382"/>
+        <location filename="lifetesterdialog.cpp" line="413"/>
+        <location filename="lifetesterdialog.cpp" line="475"/>
+        <location filename="lifetesterdialog.cpp" line="531"/>
         <source> Electrical Accessories Test Automation Program</source>
         <translation>电器附件测试自动化程序</translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="589"/>
+        <location filename="lifetesterdialog.cpp" line="587"/>
         <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="614"/>
+        <location filename="lifetesterdialog.cpp" line="612"/>
         <source>The machine is back to the origin. The current position: %1mm</source>
         <translation>机器回原点中.当前距离: %1mm</translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="624"/>
+        <location filename="lifetesterdialog.cpp" line="622"/>
         <source>The machine has been back to the origin, Please wait while the machine is starting.</source>
         <oldsource>The machine has been back to the origin,Please wait while the machine is starting.</oldsource>
         <translation>机器已回到原点，正在启动，请稍等.</translation>
     </message>
     <message>
-        <location filename="lifetesterdialog.cpp" line="745"/>
+        <location filename="lifetesterdialog.cpp" line="743"/>
         <source>Is receiving data...</source>
         <translation>正在接收数据...</translation>
     </message>
@@ -1850,27 +1773,27 @@ Are you sure break off test?</source>
 <context>
     <name>MiniDateWidget</name>
     <message>
-        <location filename="minidatewidget.cpp" line="20"/>
+        <location filename="minidatewidget.cpp" line="19"/>
         <source> Electrical Accessories Test Automation Program</source>
         <translation>电器附件测试自动化程序</translation>
     </message>
     <message>
-        <location filename="minidatewidget.cpp" line="41"/>
+        <location filename="minidatewidget.cpp" line="40"/>
         <source>FinishTime :</source>
         <translation>完成时间:</translation>
     </message>
     <message>
-        <location filename="minidatewidget.cpp" line="42"/>
+        <location filename="minidatewidget.cpp" line="41"/>
         <source>Voltage :</source>
         <translation>电 压:</translation>
     </message>
     <message>
-        <location filename="minidatewidget.cpp" line="43"/>
+        <location filename="minidatewidget.cpp" line="42"/>
         <source>Load&amp;PowerFactor:</source>
         <translation>负载及功率因素:</translation>
     </message>
     <message>
-        <location filename="minidatewidget.cpp" line="44"/>
+        <location filename="minidatewidget.cpp" line="43"/>
         <source>Current :</source>
         <translation>电 流:</translation>
     </message>
@@ -1878,57 +1801,57 @@ Are you sure break off test?</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="main.cpp" line="57"/>
+        <location filename="main.cpp" line="58"/>
         <source>Is connecting STAS and Configure the local file</source>
         <translation>正在连接STAS，配置本地文件</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="85"/>
+        <location filename="main.cpp" line="86"/>
         <source>Checking the Power Supply UART...</source>
         <translation>检测电源串口线中....</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="100"/>
+        <location filename="main.cpp" line="101"/>
         <source>Checking the Paperless Recorder UART....</source>
         <translation>检测无纸记录仪串口线中...</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="114"/>
+        <location filename="main.cpp" line="115"/>
         <source>Checking the Load(ServoA) UART...</source>
         <translation>检测负载(伺服A)串口线中...</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="128"/>
+        <location filename="main.cpp" line="129"/>
         <source>Checking the Load(ServoB) UART....</source>
         <translation>检测负载(伺服B)串口线中....</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="142"/>
+        <location filename="main.cpp" line="143"/>
         <source>Checking the Load(ServoC) UART...</source>
         <translation>检测负载(伺服C)串口线中...</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="156"/>
+        <location filename="main.cpp" line="157"/>
         <source>Checking the Life Tester ServoA UART....</source>
         <translation>检测寿命测试机伺服A串口线中...</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="170"/>
+        <location filename="main.cpp" line="171"/>
         <source>Checking the Life Tester ServoB UART...</source>
         <translation>检测寿命测试机伺服B串口线中...</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="184"/>
+        <location filename="main.cpp" line="185"/>
         <source>Checking the Life Tester ServoC UART....</source>
         <translation>检测寿命测试机伺服C串口线中...</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="199"/>
+        <location filename="main.cpp" line="200"/>
         <source>Connect STAS Sucess! Entering the login screen...</source>
         <translation>连接STAS成功! 正在进入登录界面...</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="203"/>
+        <location filename="main.cpp" line="204"/>
         <source>Connect STAS failed! Entering the login screen....</source>
         <translation>连接STAS失败! 正在进入登录界面....</translation>
     </message>
@@ -2050,22 +1973,22 @@ Are you sure break off test?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="127"/>
+        <location filename="temperaturerisedialog.cpp" line="126"/>
         <source>Time ( 5s )</source>
         <translation>时 间（ 5s ）</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="128"/>
+        <location filename="temperaturerisedialog.cpp" line="127"/>
         <source>Temperatur Rise ( °C )</source>
         <translation>温 度（ °C ）</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="606"/>
+        <location filename="temperaturerisedialog.cpp" line="615"/>
         <source>The picture save failed.</source>
         <translation>图片保存失败.</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="693"/>
+        <location filename="temperaturerisedialog.cpp" line="701"/>
         <source>close</source>
         <translation>关 闭</translation>
     </message>
@@ -2076,47 +1999,52 @@ Are you sure break off test?</source>
 确定中断测试?</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="777"/>
+        <location filename="temperaturerisedialog.cpp" line="785"/>
         <source>Ok</source>
         <translation>确 定</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="697"/>
+        <location filename="temperaturerisedialog.cpp" line="705"/>
         <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="693"/>
+        <location filename="temperaturerisedialog.cpp" line="127"/>
+        <source>Temperatur Rise ( °C )</source>
+        <translation type="unfinished">温 度（ °C ）</translation>
+    </message>
+    <message>
+        <location filename="temperaturerisedialog.cpp" line="701"/>
         <source>Is about to quit the test!
 Whether to save the data ?</source>
         <translation>即将离开此次测试!
 是否保存数据?</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="695"/>
+        <location filename="temperaturerisedialog.cpp" line="703"/>
         <source>Save</source>
         <translation>保 存</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="696"/>
+        <location filename="temperaturerisedialog.cpp" line="704"/>
         <source>Ignore</source>
         <translation>忽 略</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="775"/>
-        <location filename="temperaturerisedialog.cpp" line="789"/>
+        <location filename="temperaturerisedialog.cpp" line="783"/>
+        <location filename="temperaturerisedialog.cpp" line="797"/>
         <source>Error</source>
         <translation>错 误</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="775"/>
+        <location filename="temperaturerisedialog.cpp" line="783"/>
         <source>Not detected current!
 Please check the sample!</source>
         <translation>未检测到电流!
 请检查样品!</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="789"/>
+        <location filename="temperaturerisedialog.cpp" line="797"/>
         <source>Not detected current!
 Please check the sample!
 Continue test on &apos;Yes&apos;!</source>
@@ -2125,22 +2053,22 @@ Continue test on &apos;Yes&apos;!</source>
 按&apos;是&apos;继续测试!</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="791"/>
+        <location filename="temperaturerisedialog.cpp" line="799"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="792"/>
+        <location filename="temperaturerisedialog.cpp" line="800"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="825"/>
+        <location filename="temperaturerisedialog.cpp" line="831"/>
         <source>Test Time :</source>
         <translation>测试时间:</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="920"/>
+        <location filename="temperaturerisedialog.cpp" line="926"/>
         <source> Servo-</source>
         <translation> 伺服-</translation>
     </message>
@@ -2176,17 +2104,17 @@ Continue test on &apos;Yes&apos;!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widget.cpp" line="115"/>
+        <location filename="widget.cpp" line="116"/>
         <source> Electrical Accessories Test Automation Program</source>
         <translation>电器附件测试自动化程序</translation>
     </message>
     <message>
-        <location filename="widget.cpp" line="153"/>
-        <location filename="widget.cpp" line="165"/>
-        <location filename="widget.cpp" line="177"/>
-        <location filename="widget.cpp" line="202"/>
-        <location filename="widget.cpp" line="220"/>
-        <location filename="widget.cpp" line="238"/>
+        <location filename="widget.cpp" line="154"/>
+        <location filename="widget.cpp" line="166"/>
+        <location filename="widget.cpp" line="178"/>
+        <location filename="widget.cpp" line="203"/>
+        <location filename="widget.cpp" line="221"/>
+        <location filename="widget.cpp" line="239"/>
         <source> Electrical Accessories Test Automation Program-</source>
         <translation>电器附件测试自动化程序-</translation>
     </message>
@@ -2195,56 +2123,56 @@ Continue test on &apos;Yes&apos;!</source>
     <name>pathDialog</name>
     <message>
         <location filename="pathdialog.cpp" line="16"/>
-        <location filename="pathdialog.cpp" line="88"/>
-        <location filename="pathdialog.cpp" line="96"/>
+        <location filename="pathdialog.cpp" line="82"/>
+        <location filename="pathdialog.cpp" line="90"/>
         <source> Electrical Accessories Test Automation Program</source>
         <translation>电器附件测试自动化程序</translation>
     </message>
     <message>
-        <location filename="pathdialog.cpp" line="21"/>
+        <location filename="pathdialog.cpp" line="20"/>
         <source>Default Path:</source>
         <translation>默认路径:</translation>
     </message>
     <message>
-        <location filename="pathdialog.cpp" line="28"/>
-        <location filename="pathdialog.cpp" line="40"/>
+        <location filename="pathdialog.cpp" line="26"/>
+        <location filename="pathdialog.cpp" line="36"/>
         <source>Browse...</source>
         <translation>浏览...</translation>
     </message>
     <message>
-        <location filename="pathdialog.cpp" line="33"/>
+        <location filename="pathdialog.cpp" line="30"/>
         <source>Current Path:</source>
         <translation>当前路径:</translation>
     </message>
     <message>
-        <location filename="pathdialog.cpp" line="44"/>
+        <location filename="pathdialog.cpp" line="39"/>
         <source>save</source>
         <translation>保 存</translation>
     </message>
     <message>
-        <location filename="pathdialog.cpp" line="48"/>
+        <location filename="pathdialog.cpp" line="42"/>
         <source>close</source>
         <translation>关 闭</translation>
     </message>
     <message>
-        <location filename="pathdialog.cpp" line="71"/>
-        <location filename="pathdialog.cpp" line="80"/>
+        <location filename="pathdialog.cpp" line="65"/>
+        <location filename="pathdialog.cpp" line="74"/>
         <source>Path</source>
         <translation>路 径</translation>
     </message>
     <message>
-        <location filename="pathdialog.cpp" line="88"/>
+        <location filename="pathdialog.cpp" line="82"/>
         <source>You didn&apos;t select any directories to Default Path.</source>
         <translation>你没有选择任何目录到默认路径.</translation>
     </message>
     <message>
-        <location filename="pathdialog.cpp" line="90"/>
-        <location filename="pathdialog.cpp" line="98"/>
+        <location filename="pathdialog.cpp" line="84"/>
+        <location filename="pathdialog.cpp" line="92"/>
         <source>Ok</source>
         <translation>确 定</translation>
     </message>
     <message>
-        <location filename="pathdialog.cpp" line="96"/>
+        <location filename="pathdialog.cpp" line="90"/>
         <source>You didn&apos;t select any directories to Current Path.</source>
         <translation>你没有选择任何目录到当前路径.</translation>
     </message>
