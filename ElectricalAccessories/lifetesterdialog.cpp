@@ -68,9 +68,7 @@ LifeTesterDialog::~LifeTesterDialog()
         _threadC = NULL;
     }
 
-    delete mMessage;
     delete _timer;
-    delete _titleBar;
     delete ui;
 }
 

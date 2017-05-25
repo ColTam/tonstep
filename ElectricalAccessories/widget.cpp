@@ -93,14 +93,8 @@ Widget::~Widget()
     _testThread = NULL;
     delete _testThread;
 
-    _formDisplay = NULL;
-    delete _formDisplay;
-    _animation = NULL;
-    delete _animation;
     _collect = NULL;
     delete _collect;
-    _titleBar = NULL;
-    delete _titleBar;
 
     delete ui;
 }

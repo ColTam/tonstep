@@ -50,14 +50,6 @@ pathDialog::pathDialog(QWidget *parent) : QDialog(parent)
 
 pathDialog::~pathDialog()
 {
-    delete closePushButton;
-    delete savePushButton;
-    delete pathPushButton_2;
-    delete currentPathLineEdit;
-    delete pathLabel_2;
-    delete pathPushButton;
-    delete defaultPathLineEdit;
-    delete pathLabel;
 }
 
 void pathDialog::defaultClicked()

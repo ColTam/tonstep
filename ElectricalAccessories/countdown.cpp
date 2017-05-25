@@ -77,9 +77,6 @@ CountDown::CountDown(const QString &object, QWidget *parent) :
 CountDown::~CountDown()
 {
     delete _timer;
-    delete _lcdNumber;
-    delete m_label;
-    delete titleBar;
 }
 
 void CountDown::keyPressEvent(QKeyEvent *event)

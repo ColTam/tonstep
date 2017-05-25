@@ -9,7 +9,8 @@
 piecesList::piecesList(int pieceSize, bool isSort, QWidget *parent)
     : QListWidget(parent),
       mPieceSize(pieceSize),
-      mSort(isSort)
+      mSort(isSort),
+      m_item(nullptr)
 {
     setDragEnabled(true);
     setViewMode(QListView::IconMode);

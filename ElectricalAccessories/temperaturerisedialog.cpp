@@ -66,9 +66,6 @@ TemperatureRiseDialog::~TemperatureRiseDialog()
         _threadC = NULL;
     }
 
-    delete _mMessage;
-    delete _titleBar;
-    delete _miniDateWidget;
     delete ui;
 }
 
@@ -770,7 +767,7 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
             QDateTime temp = _objectTime;
 
             if (3599 - QDateTime::currentDateTime().msecsTo(temp)/1000 < 20) {
-                return;
+                return;//一小时秒数 - 当前时间到目标时间的秒数 = 测试了多久......
             }
 
             emit loadStop();

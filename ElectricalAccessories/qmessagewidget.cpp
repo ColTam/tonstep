@@ -48,10 +48,6 @@ QMessageWidget::QMessageWidget(QWidget *parent) : QWidget(parent)
 
 QMessageWidget::~QMessageWidget()
 {
-    delete pLayout;
-    delete pCloseButton;
-    delete mMessageLabel;
-    delete pIconLabel;
 }
 
 void QMessageWidget::setText(const QString &text)

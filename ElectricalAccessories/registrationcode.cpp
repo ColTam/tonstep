@@ -51,10 +51,6 @@ RegistrationCode::RegistrationCode(QWidget *parent) : QDialog(parent)
 
 RegistrationCode::~RegistrationCode()
 {
-    delete m_pushButton2;
-    delete m_pushButton1;
-    delete m_lineEdit;
-    delete m_label;
 }
 
 void RegistrationCode::saveClicked()

@@ -68,11 +68,6 @@ MiniDateWidget::MiniDateWidget(QWidget *parent) : QWidget(parent)
 
 MiniDateWidget::~MiniDateWidget()
 {
-    delete currentLineEdit;
-    delete LPFLineEdit;
-    delete voltLineEdit;
-    delete overTimeLineEdit;
-    delete groupbox;
 }
 
 void MiniDateWidget::setText(QString volt, QString current, QString LPF)

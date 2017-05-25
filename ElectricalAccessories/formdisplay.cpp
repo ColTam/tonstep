@@ -26,6 +26,12 @@ FormDisplay::FormDisplay(QWidget *parent) :
   , ui(new Ui::FormDisplay)
   , isOld(PROJECT_CONDITION_NEW)
   , isAuto(0), isManual(0), mServo(servoA)
+  , mPiecesViewListA(nullptr)
+  , mPiecesPowerListA(nullptr)
+  , mPiecesViewListB(nullptr)
+  , mPiecesPowerListB(nullptr)
+  , mPiecesViewListC(nullptr)
+  , mPiecesPowerListC(nullptr)
 {
     ui->setupUi(this);
     //value
@@ -117,21 +123,21 @@ FormDisplay::FormDisplay(QWidget *parent) :
     mPathDialog = new pathDialog();
     mRegistration = new RegistrationCode();
 
-    popMenu = new QMenu();
+    popMenu = new QMenu(this);
     popMenu->setStyleSheet("background: rgba(240,240,240,80%);"
                            "selection-color: rgb(68,68,68);");
 
-    englishAction = new QAction();
+    englishAction = new QAction(this);
     englishAction->setText(tr("English"));
 //    pathAction->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_E));
 
-    chineseAction = new QAction();
+    chineseAction = new QAction(this);
     chineseAction->setText(tr("Chinese"));
 
-    pathAction = new QAction();
+    pathAction = new QAction(this);
     pathAction->setText(tr("Path"));
 
-    RegistrationAction = new QAction();
+    RegistrationAction = new QAction(this);
     RegistrationAction->setText(tr("Registration Code"));
 
     connect(englishAction, SIGNAL(triggered(bool)), this, SLOT(clickedEnglishAction()));
@@ -156,22 +162,26 @@ FormDisplay::FormDisplay(QWidget *parent) :
 
 FormDisplay::~FormDisplay()
 {
-    Collect::stateAllStop();
-    delete mPiecesPowerListC;
-    delete mPiecesViewListC;
-    delete mPiecesPowerListB;
-    delete mPiecesViewListB;
-    delete mPiecesPowerListA;
-    delete mPiecesViewListA;
-    delete RegistrationAction;
-    delete pathAction;
-    delete chineseAction;
-    delete englishAction;
-    delete popMenu;
+    if (connectSTAS) {
+        Collect::stateAllStop();
+        Collect::TestDisplayOpen();
+    }
+
+    if (mPiecesPowerListC != NULL)
+        delete mPiecesPowerListC;
+    if (mPiecesViewListC != NULL)
+        delete mPiecesViewListC;
+    if (mPiecesPowerListB != NULL)
+        delete mPiecesPowerListB;
+    if (mPiecesViewListB != NULL)
+        delete mPiecesViewListB;
+    if (mPiecesPowerListA != NULL)
+        delete mPiecesPowerListA;
+    if (mPiecesViewListA != NULL)
+        delete mPiecesViewListA;
+
     delete mRegistration;
     delete mPathDialog;
-    delete m_helpWidget;
-    delete mMessage;
     delete ui;
 }
 

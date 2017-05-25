@@ -26,8 +26,6 @@ mSplashScreen::mSplashScreen(const QPixmap &pixmap) : QSplashScreen(pixmap)
 
 mSplashScreen::~mSplashScreen()
 {
-    delete mLabel;
-    delete mProgressBar;
 }
 
 void mSplashScreen::setProgress(int value)
