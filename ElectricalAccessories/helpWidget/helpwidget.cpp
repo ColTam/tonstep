@@ -2,8 +2,10 @@
 
 #include <QLabel>
 #include <QMouseEvent>
+#include <QToolButton>
 
 HelpWidget::HelpWidget(QWidget *parent) : QWidget(parent)
+  , num(1)
 {
     this->initForm();
     this->initWidget();
@@ -50,11 +52,27 @@ void HelpWidget::initWidget()
 //    m_toFunctionLabel = new QLabel(this);
 //    m_toFunctionLabel->setGeometry(130, 330, 650, 270);
 //    m_toFunctionLabel->setStyleSheet(LABELSTYLESHEET);
+
+    m_lastPageButton = new QToolButton(m_frame);
+    m_lastPageButton->setText(tr("<"));
+    m_lastPageButton->setGeometry(m_frame->width()-55,0, 26, 26);
+    m_lastPageButton->setAutoRaise(true);
+    m_lastPageButton->setStyleSheet("background:transparent;");
+    m_nextPageButton = new QToolButton(m_frame);
+    m_nextPageButton->setText(tr(">"));
+    m_nextPageButton->setGeometry(m_frame->width()-26,0, 26, 26);
+    m_nextPageButton->setAutoRaise(true);
+    m_nextPageButton->setStyleSheet("background:transparent;");
 }
 
 void HelpWidget::initConnect()
 {
-
+    connect(m_lastPageButton, &QToolButton::clicked, [this]() {
+        changeFrame(--num);
+    });
+    connect(m_nextPageButton, &QToolButton::clicked, [this]() {
+        changeFrame(++num);
+    });
 }
 
 void HelpWidget::translator()
@@ -72,7 +90,52 @@ void HelpWidget::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
         this->hide();
+        num = 1;
+        changeFrame(num);
     }
 
     QWidget::mousePressEvent(event);
+}
+
+void HelpWidget::changeFrame(int flag)
+{
+    switch (flag) {
+    case 1:
+        m_lastPageButton->setEnabled(false);
+        m_nextPageButton->setEnabled(true);
+
+        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/help);}"
+                               "QFrame:: {}");
+        break;
+    case 2:
+        m_lastPageButton->setEnabled(true);
+        m_nextPageButton->setEnabled(true);
+
+        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/SGS);}"
+                               "QFrame:: {}");
+        break;
+    case 3:
+        m_lastPageButton->setEnabled(true);
+        m_nextPageButton->setEnabled(true);
+
+        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/SGS01);}"
+                               "QFrame:: {}");
+        break;
+    case 4:
+        m_lastPageButton->setEnabled(true);
+        m_nextPageButton->setEnabled(true);
+
+        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/wlite);}"
+                               "QFrame:: {}");
+        break;
+    case 5:
+        m_lastPageButton->setEnabled(true);
+        m_nextPageButton->setEnabled(false);
+
+        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/wlite);}"
+                               "QFrame:: {}");
+        break;
+    default:
+        break;
+    }
 }

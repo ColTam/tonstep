@@ -179,7 +179,7 @@ void mLoadThread::loadServo(QString servo)
 void mLoadThread::readData()
 {
     _loadTimer = new QTimer;
-    connect(_loadTimer, SIGNAL(timeout()), this, SLOT(updateData()));
+    connect(_loadTimer, SIGNAL(timeout()), this, SLOT(updateData())/*, Qt::DirectConnection*/);
 }
 
 void mLoadThread::updateData()

@@ -6,6 +6,8 @@
         <file>icon/file19.png</file>
         <file>icon/14.png</file>
         <file>icon/9.png</file>
+        <file>icon/on.png</file>
+        <file>icon/off.png</file>
     </qresource>
     <qresource prefix="/image">
         <file>image/wlite.jpg</file>

@@ -1649,7 +1649,7 @@ void FormDisplay::clause19_clear()
 
     for (int i = 0; i < 20; i++)
     {
-        if (i > 0 && i != 10) {
+        if (i > 0) {
             ui->tableWidget_temp->item(i, 0)->setCheckState(Qt::Unchecked);
             ui->tableWidget_temp->item(i, 0)->setText("");
         }
@@ -1696,7 +1696,7 @@ void FormDisplay::clause22_clear()
 
     for (int i = 0; i < 20; i++)
     {
-        if (i > 0 && i != 10) {
+        if (i > 0) {
             ui->tableWidget_normalTemp->item(i, 0)->setCheckState(Qt::Unchecked);
             ui->tableWidget_normalTemp->item(i, 0)->setText("");
         }
@@ -1716,7 +1716,7 @@ void FormDisplay::clause19_2_clear()
 
     for (int i = 0; i < 20; i++)
     {
-        if (i > 0 && i != 10) {
+        if (i > 0) {
             ui->tableWidget_temp_2->item(i, 0)->setCheckState(Qt::Unchecked);
             ui->tableWidget_temp_2->item(i, 0)->setText("");
         }
@@ -1755,7 +1755,7 @@ void FormDisplay::IEC320_clear()
 
     for (int i = 0; i < 20; i++)
     {
-        if (i > 0 && i != 10) {
+        if (i > 0) {
             ui->tableWidget->item(i, 0)->setCheckState(Qt::Unchecked);
             ui->tableWidget_2->item(i, 0)->setText("");
         }
@@ -1790,7 +1790,7 @@ void FormDisplay::IEC884_clear()
 
     for (int i = 0; i < 20; i++)
     {
-        if (i > 0 && i != 10) {
+        if (i > 0) {
             ui->tableWidget->item(i, 0)->setCheckState(Qt::Unchecked);
             ui->tableWidget->item(i, 0)->setText("");
         }

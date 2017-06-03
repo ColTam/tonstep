@@ -66,7 +66,7 @@ QGroupBox::{}</string>
     <number>2</number>
    </property>
    <property name="currentIndex">
-    <number>10</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QGroupBox" name="groupBox_login">
@@ -345,6 +345,9 @@ background-color: rgb(241, 112, 122);}</string>
        <height>664</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
@@ -355,7 +358,7 @@ background-color: rgb(241, 112, 122);}</string>
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideNone</enum>
@@ -1224,17 +1227,24 @@ background-color: rgb(155, 155, 155);}</string>
          </property>
          <property name="geometry">
           <rect>
-           <x>60</x>
+           <x>38</x>
            <y>20</y>
-           <width>181</width>
+           <width>201</width>
            <height>21</height>
           </rect>
          </property>
          <property name="focusPolicy">
           <enum>Qt::NoFocus</enum>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resource.qrc">
+           <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
          </property>
          <property name="checkable">
           <bool>true</bool>
@@ -1249,9 +1259,9 @@ background-color: rgb(155, 155, 155);}</string>
         <widget class="QLineEdit" name="lineEdit_VOLTUART">
          <property name="geometry">
           <rect>
-           <x>60</x>
+           <x>50</x>
            <y>50</y>
-           <width>181</width>
+           <width>191</width>
            <height>20</height>
           </rect>
          </property>
@@ -1291,6 +1301,10 @@ background-color: rgb(155, 155, 155);}</string>
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
+        <zorder>checkBox_VOLT</zorder>
+        <zorder>label_43</zorder>
+        <zorder>label_VOLT</zorder>
+        <zorder>lineEdit_VOLTUART</zorder>
        </widget>
        <widget class="QGroupBox" name="groupBox_38">
         <property name="geometry">
@@ -1326,9 +1340,9 @@ background-color: rgb(155, 155, 155);}</string>
          </property>
          <property name="geometry">
           <rect>
-           <x>60</x>
+           <x>38</x>
            <y>20</y>
-           <width>181</width>
+           <width>201</width>
            <height>21</height>
           </rect>
          </property>
@@ -1340,6 +1354,10 @@ background-color: rgb(155, 155, 155);}</string>
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resource.qrc">
+           <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
          </property>
          <property name="checkable">
           <bool>true</bool>
@@ -1354,9 +1372,9 @@ background-color: rgb(155, 155, 155);}</string>
         <widget class="QLineEdit" name="lineEdit_TRCUART">
          <property name="geometry">
           <rect>
-           <x>60</x>
+           <x>50</x>
            <y>50</y>
-           <width>181</width>
+           <width>191</width>
            <height>20</height>
           </rect>
          </property>
@@ -1399,9 +1417,9 @@ background-color: rgb(155, 155, 155);}</string>
          </property>
          <property name="geometry">
           <rect>
-           <x>60</x>
+           <x>38</x>
            <y>20</y>
-           <width>181</width>
+           <width>201</width>
            <height>21</height>
           </rect>
          </property>
@@ -1410,6 +1428,10 @@ background-color: rgb(155, 155, 155);}</string>
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resource.qrc">
+           <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
          </property>
          <property name="checked">
           <bool>true</bool>
@@ -1437,9 +1459,9 @@ background-color: rgb(155, 155, 155);}</string>
         <widget class="QLineEdit" name="lineEdit_TESTUART">
          <property name="geometry">
           <rect>
-           <x>60</x>
+           <x>50</x>
            <y>50</y>
-           <width>181</width>
+           <width>191</width>
            <height>20</height>
           </rect>
          </property>
@@ -1531,9 +1553,9 @@ background-color: rgb(155, 155, 155);}</string>
         </property>
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>78</x>
           <y>20</y>
-          <width>16</width>
+          <width>201</width>
           <height>21</height>
          </rect>
         </property>
@@ -1542,6 +1564,10 @@ background-color: rgb(155, 155, 155);}</string>
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -1553,9 +1579,9 @@ background-color: rgb(155, 155, 155);}</string>
        <widget class="QLineEdit" name="lineEdit_LOADUART_C">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>90</x>
           <y>80</y>
-          <width>181</width>
+          <width>191</width>
           <height>20</height>
          </rect>
         </property>
@@ -1569,10 +1595,10 @@ background-color: rgb(155, 155, 155);}</string>
         </property>
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>78</x>
           <y>50</y>
-          <width>16</width>
-          <height>16</height>
+          <width>201</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="focusPolicy">
@@ -1581,6 +1607,10 @@ background-color: rgb(155, 155, 155);}</string>
         <property name="text">
          <string/>
         </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
+        </property>
         <property name="checked">
          <bool>true</bool>
         </property>
@@ -1588,6 +1618,12 @@ background-color: rgb(155, 155, 155);}</string>
          <bool>false</bool>
         </property>
        </widget>
+       <zorder>label_58</zorder>
+       <zorder>checkBox_TEST_C</zorder>
+       <zorder>lineEdit_LOADUART_C</zorder>
+       <zorder>checkBox_C</zorder>
+       <zorder>label_59</zorder>
+       <zorder>label_LOAD_A</zorder>
       </widget>
       <widget class="QGroupBox" name="groupBox_37">
        <property name="geometry">
@@ -1623,9 +1659,9 @@ background-color: rgb(155, 155, 155);}</string>
         </property>
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>78</x>
           <y>50</y>
-          <width>16</width>
+          <width>201</width>
           <height>21</height>
          </rect>
         </property>
@@ -1634,6 +1670,10 @@ background-color: rgb(155, 155, 155);}</string>
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -1664,9 +1704,9 @@ background-color: rgb(155, 155, 155);}</string>
        <widget class="QLineEdit" name="lineEdit_LOADUART_B">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>90</x>
           <y>80</y>
-          <width>181</width>
+          <width>191</width>
           <height>20</height>
          </rect>
         </property>
@@ -1696,9 +1736,9 @@ background-color: rgb(155, 155, 155);}</string>
         </property>
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>78</x>
           <y>20</y>
-          <width>16</width>
+          <width>201</width>
           <height>21</height>
          </rect>
         </property>
@@ -1708,6 +1748,10 @@ background-color: rgb(155, 155, 155);}</string>
         <property name="text">
          <string/>
         </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
+        </property>
         <property name="checked">
          <bool>true</bool>
         </property>
@@ -1715,6 +1759,12 @@ background-color: rgb(155, 155, 155);}</string>
          <bool>false</bool>
         </property>
        </widget>
+       <zorder>checkBox_B</zorder>
+       <zorder>label_VOLT_3</zorder>
+       <zorder>lineEdit_LOADUART_B</zorder>
+       <zorder>checkBox_TEST_B</zorder>
+       <zorder>label_LOAD_B</zorder>
+       <zorder>label_VOLT_6</zorder>
       </widget>
       <widget class="QGroupBox" name="groupBox_40">
        <property name="geometry">
@@ -1734,9 +1784,9 @@ background-color: rgb(155, 155, 155);}</string>
         </property>
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>78</x>
           <y>20</y>
-          <width>16</width>
+          <width>201</width>
           <height>21</height>
          </rect>
         </property>
@@ -1745,6 +1795,10 @@ background-color: rgb(155, 155, 155);}</string>
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -1804,9 +1858,9 @@ background-color: rgb(155, 155, 155);}</string>
        <widget class="QLineEdit" name="lineEdit_LOADUART_A">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>90</x>
           <y>80</y>
-          <width>181</width>
+          <width>191</width>
           <height>20</height>
          </rect>
         </property>
@@ -1820,10 +1874,10 @@ background-color: rgb(155, 155, 155);}</string>
         </property>
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>78</x>
           <y>50</y>
-          <width>16</width>
-          <height>16</height>
+          <width>201</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="focusPolicy">
@@ -1832,6 +1886,10 @@ background-color: rgb(155, 155, 155);}</string>
         <property name="text">
          <string/>
         </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
+        </property>
         <property name="checked">
          <bool>true</bool>
         </property>
@@ -1839,6 +1897,12 @@ background-color: rgb(155, 155, 155);}</string>
          <bool>false</bool>
         </property>
        </widget>
+       <zorder>checkBox_TEST_A</zorder>
+       <zorder>label_61</zorder>
+       <zorder>lineEdit_LOADUART_A</zorder>
+       <zorder>checkBox_A</zorder>
+       <zorder>label_LOAD_C</zorder>
+       <zorder>label_60</zorder>
       </widget>
       <widget class="QPushButton" name="pushButton_4">
        <property name="geometry">
@@ -1877,11 +1941,19 @@ background-color: rgb(155, 155, 155);}</string>
        <height>30</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
      <property name="styleSheet">
-      <string notr="true">border-image: url(:/icon/icon/9.png);</string>
+      <string notr="true">/*border-image: url(:/icon/icon/9.png);*/</string>
      </property>
      <property name="text">
-      <string/>
+      <string>?</string>
+     </property>
+     <property name="autoRaise">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
@@ -2144,7 +2216,7 @@ Temperature Rise Arguments</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>45</string>
+      <string>-270~400</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -2356,6 +2428,9 @@ Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="2" column="0">
       <property name="text">
@@ -2382,6 +2457,9 @@ Temperature Rise Arguments</string>
      <item row="2" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="3" column="0">
@@ -2410,6 +2488,9 @@ Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="4" column="0">
       <property name="text">
@@ -2436,6 +2517,9 @@ Temperature Rise Arguments</string>
      <item row="4" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="5" column="0">
@@ -2464,6 +2548,9 @@ Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="6" column="0">
       <property name="text">
@@ -2490,6 +2577,9 @@ Temperature Rise Arguments</string>
      <item row="6" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="7" column="0">
@@ -2518,6 +2608,9 @@ Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="8" column="0">
       <property name="text">
@@ -2544,6 +2637,9 @@ Temperature Rise Arguments</string>
      <item row="8" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="9" column="0">
@@ -2572,6 +2668,9 @@ Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="10" column="0">
       <property name="text">
@@ -2598,6 +2697,9 @@ Temperature Rise Arguments</string>
      <item row="10" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="11" column="0">
@@ -2626,6 +2728,9 @@ Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="12" column="0">
       <property name="text">
@@ -2652,6 +2757,9 @@ Temperature Rise Arguments</string>
      <item row="12" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="13" column="0">
@@ -2680,6 +2788,9 @@ Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="14" column="0">
       <property name="text">
@@ -2706,6 +2817,9 @@ Temperature Rise Arguments</string>
      <item row="14" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="15" column="0">
@@ -2734,6 +2848,9 @@ Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="16" column="0">
       <property name="text">
@@ -2760,6 +2877,9 @@ Temperature Rise Arguments</string>
      <item row="16" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="17" column="0">
@@ -2788,6 +2908,9 @@ Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="18" column="0">
       <property name="text">
@@ -2815,6 +2938,9 @@ Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="19" column="0">
       <property name="text">
@@ -2841,6 +2967,9 @@ Temperature Rise Arguments</string>
      <item row="19" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
     </widget>
@@ -4761,7 +4890,7 @@ After the Operation Temperature Rise Arguments</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>45</string>
+      <string>-270~400</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -4973,6 +5102,9 @@ After the Operation Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="2" column="0">
       <property name="text">
@@ -4999,6 +5131,9 @@ After the Operation Temperature Rise Arguments</string>
      <item row="2" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="3" column="0">
@@ -5027,6 +5162,9 @@ After the Operation Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="4" column="0">
       <property name="text">
@@ -5053,6 +5191,9 @@ After the Operation Temperature Rise Arguments</string>
      <item row="4" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="5" column="0">
@@ -5081,6 +5222,9 @@ After the Operation Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="6" column="0">
       <property name="text">
@@ -5107,6 +5251,9 @@ After the Operation Temperature Rise Arguments</string>
      <item row="6" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="7" column="0">
@@ -5135,6 +5282,9 @@ After the Operation Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="8" column="0">
       <property name="text">
@@ -5161,6 +5311,9 @@ After the Operation Temperature Rise Arguments</string>
      <item row="8" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="9" column="0">
@@ -5189,6 +5342,9 @@ After the Operation Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="10" column="0">
       <property name="text">
@@ -5215,6 +5371,9 @@ After the Operation Temperature Rise Arguments</string>
      <item row="10" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="11" column="0">
@@ -5243,6 +5402,9 @@ After the Operation Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="12" column="0">
       <property name="text">
@@ -5269,6 +5431,9 @@ After the Operation Temperature Rise Arguments</string>
      <item row="12" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="13" column="0">
@@ -5297,6 +5462,9 @@ After the Operation Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="14" column="0">
       <property name="text">
@@ -5323,6 +5491,9 @@ After the Operation Temperature Rise Arguments</string>
      <item row="14" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="15" column="0">
@@ -5351,6 +5522,9 @@ After the Operation Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="16" column="0">
       <property name="text">
@@ -5377,6 +5551,9 @@ After the Operation Temperature Rise Arguments</string>
      <item row="16" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="17" column="0">
@@ -5405,6 +5582,9 @@ After the Operation Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="18" column="0">
       <property name="text">
@@ -5432,6 +5612,9 @@ After the Operation Temperature Rise Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="19" column="0">
       <property name="text">
@@ -5458,6 +5641,9 @@ After the Operation Temperature Rise Arguments</string>
      <item row="19" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
     </widget>
@@ -6141,7 +6327,7 @@ Temperature Rise Arguments</string>
        </rect>
       </property>
       <property name="toolTip">
-       <string>45</string>
+       <string>-270~400</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -6353,6 +6539,9 @@ Temperature Rise Arguments</string>
        <property name="text">
         <string/>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
       </item>
       <item row="2" column="0">
        <property name="text">
@@ -6379,6 +6568,9 @@ Temperature Rise Arguments</string>
       <item row="2" column="2">
        <property name="text">
         <string/>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="3" column="0">
@@ -6407,6 +6599,9 @@ Temperature Rise Arguments</string>
        <property name="text">
         <string/>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
       </item>
       <item row="4" column="0">
        <property name="text">
@@ -6433,6 +6628,9 @@ Temperature Rise Arguments</string>
       <item row="4" column="2">
        <property name="text">
         <string/>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="5" column="0">
@@ -6461,6 +6659,9 @@ Temperature Rise Arguments</string>
        <property name="text">
         <string/>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
       </item>
       <item row="6" column="0">
        <property name="text">
@@ -6487,6 +6688,9 @@ Temperature Rise Arguments</string>
       <item row="6" column="2">
        <property name="text">
         <string/>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="7" column="0">
@@ -6515,6 +6719,9 @@ Temperature Rise Arguments</string>
        <property name="text">
         <string/>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
       </item>
       <item row="8" column="0">
        <property name="text">
@@ -6541,6 +6748,9 @@ Temperature Rise Arguments</string>
       <item row="8" column="2">
        <property name="text">
         <string/>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="9" column="0">
@@ -6569,6 +6779,9 @@ Temperature Rise Arguments</string>
        <property name="text">
         <string/>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
       </item>
       <item row="10" column="0">
        <property name="text">
@@ -6595,6 +6808,9 @@ Temperature Rise Arguments</string>
       <item row="10" column="2">
        <property name="text">
         <string/>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="11" column="0">
@@ -6623,6 +6839,9 @@ Temperature Rise Arguments</string>
        <property name="text">
         <string/>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
       </item>
       <item row="12" column="0">
        <property name="text">
@@ -6649,6 +6868,9 @@ Temperature Rise Arguments</string>
       <item row="12" column="2">
        <property name="text">
         <string/>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="13" column="0">
@@ -6677,6 +6899,9 @@ Temperature Rise Arguments</string>
        <property name="text">
         <string/>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
       </item>
       <item row="14" column="0">
        <property name="text">
@@ -6703,6 +6928,9 @@ Temperature Rise Arguments</string>
       <item row="14" column="2">
        <property name="text">
         <string/>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="15" column="0">
@@ -6731,6 +6959,9 @@ Temperature Rise Arguments</string>
        <property name="text">
         <string/>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
       </item>
       <item row="16" column="0">
        <property name="text">
@@ -6757,6 +6988,9 @@ Temperature Rise Arguments</string>
       <item row="16" column="2">
        <property name="text">
         <string/>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="17" column="0">
@@ -6785,6 +7019,9 @@ Temperature Rise Arguments</string>
        <property name="text">
         <string/>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
       </item>
       <item row="18" column="0">
        <property name="text">
@@ -6812,6 +7049,9 @@ Temperature Rise Arguments</string>
        <property name="text">
         <string/>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
       </item>
       <item row="19" column="0">
        <property name="text">
@@ -6838,6 +7078,9 @@ Temperature Rise Arguments</string>
       <item row="19" column="2">
        <property name="text">
         <string/>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
      </widget>
@@ -9423,7 +9666,7 @@ Normal Operation Arguments</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>45</string>
+      <string>-270~400</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -9635,6 +9878,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="2" column="0">
       <property name="text">
@@ -9661,6 +9907,9 @@ Normal Operation Arguments</string>
      <item row="2" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="3" column="0">
@@ -9689,6 +9938,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="4" column="0">
       <property name="text">
@@ -9715,6 +9967,9 @@ Normal Operation Arguments</string>
      <item row="4" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="5" column="0">
@@ -9743,6 +9998,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="6" column="0">
       <property name="text">
@@ -9769,6 +10027,9 @@ Normal Operation Arguments</string>
      <item row="6" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="7" column="0">
@@ -9797,6 +10058,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="8" column="0">
       <property name="text">
@@ -9823,6 +10087,9 @@ Normal Operation Arguments</string>
      <item row="8" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="9" column="0">
@@ -9851,6 +10118,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="10" column="0">
       <property name="text">
@@ -9877,6 +10147,9 @@ Normal Operation Arguments</string>
      <item row="10" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="11" column="0">
@@ -9905,6 +10178,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="12" column="0">
       <property name="text">
@@ -9931,6 +10207,9 @@ Normal Operation Arguments</string>
      <item row="12" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="13" column="0">
@@ -9959,6 +10238,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="14" column="0">
       <property name="text">
@@ -9985,6 +10267,9 @@ Normal Operation Arguments</string>
      <item row="14" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="15" column="0">
@@ -10013,6 +10298,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="16" column="0">
       <property name="text">
@@ -10039,6 +10327,9 @@ Normal Operation Arguments</string>
      <item row="16" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="17" column="0">
@@ -10067,6 +10358,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="18" column="0">
       <property name="text">
@@ -10094,6 +10388,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="19" column="0">
       <property name="text">
@@ -10120,6 +10417,9 @@ Normal Operation Arguments</string>
      <item row="19" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
     </widget>
@@ -11113,7 +11413,7 @@ Normal Operation Arguments</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>45</string>
+      <string>-270~400</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -11325,6 +11625,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="2" column="0">
       <property name="text">
@@ -11351,6 +11654,9 @@ Normal Operation Arguments</string>
      <item row="2" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="3" column="0">
@@ -11379,6 +11685,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="4" column="0">
       <property name="text">
@@ -11405,6 +11714,9 @@ Normal Operation Arguments</string>
      <item row="4" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="5" column="0">
@@ -11433,6 +11745,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="6" column="0">
       <property name="text">
@@ -11459,6 +11774,9 @@ Normal Operation Arguments</string>
      <item row="6" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="7" column="0">
@@ -11487,6 +11805,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="8" column="0">
       <property name="text">
@@ -11513,6 +11834,9 @@ Normal Operation Arguments</string>
      <item row="8" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="9" column="0">
@@ -11541,6 +11865,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="10" column="0">
       <property name="text">
@@ -11567,6 +11894,9 @@ Normal Operation Arguments</string>
      <item row="10" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="11" column="0">
@@ -11595,6 +11925,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="12" column="0">
       <property name="text">
@@ -11621,6 +11954,9 @@ Normal Operation Arguments</string>
      <item row="12" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="13" column="0">
@@ -11649,6 +11985,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="14" column="0">
       <property name="text">
@@ -11675,6 +12014,9 @@ Normal Operation Arguments</string>
      <item row="14" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="15" column="0">
@@ -11703,6 +12045,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="16" column="0">
       <property name="text">
@@ -11729,6 +12074,9 @@ Normal Operation Arguments</string>
      <item row="16" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="17" column="0">
@@ -11757,6 +12105,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="18" column="0">
       <property name="text">
@@ -11784,6 +12135,9 @@ Normal Operation Arguments</string>
       <property name="text">
        <string/>
       </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
      </item>
      <item row="19" column="0">
       <property name="text">
@@ -11810,6 +12164,9 @@ Normal Operation Arguments</string>
      <item row="19" column="2">
       <property name="text">
        <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
     </widget>
@@ -11912,7 +12269,9 @@ Normal Operation Arguments</string>
   <tabstop>toolButtonSave_2</tabstop>
   <tabstop>toolButton_close_27</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>toolButton_23</sender>

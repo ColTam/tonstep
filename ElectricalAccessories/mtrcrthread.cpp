@@ -25,7 +25,7 @@ bool mTRCRThread::mtRCRIsActive()
 void mTRCRThread::readData()
 {
     _trTimer = new QTimer;
-    connect(_trTimer, SIGNAL(timeout()), this, SLOT(updaeTRCR()));
+    connect(_trTimer, SIGNAL(timeout()), this, SLOT(updaeTRCR())/*, Qt::DirectConnection*/);
 }
 
 int i = 0;

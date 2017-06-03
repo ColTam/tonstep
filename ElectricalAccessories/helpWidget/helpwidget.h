@@ -12,6 +12,7 @@
 
 class QFrame;
 class QLabel;
+class QToolButton;
 /*!
  * \brief The help widget class
  */
@@ -34,6 +35,9 @@ public slots:
 protected:
     void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
 
+private Q_SLOTS:
+    void changeFrame(int flag);
+
 private:
     QFrame* m_frame;            /*!* \brief 框架 */
 //    QLabel* m_toRunLabel;       /*!* \brief 待命框说明 */
@@ -42,6 +46,11 @@ private:
 //    QLabel* m_toServoLabel;     /*!* \brief 伺服选择说明 */
 //    QLabel* m_toDawdlerLabel;   /*!* \brief 懒人模式说明 */
 //    QLabel* m_toFunctionLabel;  /*!* \brief 功能流程说明 */
+    QToolButton *m_lastPageButton;
+    QToolButton *m_nextPageButton;
+    QToolButton *m_closePageButton;
+
+    int num;
 };
 
 #endif // HELPWIDGET_H
