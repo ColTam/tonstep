@@ -1,6 +1,6 @@
 ﻿#include "widget.h"
 #include "mtimer.h"
-#include "test.h"
+#include "mCRC16.h"
 #include "charts/mchart.h"
 
 #include <QComboBox>
@@ -22,6 +22,8 @@
 #include <QThread>
 #include <QTime>
 
+int Widget::mTimeoutCount = 0;
+
 Widget::Widget(QWidget *parent)
     : QWidget(parent),
       m_stateLabel(createState()),
@@ -40,9 +42,14 @@ Widget::Widget(QWidget *parent)
       m_savePushButton(new QPushButton(tr("保存"))),
       m_on_off_uartPushButton(new QPushButton(tr("打开"))),
       m_uartComboBox(createUartComboBox()),
+      m_chart(createSplineChart()),
+      m_chartView(new QChartView(m_chart)),
       m_serialPort(nullptr),
+      mNewData(QString::null),
+      mData(QString::null),
       getArgument(false),
-      getPressure(false)
+      getPressure(false),
+      m_timer(new QTimer())
 {
     connectSignals();
 
@@ -105,10 +112,10 @@ Widget::Widget(QWidget *parent)
     midHLayout->addWidget(m_readArgumentPushButton);
     midHLayout->addSpacing(10);
 
-    m_chart = createSplineChart();
-    m_chartView = new QChartView(m_chart);
+    m_chartView->setObjectName("mChartView");
     m_chartView->setRenderHint(QPainter::Antialiasing);
     m_chartView->chart()->setTheme(QChart::ChartThemeBlueIcy);
+//    m_chartView->setStyleSheet("background: transparent;");
 
     QHBoxLayout *bottomHLayout = new QHBoxLayout();
     bottomHLayout->addSpacing(20);
@@ -131,18 +138,22 @@ Widget::Widget(QWidget *parent)
     baseLayout->addWidget(m_chartView, 3, 0);
     baseLayout->addLayout(bottomHLayout, 4, 0);
 
-    QFont font;
-    font.setPointSize(FONTSIZE);
-    this->setFont(font);
-
+    m_startPushButton->setEnabled(false);
+    m_stopPushButton->setEnabled(false);
     setLayout(baseLayout);
 
-    m_timer = new QTimer();
     connect(m_timer, &QTimer::timeout, this, &Widget::m_timerout);
 }
 
 Widget::~Widget()
 {
+}
+//draw the background-image
+void Widget::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+    QPainter painter(this);
+    painter.drawPixmap(0,0,this->width(),this->height(),QPixmap(":/image/icon/bg1"));
 }
 
 QLineEdit *Widget::createWriteLineEdit() const
@@ -167,20 +178,6 @@ QLineEdit *Widget::createReadLineEdit() const
     return lineEdit;
 }
 
-QComboBox *Widget::createThemeComboBox() const
-{
-    QComboBox *comboBox = new QComboBox();
-    comboBox->addItem("Light", QChart::ChartThemeLight);
-    comboBox->addItem("Blue Cerulean", QChart::ChartThemeBlueCerulean);
-    comboBox->addItem("Dark", QChart::ChartThemeDark);
-    comboBox->addItem("Brown Sand", QChart::ChartThemeBrownSand);
-    comboBox->addItem("Blue NCS", QChart::ChartThemeBlueNcs);
-    comboBox->addItem("High Contrast", QChart::ChartThemeHighContrast);
-    comboBox->addItem("Blue Icy", QChart::ChartThemeBlueIcy);
-    comboBox->addItem("Qt", QChart::ChartThemeQt);
-    return comboBox;
-}
-
 void Widget::connectSignals()
 {
     connect(m_on_off_uartPushButton, SIGNAL(clicked(bool)), this, SLOT(openUartSlot()));
@@ -189,7 +186,7 @@ void Widget::connectSignals()
         getArgument = true;
     });
     connect(m_startPushButton, &QPushButton::clicked, [this]() {
-        i = 0;
+        mTimeoutCount = 0;
         mNewData.clear();
         m_startPushButton->setEnabled(false);
         m_stopPushButton->setEnabled(true);
@@ -202,7 +199,7 @@ void Widget::connectSignals()
         }
     });
     connect(m_stopPushButton, &QPushButton::clicked, [this]() {
-        i = 0;
+        mTimeoutCount = 0;
         mNewData.clear();
         QByteArray data;//停止测试机
         String2Hex("0A 06 00 07 00 00 39 70", data);
@@ -228,14 +225,8 @@ QChart *Widget::createSplineChart() const
     chart->resize(900,500);
     chart->setAnimationOptions(QChart::NoAnimation);
 
-    connect(this, SIGNAL(m_timerStart()), chart, SLOT(m_timerStartSlot()));
-    connect(this, SIGNAL(m_timerStop()), chart, SLOT(m_timerStopSlot()));
     connect(this, SIGNAL(m_dataSave(QString)), chart, SLOT(saveDataSlot(QString)));
     connect(chart, SIGNAL(savep(QString)), this, SLOT(savepn(QString)));
-    connect(chart, &mChart::readFinished, [this]() {
-        m_startPushButton->setEnabled(true);
-        m_stopPushButton->setEnabled(false);
-    });
     connect(this, SIGNAL(updatePressure(QString)), chart, SLOT(paintPressure(QString)));
     connect(m_startPushButton, &QPushButton::clicked, chart, &mChart::splineClear);
 
@@ -269,7 +260,7 @@ QComboBox *Widget::createUartComboBox() const
 }
 
 //保存曲线图
-void Widget::savepn(QString file)
+void Widget::savepn(const QString &file)
 {
     QPixmap pix = this->grab(QRect(m_chartView->geometry()));
     if (pix.save(file,"png"))
@@ -488,15 +479,18 @@ void Widget::readArgumentSlot()
         QString str = QString("%1").arg(outChar & 0xFF,2,16,QLatin1Char('0')).toUpper() + " ";
         mNewData += str;
     }
+    qDebug() <<mNewData;
 
     if (mNewData.size() == 75) {
         mData = mNewData;
         mNewData.clear();
+    } else if (mNewData.size() > 75){
+        mNewData.clear();
     }
 
-    if (++i >= 2) {
+    if (++mTimeoutCount >= 2) {
         dealData(mData);
-        i=0;
+        mTimeoutCount=0;
     }
 }
 //实时接收数据

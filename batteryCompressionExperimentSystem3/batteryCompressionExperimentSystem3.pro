@@ -6,7 +6,7 @@
 
 QT       += core gui charts serialbus serialport
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets axcontainer
 
 TARGET = batteryCompressionExperimentSystem3
 TEMPLATE = app
@@ -27,11 +27,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
     widget.cpp \
     charts/mchart.cpp \
-    test.c
+    mCRC16.c
 
 HEADERS  += widget.h \
     charts/mchart.h \
-    test.h
+    mCRC16.h
 
 RESOURCES += \
     res.qrc
+
+RC_ICONS += system.ico

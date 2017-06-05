@@ -1,0 +1,76 @@
+QWidget
+{
+      color: #DCDCDC; 
+      font-size: 21px;
+      border-radius: 3px;
+}
+
+QPushButton 
+{
+      background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
+      border: 1px solid #727272;
+      border-bottom-width:1px;
+      border-radius: 3px;
+      min-width: 71px;
+      min-height: 27px;
+}
+
+QPushButton:hover
+{
+      background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF525252);
+      border-bottom-color: #00BB9E;
+      border-bottom-width: 2px;
+}
+
+QPushButton:pressed 
+{
+      background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
+      border-bottom-color: #727272;
+      border-bottom-width: 1px;
+}
+
+QPushButton:!enabled 
+{
+      color: rgb(174,174,174);
+}
+
+QLineEdit 
+{
+      color: black;
+      border-radius: 2px;
+}
+
+QComboBox 
+{
+      background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
+      border:1px solid #727272;
+      border-bottom-width: 1px;
+      border-radius: 3px;
+      min-width: 71px;
+      min-height: 27px;
+}
+
+QComboBox::drop-down 
+{
+      width: 26px;
+      border: none;
+      background: transparent;
+}
+
+QComboBox::down-arrow 
+{
+      border-image: url(:/image/icon/downarrow);
+}
+
+QComboBox QAbstractItemView 
+{
+      border: 1px solid #727272;
+      background: #303030;
+      outline: none;
+      selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF525252);
+}
+
+QGraphicsView#mChartView
+{
+      background: transparent;
+}

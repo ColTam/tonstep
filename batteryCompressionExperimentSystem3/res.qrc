@@ -1,8 +1,12 @@
 <RCC>
     <qresource prefix="/image">
-        <file>icon/close.jpg</file>
-        <file>icon/off.jpg</file>
-        <file>icon/on.jpg</file>
-        <file>icon/open.jpg</file>
+        <file>icon/off.png</file>
+        <file>icon/on.png</file>
+        <file>icon/bg.jpg</file>
+        <file>icon/bg1.png</file>
+        <file>icon/downarrow.png</file>
+    </qresource>
+    <qresource prefix="/qss">
+        <file>mQss.qss</file>
     </qresource>
 </RCC>

@@ -1,6 +1,7 @@
-#ifndef MCHART_H
+﻿#ifndef MCHART_H
 #define MCHART_H
 
+#include <QAxObject>
 #include <QtCharts/QChart>
 #include <QtCore/QTimer>
 
@@ -19,23 +20,27 @@ public:
     explicit mChart(QGraphicsItem *parent = 0);
     ~mChart();
 
+public:
+    void writeExcel(const QString &fileName);
+
+    void rangeToWrite(const QString &itemName, const uint &column, const QVariantList &varList,
+                      const QString &head, QColor color = QColor(255,255,255));
+    void convertToColName(const int &data, QString &res);
+
+    QString to26AlphabetString(const int &data) const;
+
 signals:
-    void savep(QString);
-    void readFinished();
+    void savep(const QString &fileName);
 
 public slots:
-    void handleTimeout();
     void splineClear();
 
 private Q_SLOTS:
-    void m_timerStartSlot();
-    void m_timerStopSlot();
-    void saveDataSlot(QString file);
+    void saveDataSlot(const QString &file);
 
-    void paintPressure(QString p);
+    void paintPressure(const QString &pressureData);
 
 private:
-    QTimer m_timer;
 //    QLineSeries *m_splineSeries;
     QSplineSeries *m_splineSeries;
 //    QGraphicsSimpleTextItem *m_coordX;
@@ -46,6 +51,7 @@ private:
     qreal m_rangeY;
 
     QList<QPointF> dataList;
+    QAxObject*     _worksheet;
 
 };
 

@@ -1,4 +1,4 @@
-#include "mchart.h"
+﻿#include "mchart.h"
 #include <QtCharts/QAbstractAxis>
 #include <QtCharts/QSplineSeries>
 #include <QtCharts/QLineSeries>
@@ -6,24 +6,22 @@
 #include <QtCore/QTime>
 #include <QtCore/QTimer>
 #include <QtWidgets/QWidget>
+#include <QAxObject>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsView>
 #include <QtCore/QDebug>
 
 mChart::mChart(QGraphicsItem *parent) :
     QChart(parent),
-    m_splineSeries(0),
+    m_splineSeries(nullptr),
 //    m_coordX(0),
 //    m_coordY(0),
     m_x(0),
     m_y(0),
-    m_rangeY(0)
+    m_rangeY(0),
+    dataList(),
+    _worksheet(nullptr)
 {
-    qsrand((uint) QTime::currentTime().msec());
-
-    QObject::connect(&m_timer, SIGNAL(timeout()), this, SLOT(handleTimeout()));
-    m_timer.setInterval(100);
-
 //    m_splineSeries = new QLineSeries(this);
     m_splineSeries = new QSplineSeries(this);
     m_splineSeries->append(m_x, m_y);
@@ -45,18 +43,17 @@ mChart::mChart(QGraphicsItem *parent) :
 
     addSeries(m_splineSeries);
     createDefaultAxes();
-//    setAcceptHoverEvents(true);
+    //    setAcceptHoverEvents(true);
 
     setAxisX(xAxis, m_splineSeries);
     setAxisY(yAxis, m_splineSeries);
 
-
-//    m_coordX = new QGraphicsSimpleTextItem(this);
-//    m_coordX->setPos(this->size().width()/2 +20, 470);
-//    m_coordX->setText("X: ");
-//    m_coordY = new QGraphicsSimpleTextItem(this);
-//    m_coordY->setPos(this->size().width()/2 +60, 470);
-//    m_coordY->setText("Y: ");
+    //    m_coordX = new QGraphicsSimpleTextItem(this);
+    //    m_coordX->setPos(this->size().width()/2 +20, 470);
+    //    m_coordX->setText("X: ");
+    //    m_coordY = new QGraphicsSimpleTextItem(this);
+    //    m_coordY->setPos(this->size().width()/2 +60, 470);
+    //    m_coordY->setText("Y: ");
 }
 
 mChart::~mChart()
@@ -64,65 +61,130 @@ mChart::~mChart()
 
 }
 
-void mChart::handleTimeout()
+void mChart::writeExcel(const QString &fileName)
 {
-    qDebug() << QTime::currentTime().toString("hh-mm-ss-zzz");
-    qreal x = plotArea().width()/25;
-    m_x+= 1;
-    m_y = qrand() % 300 + 50;
-    m_splineSeries->append(m_x, m_y);
+    QAxObject excel("Excel.Application");
+    if (excel.isNull()) excel.setControl("ET.Application");
+    excel.setProperty("Visible", false);
+    excel.setProperty("DisplayAlerts", false);
 
-    if (m_x > 19) {
-        scroll(x, 0);
+    QAxObject *workbooks = excel.querySubObject("WorkBooks");
+    workbooks->dynamicCall("Add");
+    QAxObject *workbook = excel.querySubObject("ActiveWorkBook");
+    _worksheet = workbook->querySubObject("WorkSheets(int)", 1);
+    QVariantList var;
+
+    for (int i = 0; i < dataList.size(); i++)
+    {
+        var.append(dataList.at(i).y());
     }
+    rangeToWrite("CH", 2, var, "1", QColor(255,192,0));
+    var.clear();
 
-    if (m_rangeY < m_y) {
-        m_rangeY = m_y;
-    }
-    this->axisY()->setRange(0, m_rangeY + 20);
+    QAxObject *worksheets = workbook->querySubObject("Sheets");
+    int sheetCount = worksheets->property("Count").toInt();    // GET WORKSHEETS COUNT
+    QAxObject *lastSheet = worksheets->querySubObject("Item(int)", sheetCount);
+    QAxObject *workSheet = worksheets->querySubObject("Add(QVariant)", lastSheet->asVariant());
+    lastSheet->dynamicCall("Move(QVariant)", workSheet->asVariant());
 
-    dataList.clear();
-    dataList = m_splineSeries->points();
+    _worksheet = workbook->querySubObject("WorkSheets(int)", 2);
+    QAxObject *cell = _worksheet->querySubObject("Shapes");
 
-    if (m_x >= 600) {
-        m_timer.stop();
-        emit readFinished();
-    }
+    QString p = fileName;
+    p.replace("/", "\\");
+    cell->dynamicCall("AddPicture(QString&, bool, bool, double, double, double, double",p,true,true,0,0,718,440);
+
+    p.replace(".png", ".xlsx");
+    workbook->dynamicCall("SaveAs(const QString&)", p);
+    workbook->dynamicCall("Close(Boolean)", false);
+    excel.dynamicCall("Quit(void)");
 }
 
-void mChart::m_timerStartSlot()
+void mChart::rangeToWrite(const QString &itemName, const uint &column, const QVariantList &varList, const QString &head, QColor color)
 {
-    if (m_x >= 600) {
-        splineClear();
-    } else if (m_x >= 19 && m_x < 600) {
-        this->axisX()->setRange(m_x-24, m_x+1);
+    if (itemName.isEmpty() || varList.isEmpty()) return;
+
+    QList<QList<QVariant>> m_datas;
+    QVariantList port;
+    port.append(itemName);
+    m_datas.append(port);
+
+    for(int i=0;i<varList.size();i++)
+    {
+        QList<QVariant> rows;
+        rows.append(varList.at(i));
+        m_datas.append(rows);
+    }
+
+    int col = column;
+    int row = m_datas.size();
+    QString rangStr1;
+    QString rangStr2;
+    convertToColName(col,rangStr1);
+    rangStr1.replace("@", "Z");
+    rangStr2 = rangStr1;
+    rangStr1 += head + ":" + rangStr1 + QString::number(row+head.toInt()-1);
+    QAxObject* range = _worksheet->querySubObject("Range(const QString&)",rangStr1);
+    if (NULL == range || range->isNull()) return;
+
+    QVariantList vars;
+    for (int i=0;i<row;i++)
+        vars.append(QVariant(m_datas[i]));
+
+    range->setProperty("Value", vars);
+    range->setProperty("HorizontalAlignment", -4108);
+
+    QAxObject *Borders = range->querySubObject("Borders");//Interior background; Borders border; Font font;
+    Borders->setProperty("Color", color);
+}
+
+void mChart::convertToColName(const int &data, QString &res)
+{
+    int tempData = data / 26;
+
+    if (1 == tempData && 26 == data){
+        res = to26AlphabetString(data);
+        return;
+    } else if (tempData > 0) {
+        int mode = data % 26;
+        if (0 == mode) {
+            --tempData;
+            mode = 26;
+        }
+        convertToColName(mode,res);
+        convertToColName(tempData,res);
     } else {
-        this->axisX()->setRange(-5, 25);
+        res = (to26AlphabetString(data) + res);
     }
-
-    m_timer.start(100);
 }
 
-void mChart::m_timerStopSlot()
+QString mChart::to26AlphabetString(const int &data) const
 {
-    m_timer.stop();
+    QChar ch = data + 0x40;//A:0x41
+    return QString(ch);
 }
 
-void mChart::saveDataSlot(QString file)
+void mChart::saveDataSlot(const QString &file)
 {
     this->axisX()->setRange(0, m_x);
     for (int i = 0; i < dataList.size(); i++)
         qDebug() << dataList.at(i).y();
 
+    QList<QPointF>::iterator i = dataList.begin();
+    while (i++!=dataList.end())
+        qDebug() << *i;
+
+    qDebug() << file;
     emit savep(file);
+    writeExcel(file);
 }
 
-void mChart::paintPressure(QString p)
+void mChart::paintPressure(const QString &pressureData)
 {
     qDebug() << QTime::currentTime().toString("hh-mm-ss-zzz");
-    qreal x = plotArea().width()/(30.0/2);
+    qreal x = plotArea().width()/(25.0/2);//p.w/x.c * m_x
     m_x+= 2;
-    m_y = p.toInt(nullptr, 16);
+    m_y = pressureData.toInt(nullptr, 16);
     m_splineSeries->append(m_x, m_y);
 
     if (m_x > 19) {
@@ -145,6 +207,6 @@ void mChart::splineClear()
     m_x = 0;
     m_y = 0;
 
-    this->axisX()->setRange(-5, 25);
+    this->axisX()->setRange(-5, 20);
     this->axisY()->setRange(0, 200);
 }

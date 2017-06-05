@@ -39,14 +39,14 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = 0);
     ~Widget();
-    int i = 0;
 
 Q_SIGNALS:
-    void m_timerStart();
-    void m_timerStop();
     void m_dataSave(QString);
 
     void updatePressure(QString);
+
+protected:
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
 private:
     void connectSignals();
@@ -54,7 +54,6 @@ private:
     QLineEdit *createWriteLineEdit() const;
     QLineEdit *createReadLineEdit() const;
     QComboBox *createUartComboBox() const;
-    QComboBox *createThemeComboBox() const;
     QChart *createSplineChart() const;
 
     void String2Hex(QString str, QByteArray &senddata);
@@ -62,7 +61,7 @@ private:
     void dealData(QString str);
 
 private Q_SLOTS:
-    void savepn(QString file);
+    void savepn(const QString &file);
     void openUartSlot();
     void writeArgumentSlot();
     void readArgumentSlot();
@@ -100,6 +99,8 @@ private:
     bool getArgument;
     bool getPressure;
     QTimer *m_timer;
+
+    static int mTimeoutCount;//超时计数器 作用：200ms取一次数据给曲线图
 };
 
 #endif // WIDGET_H
