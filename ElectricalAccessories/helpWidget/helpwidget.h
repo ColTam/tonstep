@@ -26,7 +26,6 @@ public:
     void initForm();            /*!* \brief  */
     void initWidget();          /*!* \brief  */
     void initConnect();         /*!* \brief  */
-    void translator();          /*!* \brief  */
 
 signals:
 

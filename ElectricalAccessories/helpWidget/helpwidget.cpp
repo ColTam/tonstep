@@ -10,7 +10,6 @@ HelpWidget::HelpWidget(QWidget *parent) : QWidget(parent)
     this->initForm();
     this->initWidget();
     this->initConnect();
-    this->translator();
 }
 
 void HelpWidget::initForm()
@@ -18,8 +17,6 @@ void HelpWidget::initForm()
     setFixedSize(943, 633);
 //    setAutoFillBackground(true);
     setStyleSheet("background: rgba(50, 50, 50, 20%)");
-//    this->setStyleSheet("QWidget {border-image: url(:/image/image/help);}"
-//                  "QWidget:: {}");
 }
 
 void HelpWidget::initWidget()
@@ -58,6 +55,7 @@ void HelpWidget::initWidget()
     m_lastPageButton->setGeometry(m_frame->width()-55,0, 26, 26);
     m_lastPageButton->setAutoRaise(true);
     m_lastPageButton->setStyleSheet("background:transparent;");
+    m_lastPageButton->setEnabled(false);
     m_nextPageButton = new QToolButton(m_frame);
     m_nextPageButton->setText(tr(">"));
     m_nextPageButton->setGeometry(m_frame->width()-26,0, 26, 26);
@@ -73,17 +71,6 @@ void HelpWidget::initConnect()
     connect(m_nextPageButton, &QToolButton::clicked, [this]() {
         changeFrame(++num);
     });
-}
-
-void HelpWidget::translator()
-{
-//    m_toRunLabel->setText(tr("Be running modul"));
-//    m_toHaveLabel->setText(tr("Be having modul"));
-//    m_toStartLabel->setText(tr("Be starting modul"));
-//    m_toServoLabel->setText(tr("Servo[A;B;C] optional modules"));
-//    m_toDawdlerLabel->setText(tr("Dawdler modul"));
-//    m_toFunctionLabel->setText(tr("Function modul: \n1:Temperature rise.\n\
-//2:Breaking capacity.\n3:Normal operation.\n4:...."));
 }
 
 void HelpWidget::mousePressEvent(QMouseEvent *event)
@@ -111,28 +98,21 @@ void HelpWidget::changeFrame(int flag)
         m_lastPageButton->setEnabled(true);
         m_nextPageButton->setEnabled(true);
 
-        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/SGS);}"
+        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/help_first);}"
                                "QFrame:: {}");
         break;
     case 3:
         m_lastPageButton->setEnabled(true);
         m_nextPageButton->setEnabled(true);
 
-        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/SGS01);}"
+        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/help_second);}"
                                "QFrame:: {}");
         break;
     case 4:
         m_lastPageButton->setEnabled(true);
-        m_nextPageButton->setEnabled(true);
-
-        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/wlite);}"
-                               "QFrame:: {}");
-        break;
-    case 5:
-        m_lastPageButton->setEnabled(true);
         m_nextPageButton->setEnabled(false);
 
-        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/wlite);}"
+        m_frame->setStyleSheet("QFrame {border-image: url(:/image/image/help_thrid);}"
                                "QFrame:: {}");
         break;
     default:
