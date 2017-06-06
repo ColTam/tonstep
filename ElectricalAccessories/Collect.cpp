@@ -141,8 +141,7 @@ void Collect::ComponentsNoShortCut(const QString servo)
 void Collect::CutToLN(const QString servo)
 {
     if (servo == "A") {
-        CollectControl::SetIoStatus(0, 4, 0);/* power */
-//        CollectControl::SetIoStatus(0, 4, 0);/* load 设备未完善 */
+        CollectControl::SetIoStatus(0, 4, 0);
     } else if (servo == "B") {
         CollectControl::SetIoStatus(0, 5, 0);
     } else if (servo == "C") {

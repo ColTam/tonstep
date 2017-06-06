@@ -41,9 +41,9 @@ public:
     ~Widget();
 
 Q_SIGNALS:
-    void m_dataSave(QString);
+    void m_dataSave(const QString &saveData);
 
-    void updatePressure(QString);
+    void updatePressure(const QString &pressure);
 
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
@@ -56,9 +56,9 @@ private:
     QComboBox *createUartComboBox() const;
     QChart *createSplineChart() const;
 
-    void String2Hex(QString str, QByteArray &senddata);
+    void String2Hex(const QString &str, QByteArray &senddata);
     char ConvertHexChar(char ch);
-    void dealData(QString str);
+    void dealData(const QString &str);
 
 private Q_SLOTS:
     void savepn(const QString &file);

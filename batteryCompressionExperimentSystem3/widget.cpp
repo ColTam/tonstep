@@ -186,33 +186,57 @@ void Widget::connectSignals()
         getArgument = true;
     });
     connect(m_startPushButton, &QPushButton::clicked, [this]() {
-        mTimeoutCount = 0;
-        mNewData.clear();
-        m_startPushButton->setEnabled(false);
-        m_stopPushButton->setEnabled(true);
-        m_stateLabel->setPixmap(QPixmap(":/image/icon/on"));
-
-        QByteArray data;//启动测试机
-        String2Hex("0A 06 00 07 00 01 F8 B0", data);
         if (m_serialPort != nullptr) {
+            mTimeoutCount = 0;
+            mNewData.clear();
+            m_startPushButton->setEnabled(false);
+            m_stopPushButton->setEnabled(true);
+            m_stateLabel->setPixmap(QPixmap(":/image/icon/on"));
+
+            QByteArray data;//启动测试机
+            String2Hex("0A 06 00 07 00 01 F8 B0", data);
             m_serialPort->write(data);
+        } else {
+            QMessageBox msgBox(QMessageBox::Warning,tr("错误"),tr("未检测到可用串口."));
+            msgBox.setStandardButtons(QMessageBox::Ok);
+            msgBox.setButtonText(QMessageBox::Ok,tr("确定"));
+
+            msgBox.exec();
         }
     });
     connect(m_stopPushButton, &QPushButton::clicked, [this]() {
-        mTimeoutCount = 0;
-        mNewData.clear();
-        QByteArray data;//停止测试机
-        String2Hex("0A 06 00 07 00 00 39 70", data);
-        if (m_serialPort != nullptr && getPressure) {
-            m_serialPort->write(data);
-        }
-        m_stopPushButton->setEnabled(false);
-        m_startPushButton->setEnabled(true);
+        if (m_serialPort != nullptr) {
+            mTimeoutCount = 0;
+            mNewData.clear();
+            if (getPressure) {
+                QByteArray data;//停止测试机
+                String2Hex("0A 06 00 07 00 00 39 70", data);
+                m_serialPort->write(data);
+            }
 
-        m_stateLabel->setPixmap(QPixmap(":/image/icon/off"));
+            m_stopPushButton->setEnabled(false);
+            m_startPushButton->setEnabled(true);
+            m_stateLabel->setPixmap(QPixmap(":/image/icon/off"));
+        } else {
+            QMessageBox msgBox(QMessageBox::Warning,tr("错误"),tr("未检测到可用串口."));
+            msgBox.setStandardButtons(QMessageBox::Ok);
+            msgBox.setButtonText(QMessageBox::Ok,tr("确定"));
+
+            msgBox.exec();
+        }
     });
     connect(m_savePushButton, &QPushButton::clicked, [this](){
-        emit m_dataSave(QFileDialog::getSaveFileName(nullptr, "Save", "./", tr("Image (*.png)")));
+        qDebug() << this->size();
+        QString saveFileName = QFileDialog::getSaveFileName(nullptr, tr("保存"), "./", tr("Image (*.png)"));
+        if (!saveFileName.isEmpty()) {
+            emit m_dataSave(saveFileName);
+        } else {
+            QMessageBox msgBox(QMessageBox::Warning,tr("错误"),tr("文件名无效."));
+            msgBox.setStandardButtons(QMessageBox::Ok);
+            msgBox.setButtonText(QMessageBox::Ok,tr("确定"));
+
+            msgBox.exec();
+        }
     });
 }
 
@@ -270,6 +294,11 @@ void Widget::savepn(const QString &file)
 void Widget::openUartSlot()
 {
     if (m_uartComboBox->count()<1) {
+        QMessageBox msgBox(QMessageBox::Warning,tr("错误"),tr("未检测到可用串口."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setButtonText(QMessageBox::Ok,tr("确定"));
+
+        msgBox.exec();
         return;
     }
 
@@ -278,7 +307,14 @@ void Widget::openUartSlot()
         m_serialPort = new QSerialPort;//创建QSerialPort对象
         m_serialPort->setPortName(m_uartComboBox->currentText());//设置串口名
         if (!m_serialPort->open(QIODevice::ReadWrite)) {//打开串口
-            QMessageBox::warning(NULL, "warning", "SerialPort Open Failed");
+//            QMessageBox::warning(NULL, "warning", "SerialPort Open Failed");
+//            return;
+
+            QMessageBox msgBox(QMessageBox::Warning,tr("错误"),tr("串口:%1打开失败!").arg(m_serialPort->portName()));
+            msgBox.setStandardButtons(QMessageBox::Ok);
+            msgBox.setButtonText(QMessageBox::Ok,tr("确定"));
+
+            msgBox.exec();
             return;
         }
         m_serialPort->setBaudRate(QSerialPort::Baud115200);//设置串口波特率
@@ -311,7 +347,12 @@ void Widget::openUartSlot()
 void Widget::writeArgumentSlot()
 {
     if (!m_serialPort->isOpen()){
-        qDebug() << tr("SerialPort not open");
+//        qDebug() << tr("SerialPort not open");
+        QMessageBox msgBox(QMessageBox::Warning,tr("错误"),tr("未检测到可用串口."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setButtonText(QMessageBox::Ok,tr("确定"));
+
+        msgBox.exec();
         return;
     }
 
@@ -500,11 +541,16 @@ void Widget::m_timerout()
         String2Hex("0A 03 00 00 00 0A C4 B6", data);
         m_serialPort->write(data);
     } else {
-        qDebug() << tr("SerialPort not open");
+        QMessageBox msgBox(QMessageBox::Warning,tr("错误"),tr("未检测到可用串口."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setButtonText(QMessageBox::Ok,tr("确定"));
+
+        msgBox.exec();
+        return;
     }
 }
 //引用他人已实现函数 串口以16进制发送数据字符串转换函数
-void Widget::String2Hex(QString str, QByteArray &senddata)
+void Widget::String2Hex(const QString &str, QByteArray &senddata)
 {
     int hexdata,lowhexdata;
     int hexdatalen = 0;
@@ -547,10 +593,10 @@ char Widget::ConvertHexChar(char ch)
     else return (-1);
 }
 //数据处理函数
-void Widget::dealData(QString str)
+void Widget::dealData(const QString &str)
 {
     getPressure = str.mid(55,1).toInt();
-//    qDebug() << str.mid(55,1) << str << str.size();
+//    qDebug() << str << str.size();
 
     m_maxPressureLineEdit->setText(QString("%1 PSL").arg((str.mid(45,2)+str.mid(48,2)).toInt(nullptr,16)));
     m_currentPressureLineEdit->setText(QString("%1 PSL").arg((str.mid(57,2)+str.mid(60,2)).toInt(nullptr,16)));//54 60 66

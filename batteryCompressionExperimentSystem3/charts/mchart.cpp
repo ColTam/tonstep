@@ -136,8 +136,11 @@ void mChart::rangeToWrite(const QString &itemName, const uint &column, const QVa
     for (int i=0;i<row;i++)
         vars.append(QVariant(m_datas[i]));
 
-    range->setProperty("Value", vars);
-    range->setProperty("HorizontalAlignment", -4108);
+    range->setProperty("Value", vars);//set value
+    range->setProperty("HorizontalAlignment", -4108);//set alignmentS
+
+    QAxObject* cells = range->querySubObject("Columns");//get columns
+    cells->dynamicCall("AutoFit");//set autofit --columns width
 
     QAxObject *Borders = range->querySubObject("Borders");//Interior background; Borders border; Font font;
     Borders->setProperty("Color", color);
