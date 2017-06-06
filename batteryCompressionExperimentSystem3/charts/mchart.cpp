@@ -20,7 +20,8 @@ mChart::mChart(QGraphicsItem *parent) :
     m_y(0),
     m_rangeY(0),
     dataList(),
-    _worksheet(nullptr)
+    _worksheet(nullptr),
+    mVar()
 {
 //    m_splineSeries = new QLineSeries(this);
     m_splineSeries = new QSplineSeries(this);
@@ -54,6 +55,7 @@ mChart::mChart(QGraphicsItem *parent) :
     //    m_coordY = new QGraphicsSimpleTextItem(this);
     //    m_coordY->setPos(this->size().width()/2 +60, 470);
     //    m_coordY->setText("Y: ");
+    mVar.clear();
 }
 
 mChart::~mChart()
@@ -74,11 +76,14 @@ void mChart::writeExcel(const QString &fileName)
     _worksheet = workbook->querySubObject("WorkSheets(int)", 1);
     QVariantList var;
 
+    rangeToWrite("Time", 1, mVar, "1");
+    mVar.clear();
+
     for (int i = 0; i < dataList.size(); i++)
     {
         var.append(dataList.at(i).y());
     }
-    rangeToWrite("CH", 2, var, "1", QColor(255,192,0));
+    rangeToWrite("PSL", 2, var, "1", QColor(255,192,0));
     var.clear();
 
     QAxObject *worksheets = workbook->querySubObject("Sheets");
@@ -92,7 +97,7 @@ void mChart::writeExcel(const QString &fileName)
 
     QString p = fileName;
     p.replace("/", "\\");
-    cell->dynamicCall("AddPicture(QString&, bool, bool, double, double, double, double",p,true,true,0,0,718,440);
+    cell->dynamicCall("AddPicture(QString&, bool, bool, double, double, double, double",p,true,true,0,0,901,394);
 
     p.replace(".png", ".xlsx");
     workbook->dynamicCall("SaveAs(const QString&)", p);
@@ -167,21 +172,23 @@ QString mChart::to26AlphabetString(const int &data) const
 void mChart::saveDataSlot(const QString &file)
 {
     this->axisX()->setRange(0, m_x);
-    for (int i = 0; i < dataList.size(); i++)
-        qDebug() << dataList.at(i).y();
+//    for (int i = 0; i < dataList.size(); i++)
+//        qDebug() << dataList.at(i).y();
 
-    QList<QPointF>::iterator i = dataList.begin();
-    while (i++!=dataList.end())
-        qDebug() << *i;
+//    QList<QPointF>::iterator i = dataList.begin();
+//    while (i!=dataList.end()) {
+//        qDebug() << *i;
+//        i++;
+//    }
 
-    qDebug() << file;
+//    qDebug() << file;
     emit savep(file);
     writeExcel(file);
 }
 
 void mChart::paintPressure(const QString &pressureData)
 {
-    qDebug() << QTime::currentTime().toString("hh-mm-ss-zzz");
+    mVar.append(QTime::currentTime().toString("hh:mm:ss:zzz"));
     qreal x = plotArea().width()/(25.0/2);//p.w/x.c * m_x
     m_x+= 2;
     m_y = pressureData.toInt(nullptr, 16);

@@ -479,7 +479,6 @@ void Widget::readArgumentSlot()
         QString str = QString("%1").arg(outChar & 0xFF,2,16,QLatin1Char('0')).toUpper() + " ";
         mNewData += str;
     }
-    qDebug() <<mNewData;
 
     if (mNewData.size() == 75) {
         mData = mNewData;

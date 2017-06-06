@@ -41,6 +41,8 @@ private Q_SLOTS:
     void paintPressure(const QString &pressureData);
 
 private:
+    friend class Widget;
+
 //    QLineSeries *m_splineSeries;
     QSplineSeries *m_splineSeries;
 //    QGraphicsSimpleTextItem *m_coordX;
@@ -53,6 +55,7 @@ private:
     QList<QPointF> dataList;
     QAxObject*     _worksheet;
 
+    QVariantList mVar;
 };
 
 #endif // MCHART_H
