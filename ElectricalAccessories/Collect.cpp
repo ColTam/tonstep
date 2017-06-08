@@ -114,13 +114,11 @@ void Collect::ComponentsShortCut(const QString servo)
 {
     if (servo == "A") {
         CollectControl::SetIoStatus(1, 7, 1);/* L */
-//        CollectControl::SetIoStatus(1, 7, 1);/* N 设备未完善 */
+//        CollectControl::SetIoStatus(1, 7, 1);/* N 设备未完善 待定 */
     } else if (servo == "B") {
         CollectControl::SetIoStatus(2, 1, 1);
-//        CollectControl::SetIoStatus(2, 1, 1);
     } else if (servo == "C") {
         CollectControl::SetIoStatus(2, 0, 1);
-//        CollectControl::SetIoStatus(2, 0, 1);
     }
 }
 
@@ -128,13 +126,10 @@ void Collect::ComponentsNoShortCut(const QString servo)
 {
     if (servo == "A") {
         CollectControl::SetIoStatus(1, 7, 0);
-//        CollectControl::SetIoStatus(1, 7, 0);
     } else if (servo == "B") {
         CollectControl::SetIoStatus(2, 1, 0);
-//        CollectControl::SetIoStatus(2, 1, 0);
     } else if (servo == "C") {
         CollectControl::SetIoStatus(2, 0, 0);
-//        CollectControl::SetIoStatus(2, 0, 0);
     }
 }
 
@@ -530,7 +525,7 @@ void Collect::getTemperatureRise(QStringList *list)
         if (i == list->count()) break;
 
         QString str = list->at(i);
-        if (str.size() == 32) {//N 0101    掳C       +00000374E-01
+        if (str.size() == 32) {//N 0101    掳C       +00000374E-01TT //' '-12 'N0101oC'-7 '+00000374E-01'-13 'TT'-2
             ++i;
             continue;
         } else {

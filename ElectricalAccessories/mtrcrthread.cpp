@@ -25,7 +25,7 @@ bool mTRCRThread::mtRCRIsActive()
 void mTRCRThread::readData()
 {
     _trTimer = new QTimer;
-    connect(_trTimer, SIGNAL(timeout()), this, SLOT(updaeTRCR())/*, Qt::DirectConnection*/);
+    connect(_trTimer, SIGNAL(timeout()), this, SLOT(updaeTRCR()), Qt::DirectConnection);
 }
 
 int i = 0;
@@ -56,7 +56,7 @@ void mTRCRThread::updaeTRCR()
 
 void mTRCRThread::mTRCRTimerStart()
 {
-    _trTimer->start(5000);
+    _trTimer->start(COM_TRDELAY);
 }
 
 void mTRCRThread::mTRCRTimerStop()
