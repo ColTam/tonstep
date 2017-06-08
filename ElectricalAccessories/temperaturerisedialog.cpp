@@ -191,7 +191,7 @@ void TemperatureRiseDialog::arrivalTime()
                 Collect::CutToLE(servo);
                 Collect::PowerStart();
                 Collect::LoadStart(servo);
-                emit loadStart(5000);
+                emit loadStart(COM_TRDELAY);
             } else {
                 threadQuit();
                 Collect::PowerStart();
@@ -215,14 +215,14 @@ void TemperatureRiseDialog::arrivalTime()
                         Collect::CutToLE(servo);
                         Collect::PowerStart();
                         Collect::LoadStart(servo);
-                        emit loadStart(5000);
+                        emit loadStart(COM_TRDELAY);
                     } else {
                         Collect::ComponentsNoShortCut(servo);
                         Collect::SetLoad(SET_LPF_RESISTIVE_884, _Im, servo);
                         this->m_currentIn = _Im;
                         Collect::PowerStart();
                         Collect::LoadStart(servo);
-                        emit loadStart(5000);
+                        emit loadStart(COM_TRDELAY);
                     }
                 } else {
                     threadQuit();
@@ -247,7 +247,7 @@ void TemperatureRiseDialog::arrivalTime()
                     this->m_currentIn = _Im;
                     Collect::PowerStart();
                     Collect::LoadStart(servo);
-                    emit loadStart(5000);
+                    emit loadStart(COM_TRDELAY);
                 } else {
                     threadQuit();
                     Collect::PowerStart();
@@ -382,14 +382,14 @@ void TemperatureRiseDialog::writeExcel(const QString fileName)
             QTime time = QTime(_currentTime.time().hour(), _currentTime.time().minute(), _currentTime.time().second());
             for (int i = 0; i <= this->loadCount; i++)
             {
-                if (time.second() + 5 > 59) {
+                if (time.second() + 10 > 59) {
                     if (time.minute() + 1 == 60) {
-                        time.setHMS(time.hour()+1,time.minute()+1-60,time.second()+5-60);
+                        time.setHMS(time.hour()+1,time.minute()+1-60,time.second()+10-60);
                     } else {
-                        time.setHMS(time.hour(),time.minute()+1,time.second()+5-60);
+                        time.setHMS(time.hour(),time.minute()+1,time.second()+10-60);
                     }
                 } else {
-                    time.setHMS(time.hour(),time.minute(),time.second()+5);
+                    time.setHMS(time.hour(),time.minute(),time.second()+10);
                 }
 //                time.addSecs(5 * (i+1));
                 var.append(QVariant(time.toString()));
@@ -696,9 +696,10 @@ void TemperatureRiseDialog::restoreWidget()
 void TemperatureRiseDialog::closeWidget()
 {
     QMessageBox msgBox(QMessageBox::Warning,tr("close"),tr("Is about to quit the test!\nWhether to save the data ?"));
-    msgBox.setStandardButtons(QMessageBox::Save|QMessageBox::Ignore|QMessageBox::Cancel);
+    msgBox.setStandardButtons(QMessageBox::Save|QMessageBox::Ignore|QMessageBox::Close|QMessageBox::Cancel);
     msgBox.setButtonText(QMessageBox::Save,tr("Save"));
     msgBox.setButtonText(QMessageBox::Ignore,tr("Ignore"));
+    msgBox.setButtonText(QMessageBox::Close,tr("Close All"));
     msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
     msgBox.setWindowIcon(QIcon(WINDOW_ICON));
 
@@ -706,6 +707,8 @@ void TemperatureRiseDialog::closeWidget()
 
     if (ret == QMessageBox::Save) {
         saveCustomPlotData(QDateTime::currentDateTime());
+    } else if (ret == QMessageBox::Close) {
+        failNumber = -1;
     } else if (ret == QMessageBox::Cancel) {
         return;
     }
@@ -766,7 +769,7 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
         if (vol.toDouble() == 0 || cur.toDouble() == 0) {
             QDateTime temp = _objectTime;
 
-            if (3599 - QDateTime::currentDateTime().msecsTo(temp)/1000 < 20) {
+            if (3599 - QDateTime::currentDateTime().msecsTo(temp)/1000 < 60) {
                 return;//一小时秒数 - 当前时间到目标时间的秒数 = 测试了多久......
             }
 
@@ -789,7 +792,7 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
                 _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
                 Collect::SetLoad(SET_LPF_RESISTIVE_884, m_currentIn, servo);
                 Collect::LoadStart(servo);
-                emit loadStart(5000);
+                emit loadStart(COM_TRDELAY);
             } else {
                 QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Not detected current!\nPlease check the sample!\nContinue test on 'Yes'!"));
                 msgBox.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
@@ -806,7 +809,7 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
                     _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
                     Collect::SetLoad(SET_LPF_RESISTIVE_884, m_currentIn, servo);
                     Collect::LoadStart(servo);
-                    emit loadStart(5000);
+                    emit loadStart(COM_TRDELAY);
                 } else {
                     threadQuit();
                     Collect::LoadStop(servo);
@@ -822,7 +825,7 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
 
 void TemperatureRiseDialog::updateTC(QStringList list)
 {
-    int sec = 5 * (++this->timeCount);
+    int sec = 10 * (++this->timeCount);
 
     QTime t(0, 0, 0);
     _mMessage->setText(tr("Test Time :") + t.addSecs(sec).toString());
@@ -972,7 +975,7 @@ void TemperatureRiseDialog::temprtatureRiseUpper(QStringList upper_tc_list, int 
         _threadC->start();
     }
 
-    emit this->loadStart(5000);
+    emit this->loadStart(COM_TRDELAY);
 }
 
 void TemperatureRiseDialog::legendDoubleClick(QCPLegend *legend, QCPAbstractLegendItem *item)
@@ -1044,7 +1047,7 @@ void TemperatureRiseDialog::voltageChange(QString v)
 //    }
     emit temperatureRiseStart();
     Sleep(1000);
-    emit loadStart(5000);
+    emit loadStart(COM_TRDELAY);
 }
 
 void TemperatureRiseDialog::keyPressEvent(QKeyEvent *event)

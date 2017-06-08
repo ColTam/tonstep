@@ -78,7 +78,7 @@ QString mLoadThread::dataControl(QString data, double c, double pf)
     QString current = list.at(1);
     QString lpf = list.at(2);
     lpf.remove("\r\n");
-    if (_time == 5000) {
+    if (_time == COM_TRDELAY) {
         double curD = current.toDouble() - c;
 //        double curP = c * 0.01;// (1%*In) or (0.2A)
         double curP = 0.2;
@@ -179,7 +179,7 @@ void mLoadThread::loadServo(QString servo)
 void mLoadThread::readData()
 {
     _loadTimer = new QTimer;
-    connect(_loadTimer, SIGNAL(timeout()), this, SLOT(updateData())/*, Qt::DirectConnection*/);
+    connect(_loadTimer, SIGNAL(timeout()), this, SLOT(updateData()), Qt::DirectConnection);
 }
 
 void mLoadThread::updateData()
@@ -188,8 +188,8 @@ void mLoadThread::updateData()
     mutex.lock();
 //    QString volt = "VF:0BB8 01F4";
 
-    if (this->_time == 5000)
-        QThread::msleep(this->_time/4);
+    if (this->_time == COM_TRDELAY)
+        QThread::msleep(this->_time/5);
 
     if (isFirst) {
         volt = CollectControl::HardSend(devInformation.at(0).com, QString("RDW VF").toLatin1().data(), COM_DELAY);
