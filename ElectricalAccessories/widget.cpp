@@ -110,10 +110,11 @@ void Widget::initWidgetTitle()
     this->setWindowTitle(tr(" Electrical Accessories Test Automation Program"));
     this->setWindowIcon(QIcon(WINDOW_ICON));
 
-    QPalette mPalette(palette());
-    mPalette.setColor(QPalette::Background, QColor(64,66,68));
-    this->setAutoFillBackground(true);
-    this->setPalette(mPalette);
+//    QPalette mPalette(palette());
+//    mPalette.setColor(QPalette::Background, QColor(64,66,68));
+//    this->setAutoFillBackground(true);
+//    this->setPalette(mPalette);
+    this->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);");
 
 
     QVBoxLayout *titleVBoxLayout = new QVBoxLayout();

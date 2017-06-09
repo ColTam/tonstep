@@ -8,6 +8,11 @@
         <file>icon/9.png</file>
         <file>icon/on.png</file>
         <file>icon/off.png</file>
+        <file>icon/return.png</file>
+        <file>icon/help.png</file>
+        <file>icon/down_arrow.png</file>
+        <file>icon/up_arrow.png</file>
+        <file>icon/up_arrow2.png</file>
     </qresource>
     <qresource prefix="/image">
         <file>image/wlite.jpg</file>

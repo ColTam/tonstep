@@ -35,6 +35,96 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QWidget {background-color: rgb(255, 255, 255);}
+
+QLineEdit{
+	selection-color:rgb(240,240,240);
+	selection-background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
+}
+
+QTableWidget {
+	border: 1px solid #585858;
+	border-left: 2px solid #585858;
+	border-radius: 3px;
+	selection-color:#F0F0F0;
+	selection-background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
+}
+
+QTableView::indicator:unchecked {
+    border: 1px solid #787878;
+}
+
+QTableView::indicator:unchecked:hover {
+    border: 1px solid #787878;
+}
+
+QTableWidget::item{
+	border:none;   
+	border-right: 1px solid #434343;
+    border-bottom: 1px solid #434343;
+}
+
+QTableWidget::item:hover{
+	color:#F0F0F0;
+	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #525252);
+}
+
+QTableWidget::item:selected{
+	color:#F0F0F0;
+	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
+}
+
+QHeaderView::section{
+	border:1px solid #585858;
+	padding: 3px;
+	color:#F0F0F0;
+	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #525252);
+}
+
+
+QScrollBar:vertical {
+    width: 15px;
+    background: transparent;
+	margin: 15px 0 15px 0;
+}
+
+QScrollBar::handle:vertical {
+    width: 15px;
+    min-height: 30px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #646464, stop:1 #525252);
+}
+
+QScrollBar::handle:vertical:hover {
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #383838);
+}
+
+QScrollBar::sub-line:vertical {
+	height: 15px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #646464, stop:1 #525252);
+    image: url(:/icon/icon/up_arrow.png);
+    subcontrol-position: top;
+	subcontrol-origin: margin;
+}
+
+QScrollBar::add-line:vertical {
+    height: 15px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #646464, stop:1 #525252);
+    image: url(:/icon/icon/down_arrow.png);
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:vertical:hover {
+    background: rgb(68, 69, 73);
+}
+
+QScrollBar::add-line:vertical:hover {
+    background: rgb(68, 69, 73);
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+
 #page_login {border-image: url(:/image/image/wlite.jpg);}
 #page_main {border-image: url(:/image/);}
 #page_19 {border-image: url(:/image/);}
@@ -54,7 +144,9 @@ left:10px;
 margin-left: 0px;
 padding:0 1px;}
 
-QGroupBox::{}</string>
+QGroupBox::{}
+
+</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::NoFrame</enum>
@@ -63,10 +155,10 @@ QGroupBox::{}</string>
     <enum>QFrame::Plain</enum>
    </property>
    <property name="lineWidth">
-    <number>2</number>
+    <number>1</number>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QGroupBox" name="groupBox_login">
@@ -219,6 +311,39 @@ background-color: rgb(147, 147, 147);}</string>
         <height>23</height>
        </rect>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>23</width>
+        <height>23</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>23</width>
+        <height>23</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#pushButton_6 {
+	border: 1px solid rgb(170,170,170);
+	height: 21px;
+	width: 21px;
+    background: rgb(225,225,225);
+    image:url(:/icon/icon/up_arrow2.png);
+    subcontrol-position: top;
+	subcontrol-origin: margin;
+}
+
+QPushButton#pushButton_6:hover {
+	background: rgb(229,241,251);
+}
+
+QPushButton#pushButton_6:pressed {
+	background: rgb(225,225,225);
+}
+
+QPushButton::menu-indicator{image:none;}</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -358,7 +483,7 @@ background-color: rgb(241, 112, 122);}</string>
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideNone</enum>
@@ -403,7 +528,10 @@ background-color: rgb(241, 112, 122);}</string>
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">
+QGroupBox QWidget{
+border:1px;
+border-radius: 5px;}</string>
        </property>
        <property name="title">
         <string/>
@@ -466,7 +594,10 @@ background-color: rgb(241, 112, 122);}</string>
         <bool>true</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">
+QGroupBox QWidget{
+border:1px;
+border-radius: 5px;}</string>
        </property>
        <property name="title">
         <string/>
@@ -506,12 +637,14 @@ background-color: rgb(241, 112, 122);}</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QGroupBox {
-    border-width:1px;   //线的粗细
-   border-style:solid;
-  border-color:rgb(0,0,0);   //颜色，
-  margin-top: 0.5ex;  //文字在方框中位置的偏离度
-}</string>
+        <string notr="true">QToolButton {
+ background-color: rgb(184, 184, 184);} 
+
+QToolButton:hover { 
+background-color: rgb(199, 199, 199);}
+
+QToolButton:pressed { 
+background-color: rgb(155, 155, 155);}</string>
        </property>
        <property name="title">
         <string>GroupBox</string>
@@ -534,14 +667,7 @@ background-color: rgb(241, 112, 122);}</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QToolButton {
- background-color: rgb(184, 184, 184);} 
-
-QToolButton:hover { 
-background-color: rgb(199, 199, 199);}
-
-QToolButton:pressed { 
-background-color: rgb(155, 155, 155);}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Temperature Rise</string>
@@ -565,14 +691,7 @@ background-color: rgb(155, 155, 155);}</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QToolButton {
- background-color: rgb(184, 184, 184);} 
-
-QToolButton:hover { 
-background-color: rgb(199, 199, 199);}
-
-QToolButton:pressed { 
-background-color: rgb(155, 155, 155);}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Breaking Capacity</string>
@@ -596,14 +715,7 @@ background-color: rgb(155, 155, 155);}</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QToolButton {
- background-color: rgb(184, 184, 184);} 
-
-QToolButton:hover { 
-background-color: rgb(199, 199, 199);}
-
-QToolButton:pressed { 
-background-color: rgb(155, 155, 155);}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>After the Operation
@@ -628,14 +740,7 @@ background-color: rgb(155, 155, 155);}</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QToolButton {
- background-color: rgb(184, 184, 184);} 
-
-QToolButton:hover { 
-background-color: rgb(199, 199, 199);}
-
-QToolButton:pressed { 
-background-color: rgb(155, 155, 155);}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Normal Operation</string>
@@ -700,7 +805,10 @@ background-color: rgb(155, 155, 155);}</string>
         <bool>true</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">
+QGroupBox QWidget{
+border:1px;
+border-radius: 5px;}</string>
        </property>
        <property name="title">
         <string/>
@@ -759,7 +867,10 @@ background-color: rgb(155, 155, 155);}</string>
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">
+QGroupBox QWidget{
+border:1px;
+border-radius: 5px;}</string>
        </property>
        <property name="title">
         <string/>
@@ -964,7 +1075,10 @@ background-color: rgb(155, 155, 155);}</string>
         <bool>true</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">
+QGroupBox QWidget{
+border:1px;
+border-radius: 5px;}</string>
        </property>
        <property name="title">
         <string/>
@@ -1023,7 +1137,10 @@ background-color: rgb(155, 155, 155);}</string>
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">
+QGroupBox QWidget{
+border:1px;
+border-radius: 5px;}</string>
        </property>
        <property name="title">
         <string/>
@@ -1956,6 +2073,9 @@ background-color: rgb(155, 155, 155);}</string>
       <bool>true</bool>
      </property>
     </widget>
+    <zorder>toolButton</zorder>
+    <zorder>toolButton_close</zorder>
+    <zorder>tabWidget</zorder>
    </widget>
    <widget class="QWidget" name="page_19">
     <widget class="QToolButton" name="toolButton_close_19">
@@ -2216,10 +2336,16 @@ Temperature Rise Arguments</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>-270~400</string>
+      <string/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::Panel</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Sunken</enum>
@@ -2237,123 +2363,137 @@ Temperature Rise Arguments</string>
       <enum>QAbstractItemView::SingleSelection</enum>
      </property>
      <property name="showGrid">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="gridStyle">
       <enum>Qt::SolidLine</enum>
      </property>
      <property name="wordWrap">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="cornerButtonEnabled">
       <bool>true</bool>
      </property>
      <property name="columnCount">
-      <number>3</number>
+      <number>4</number>
      </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>100</number>
      </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
      <row>
       <property name="text">
-       <string>CH01</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH02</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH03</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH04</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH05</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH06</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH07</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH08</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH09</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH10</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH101</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH102</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH103</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH104</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH105</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH106</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH107</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH108</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH109</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH110</string>
+       <string/>
       </property>
      </row>
+     <column>
+      <property name="text">
+       <string>Port</string>
+      </property>
+     </column>
      <column>
       <property name="text">
        <string>Maximum Value</string>
@@ -2371,6 +2511,14 @@ Temperature Rise Arguments</string>
      </column>
      <item row="0" column="0">
       <property name="text">
+       <string>CH001</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="0" column="1">
+      <property name="text">
        <string>25</string>
       </property>
       <property name="textAlignment">
@@ -2383,7 +2531,7 @@ Temperature Rise Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="0" column="1">
+     <item row="0" column="2">
       <property name="text">
        <string>K</string>
       </property>
@@ -2394,537 +2542,681 @@ Temperature Rise Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="0" column="2">
+     <item row="0" column="3">
       <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="1" column="0">
       <property name="text">
-       <string/>
+       <string>CH002</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="1" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="1" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="1" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="2" column="0">
       <property name="text">
-       <string/>
+       <string>CH003</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="2" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="2" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="2" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="3" column="0">
       <property name="text">
-       <string/>
+       <string>CH004</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="3" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="3" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="3" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="4" column="0">
       <property name="text">
-       <string/>
+       <string>CH005</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="4" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="4" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="4" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="5" column="0">
       <property name="text">
-       <string/>
+       <string>CH006</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="5" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="5" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="5" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="6" column="0">
       <property name="text">
-       <string/>
+       <string>CH007</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="6" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="6" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="6" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="7" column="0">
       <property name="text">
-       <string/>
+       <string>CH008</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="7" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="7" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="7" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="8" column="0">
       <property name="text">
-       <string/>
+       <string>CH009</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="8" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="8" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="8" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="9" column="0">
       <property name="text">
-       <string/>
+       <string>CH010</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="9" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="9" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="9" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="10" column="0">
       <property name="text">
-       <string/>
+       <string>CH101</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="10" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="10" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="10" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="11" column="0">
       <property name="text">
-       <string/>
+       <string>CH102</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="11" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="11" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="11" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="12" column="0">
       <property name="text">
-       <string/>
+       <string>CH103</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="12" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="12" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="12" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="13" column="0">
       <property name="text">
-       <string/>
+       <string>CH104</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="13" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="13" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="13" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="14" column="0">
       <property name="text">
-       <string/>
+       <string>CH105</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="14" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="14" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="14" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="15" column="0">
       <property name="text">
-       <string/>
+       <string>CH106</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="15" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="15" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="15" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="16" column="0">
       <property name="text">
-       <string/>
+       <string>CH107</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="16" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="16" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="16" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="17" column="0">
       <property name="text">
-       <string/>
+       <string>CH108</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="17" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="17" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="17" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="18" column="0">
       <property name="text">
-       <string/>
+       <string>CH109</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="18" column="1">
       <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="18" column="2">
+      <property name="text">
        <string>K</string>
       </property>
       <property name="textAlignment">
@@ -2934,15 +3226,23 @@ Temperature Rise Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="18" column="2">
+     <item row="18" column="3">
       <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="19" column="0">
+      <property name="text">
+       <string>CH110</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="19" column="1">
       <property name="text">
        <string/>
       </property>
@@ -2953,7 +3253,7 @@ Temperature Rise Arguments</string>
        <enum>Unchecked</enum>
       </property>
      </item>
-     <item row="19" column="1">
+     <item row="19" column="2">
       <property name="text">
        <string>K</string>
       </property>
@@ -2964,12 +3264,12 @@ Temperature Rise Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="19" column="2">
+     <item row="19" column="3">
       <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
     </widget>
@@ -3017,7 +3317,8 @@ Temperature Rise Arguments</string>
      </property>
      <property name="styleSheet">
       <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+#groupBox_login * {background-color: rgb();}
+</string>
      </property>
      <property name="title">
       <string>Setting</string>
@@ -3027,7 +3328,7 @@ Temperature Rise Arguments</string>
        <rect>
         <x>10</x>
         <y>120</y>
-        <width>524</width>
+        <width>521</width>
         <height>147</height>
        </rect>
       </property>
@@ -3037,8 +3338,11 @@ Temperature Rise Arguments</string>
       <property name="autoFillBackground">
        <bool>true</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::Panel</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Sunken</enum>
@@ -3067,11 +3371,20 @@ Temperature Rise Arguments</string>
       <property name="selectionBehavior">
        <enum>QAbstractItemView::SelectItems</enum>
       </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
       <property name="gridStyle">
-       <enum>Qt::SolidLine</enum>
+       <enum>Qt::NoPen</enum>
       </property>
       <property name="sortingEnabled">
        <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>true</bool>
       </property>
       <attribute name="horizontalHeaderVisible">
        <bool>false</bool>
@@ -3080,10 +3393,10 @@ Temperature Rise Arguments</string>
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>250</number>
+       <number>259</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
        <number>25</number>
@@ -3101,7 +3414,7 @@ Temperature Rise Arguments</string>
        <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderHighlightSections">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderMinimumSectionSize">
        <number>25</number>
@@ -3114,22 +3427,22 @@ Temperature Rise Arguments</string>
       </attribute>
       <row>
        <property name="text">
-        <string>01</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>02</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>03</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>04</string>
+        <string/>
        </property>
       </row>
       <column>
@@ -4299,7 +4612,7 @@ Normal Operation Arguments</string>
        <rect>
         <x>10</x>
         <y>170</y>
-        <width>524</width>
+        <width>521</width>
         <height>147</height>
        </rect>
       </property>
@@ -4310,7 +4623,7 @@ Normal Operation Arguments</string>
        <bool>true</bool>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::Panel</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Sunken</enum>
@@ -4339,6 +4652,9 @@ Normal Operation Arguments</string>
       <property name="selectionBehavior">
        <enum>QAbstractItemView::SelectItems</enum>
       </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
       <property name="gridStyle">
        <enum>Qt::SolidLine</enum>
       </property>
@@ -4352,10 +4668,10 @@ Normal Operation Arguments</string>
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>250</number>
+       <number>259</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
        <number>25</number>
@@ -4373,7 +4689,7 @@ Normal Operation Arguments</string>
        <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderHighlightSections">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderMinimumSectionSize">
        <number>25</number>
@@ -4880,773 +5196,6 @@ After the Operation Temperature Rise Arguments</string>
       </layout>
      </widget>
     </widget>
-    <widget class="QTableWidget" name="tableWidget_normalTemp">
-     <property name="geometry">
-      <rect>
-       <x>630</x>
-       <y>240</y>
-       <width>261</width>
-       <height>291</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>-270~400</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Sunken</enum>
-     </property>
-     <property name="lineWidth">
-      <number>1</number>
-     </property>
-     <property name="midLineWidth">
-      <number>0</number>
-     </property>
-     <property name="editTriggers">
-      <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
-     </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
-     </property>
-     <property name="showGrid">
-      <bool>true</bool>
-     </property>
-     <property name="gridStyle">
-      <enum>Qt::SolidLine</enum>
-     </property>
-     <property name="wordWrap">
-      <bool>false</bool>
-     </property>
-     <property name="cornerButtonEnabled">
-      <bool>true</bool>
-     </property>
-     <property name="columnCount">
-      <number>3</number>
-     </property>
-     <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>100</number>
-     </attribute>
-     <row>
-      <property name="text">
-       <string>CH01</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH02</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH03</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH04</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH05</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH06</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH07</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH08</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH09</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH10</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH101</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH102</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH103</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH104</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH105</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH106</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH107</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH108</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH109</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>CH110</string>
-      </property>
-     </row>
-     <column>
-      <property name="text">
-       <string>Maximum Value</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Unit</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Remark</string>
-      </property>
-     </column>
-     <item row="0" column="0">
-      <property name="text">
-       <string>25</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Checked</enum>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="0" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="0" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="1" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="1" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="1" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="2" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="2" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="2" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="3" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="3" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="3" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="4" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="4" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="4" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="5" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="5" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="5" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="6" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="6" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="6" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="7" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="7" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="7" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="8" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="8" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="8" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="9" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="9" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="9" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="10" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="10" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="10" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="11" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="11" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="11" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="12" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="12" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="12" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="13" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="13" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="13" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="14" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="14" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="14" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="15" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="15" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="15" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="16" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="16" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="16" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="17" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="17" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="17" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="18" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="18" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="18" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="19" column="0">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
-      </property>
-     </item>
-     <item row="19" column="1">
-      <property name="text">
-       <string>K</string>
-      </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
-      </property>
-     </item>
-     <item row="19" column="2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-      </property>
-     </item>
-    </widget>
     <widget class="QToolButton" name="toolButton_normalTempMaxValue">
      <property name="geometry">
       <rect>
@@ -5698,7 +5247,7 @@ After the Operation Temperature Rise Arguments</string>
        <rect>
         <x>10</x>
         <y>120</y>
-        <width>524</width>
+        <width>521</width>
         <height>147</height>
        </rect>
       </property>
@@ -5709,7 +5258,7 @@ After the Operation Temperature Rise Arguments</string>
        <bool>true</bool>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::Panel</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Sunken</enum>
@@ -5738,8 +5287,11 @@ After the Operation Temperature Rise Arguments</string>
       <property name="selectionBehavior">
        <enum>QAbstractItemView::SelectItems</enum>
       </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
       <property name="gridStyle">
-       <enum>Qt::SolidLine</enum>
+       <enum>Qt::NoPen</enum>
       </property>
       <property name="sortingEnabled">
        <bool>false</bool>
@@ -5751,10 +5303,10 @@ After the Operation Temperature Rise Arguments</string>
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>250</number>
+       <number>259</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
        <number>25</number>
@@ -5772,7 +5324,7 @@ After the Operation Temperature Rise Arguments</string>
        <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderHighlightSections">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderMinimumSectionSize">
        <number>25</number>
@@ -6063,6 +5615,953 @@ After the Operation Temperature Rise Arguments</string>
       </item>
      </layout>
     </widget>
+    <widget class="QTableWidget" name="tableWidget_normalTemp">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>240</y>
+       <width>261</width>
+       <height>291</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
+     </property>
+     <property name="gridStyle">
+      <enum>Qt::SolidLine</enum>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+     <property name="cornerButtonEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="columnCount">
+      <number>4</number>
+     </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>100</number>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string/>
+      </property>
+     </row>
+     <column>
+      <property name="text">
+       <string>Port</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Maximum Value</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Unit</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Remark</string>
+      </property>
+     </column>
+     <item row="0" column="0">
+      <property name="text">
+       <string>CH001</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="0" column="1">
+      <property name="text">
+       <string>25</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Checked</enum>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="0" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="0" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="1" column="0">
+      <property name="text">
+       <string>CH002</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="1" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="1" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="1" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="2" column="0">
+      <property name="text">
+       <string>CH003</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="2" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="2" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="2" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="3" column="0">
+      <property name="text">
+       <string>CH004</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="3" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="3" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="3" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="4" column="0">
+      <property name="text">
+       <string>CH005</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="4" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="4" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="4" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="5" column="0">
+      <property name="text">
+       <string>CH006</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="5" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="5" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="5" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="6" column="0">
+      <property name="text">
+       <string>CH007</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="6" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="6" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="6" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="7" column="0">
+      <property name="text">
+       <string>CH008</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="7" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="7" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="7" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="8" column="0">
+      <property name="text">
+       <string>CH009</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="8" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="8" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="8" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="9" column="0">
+      <property name="text">
+       <string>CH010</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="9" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="9" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="9" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="10" column="0">
+      <property name="text">
+       <string>CH101</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="10" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="10" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="10" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="11" column="0">
+      <property name="text">
+       <string>CH102</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="11" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="11" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="11" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="12" column="0">
+      <property name="text">
+       <string>CH103</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="12" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="12" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="12" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="13" column="0">
+      <property name="text">
+       <string>CH104</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="13" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="13" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="13" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="14" column="0">
+      <property name="text">
+       <string>CH105</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="14" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="14" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="14" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="15" column="0">
+      <property name="text">
+       <string>CH106</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="15" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="15" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="15" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="16" column="0">
+      <property name="text">
+       <string>CH107</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="16" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="16" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="16" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="17" column="0">
+      <property name="text">
+       <string>CH108</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="17" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="17" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="17" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="18" column="0">
+      <property name="text">
+       <string>CH109</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="18" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="18" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="18" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="19" column="0">
+      <property name="text">
+       <string>CH110</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="19" column="1">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="19" column="2">
+      <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="19" column="3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+      </property>
+     </item>
+    </widget>
    </widget>
    <widget class="QWidget" name="page_2">
     <widget class="QToolButton" name="toolButton_save19_2">
@@ -6317,6 +6816,19 @@ Temperature Rise Arguments</string>
        <bool>false</bool>
       </property>
      </widget>
+     <widget class="QCheckBox" name="checkBox_temp_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Specific</string>
+      </property>
+     </widget>
      <widget class="QTableWidget" name="tableWidget_temp_2">
       <property name="geometry">
        <rect>
@@ -6327,10 +6839,16 @@ Temperature Rise Arguments</string>
        </rect>
       </property>
       <property name="toolTip">
-       <string>-270~400</string>
+       <string/>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::Panel</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Sunken</enum>
@@ -6348,123 +6866,137 @@ Temperature Rise Arguments</string>
        <enum>QAbstractItemView::SingleSelection</enum>
       </property>
       <property name="showGrid">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="gridStyle">
        <enum>Qt::SolidLine</enum>
       </property>
       <property name="wordWrap">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="cornerButtonEnabled">
        <bool>true</bool>
       </property>
       <property name="columnCount">
-       <number>3</number>
+       <number>4</number>
       </property>
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>100</number>
       </attribute>
+      <attribute name="horizontalHeaderHighlightSections">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderHighlightSections">
+       <bool>false</bool>
+      </attribute>
       <row>
        <property name="text">
-        <string>CH01</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH02</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH03</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH04</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH05</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH06</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH07</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH08</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH09</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH10</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH101</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH102</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH103</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH104</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH105</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH106</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH107</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH108</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH109</string>
+        <string/>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>CH110</string>
+        <string/>
        </property>
       </row>
+      <column>
+       <property name="text">
+        <string>Port</string>
+       </property>
+      </column>
       <column>
        <property name="text">
         <string>Maximum Value</string>
@@ -6482,6 +7014,14 @@ Temperature Rise Arguments</string>
       </column>
       <item row="0" column="0">
        <property name="text">
+        <string>CH001</string>
+       </property>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="0" column="1">
+       <property name="text">
         <string>25</string>
        </property>
        <property name="textAlignment">
@@ -6494,26 +7034,34 @@ Temperature Rise Arguments</string>
         <set>ItemIsUserCheckable|ItemIsEnabled</set>
        </property>
       </item>
-      <item row="0" column="1">
+      <item row="0" column="2">
        <property name="text">
         <string>K</string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="0" column="3">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="1" column="0">
+       <property name="text">
+        <string>CH002</string>
        </property>
        <property name="flags">
         <set>ItemIsEnabled</set>
        </property>
       </item>
-      <item row="0" column="2">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item row="1" column="0">
+      <item row="1" column="1">
        <property name="text">
         <string/>
        </property>
@@ -6522,520 +7070,656 @@ Temperature Rise Arguments</string>
        </property>
        <property name="checkState">
         <enum>Unchecked</enum>
-       </property>
-      </item>
-      <item row="1" column="1">
-       <property name="text">
-        <string>K</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
        </property>
       </item>
       <item row="1" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="1" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="2" column="0">
        <property name="text">
-        <string/>
+        <string>CH003</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="2" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="2" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="2" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="3" column="0">
        <property name="text">
-        <string/>
+        <string>CH004</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="3" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="3" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="3" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="4" column="0">
        <property name="text">
-        <string/>
+        <string>CH005</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="4" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="4" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="4" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="5" column="0">
        <property name="text">
-        <string/>
+        <string>CH006</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="5" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="5" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="5" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="6" column="0">
        <property name="text">
-        <string/>
+        <string>CH007</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="6" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="6" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="6" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="7" column="0">
        <property name="text">
-        <string/>
+        <string>CH008</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="7" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="7" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="7" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="8" column="0">
        <property name="text">
-        <string/>
+        <string>CH009</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="8" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="8" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="8" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="9" column="0">
        <property name="text">
-        <string/>
+        <string>CH010</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="9" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="9" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="9" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="10" column="0">
        <property name="text">
-        <string/>
+        <string>CH101</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="10" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="10" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="10" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="11" column="0">
        <property name="text">
-        <string/>
+        <string>CH102</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="11" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="11" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="11" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="12" column="0">
        <property name="text">
-        <string/>
+        <string>CH103</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="12" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="12" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="12" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="13" column="0">
        <property name="text">
-        <string/>
+        <string>CH104</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="13" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="13" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="13" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="14" column="0">
        <property name="text">
-        <string/>
+        <string>CH105</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="14" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="14" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="14" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="15" column="0">
        <property name="text">
-        <string/>
+        <string>CH106</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="15" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="15" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="15" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="16" column="0">
        <property name="text">
-        <string/>
+        <string>CH107</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="16" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="16" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="16" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="17" column="0">
        <property name="text">
-        <string/>
+        <string>CH108</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="17" column="1">
        <property name="text">
-        <string>K</string>
+        <string/>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <property name="checkState">
+        <enum>Unchecked</enum>
        </property>
       </item>
       <item row="17" column="2">
        <property name="text">
+        <string>K</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="17" column="3">
+       <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="18" column="0">
        <property name="text">
-        <string/>
+        <string>CH109</string>
        </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-       <property name="checkState">
-        <enum>Unchecked</enum>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="18" column="1">
        <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="checkState">
+        <enum>Unchecked</enum>
+       </property>
+      </item>
+      <item row="18" column="2">
+       <property name="text">
         <string>K</string>
        </property>
        <property name="textAlignment">
@@ -7045,15 +7729,23 @@ Temperature Rise Arguments</string>
         <set>ItemIsUserCheckable|ItemIsEnabled</set>
        </property>
       </item>
-      <item row="18" column="2">
+      <item row="18" column="3">
        <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
       <item row="19" column="0">
+       <property name="text">
+        <string>CH110</string>
+       </property>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="19" column="1">
        <property name="text">
         <string/>
        </property>
@@ -7064,7 +7756,7 @@ Temperature Rise Arguments</string>
         <enum>Unchecked</enum>
        </property>
       </item>
-      <item row="19" column="1">
+      <item row="19" column="2">
        <property name="text">
         <string>K</string>
        </property>
@@ -7075,27 +7767,14 @@ Temperature Rise Arguments</string>
         <set>ItemIsUserCheckable|ItemIsEnabled</set>
        </property>
       </item>
-      <item row="19" column="2">
+      <item row="19" column="3">
        <property name="text">
         <string/>
        </property>
        <property name="flags">
-        <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+        <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
        </property>
       </item>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_temp_2">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>101</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Specific</string>
-      </property>
      </widget>
     </widget>
     <widget class="QGroupBox" name="groupBox_28">
@@ -8275,7 +8954,7 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>840</x>
-       <y>530</y>
+       <y>540</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -8683,7 +9362,7 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>520</y>
+       <y>530</y>
        <width>542</width>
        <height>111</height>
       </rect>
@@ -8915,7 +9594,7 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>580</x>
-       <y>520</y>
+       <y>530</y>
        <width>251</width>
        <height>111</height>
       </rect>
@@ -9036,7 +9715,7 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>840</x>
-       <y>580</y>
+       <y>590</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -9081,9 +9760,9 @@ Normal Operation Arguments</string>
      <widget class="QTableWidget" name="tableWidget_6">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>12</x>
         <y>120</y>
-        <width>581</width>
+        <width>597</width>
         <height>147</height>
        </rect>
       </property>
@@ -9094,7 +9773,7 @@ Normal Operation Arguments</string>
        <bool>true</bool>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::Panel</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Sunken</enum>
@@ -9123,8 +9802,11 @@ Normal Operation Arguments</string>
       <property name="selectionBehavior">
        <enum>QAbstractItemView::SelectItems</enum>
       </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
       <property name="gridStyle">
-       <enum>Qt::SolidLine</enum>
+       <enum>Qt::NoPen</enum>
       </property>
       <property name="sortingEnabled">
        <bool>false</bool>
@@ -9136,10 +9818,10 @@ Normal Operation Arguments</string>
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>278</number>
+       <number>297</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
        <number>25</number>
@@ -9157,7 +9839,7 @@ Normal Operation Arguments</string>
        <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderHighlightSections">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderMinimumSectionSize">
        <number>25</number>
@@ -9666,10 +10348,16 @@ Normal Operation Arguments</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>-270~400</string>
+      <string/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::Panel</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Sunken</enum>
@@ -9687,123 +10375,137 @@ Normal Operation Arguments</string>
       <enum>QAbstractItemView::SingleSelection</enum>
      </property>
      <property name="showGrid">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="gridStyle">
       <enum>Qt::SolidLine</enum>
      </property>
      <property name="wordWrap">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="cornerButtonEnabled">
       <bool>true</bool>
      </property>
      <property name="columnCount">
-      <number>3</number>
+      <number>4</number>
      </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>100</number>
      </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
      <row>
       <property name="text">
-       <string>CH01</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH02</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH03</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH04</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH05</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH06</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH07</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH08</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH09</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH10</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH101</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH102</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH103</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH104</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH105</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH106</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH107</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH108</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH109</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH110</string>
+       <string/>
       </property>
      </row>
+     <column>
+      <property name="text">
+       <string>Port</string>
+      </property>
+     </column>
      <column>
       <property name="text">
        <string>Maximum Value</string>
@@ -9821,6 +10523,14 @@ Normal Operation Arguments</string>
      </column>
      <item row="0" column="0">
       <property name="text">
+       <string>CH001</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="0" column="1">
+      <property name="text">
        <string>25</string>
       </property>
       <property name="textAlignment">
@@ -9833,7 +10543,7 @@ Normal Operation Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="0" column="1">
+     <item row="0" column="2">
       <property name="text">
        <string>K</string>
       </property>
@@ -9844,537 +10554,681 @@ Normal Operation Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="0" column="2">
+     <item row="0" column="3">
       <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="1" column="0">
       <property name="text">
-       <string/>
+       <string>CH002</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="1" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="1" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="1" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="2" column="0">
       <property name="text">
-       <string/>
+       <string>CH003</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="2" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="2" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="2" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="3" column="0">
       <property name="text">
-       <string/>
+       <string>CH004</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="3" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="3" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="3" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="4" column="0">
       <property name="text">
-       <string/>
+       <string>CH005</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="4" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="4" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="4" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="5" column="0">
       <property name="text">
-       <string/>
+       <string>CH006</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="5" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="5" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="5" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="6" column="0">
       <property name="text">
-       <string/>
+       <string>CH007</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="6" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="6" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="6" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="7" column="0">
       <property name="text">
-       <string/>
+       <string>CH008</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="7" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="7" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="7" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="8" column="0">
       <property name="text">
-       <string/>
+       <string>CH009</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="8" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="8" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="8" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="9" column="0">
       <property name="text">
-       <string/>
+       <string>CH010</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="9" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="9" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="9" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="10" column="0">
       <property name="text">
-       <string/>
+       <string>CH101</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="10" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="10" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="10" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="11" column="0">
       <property name="text">
-       <string/>
+       <string>CH102</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="11" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="11" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="11" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="12" column="0">
       <property name="text">
-       <string/>
+       <string>CH103</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="12" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="12" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="12" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="13" column="0">
       <property name="text">
-       <string/>
+       <string>CH104</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="13" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="13" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="13" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="14" column="0">
       <property name="text">
-       <string/>
+       <string>CH105</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="14" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="14" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="14" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="15" column="0">
       <property name="text">
-       <string/>
+       <string>CH106</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="15" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="15" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="15" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="16" column="0">
       <property name="text">
-       <string/>
+       <string>CH107</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="16" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="16" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="16" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="17" column="0">
       <property name="text">
-       <string/>
+       <string>CH108</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="17" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="17" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="17" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="18" column="0">
       <property name="text">
-       <string/>
+       <string>CH109</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="18" column="1">
       <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="18" column="2">
+      <property name="text">
        <string>K</string>
       </property>
       <property name="textAlignment">
@@ -10384,15 +11238,23 @@ Normal Operation Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="18" column="2">
+     <item row="18" column="3">
       <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="19" column="0">
+      <property name="text">
+       <string>CH110</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="19" column="1">
       <property name="text">
        <string/>
       </property>
@@ -10403,7 +11265,7 @@ Normal Operation Arguments</string>
        <enum>Unchecked</enum>
       </property>
      </item>
-     <item row="19" column="1">
+     <item row="19" column="2">
       <property name="text">
        <string>K</string>
       </property>
@@ -10414,12 +11276,12 @@ Normal Operation Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="19" column="2">
+     <item row="19" column="3">
       <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
     </widget>
@@ -11406,17 +12268,23 @@ Normal Operation Arguments</string>
     <widget class="QTableWidget" name="tableWidget_2">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>73</x>
        <y>390</y>
        <width>261</width>
        <height>221</height>
       </rect>
      </property>
      <property name="toolTip">
-      <string>-270~400</string>
+      <string/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::Panel</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Sunken</enum>
@@ -11434,123 +12302,137 @@ Normal Operation Arguments</string>
       <enum>QAbstractItemView::SingleSelection</enum>
      </property>
      <property name="showGrid">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="gridStyle">
       <enum>Qt::SolidLine</enum>
      </property>
      <property name="wordWrap">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="cornerButtonEnabled">
       <bool>true</bool>
      </property>
      <property name="columnCount">
-      <number>3</number>
+      <number>4</number>
      </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>100</number>
      </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
      <row>
       <property name="text">
-       <string>CH01</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH02</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH03</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH04</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH05</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH06</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH07</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH08</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH09</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH10</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH101</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH102</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH103</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH104</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH105</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH106</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH107</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH108</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH109</string>
+       <string/>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>CH110</string>
+       <string/>
       </property>
      </row>
+     <column>
+      <property name="text">
+       <string>Port</string>
+      </property>
+     </column>
      <column>
       <property name="text">
        <string>Maximum Value</string>
@@ -11568,6 +12450,14 @@ Normal Operation Arguments</string>
      </column>
      <item row="0" column="0">
       <property name="text">
+       <string>CH001</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="0" column="1">
+      <property name="text">
        <string>25</string>
       </property>
       <property name="textAlignment">
@@ -11580,7 +12470,7 @@ Normal Operation Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="0" column="1">
+     <item row="0" column="2">
       <property name="text">
        <string>K</string>
       </property>
@@ -11591,537 +12481,681 @@ Normal Operation Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="0" column="2">
+     <item row="0" column="3">
       <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="1" column="0">
       <property name="text">
-       <string/>
+       <string>CH002</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="1" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="1" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="1" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="2" column="0">
       <property name="text">
-       <string/>
+       <string>CH003</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="2" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="2" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="2" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="3" column="0">
       <property name="text">
-       <string/>
+       <string>CH004</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="3" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="3" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="3" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="4" column="0">
       <property name="text">
-       <string/>
+       <string>CH005</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="4" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="4" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="4" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="5" column="0">
       <property name="text">
-       <string/>
+       <string>CH006</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="5" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="5" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="5" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="6" column="0">
       <property name="text">
-       <string/>
+       <string>CH007</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="6" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="6" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="6" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="7" column="0">
       <property name="text">
-       <string/>
+       <string>CH008</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="7" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="7" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="7" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="8" column="0">
       <property name="text">
-       <string/>
+       <string>CH009</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="8" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="8" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="8" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="9" column="0">
       <property name="text">
-       <string/>
+       <string>CH010</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="9" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="9" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="9" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="10" column="0">
       <property name="text">
-       <string/>
+       <string>CH101</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="10" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="10" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="10" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="11" column="0">
       <property name="text">
-       <string/>
+       <string>CH102</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="11" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="11" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="11" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="12" column="0">
       <property name="text">
-       <string/>
+       <string>CH103</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="12" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="12" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="12" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="13" column="0">
       <property name="text">
-       <string/>
+       <string>CH104</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="13" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="13" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="13" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="14" column="0">
       <property name="text">
-       <string/>
+       <string>CH105</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="14" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="14" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="14" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="15" column="0">
       <property name="text">
-       <string/>
+       <string>CH106</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="15" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="15" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="15" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="16" column="0">
       <property name="text">
-       <string/>
+       <string>CH107</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="16" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="16" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="16" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="17" column="0">
       <property name="text">
-       <string/>
+       <string>CH108</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="17" column="1">
       <property name="text">
-       <string>K</string>
+       <string/>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
       </property>
-      <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      <property name="checkState">
+       <enum>Unchecked</enum>
       </property>
      </item>
      <item row="17" column="2">
       <property name="text">
+       <string>K</string>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="flags">
+       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="17" column="3">
+      <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="18" column="0">
       <property name="text">
-       <string/>
+       <string>CH109</string>
       </property>
-      <property name="textAlignment">
-       <set>AlignCenter</set>
-      </property>
-      <property name="checkState">
-       <enum>Unchecked</enum>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="18" column="1">
       <property name="text">
+       <string/>
+      </property>
+      <property name="textAlignment">
+       <set>AlignCenter</set>
+      </property>
+      <property name="checkState">
+       <enum>Unchecked</enum>
+      </property>
+     </item>
+     <item row="18" column="2">
+      <property name="text">
        <string>K</string>
       </property>
       <property name="textAlignment">
@@ -12131,15 +13165,23 @@ Normal Operation Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="18" column="2">
+     <item row="18" column="3">
       <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
      <item row="19" column="0">
+      <property name="text">
+       <string>CH110</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsEnabled</set>
+      </property>
+     </item>
+     <item row="19" column="1">
       <property name="text">
        <string/>
       </property>
@@ -12150,7 +13192,7 @@ Normal Operation Arguments</string>
        <enum>Unchecked</enum>
       </property>
      </item>
-     <item row="19" column="1">
+     <item row="19" column="2">
       <property name="text">
        <string>K</string>
       </property>
@@ -12161,12 +13203,12 @@ Normal Operation Arguments</string>
        <set>ItemIsUserCheckable|ItemIsEnabled</set>
       </property>
      </item>
-     <item row="19" column="2">
+     <item row="19" column="3">
       <property name="text">
        <string/>
       </property>
       <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsEnabled</set>
       </property>
      </item>
     </widget>

@@ -44,7 +44,7 @@ TitleBar::TitleBar(QWidget *parent, int flags) : QWidget(parent), flag(flags)
     mCloseButton->setStyleSheet(TITLE_CLOSEBUTTON_STYLE);
 
     mMinimizeButton->setText("-");
-    mMaximizeButton->setText("O");
+    mMaximizeButton->setText("+");
     mRestoreButton->setText("=");
     mCloseButton->setText("X");
 
@@ -64,7 +64,7 @@ TitleBar::TitleBar(QWidget *parent, int flags) : QWidget(parent), flag(flags)
     hBoxLayout->addWidget(mMaximizeButton);
     hBoxLayout->addWidget(mRestoreButton);
     hBoxLayout->addWidget(mCloseButton);
-    hBoxLayout->setSpacing(1);
+    hBoxLayout->setSpacing(0);
     hBoxLayout->setContentsMargins(0, 0, 0, 0);
 
     if (flags) {

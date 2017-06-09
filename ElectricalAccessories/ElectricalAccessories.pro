@@ -61,7 +61,8 @@ HEADERS  += widget.h \
     registrationcode.h \
     temperaturerisedialog.h \
     titlebar.h \
-    helpWidget/helpwidget.h
+    helpWidget/helpwidget.h \
+    nofocusdelegate.h
 
 FORMS    += widget.ui \
     formdisplay.ui \
@@ -77,7 +78,7 @@ DEPENDPATH += $$PWD/.
 
 TRANSLATIONS += zh_CN.ts
 
-win32:QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
+#win32:QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
 
 RC_ICONS = EATA.ico
 

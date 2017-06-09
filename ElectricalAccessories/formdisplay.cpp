@@ -3,6 +3,7 @@
 #include "qmessagewidget.h"
 #include "Collect.h"
 #include "pathdialog.h"
+#include "nofocusdelegate.h"
 
 #include <QMessageBox>
 #include <QFile>
@@ -58,11 +59,12 @@ FormDisplay::FormDisplay(QWidget *parent) :
     //clause 19
     ui->label_tempIm->hide();
     ui->lineEdit_tempIm->hide();
-    ui->tableWidget_temp->setColumnWidth(1, 44);
-    ui->tableWidget_temp->setColumnWidth(2, 50);
+    ui->tableWidget_temp->setColumnWidth(0, 47);
+    ui->tableWidget_temp->setColumnWidth(2, 40);
+    ui->tableWidget_temp->setColumnWidth(3, 56);
     ui->toolButton_save19->setEnabled(false);
     ui->tableWidget_3->horizontalHeader()->setVisible(true);
-    ui->tableWidget_3->verticalHeader()->setVisible(true);
+    ui->tableWidget_3->setItemDelegate(new NoFocusDelegate());
     ui->lineEdit_tempVn_t->setReadOnly(true);
     ui->lineEdit_tempIn_t->setReadOnly(true);
 //    ui->tableWidget_temp->setColumnWidth(2, 40);
@@ -73,18 +75,20 @@ FormDisplay::FormDisplay(QWidget *parent) :
     //clause 21
     ui->toolButton_save21->setEnabled(false);
     ui->tableWidget_4->horizontalHeader()->setVisible(true);
-    ui->tableWidget_4->verticalHeader()->setVisible(true);
+    ui->tableWidget_4->setItemDelegate(new NoFocusDelegate());
 
     //clause 22
-    ui->tableWidget_normalTemp->setColumnWidth(1, 44);
-    ui->tableWidget_normalTemp->setColumnWidth(2, 50);
+    ui->tableWidget_normalTemp->setColumnWidth(0, 47);
+    ui->tableWidget_normalTemp->setColumnWidth(2, 40);
+    ui->tableWidget_normalTemp->setColumnWidth(3, 56);
     ui->toolButton_save22->setEnabled(false);
     ui->tableWidget_5->horizontalHeader()->setVisible(true);
-    ui->tableWidget_5->verticalHeader()->setVisible(true);
+    ui->tableWidget_5->setItemDelegate(new NoFocusDelegate());
 
     //clause 19_2
-    ui->tableWidget_temp_2->setColumnWidth(1, 44);
-    ui->tableWidget_temp_2->setColumnWidth(2, 50);
+    ui->tableWidget_temp_2->setColumnWidth(0, 47);
+    ui->tableWidget_temp_2->setColumnWidth(2, 40);
+    ui->tableWidget_temp_2->setColumnWidth(3, 56);
     ui->toolButton_save19_2->setEnabled(false);
 
     //clause 20_2
@@ -94,12 +98,14 @@ FormDisplay::FormDisplay(QWidget *parent) :
     ui->toolButton_save21_2->setEnabled(false);
 
     //auto
-    ui->tableWidget->setColumnWidth(1, 44);
-    ui->tableWidget->setColumnWidth(2, 50);
-    ui->tableWidget_2->setColumnWidth(1, 44);
-    ui->tableWidget_2->setColumnWidth(2, 50);
+    ui->tableWidget->setColumnWidth(0, 47);
+    ui->tableWidget->setColumnWidth(2, 40);
+    ui->tableWidget->setColumnWidth(3, 56);
+    ui->tableWidget_2->setColumnWidth(0, 47);
+    ui->tableWidget_2->setColumnWidth(2, 40);
+    ui->tableWidget_2->setColumnWidth(3, 56);
     ui->tableWidget_6->horizontalHeader()->setVisible(true);
-    ui->tableWidget_6->verticalHeader()->setVisible(true);
+    ui->tableWidget_6->setItemDelegate(new NoFocusDelegate());
 
     //small message
     mMessage = new QMessageWidget(this);
@@ -1325,10 +1331,10 @@ void FormDisplay::clause19_out(QIODevice *device)
             << '\n' << t2;
         for (int i = 0; i<20; i++)
         {
-            mItemTextList << ui->tableWidget_temp_2->item(i, 0)->text();
-            out << '\n' << this->isChecked(ui->tableWidget_temp_2->item(i, 0))
+            mItemTextList << ui->tableWidget_temp_2->item(i, 1)->text();
+            out << '\n' << this->isChecked(ui->tableWidget_temp_2->item(i, 1))
                 << mItemTextList.at(i)
-                << "#" << ui->tableWidget_temp_2->item(i, 2)->text();
+                << "#" << ui->tableWidget_temp_2->item(i, 3)->text();
         }
         break;
     }
@@ -1352,10 +1358,10 @@ void FormDisplay::clause19_out(QIODevice *device)
             << '\n' << t2;
         for (int i = 0; i<20; i++)
         {
-            mItemTextList << ui->tableWidget_temp->item(i, 0)->text();
-            out << '\n' << this->isChecked(ui->tableWidget_temp->item(i, 0))
+            mItemTextList << ui->tableWidget_temp->item(i, 1)->text();
+            out << '\n' << this->isChecked(ui->tableWidget_temp->item(i, 1))
                 << mItemTextList.at(i)
-                << "#" << ui->tableWidget_temp->item(i, 2)->text();
+                << "#" << ui->tableWidget_temp->item(i, 3)->text();
         }
         break;
     }
@@ -1452,10 +1458,10 @@ void FormDisplay::clause22_out(QIODevice *device)
         << '\n' << t2;
     for (int i = 0; i<20; i++)
     {
-        mItemTextList << ui->tableWidget_normalTemp->item(i, 0)->text();
-        out << '\n' << this->isChecked(ui->tableWidget_normalTemp->item(i, 0))
+        mItemTextList << ui->tableWidget_normalTemp->item(i, 1)->text();
+        out << '\n' << this->isChecked(ui->tableWidget_normalTemp->item(i, 1))
             << mItemTextList.at(i)
-            << "#" << ui->tableWidget_normalTemp->item(i, 2)->text();
+            << "#" << ui->tableWidget_normalTemp->item(i, 3)->text();
     }
 }
 
@@ -1482,11 +1488,11 @@ void FormDisplay::clause19_in(QIODevice *device)
         {
             QString str = in.readLine();
 
-            if (str.left(1).toInt())ui->tableWidget_temp_2->item(i, 0)->setCheckState(Qt::Checked);
-            else ui->tableWidget_temp_2->item(i, 0)->setCheckState(Qt::Unchecked);
+            if (str.left(1).toInt())ui->tableWidget_temp_2->item(i, 1)->setCheckState(Qt::Checked);
+            else ui->tableWidget_temp_2->item(i, 1)->setCheckState(Qt::Unchecked);
 
-            ui->tableWidget_temp_2->item(i, 0)->setText(str.mid(1, str.indexOf("#")-1));
-            ui->tableWidget_temp_2->item(i, 2)->setText(str.mid(str.indexOf("#")+1));
+            ui->tableWidget_temp_2->item(i, 1)->setText(str.mid(1, str.indexOf("#")-1));
+            ui->tableWidget_temp_2->item(i, 3)->setText(str.mid(str.indexOf("#")+1));
         }
         break;
     }
@@ -1514,11 +1520,11 @@ void FormDisplay::clause19_in(QIODevice *device)
         {
             QString str = in.readLine();
 
-            if (str.left(1).toInt()) ui->tableWidget_temp->item(i, 0)->setCheckState(Qt::Checked);
-            else ui->tableWidget_temp->item(i, 0)->setCheckState(Qt::Unchecked);
+            if (str.left(1).toInt()) ui->tableWidget_temp->item(i, 1)->setCheckState(Qt::Checked);
+            else ui->tableWidget_temp->item(i, 1)->setCheckState(Qt::Unchecked);
 
-            ui->tableWidget_temp->item(i, 0)->setText(str.mid(1, str.indexOf("#")-1));
-            ui->tableWidget_temp->item(i, 2)->setText(str.mid(str.indexOf("#")+1));
+            ui->tableWidget_temp->item(i, 1)->setText(str.mid(1, str.indexOf("#")-1));
+            ui->tableWidget_temp->item(i, 3)->setText(str.mid(str.indexOf("#")+1));
         }
         break;
     }
@@ -1623,13 +1629,13 @@ void FormDisplay::clause22_in(QIODevice *device)
         QString str = in.readLine();
 
         if (str.left(1).toInt()) {
-            ui->tableWidget_normalTemp->item(i, 0)->setCheckState(Qt::Checked);
+            ui->tableWidget_normalTemp->item(i, 1)->setCheckState(Qt::Checked);
         } else {
-            ui->tableWidget_normalTemp->item(i, 0)->setCheckState(Qt::Unchecked);
+            ui->tableWidget_normalTemp->item(i, 1)->setCheckState(Qt::Unchecked);
         }
 
-        ui->tableWidget_normalTemp->item(i, 0)->setText(str.mid(1, str.indexOf("#")-1));
-        ui->tableWidget_normalTemp->item(i, 2)->setText(str.mid(str.indexOf("#")+1));
+        ui->tableWidget_normalTemp->item(i, 1)->setText(str.mid(1, str.indexOf("#")-1));
+        ui->tableWidget_normalTemp->item(i, 3)->setText(str.mid(str.indexOf("#")+1));
     }
 }
 
@@ -1650,10 +1656,10 @@ void FormDisplay::clause19_clear()
     for (int i = 0; i < 20; i++)
     {
         if (i > 0) {
-            ui->tableWidget_temp->item(i, 0)->setCheckState(Qt::Unchecked);
-            ui->tableWidget_temp->item(i, 0)->setText("");
+            ui->tableWidget_temp->item(i, 1)->setCheckState(Qt::Unchecked);
+            ui->tableWidget_temp->item(i, 1)->setText("");
         }
-        ui->tableWidget_temp->item(i, 2)->setText("");
+        ui->tableWidget_temp->item(i, 3)->setText("");
     }
 }
 
@@ -1697,10 +1703,10 @@ void FormDisplay::clause22_clear()
     for (int i = 0; i < 20; i++)
     {
         if (i > 0) {
-            ui->tableWidget_normalTemp->item(i, 0)->setCheckState(Qt::Unchecked);
-            ui->tableWidget_normalTemp->item(i, 0)->setText("");
+            ui->tableWidget_normalTemp->item(i, 1)->setCheckState(Qt::Unchecked);
+            ui->tableWidget_normalTemp->item(i, 1)->setText("");
         }
-        ui->tableWidget_normalTemp->item(i, 2)->setText("");
+        ui->tableWidget_normalTemp->item(i, 3)->setText("");
     }
 }
 
@@ -1717,10 +1723,10 @@ void FormDisplay::clause19_2_clear()
     for (int i = 0; i < 20; i++)
     {
         if (i > 0) {
-            ui->tableWidget_temp_2->item(i, 0)->setCheckState(Qt::Unchecked);
-            ui->tableWidget_temp_2->item(i, 0)->setText("");
+            ui->tableWidget_temp_2->item(i, 1)->setCheckState(Qt::Unchecked);
+            ui->tableWidget_temp_2->item(i, 1)->setText("");
         }
-        ui->tableWidget_temp_2->item(i, 2)->setText("");
+        ui->tableWidget_temp_2->item(i, 3)->setText("");
     }
 }
 
@@ -1756,10 +1762,10 @@ void FormDisplay::IEC320_clear()
     for (int i = 0; i < 20; i++)
     {
         if (i > 0) {
-            ui->tableWidget->item(i, 0)->setCheckState(Qt::Unchecked);
-            ui->tableWidget_2->item(i, 0)->setText("");
+            ui->tableWidget_2->item(i, 1)->setCheckState(Qt::Unchecked);
+            ui->tableWidget_2->item(i, 1)->setText("");
         }
-        ui->tableWidget_2->item(i, 2)->setText("");
+        ui->tableWidget_2->item(i, 3)->setText("");
     }
     ui->tableWidget_2->scrollToTop();
 
@@ -1791,10 +1797,10 @@ void FormDisplay::IEC884_clear()
     for (int i = 0; i < 20; i++)
     {
         if (i > 0) {
-            ui->tableWidget->item(i, 0)->setCheckState(Qt::Unchecked);
-            ui->tableWidget->item(i, 0)->setText("");
+            ui->tableWidget->item(i, 1)->setCheckState(Qt::Unchecked);
+            ui->tableWidget->item(i, 1)->setText("");
         }
-        ui->tableWidget->item(i, 2)->setText("");
+        ui->tableWidget->item(i, 3)->setText("");
     }
     ui->tableWidget->scrollToTop();
 
@@ -1881,8 +1887,6 @@ void FormDisplay::on_toolButton_save22_clicked()
 
 void FormDisplay::on_pushButton_login1_clicked()
 {
-    auto list = this->children();
-    qDebug() << list;
     mPlug = IEC60320;
     enterMain();
 }
