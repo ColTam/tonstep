@@ -34,16 +34,108 @@
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget {background-color: rgb(255, 255, 255);}
+    <string notr="true">QWidget {background-color: #FFFFFF;}
 
 QLineEdit{
+	border: 1px solid #727272;
+	border-radius: 3px;
+	min-height: 19px;
 	selection-color:rgb(240,240,240);
 	selection-background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
 }
 
+QPushButton 
+{
+	color: #F0F0F0;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
+    border: 1px solid #727272;
+    border-bottom-width:1px;
+    border-radius: 4px;
+}
+
+QPushButton:hover
+{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);
+    border-bottom-color: #F46320;
+    border-bottom-width: 2px;
+}
+
+QPushButton:pressed 
+{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
+    border-bottom-color: #727272;
+    border-bottom-width: 1px;
+}
+
+QPushButton:!enabled 
+{
+    color: #ADADAD;
+}
+
+QToolButton 
+{
+	  color: #F0F0F0;
+      background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
+      border: 1px solid #727272;
+      border-bottom-width:1px;
+      border-radius: 4px;
+}
+
+QToolButton:hover
+{
+      background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);
+      border-bottom-color: #F46320;
+      border-bottom-width: 2px;
+}
+
+QToolButton:pressed 
+{
+      background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
+      border-bottom-color: #727272;
+      border-bottom-width: 1px;
+}
+
+QToolButton:!enabled 
+{
+      color: #ADADAD;
+}
+
+QToolButton#toolButton_close{
+	border: none;
+	border-radius: 0px;
+	background: #FAFAFA;
+	image:url(:/icon/icon/return.png);
+}
+
+QToolButton#toolButton_close:hover{
+	background: #E7E7E7;
+	border-bottom: 2px solid #F46320;
+}
+
+QToolButton#toolButton_close:pressed{
+	background: #FDFDFD;
+}
+
+QToolButton#toolButton{
+	border: none;
+	border-left: 1px solid #727272;
+	border-radius: 0px;
+	color: black;
+	background: #FAFAFA;
+}
+
+QToolButton#toolButton:hover{
+	background: #E7E7E7;
+	border-bottom: 2px solid #F46320;
+}
+
+QToolButton#toolButton:pressed{
+	background: #FDFDFD;
+}
+
 QTableWidget {
-	border: 1px solid #585858;
-	border-left: 2px solid #585858;
+	border: 1px solid #727272;
+	border-left: 2px solid #727272;
 	border-radius: 3px;
 	selection-color:#F0F0F0;
 	selection-background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
@@ -59,13 +151,14 @@ QTableView::indicator:unchecked:hover {
 
 QTableWidget::item{
 	border:none;   
-	border-right: 1px solid #434343;
-    border-bottom: 1px solid #434343;
+	border-right: 1px solid #545454;
+    border-bottom: 1px solid #545454;
+	background: #FFFFFF;
 }
 
 QTableWidget::item:hover{
 	color:#F0F0F0;
-	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #525252);
+	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #545454);
 }
 
 QTableWidget::item:selected{
@@ -74,75 +167,138 @@ QTableWidget::item:selected{
 }
 
 QHeaderView::section{
-	border:1px solid #585858;
+	border:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:0.5 #646464, stop:1 #545454);;
 	padding: 3px;
 	color:#F0F0F0;
-	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #525252);
+	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:0.5 #646464, stop:1 #545454);
 }
 
-
 QScrollBar:vertical {
-    width: 15px;
-    background: transparent;
-	margin: 15px 0 15px 0;
+    width: 13px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #545454, stop:1 #646464);
+	margin: 13px 0 13px 0;
 }
 
 QScrollBar::handle:vertical {
-    width: 15px;
+    width: 13px;
     min-height: 30px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #646464, stop:1 #525252);
+	border-radius: 4px;
+	margin-left:2px;
+	margin-right:2px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #AAAAAA, stop:1 #7B7B7B);
 }
 
 QScrollBar::handle:vertical:hover {
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #383838);
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #9C9C9C, stop:1 #6D6D6D);
 }
 
 QScrollBar::sub-line:vertical {
-	height: 15px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #646464, stop:1 #525252);
-    image: url(:/icon/icon/up_arrow.png);
+	height: 13px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #545454, stop:1 #646464);
+    image: url(:/icon/icon/arrow_up.png);
     subcontrol-position: top;
 	subcontrol-origin: margin;
+	padding-top:5px;
+	padding-bottom:5px;
 }
 
 QScrollBar::add-line:vertical {
-    height: 15px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #646464, stop:1 #525252);
-    image: url(:/icon/icon/down_arrow.png);
+    height: 13px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #545454, stop:1 #646464);
+    image: url(:/icon/icon/arrow_down.png);
     subcontrol-position: bottom;
     subcontrol-origin: margin;
+	padding-top:5px;
+	padding-bottom:5px;
 }
 
 QScrollBar::sub-line:vertical:hover {
-    background: rgb(68, 69, 73);
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #585858);
 }
 
 QScrollBar::add-line:vertical:hover {
-    background: rgb(68, 69, 73);
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #585858);
 }
 
 QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
     background: transparent;
 }
 
+QScrollBar:horizontal {
+    height: 13px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:1 #646464);
+	margin: 0 13px 0 13px;
+}
+
+QScrollBar::handle:horizontal {
+    height: 13px;
+    min-width: 30px;
+	border-radius: 4px;
+	margin-top:2px;
+	margin-bottom:2px;
+	margin-left: 10px;
+	margin-right: 10px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #AAAAAA, stop:1 #7B7B7B);
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #9C9C9C, stop:1 #6D6D6D);
+}
+
+QScrollBar::sub-line:horizontal {
+	width: 13px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:1 #646464);
+    image: url(:/icon/icon/arrow_left.png);
+    subcontrol-position: left;
+	subcontrol-origin: margin;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+QScrollBar::add-line:horizontal {
+    width: 13px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:1 #646464);
+    image: url(:/icon/icon/arrow_right.png);
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+QScrollBar::sub-line:horizontal:hover {
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #585858, stop:1 #484848);
+}
+
+QScrollBar::add-line:horizontal:hover {
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #585858, stop:1 #484848);
+}
+
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    background: transparent;
+}
+
 #page_login {border-image: url(:/image/image/wlite.jpg);}
-#page_main {border-image: url(:/image/);}
+/*#page_main {border-image: url(:/image/);}
 #page_19 {border-image: url(:/image/);}
 #page_20 {border-image: url(:/image/);}
 #page_21 {border-image: url(:/image/);}
-#page_22 {border-image: url(:/image/);}
+#page_22 {border-image: url(:/image/);}*/
 
 QGroupBox {
-border:1px solid rgb(130,135,144);
+border:1px solid #727272;
 border-radius: 5px;
-margin-top: 1.5ex;}
+margin-top: 1.5ex;
+}
 
 QGroupBox::title { 
 subcontrol-origin: margin;
 subcontrol-position: top left;
 left:10px;      
 margin-left: 0px;
-padding:0 1px;}
+padding:0 1px;
+}
 
 QGroupBox::{}
 
@@ -158,13 +314,13 @@ QGroupBox::{}
     <number>1</number>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QGroupBox" name="groupBox_login">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>180</x>
        <y>260</y>
        <width>301</width>
        <height>181</height>
@@ -180,8 +336,8 @@ QGroupBox::{}
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">#groupBox_login {background: rgba(20,20,20,20%);}
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true">QGroupBox#groupBox_login {background: rgba(70,70,70,30%);}
+QGroupBox#groupBox_login:: {background-color: rgb();}</string>
      </property>
      <property name="title">
       <string>Login</string>
@@ -199,6 +355,12 @@ QGroupBox::{}
        <font>
         <pointsize>10</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+QLabel {
+	background: transparent;
+}</string>
       </property>
       <property name="text">
        <string>Project ID：</string>
@@ -253,16 +415,7 @@ QGroupBox::{}
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton {
-background-color: rgb(140, 140, 140);}
-
-QPushButton:hover {  
-color: rgb(255,255,255);
-background-color: rgb(165, 165, 165);}
-
-QPushButton:pressed {  
-color: rgb(255,255,255);
-background-color: rgb(147, 147, 147);}</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>IEC:60320</string>
@@ -287,16 +440,7 @@ background-color: rgb(147, 147, 147);}</string>
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton {
-background-color: rgb(140, 140, 140);}
-
-QPushButton:hover {  
-color: rgb(255,255,255);
-background-color: rgb(165, 165, 165);}
-
-QPushButton:pressed {  
-color: rgb(255,255,255);
-background-color: rgb(147, 147, 147);}</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>IEC:60884</string>
@@ -325,13 +469,17 @@ background-color: rgb(147, 147, 147);}</string>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton#pushButton_6 {
-	border: 1px solid rgb(170,170,170);
+	border: 1px solid #AAAAAA;
+	border-top-color: #727272;
+	border-right-color: #727272;
+	border-radius: 0px;
+	border-top-right-radius: 4px;
+	border-bottom-left-radius: 4px;
 	height: 21px;
 	width: 21px;
     background: rgb(225,225,225);
-    image:url(:/icon/icon/up_arrow2.png);
-    subcontrol-position: top;
-	subcontrol-origin: margin;
+    /*image:url(:/icon/icon/up_arrow2.png);*/
+	image: url(:/icon/icon/arrow_down_black.png);
 }
 
 QPushButton#pushButton_6:hover {
@@ -348,6 +496,11 @@ QPushButton::menu-indicator{image:none;}</string>
        <string/>
       </property>
      </widget>
+     <zorder>pushButton_6</zorder>
+     <zorder>label_itemId</zorder>
+     <zorder>lineEdit_itemId</zorder>
+     <zorder>pushButton_login1</zorder>
+     <zorder>pushButton_login2</zorder>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
@@ -360,7 +513,7 @@ QPushButton::menu-indicator{image:none;}</string>
      </property>
      <property name="styleSheet">
       <string notr="true">background: transparent;
-border-image: url(:/image/image/SGS.jpg);</string>
+border-image: url(:/image/image/SGS.png);</string>
      </property>
      <property name="text">
       <string/>
@@ -433,7 +586,7 @@ color:#323232;</string>
        <x>0</x>
        <y>0</y>
        <width>51</width>
-       <height>31</height>
+       <height>33</height>
       </rect>
      </property>
      <property name="font">
@@ -442,20 +595,10 @@ color:#323232;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">QToolButton {
-color: rgb(230,230,230);
-background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(64, 66, 68, 245), stop:1 rgba(192, 192, 192, 255));}
-
-QToolButton:hover {  
-color: rgb(255,255,255);
-background-color: rgb(232, 17, 35);}
-
-QToolButton:pressed {  
-color: rgb(255,255,255);
-background-color: rgb(241, 112, 122);}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
-      <string>Back</string>
+      <string/>
      </property>
      <property name="autoRaise">
       <bool>true</bool>
@@ -464,17 +607,49 @@ background-color: rgb(241, 112, 122);}</string>
     <widget class="QTabWidget" name="tabWidget">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>30</y>
-       <width>960</width>
-       <height>664</height>
+       <x>-1</x>
+       <y>33</y>
+       <width>961</width>
+       <height>661</height>
       </rect>
      </property>
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QTabWidget::pane {
+	border: none;
+	border-top: 1px solid #727272;
+	border-right: 2px solid #727272;
+}
+
+QTabWidget::tab-bar {
+    border: none;
+}
+QTabBar::tab {
+    border: none;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    color: #E0E0E0;
+	background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #525252);
+    height: 80px;
+    width: 20px;
+    margin-right: 3px;
+	margin-bottom: 1px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+QTabBar::tab:hover {
+    border-left: 1px solid #fd6228;
+	background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
+}
+QTabBar::tab:selected {
+	width:23px;
+    color: #F0F0F0;
+    border-left: 2px solid #fd6228;
+	background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
+}
+</string>
      </property>
      <property name="tabPosition">
       <enum>QTabWidget::East</enum>
@@ -637,14 +812,7 @@ border-radius: 5px;}</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QToolButton {
- background-color: rgb(184, 184, 184);} 
-
-QToolButton:hover { 
-background-color: rgb(199, 199, 199);}
-
-QToolButton:pressed { 
-background-color: rgb(155, 155, 155);}</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string>GroupBox</string>
@@ -910,14 +1078,7 @@ border-radius: 5px;}</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QToolButton {
- background-color: rgb(184, 184, 184);} 
-
-QToolButton:hover { 
-background-color: rgb(199, 199, 199);}
-
-QToolButton:pressed { 
-background-color: rgb(155, 155, 155);}</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string>GroupBox</string>
@@ -1180,14 +1341,14 @@ border-radius: 5px;}</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QToolButton {
+        <string notr="true">/*QToolButton {
  background-color: rgb(184, 184, 184);} 
 
 QToolButton:hover { 
 background-color: rgb(199, 199, 199);}
 
 QToolButton:pressed { 
-background-color: rgb(155, 155, 155);}</string>
+background-color: rgb(155, 155, 155);}*/</string>
        </property>
        <property name="title">
         <string>GroupBox</string>
@@ -1322,6 +1483,16 @@ background-color: rgb(155, 155, 155);}</string>
          <width>271</width>
          <height>311</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+QLineEdit {
+	border: none;
+	border-bottom: 1px solid #727272;
+	border-radius: 0px;
+	border-bottom-right-radius: 2px;
+	padding-left: 5px;
+}</string>
        </property>
        <property name="title">
         <string/>
@@ -1582,6 +1753,9 @@ background-color: rgb(155, 155, 155);}</string>
            <height>20</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
@@ -1699,7 +1873,7 @@ background-color: rgb(155, 155, 155);}</string>
           <x>90</x>
           <y>80</y>
           <width>191</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="alignment">
@@ -1824,7 +1998,7 @@ background-color: rgb(155, 155, 155);}</string>
           <x>90</x>
           <y>80</y>
           <width>191</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="alignment">
@@ -1978,7 +2152,7 @@ background-color: rgb(155, 155, 155);}</string>
           <x>90</x>
           <y>80</y>
           <width>191</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="alignment">
@@ -2054,8 +2228,8 @@ background-color: rgb(155, 155, 155);}</string>
       <rect>
        <x>50</x>
        <y>0</y>
-       <width>42</width>
-       <height>30</height>
+       <width>51</width>
+       <height>33</height>
       </rect>
      </property>
      <property name="font">
@@ -2073,9 +2247,6 @@ background-color: rgb(155, 155, 155);}</string>
       <bool>true</bool>
      </property>
     </widget>
-    <zorder>toolButton</zorder>
-    <zorder>toolButton_close</zorder>
-    <zorder>tabWidget</zorder>
    </widget>
    <widget class="QWidget" name="page_19">
     <widget class="QToolButton" name="toolButton_close_19">
@@ -2181,6 +2352,9 @@ background-color: rgb(155, 155, 155);}</string>
       </property>
       <property name="acceptDrops">
        <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <property name="acceptRichText">
        <bool>false</bool>
@@ -2330,9 +2504,9 @@ Temperature Rise Arguments</string>
      <property name="geometry">
       <rect>
        <x>630</x>
-       <y>240</y>
+       <y>210</y>
        <width>261</width>
-       <height>291</height>
+       <height>321</height>
       </rect>
      </property>
      <property name="toolTip">
@@ -3273,33 +3447,6 @@ Temperature Rise Arguments</string>
       </property>
      </item>
     </widget>
-    <widget class="QToolButton" name="toolButton_tempMaxValue">
-     <property name="geometry">
-      <rect>
-       <x>640</x>
-       <y>160</y>
-       <width>241</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-      </font>
-     </property>
-     <property name="toolTip">
-      <string>C</string>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string>Upper Of Temperature Rise</string>
-     </property>
-     <property name="autoRaise">
-      <bool>false</bool>
-     </property>
-    </widget>
     <widget class="QGroupBox" name="groupBox_17">
      <property name="geometry">
       <rect>
@@ -3610,6 +3757,9 @@ Temperature Rise Arguments</string>
          <property name="toolTip">
           <string>H</string>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
@@ -3705,9 +3855,9 @@ Temperature Rise Arguments</string>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>640</x>
-       <y>201</y>
-       <width>241</width>
+       <x>630</x>
+       <y>170</y>
+       <width>261</width>
        <height>31</height>
       </rect>
      </property>
@@ -3819,7 +3969,7 @@ Temperature Rise Arguments</string>
        <x>130</x>
        <y>160</y>
        <width>691</width>
-       <height>141</height>
+       <height>151</height>
       </rect>
      </property>
      <property name="font">
@@ -3841,7 +3991,7 @@ Temperature Rise Arguments</string>
         <x>199</x>
         <y>20</y>
         <width>481</width>
-        <height>118</height>
+        <height>122</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_36">
@@ -3923,7 +4073,7 @@ Temperature Rise Arguments</string>
         <x>10</x>
         <y>20</y>
         <width>171</width>
-        <height>111</height>
+        <height>121</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_35">
@@ -3997,7 +4147,7 @@ Temperature Rise Arguments</string>
        <x>130</x>
        <y>320</y>
        <width>691</width>
-       <height>211</height>
+       <height>221</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -4025,7 +4175,7 @@ Temperature Rise Arguments</string>
         <x>10</x>
         <y>20</y>
         <width>171</width>
-        <height>181</height>
+        <height>191</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_38">
@@ -4121,7 +4271,7 @@ Temperature Rise Arguments</string>
         <x>199</x>
         <y>20</y>
         <width>481</width>
-        <height>182</height>
+        <height>191</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_37">
@@ -5196,30 +5346,6 @@ After the Operation Temperature Rise Arguments</string>
       </layout>
      </widget>
     </widget>
-    <widget class="QToolButton" name="toolButton_normalTempMaxValue">
-     <property name="geometry">
-      <rect>
-       <x>640</x>
-       <y>160</y>
-       <width>241</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string>Upper Of Temperature Rise</string>
-     </property>
-     <property name="autoRaise">
-      <bool>false</bool>
-     </property>
-    </widget>
     <widget class="QGroupBox" name="groupBox_22">
      <property name="geometry">
       <rect>
@@ -5577,9 +5703,9 @@ After the Operation Temperature Rise Arguments</string>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>640</x>
-       <y>200</y>
-       <width>241</width>
+       <x>630</x>
+       <y>170</y>
+       <width>261</width>
        <height>31</height>
       </rect>
      </property>
@@ -5619,9 +5745,9 @@ After the Operation Temperature Rise Arguments</string>
      <property name="geometry">
       <rect>
        <x>630</x>
-       <y>240</y>
+       <y>210</y>
        <width>261</width>
-       <height>291</height>
+       <height>321</height>
       </rect>
      </property>
      <property name="toolTip">
@@ -6676,35 +6802,12 @@ Temperature Rise Arguments</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>160</y>
+        <y>130</y>
         <width>201</width>
-        <height>91</height>
+        <height>151</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_18">
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_tempH_2">
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>Test Time(H)：</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEdit_tempH_2">
-         <property name="toolTip">
-          <string>H</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_tempVn_2">
          <property name="styleSheet">
@@ -6718,7 +6821,20 @@ Temperature Rise Arguments</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_tempH_2">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Test Time(H)：</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
         <widget class="QLabel" name="label_tempIn_2">
          <property name="styleSheet">
           <string notr="true"/>
@@ -6731,7 +6847,17 @@ Temperature Rise Arguments</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="3" column="0">
+        <widget class="QLineEdit" name="lineEdit_tempIn_2">
+         <property name="toolTip">
+          <string>0-32(A)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
         <widget class="QLineEdit" name="lineEdit_tempVn_2">
          <property name="toolTip">
           <string>130/250/440(V)</string>
@@ -6741,10 +6867,10 @@ Temperature Rise Arguments</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_tempIn_2">
+       <item row="5" column="0">
+        <widget class="QLineEdit" name="lineEdit_tempH_2">
          <property name="toolTip">
-          <string>0-32(A)</string>
+          <string>H</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -6757,13 +6883,13 @@ Temperature Rise Arguments</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>110</y>
+        <y>60</y>
         <width>201</width>
-        <height>31</height>
+        <height>51</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="0" column="0">
         <widget class="QLabel" name="label_tempIn_t_5">
          <property name="toolTip">
           <string>A</string>
@@ -6779,7 +6905,7 @@ Temperature Rise Arguments</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="1" column="0">
         <widget class="QLineEdit" name="lineEdit_tempMaxValue2_2">
          <property name="toolTip">
           <string>130/250/440(V)</string>
@@ -6793,28 +6919,6 @@ Temperature Rise Arguments</string>
         </widget>
        </item>
       </layout>
-     </widget>
-     <widget class="QToolButton" name="toolButton_tempMaxValue_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>181</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>C</string>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>Upper Of Temperature Rise</string>
-      </property>
-      <property name="autoRaise">
-       <bool>false</bool>
-      </property>
      </widget>
      <widget class="QCheckBox" name="checkBox_temp_2">
       <property name="geometry">
@@ -8024,7 +8128,7 @@ Breake Capacity Arguments</string>
        <x>130</x>
        <y>160</y>
        <width>691</width>
-       <height>141</height>
+       <height>151</height>
       </rect>
      </property>
      <property name="font">
@@ -8046,7 +8150,7 @@ Breake Capacity Arguments</string>
         <x>200</x>
         <y>20</y>
         <width>481</width>
-        <height>118</height>
+        <height>122</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_34">
@@ -8125,7 +8229,7 @@ Breake Capacity Arguments</string>
         <x>10</x>
         <y>20</y>
         <width>171</width>
-        <height>111</height>
+        <height>121</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_33">
@@ -8196,7 +8300,7 @@ Breake Capacity Arguments</string>
        <x>130</x>
        <y>320</y>
        <width>691</width>
-       <height>211</height>
+       <height>221</height>
       </rect>
      </property>
      <property name="font">
@@ -8218,7 +8322,7 @@ Breake Capacity Arguments</string>
         <x>199</x>
         <y>20</y>
         <width>481</width>
-        <height>182</height>
+        <height>191</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_31">
@@ -8344,7 +8448,7 @@ Breake Capacity Arguments</string>
         <x>10</x>
         <y>20</y>
         <width>171</width>
-        <height>181</height>
+        <height>191</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_32">
@@ -8536,7 +8640,7 @@ Normal Operation Arguments</string>
        <x>130</x>
        <y>160</y>
        <width>691</width>
-       <height>141</height>
+       <height>151</height>
       </rect>
      </property>
      <property name="font">
@@ -8558,7 +8662,7 @@ Normal Operation Arguments</string>
         <x>200</x>
         <y>20</y>
         <width>481</width>
-        <height>118</height>
+        <height>122</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
@@ -8628,7 +8732,7 @@ Normal Operation Arguments</string>
         <x>10</x>
         <y>20</y>
         <width>171</width>
-        <height>111</height>
+        <height>121</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_22">
@@ -8699,7 +8803,7 @@ Normal Operation Arguments</string>
        <x>130</x>
        <y>320</y>
        <width>691</width>
-       <height>211</height>
+       <height>221</height>
       </rect>
      </property>
      <property name="font">
@@ -8721,7 +8825,7 @@ Normal Operation Arguments</string>
         <x>200</x>
         <y>20</y>
         <width>481</width>
-        <height>182</height>
+        <height>191</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_29">
@@ -8844,7 +8948,7 @@ Normal Operation Arguments</string>
         <x>10</x>
         <y>20</y>
         <width>171</width>
-        <height>181</height>
+        <height>191</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_23">
@@ -10237,9 +10341,9 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>670</x>
-       <y>200</y>
+       <y>193</y>
        <width>261</width>
-       <height>201</height>
+       <height>208</height>
       </rect>
      </property>
      <property name="focusPolicy">
@@ -10262,7 +10366,7 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>690</x>
-       <y>120</y>
+       <y>121</y>
        <width>221</width>
        <height>41</height>
       </rect>
@@ -10294,9 +10398,9 @@ Normal Operation Arguments</string>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>686</x>
+       <x>670</x>
        <y>162</y>
-       <width>231</width>
+       <width>261</width>
        <height>31</height>
       </rect>
      </property>
@@ -10342,9 +10446,9 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>670</x>
-       <y>200</y>
+       <y>193</y>
        <width>261</width>
-       <height>201</height>
+       <height>208</height>
       </rect>
      </property>
      <property name="toolTip">
@@ -11987,7 +12091,7 @@ Normal Operation Arguments</string>
       <rect>
        <x>70</x>
        <y>120</y>
-       <width>271</width>
+       <width>261</width>
        <height>181</height>
       </rect>
      </property>
@@ -12009,7 +12113,7 @@ Normal Operation Arguments</string>
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>251</width>
+        <width>241</width>
         <height>151</height>
        </rect>
       </property>
@@ -12174,9 +12278,9 @@ Normal Operation Arguments</string>
     <widget class="QToolButton" name="toolButton_TRCR_2">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>310</y>
-       <width>241</width>
+       <x>70</x>
+       <y>308</y>
+       <width>261</width>
        <height>41</height>
       </rect>
      </property>
@@ -12227,9 +12331,9 @@ Normal Operation Arguments</string>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>80</x>
+       <x>70</x>
        <y>350</y>
-       <width>241</width>
+       <width>261</width>
        <height>31</height>
       </rect>
      </property>
@@ -13253,7 +13357,6 @@ Normal Operation Arguments</string>
   <tabstop>checkBox_tempSwitch</tabstop>
   <tabstop>checkBox_tempIC</tabstop>
   <tabstop>lineEdit_tempIm</tabstop>
-  <tabstop>toolButton_tempMaxValue</tabstop>
   <tabstop>lineEdit_tempMaxValue2</tabstop>
   <tabstop>textEdit</tabstop>
   <tabstop>toolButton_save19</tabstop>
@@ -13274,12 +13377,9 @@ Normal Operation Arguments</string>
   <tabstop>lineEdit_normalTIn</tabstop>
   <tabstop>lineEdit_normalTH</tabstop>
   <tabstop>checkBox_normalTSwitch</tabstop>
-  <tabstop>toolButton_normalTempMaxValue</tabstop>
   <tabstop>lineEdit_normalMaxValue2</tabstop>
   <tabstop>toolButton_save22</tabstop>
   <tabstop>toolButton_close_23</tabstop>
-  <tabstop>toolButton_tempMaxValue_2</tabstop>
-  <tabstop>lineEdit_tempMaxValue2_2</tabstop>
   <tabstop>toolButton_save19_2</tabstop>
   <tabstop>toolButton_close_24</tabstop>
   <tabstop>lineEdit_breakingVn_2</tabstop>

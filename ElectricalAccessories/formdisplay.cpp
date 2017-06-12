@@ -61,7 +61,8 @@ FormDisplay::FormDisplay(QWidget *parent) :
     ui->lineEdit_tempIm->hide();
     ui->tableWidget_temp->setColumnWidth(0, 47);
     ui->tableWidget_temp->setColumnWidth(2, 40);
-    ui->tableWidget_temp->setColumnWidth(3, 56);
+    ui->tableWidget_temp->setColumnWidth(3, 58);
+    ui->tableWidget_temp->setItemDelegate(new NoFocusDelegate());
     ui->toolButton_save19->setEnabled(false);
     ui->tableWidget_3->horizontalHeader()->setVisible(true);
     ui->tableWidget_3->setItemDelegate(new NoFocusDelegate());
@@ -80,7 +81,8 @@ FormDisplay::FormDisplay(QWidget *parent) :
     //clause 22
     ui->tableWidget_normalTemp->setColumnWidth(0, 47);
     ui->tableWidget_normalTemp->setColumnWidth(2, 40);
-    ui->tableWidget_normalTemp->setColumnWidth(3, 56);
+    ui->tableWidget_normalTemp->setColumnWidth(3, 58);
+    ui->tableWidget_normalTemp->setItemDelegate(new NoFocusDelegate());
     ui->toolButton_save22->setEnabled(false);
     ui->tableWidget_5->horizontalHeader()->setVisible(true);
     ui->tableWidget_5->setItemDelegate(new NoFocusDelegate());
@@ -88,7 +90,8 @@ FormDisplay::FormDisplay(QWidget *parent) :
     //clause 19_2
     ui->tableWidget_temp_2->setColumnWidth(0, 47);
     ui->tableWidget_temp_2->setColumnWidth(2, 40);
-    ui->tableWidget_temp_2->setColumnWidth(3, 56);
+    ui->tableWidget_temp_2->setColumnWidth(3, 58);
+    ui->tableWidget_temp_2->setItemDelegate(new NoFocusDelegate());
     ui->toolButton_save19_2->setEnabled(false);
 
     //clause 20_2
@@ -100,10 +103,12 @@ FormDisplay::FormDisplay(QWidget *parent) :
     //auto
     ui->tableWidget->setColumnWidth(0, 47);
     ui->tableWidget->setColumnWidth(2, 40);
-    ui->tableWidget->setColumnWidth(3, 56);
+    ui->tableWidget->setColumnWidth(3, 58);
+    ui->tableWidget->setItemDelegate(new NoFocusDelegate());
     ui->tableWidget_2->setColumnWidth(0, 47);
     ui->tableWidget_2->setColumnWidth(2, 40);
-    ui->tableWidget_2->setColumnWidth(3, 56);
+    ui->tableWidget_2->setColumnWidth(3, 58);
+    ui->tableWidget_2->setItemDelegate(new NoFocusDelegate());
     ui->tableWidget_6->horizontalHeader()->setVisible(true);
     ui->tableWidget_6->setItemDelegate(new NoFocusDelegate());
 
@@ -130,8 +135,14 @@ FormDisplay::FormDisplay(QWidget *parent) :
     mRegistration = new RegistrationCode();
 
     popMenu = new QMenu(this);
-    popMenu->setStyleSheet("background: rgba(240,240,240,80%);"
-                           "selection-color: rgb(68,68,68);");
+    popMenu->setStyleSheet("QMenu {background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);"
+                           "border:1px solid #727272; border-radius: 3px;"
+                           "}"
+                           "QMenu::item {color: #F0F0F0;height: 21px;padding: 0px 23px 0px 10px;"
+                           "}"
+                           "QMenu::item:selected {"
+                           "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);"
+                           "}");
 
     englishAction = new QAction(this);
     englishAction->setText(tr("English"));
@@ -2242,15 +2253,6 @@ void FormDisplay::on_lineEdit_tempVn_textChanged(const QString &arg1)
     }
 }
 
-void FormDisplay::on_toolButton_tempMaxValue_clicked()
-{
-    if (ui->tableWidget_temp->isHidden()){
-        ui->tableWidget_temp->show();
-    } else{
-        ui->tableWidget_temp->hide();
-    }
-}
-
 void FormDisplay::on_lineEdit_tempIn_t_textChanged(const QString &arg1)
 {
     if (ui->stackedWidget->currentIndex() == STACKWIDGET_884AUTO) {
@@ -2912,15 +2914,6 @@ void FormDisplay::on_lineEdit_normalTIn_textChanged(const QString &arg1)
     }
 }
 
-void FormDisplay::on_toolButton_normalTempMaxValue_clicked()
-{
-    if (ui->tableWidget_normalTemp->isHidden()){
-        ui->tableWidget_normalTemp->show();
-    } else {
-        ui->tableWidget_normalTemp->hide();
-    }
-}
-
 void FormDisplay::on_lineEdit_normalTIn_t_textChanged(const QString &arg1)
 {
     if (ui->stackedWidget->currentIndex() == STACKWIDGET_884AUTO) {
@@ -3000,15 +2993,6 @@ void FormDisplay::on_tableWidget_normalTemp_cellChanged(int row, int column)
                 item->setText("400");
             }
         }
-    }
-}
-
-void FormDisplay::on_toolButton_tempMaxValue_2_clicked()
-{
-    if (ui->tableWidget_temp_2->isHidden()){
-        ui->tableWidget_temp_2->show();
-    } else {
-        ui->tableWidget_temp_2->hide();
     }
 }
 

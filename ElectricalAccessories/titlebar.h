@@ -6,10 +6,6 @@
 #define TITLE_ICON_WIDTH            33
 #define TITLE_BUTTON_WIDTH          45
 /*!* \brief  */
-#define TITLE_MINIBUTTON_STYLE      "QToolButton:hover {color: rgb(255,255,255); background-color: rgb(184,184,184);}"\
-                                    "QToolButton:pressed {color: rgb(255,255,255); background-color: rgb(155,155,155);}"
-#define TITLE_CLOSEBUTTON_STYLE     "QToolButton:hover {color: rgb(255,255,255); background-color: rgb(232,17,35);}"\
-                                    "QToolButton:pressed {color: rgb(255,255,255); background-color: rgb(241,112,122);}"
 
 #include <QWidget>
 
@@ -27,10 +23,10 @@ class TitleBar : public QWidget
 {
     Q_OBJECT
 public:             /*!* \brief flags:显示最大化按钮标识 */
-    explicit TitleBar(QWidget *parent = 0, int flags = 0);
+    explicit TitleBar(QWidget *parent, int flags = 0);
     ~TitleBar();
 
-    int flag;                   /*!* \brief 显示最大化按钮标识 */
+    const int flag;                   /*!* \brief 显示最大化按钮标识 */
 
 signals:
     void closeClicked();        /*!* \brief 窗口关闭信号 */

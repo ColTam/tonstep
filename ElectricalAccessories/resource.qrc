@@ -10,9 +10,15 @@
         <file>icon/off.png</file>
         <file>icon/return.png</file>
         <file>icon/help.png</file>
-        <file>icon/down_arrow.png</file>
-        <file>icon/up_arrow.png</file>
-        <file>icon/up_arrow2.png</file>
+        <file>icon/close.png</file>
+        <file>icon/maximize.png</file>
+        <file>icon/minimize.png</file>
+        <file>icon/restore.png</file>
+        <file>icon/arrow_down.png</file>
+        <file>icon/arrow_down_black.png</file>
+        <file>icon/arrow_left.png</file>
+        <file>icon/arrow_right.png</file>
+        <file>icon/arrow_up.png</file>
     </qresource>
     <qresource prefix="/image">
         <file>image/wlite.jpg</file>
@@ -22,6 +28,7 @@
         <file>image/help_first.png</file>
         <file>image/help_second.png</file>
         <file>image/help_thrid.png</file>
+        <file>image/SGS.png</file>
     </qresource>
     <qresource prefix="/other">
         <file>zh_CN.qm</file>

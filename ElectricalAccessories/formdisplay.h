@@ -155,10 +155,7 @@ private slots:
     void on_toolButton_start_clicked();         /*!* \brief 伺服A启动测试按钮 */
     void on_toolButton_start_2_clicked();       /*!* \brief 伺服B启动测试按钮 */
     void on_toolButton_start_3_clicked();       /*!* \brief 伺服C启动测试按钮 */
-    void on_toolButton_tempMaxValue_clicked();  /*!* \brief 显示温升参数设置界面 */
-    void on_toolButton_tempMaxValue_2_clicked();
-    void on_toolButton_normalTempMaxValue_clicked();
-    void on_toolButton_TRCR_clicked();
+    void on_toolButton_TRCR_clicked();          /*!* \brief 显示温升参数设置界面 */
     void on_toolButton_TRCR_2_clicked();
     void on_toolButton_clicked();               /*!* \brief 显示帮助界面 */
     void on_tabWidget_currentChanged(int index);/*!* \brief 改变当前伺服 */

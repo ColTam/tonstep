@@ -10,23 +10,23 @@
 #include <qt_windows.h>
 #endif
 
-TitleBar::TitleBar(QWidget *parent, int flags) : QWidget(parent), flag(flags)
+TitleBar::TitleBar(QWidget *parent, int flags) :
+    QWidget(parent),
+    flag(flags),
+    mIconLabel(new QLabel(this)),
+    mTitleLabel(new QLabel(this)),
+    mMinimizeButton(new QToolButton(this)),
+    mMaximizeButton(new QToolButton(this)),
+    mRestoreButton(new QToolButton(this)),
+    mCloseButton(new QToolButton(this))
 {
     setFixedHeight(TITLE_HEIGHT);
-
-    mIconLabel = new QLabel(this);
-    mTitleLabel = new QLabel(this);
-    mMinimizeButton = new QToolButton(this);
-    mMaximizeButton = new QToolButton(this);
-    mRestoreButton = new QToolButton(this);
-    mCloseButton = new QToolButton(this);
 
     mIconLabel->setFixedSize(TITLE_ICON_WIDTH, TITLE_HEIGHT);
     mIconLabel->setScaledContents(true);
 
     mTitleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     mTitleLabel->setMinimumHeight(TITLE_HEIGHT);
-    mTitleLabel->setStyleSheet("color: rgb(201,201,201);");
 
     mMinimizeButton->setFixedSize(TITLE_BUTTON_WIDTH, TITLE_HEIGHT);
     mMaximizeButton->setFixedSize(TITLE_BUTTON_WIDTH, TITLE_HEIGHT);
@@ -38,15 +38,22 @@ TitleBar::TitleBar(QWidget *parent, int flags) : QWidget(parent), flag(flags)
     mRestoreButton->setAutoRaise(true);
     mCloseButton->setAutoRaise(true);
 
-    mMinimizeButton->setStyleSheet(TITLE_MINIBUTTON_STYLE);
-    mMaximizeButton->setStyleSheet(TITLE_MINIBUTTON_STYLE);
-    mRestoreButton->setStyleSheet(TITLE_MINIBUTTON_STYLE);
-    mCloseButton->setStyleSheet(TITLE_CLOSEBUTTON_STYLE);
+    mTitleLabel->setObjectName("titleLabel");
+    mMinimizeButton->setObjectName("minimizeButton");
+    mMaximizeButton->setObjectName("maximizeButton");
+    mRestoreButton->setObjectName("restoreButton");
+    mCloseButton->setObjectName("closeButton");
 
-    mMinimizeButton->setText("-");
-    mMaximizeButton->setText("+");
-    mRestoreButton->setText("=");
-    mCloseButton->setText("X");
+    setStyleSheet("QLabel#titleLabel {color: #F0F0F0;padding-left: 2px;}"
+                  "QToolButton {border: none;background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);}"
+                  "QToolButton:hover {background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #686868, stop:1 #585858);;}"
+                  "QToolButton:pressed {background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);}"
+                  "QToolButton#minimizeButton {image: url(:/icon/icon/minimize.png);}"
+                  "QToolButton#maximizeButton {image: url(:/icon/icon/maximize.png);}"
+                  "QToolButton#restoreButton {image: url(:/icon/icon/restore.png);}"
+                  "QToolButton#closeButton {image: url(:/icon/icon/close.png);}"
+                  "QToolButton#closeButton:hover {background: rgb(232,17,35);}"
+                  "QToolButton#closeButton:pressed {background: rgb(241,112,122);}");
 
     mMinimizeButton->setToolTip(tr("Minimize"));
     mMaximizeButton->setToolTip(tr("Maximize"));
@@ -84,12 +91,6 @@ TitleBar::TitleBar(QWidget *parent, int flags) : QWidget(parent), flag(flags)
 
 TitleBar::~TitleBar()
 {
-    delete mIconLabel;
-    delete mTitleLabel;
-    delete mMinimizeButton;
-    delete mMaximizeButton;
-    delete mRestoreButton;
-    delete mCloseButton;
 }
 
 void TitleBar::mousePressEvent(QMouseEvent *event)
