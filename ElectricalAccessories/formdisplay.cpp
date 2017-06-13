@@ -25,8 +25,12 @@ QString FormDisplay::dirName = "";
 FormDisplay::FormDisplay(QWidget *parent) :
     QWidget(parent)
   , ui(new Ui::FormDisplay)
-  , isOld(PROJECT_CONDITION_NEW)
-  , isAuto(0), isManual(0), mServo(servoA)
+  , isOld(false)
+  , isAuto(false)
+  , isManual(false)
+  , mPlug(IEC60320)
+  , mServo(Servo_A)
+  , mTRType(YOKOGAWA_GP10)
   , mPiecesViewListA(nullptr)
   , mPiecesPowerListA(nullptr)
   , mPiecesViewListB(nullptr)
@@ -224,7 +228,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                 break;
             }
 
-            if (mServo == servoA) {
+            if (mServo == Servo_A) {
                 QString name;
                 if (isAuto) {
                     name = "clause19_A0";
@@ -249,7 +253,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                     }
                     break;
                 }
-            } else if (mServo == servoB) {
+            } else if (mServo == Servo_B) {
                 QString name;
                 if (isAuto) {
                     name = "clause19_B0";
@@ -274,7 +278,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                     }
                     break;
                 }
-            } else if (mServo == servoC) {
+            } else if (mServo == Servo_C) {
                 QString name;
                 if (isAuto) {
                     name = "clause19_C0";
@@ -318,7 +322,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                 break;
             }
 
-            if (mServo == servoA) {
+            if (mServo == Servo_A) {
                 QString name;
                 if (isAuto) {
                     name = "clause20_A0";
@@ -343,7 +347,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                     }
                     break;
                 }
-            } else if (mServo == servoB) {
+            } else if (mServo == Servo_B) {
                 QString name;
                 if (isAuto) {
                     name = "clause20_B0";
@@ -368,7 +372,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                     }
                     break;
                 }
-            } else if (mServo == servoC) {
+            } else if (mServo == Servo_C) {
                 QString name;
                 if (isAuto) {
                     name = "clause20_C0";
@@ -412,7 +416,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                 break;
             }
 
-            if (mServo == servoA) {
+            if (mServo == Servo_A) {
                 QString name;
                 if (isAuto) {
                     name = "clause21_A0";
@@ -437,7 +441,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                     }
                     break;
                 }
-            } else if (mServo == servoB) {
+            } else if (mServo == Servo_B) {
                 QString name;
                 if (isAuto) {
                     name = "clause21_B0";
@@ -462,7 +466,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                     }
                     break;
                 }
-            } else if (mServo == servoC) {
+            } else if (mServo == Servo_C) {
                 QString name;
                 if (isAuto) {
                     name = "clause21_C0";
@@ -506,7 +510,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                 break;
             }
 
-            if (mServo == servoA) {
+            if (mServo == Servo_A) {
                 QString name;
                 if (isAuto) {
                     name = "clause22_A0";
@@ -531,7 +535,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                     }
                     break;
                 }
-            } else if (mServo == servoB) {
+            } else if (mServo == Servo_B) {
                 QString name;
                 if (isAuto) {
                     name = "clause22_B0";
@@ -556,7 +560,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                     }
                     break;
                 }
-            } else if (mServo == servoC) {
+            } else if (mServo == Servo_C) {
                 QString name;
                 if (isAuto) {
                     name = "clause22_C0";
@@ -622,6 +626,13 @@ void FormDisplay::initMPiece()
 
     mPiecesPowerListC = new piecesList(ITEM_ICON_SIZE, ITEM_NAUTOSORT, ui->stackedWidget);
     ui->verticalLayout_power_3->addWidget(mPiecesPowerListC);
+
+    mPiecesViewListA->setObjectName("mPiecesViewListA");
+    mPiecesViewListB->setObjectName("mPiecesViewListB");
+    mPiecesViewListC->setObjectName("mPiecesViewListC");
+    mPiecesPowerListA->setObjectName("mPiecesPowerListA");
+    mPiecesPowerListB->setObjectName("mPiecesPowerListB");
+    mPiecesPowerListC->setObjectName("mPiecesPowerListC");
 }
 
 void FormDisplay::uartTips()
@@ -636,7 +647,7 @@ void FormDisplay::uartTips()
 
     if (devInformation.at(1).data.isEmpty()){
         ui->checkBox_TRC->setChecked(false);
-        tips += tr("Paperless Recorder,");
+        tips += tr("Yokogawa Paperless Recorder,");
     } else {
         ui->checkBox_TRC->setChecked(true);
         QStringList readList;
@@ -654,6 +665,33 @@ void FormDisplay::uartTips()
             double value = tc.mid(19).toDouble();
             if (value < 0 || value >= 80) {
                 ui->textEdit->append("CH"+tc.mid(2,4)+tr("disabled"));
+                ui->textEdit_2->append("CH"+tc.mid(2,4)+tr("disabled"));
+                ui->textEdit_3->append("CH"+tc.mid(2,4)+tr("disabled"));
+                ui->textEdit_4->append("CH"+tc.mid(2,4)+tr("disabled"));
+                ui->textEdit_5->append("CH"+tc.mid(2,4)+tr("disabled"));
+            }
+        }
+    }
+    if (devInformation.at(8).data.isEmpty()){
+        ui->checkBox_TRC->setChecked(false);
+        tips += tr("Agilent Paperless Recorder,");
+    } else {
+        ui->checkBox_TRC->setChecked(true);
+        QStringList readList;
+        readList << devInformation.at(8).data.split("TT");//
+
+        ui->textEdit->clear();
+        ui->textEdit_2->clear();
+        ui->textEdit_3->clear();
+        ui->textEdit_4->clear();
+        ui->textEdit_5->clear();
+        Collect::getTemperatureRise(&readList);
+        for (int i = 0; i < readList.count(); i++)
+        {
+            QString tc = readList.at(i);
+            double value = tc.mid(19).toDouble();
+            if (value < 0 || value >= 80) {
+                ui->textEdit->append("CH"+tc.mid(2,4)+tr("disabled"));//
                 ui->textEdit_2->append("CH"+tc.mid(2,4)+tr("disabled"));
                 ui->textEdit_3->append("CH"+tc.mid(2,4)+tr("disabled"));
                 ui->textEdit_4->append("CH"+tc.mid(2,4)+tr("disabled"));
@@ -917,7 +955,7 @@ void FormDisplay::enterMain()
     ui->lineEdit_LOADUART_C->setText("COM"+QString::number(comLoadC));
     ui->lineEdit_VOLTUART->setText("COM"+QString::number(comVolt));
     ui->lineEdit_TESTUART->setText("COM"+QString::number(comTest));
-    ui->lineEdit_TRCUART->setText("COM"+QString::number(comTRC));
+    ui->lineEdit_TRCUART->setText("COM"+QString::number(comTR_YOKOGAWAGP10));
 
     m_helpWidget->show();
     uartTips();
@@ -940,11 +978,11 @@ void FormDisplay::delItem(QListWidgetItem *item)
     QFile delFile(dirName+item->text());
     delFile.remove();
 
-    if (mServo == servoA) {
+    if (mServo == Servo_A) {
         mFileNameListA.removeOne(item->text());
-    } else if (mServo == servoB) {
+    } else if (mServo == Servo_B) {
         mFileNameListB.removeOne(item->text());
-    } else if (mServo == servoC) {
+    } else if (mServo == Servo_C) {
         mFileNameListC.removeOne(item->text());
     }
 
@@ -1097,44 +1135,44 @@ void FormDisplay::moveToZone(QListWidgetItem *item)
     switch (item->text().mid(6, 2).toInt()) {
     case 19:
     {
-        if (mServo == servoA) {
+        if (mServo == Servo_A) {
             mPiecesPowerListA->addPiece(QPixmap(IMAGE_CLAUSE19), item->text());
-        } else if (mServo == servoB) {
+        } else if (mServo == Servo_B) {
             mPiecesPowerListB->addPiece(QPixmap(IMAGE_CLAUSE19), item->text());
-        } else if (mServo == servoC) {
+        } else if (mServo == Servo_C) {
             mPiecesPowerListC->addPiece(QPixmap(IMAGE_CLAUSE19), item->text());
         }
         break;
     }
     case 20:
     {
-        if (mServo == servoA) {
+        if (mServo == Servo_A) {
             mPiecesPowerListA->addPiece(QPixmap(IMAGE_CLAUSE20), item->text());
-        } else if (mServo == servoB) {
+        } else if (mServo == Servo_B) {
             mPiecesPowerListB->addPiece(QPixmap(IMAGE_CLAUSE20), item->text());
-        } else if (mServo == servoC) {
+        } else if (mServo == Servo_C) {
             mPiecesPowerListC->addPiece(QPixmap(IMAGE_CLAUSE20), item->text());
         }
         break;
     }
     case 21:
     {
-        if (mServo == servoA) {
+        if (mServo == Servo_A) {
             mPiecesPowerListA->addPiece(QPixmap(IMAGE_CLAUSE21), item->text());
-        } else if (mServo == servoB) {
+        } else if (mServo == Servo_B) {
             mPiecesPowerListB->addPiece(QPixmap(IMAGE_CLAUSE21), item->text());
-        } else if (mServo == servoC) {
+        } else if (mServo == Servo_C) {
             mPiecesPowerListC->addPiece(QPixmap(IMAGE_CLAUSE21), item->text());
         }
         break;
     }
     case 22:
     {
-        if (mServo == servoA) {
+        if (mServo == Servo_A) {
             mPiecesPowerListA->addPiece(QPixmap(IMAGE_CLAUSE22), item->text());
-        } else if (mServo == servoB) {
+        } else if (mServo == Servo_B) {
             mPiecesPowerListB->addPiece(QPixmap(IMAGE_CLAUSE22), item->text());
-        } else if (mServo == servoC) {
+        } else if (mServo == Servo_C) {
             mPiecesPowerListC->addPiece(QPixmap(IMAGE_CLAUSE22), item->text());
         }
         break;
@@ -3398,17 +3436,17 @@ void FormDisplay::on_tabWidget_currentChanged(int index)
     switch (index) {
     case TABWIDGET_SERVOA:
     {
-        mServo = servoA;
+        mServo = Servo_A;
         break;
     }
     case TABWIDGET_SERVOB:
     {
-        mServo = servoB;
+        mServo = Servo_B;
         break;
     }
     case TABWIDGET_SERVOC:
     {
-        mServo = servoC;
+        mServo = Servo_C;
         break;
     }
     }
@@ -3581,7 +3619,14 @@ void FormDisplay::on_lineEdit_VOLTUART_textChanged(const QString &arg1)
                 comTest = comVolt;
             } else if (arg1.right(1) == ui->lineEdit_TRCUART->text().right(1)) {
                 ui->lineEdit_TRCUART->setText(QString("COM%1").arg(comVolt));
-                comTRC = comVolt;
+                switch (mTRType) {
+                case YOKOGAWA_GP10:
+                    comTR_YOKOGAWAGP10 = comVolt;
+                    break;
+                case AGILENT_34970:
+                    comTR_AGILENT34970 = comVolt;
+                    break;
+                }
             } else if (arg1.right(1) == ui->lineEdit_LOADUART_A->text().right(1)) {
                 ui->lineEdit_LOADUART_A->setText(QString("COM%1").arg(comVolt));
                 comLoadA = comVolt;
@@ -3591,11 +3636,16 @@ void FormDisplay::on_lineEdit_VOLTUART_textChanged(const QString &arg1)
             } else if (arg1.right(1) == ui->lineEdit_LOADUART_C->text().right(1)) {
                 ui->lineEdit_LOADUART_C->setText(QString("COM%1").arg(comVolt));
                 comLoadC = comVolt;
+            } else if (mTRType == YOKOGAWA_GP10 && arg1.right(1) == QString::number(comTR_AGILENT34970)) {
+                comTR_AGILENT34970 = comVolt;
+            } else if (mTRType == AGILENT_34970 && arg1.right(1) == QString::number(comTR_YOKOGAWAGP10)) {
+                comTR_YOKOGAWAGP10 = comVolt;
             }
             comVolt = arg1.right(1).toInt();
         }
     }
     ui->pushButton_4->setEnabled(true);
+    ui->pushButton_5->setEnabled(false);
 }
 
 void FormDisplay::on_lineEdit_TESTUART_textChanged(const QString &arg1)
@@ -3607,7 +3657,14 @@ void FormDisplay::on_lineEdit_TESTUART_textChanged(const QString &arg1)
                 comVolt = comTest;
             } else if (arg1.right(1) == ui->lineEdit_TRCUART->text().right(1)) {
                 ui->lineEdit_TRCUART->setText(QString("COM%1").arg(comTest));
-                comTRC = comTest;
+                switch (mTRType) {
+                case YOKOGAWA_GP10:
+                    comTR_YOKOGAWAGP10 = comTest;
+                    break;
+                case AGILENT_34970:
+                    comTR_AGILENT34970 = comTest;
+                    break;
+                }
             } else if (arg1.right(1) == ui->lineEdit_LOADUART_A->text().right(1)) {
                 ui->lineEdit_LOADUART_A->setText(QString("COM%1").arg(comTest));
                 comLoadA = comTest;
@@ -3617,37 +3674,78 @@ void FormDisplay::on_lineEdit_TESTUART_textChanged(const QString &arg1)
             } else if (arg1.right(1) == ui->lineEdit_LOADUART_C->text().right(1)) {
                 ui->lineEdit_LOADUART_C->setText(QString("COM%1").arg(comTest));
                 comLoadC = comTest;
+            } else if (mTRType == YOKOGAWA_GP10 && arg1.right(1) == QString::number(comTR_AGILENT34970)) {
+                comTR_AGILENT34970 = comTest;
+            } else if (mTRType == AGILENT_34970 && arg1.right(1) == QString::number(comTR_YOKOGAWAGP10)) {
+                comTR_YOKOGAWAGP10 = comTest;
             }
             comTest = arg1.right(1).toInt();
         }
     }
     ui->pushButton_4->setEnabled(true);
+    ui->pushButton_5->setEnabled(false);
 }
 
 void FormDisplay::on_lineEdit_TRCUART_textChanged(const QString &arg1)
 {
-    if (arg1.left(3) == "COM" && arg1.size() == 4) {
-        if (arg1.right(1).toInt()>=0 && arg1.right(1).toInt()<=7) {
-            if (arg1.right(1) == ui->lineEdit_TESTUART->text().right(1)) {
-                ui->lineEdit_TESTUART->setText(QString("COM%1").arg(comTRC));
-                comTest = comTRC;
-            } else if (arg1.right(1) == ui->lineEdit_VOLTUART->text().right(1)) {
-                ui->lineEdit_VOLTUART->setText(QString("COM%1").arg(comTRC));
-                comVolt = comTRC;
-            } else if (arg1.right(1) == ui->lineEdit_LOADUART_A->text().right(1)) {
-                ui->lineEdit_LOADUART_A->setText(QString("COM%1").arg(comTRC));
-                comLoadA = comTRC;
-            } else if (arg1.right(1) == ui->lineEdit_LOADUART_B->text().right(1)) {
-                ui->lineEdit_LOADUART_B->setText(QString("COM%1").arg(comTRC));
-                comLoadB = comTRC;
-            } else if (arg1.right(1) == ui->lineEdit_LOADUART_C->text().right(1)) {
-                ui->lineEdit_LOADUART_C->setText(QString("COM%1").arg(comTRC));
-                comLoadC = comTRC;
+    if (!isManual) {
+        switch (mTRType) {
+        case YOKOGAWA_GP10:
+            if (arg1.left(3) == "COM" && arg1.size() == 4) {
+                if (arg1.right(1).toInt()>=0 && arg1.right(1).toInt()<=7) {
+                    if (arg1.right(1) == ui->lineEdit_TESTUART->text().right(1)) {
+                        ui->lineEdit_TESTUART->setText(QString("COM%1").arg(comTR_YOKOGAWAGP10));
+                        comTest = comTR_YOKOGAWAGP10;
+                    } else if (arg1.right(1) == ui->lineEdit_VOLTUART->text().right(1)) {
+                        ui->lineEdit_VOLTUART->setText(QString("COM%1").arg(comTR_YOKOGAWAGP10));
+                        comVolt = comTR_YOKOGAWAGP10;
+                    } else if (arg1.right(1) == ui->lineEdit_LOADUART_A->text().right(1)) {
+                        ui->lineEdit_LOADUART_A->setText(QString("COM%1").arg(comTR_YOKOGAWAGP10));
+                        comLoadA = comTR_YOKOGAWAGP10;
+                    } else if (arg1.right(1) == ui->lineEdit_LOADUART_B->text().right(1)) {
+                        ui->lineEdit_LOADUART_B->setText(QString("COM%1").arg(comTR_YOKOGAWAGP10));
+                        comLoadB = comTR_YOKOGAWAGP10;
+                    } else if (arg1.right(1) == ui->lineEdit_LOADUART_C->text().right(1)) {
+                        ui->lineEdit_LOADUART_C->setText(QString("COM%1").arg(comTR_YOKOGAWAGP10));
+                        comLoadC = comTR_YOKOGAWAGP10;
+                    } else if (arg1.right(1) == QString::number(comTR_AGILENT34970)) {
+                        comTR_AGILENT34970 = comTR_YOKOGAWAGP10;
+                    }
+                    comTR_YOKOGAWAGP10 = arg1.right(1).toInt();
+                }
             }
-            comTRC = arg1.right(1).toInt();
+            break;
+        case AGILENT_34970:
+            if (arg1.left(3) == "COM" && arg1.size() == 4) {
+                if (arg1.right(1).toInt()>=0 && arg1.right(1).toInt()<=7) {
+                    if (arg1.right(1) == ui->lineEdit_TESTUART->text().right(1)) {
+                        ui->lineEdit_TESTUART->setText(QString("COM%1").arg(comTR_AGILENT34970));
+                        comTest = comTR_AGILENT34970;
+                    } else if (arg1.right(1) == ui->lineEdit_VOLTUART->text().right(1)) {
+                        ui->lineEdit_VOLTUART->setText(QString("COM%1").arg(comTR_AGILENT34970));
+                        comVolt = comTR_AGILENT34970;
+                    } else if (arg1.right(1) == ui->lineEdit_LOADUART_A->text().right(1)) {
+                        ui->lineEdit_LOADUART_A->setText(QString("COM%1").arg(comTR_AGILENT34970));
+                        comLoadA = comTR_AGILENT34970;
+                    } else if (arg1.right(1) == ui->lineEdit_LOADUART_B->text().right(1)) {
+                        ui->lineEdit_LOADUART_B->setText(QString("COM%1").arg(comTR_AGILENT34970));
+                        comLoadB = comTR_AGILENT34970;
+                    } else if (arg1.right(1) == ui->lineEdit_LOADUART_C->text().right(1)) {
+                        ui->lineEdit_LOADUART_C->setText(QString("COM%1").arg(comTR_AGILENT34970));
+                        comLoadC = comTR_AGILENT34970;
+                    } else if (arg1.right(1) == QString::number(comTR_YOKOGAWAGP10)) {
+                        comTR_YOKOGAWAGP10 = comTR_AGILENT34970;
+                    }
+                    comTR_AGILENT34970 = arg1.right(1).toInt();
+                }
+            }
+            break;
         }
+        ui->pushButton_4->setEnabled(true);
+        ui->pushButton_5->setEnabled(false);
+    } else {
+        isManual = false;
     }
-    ui->pushButton_4->setEnabled(true);
 }
 
 void FormDisplay::on_lineEdit_LOADUART_A_textChanged(const QString &arg1)
@@ -3659,7 +3757,14 @@ void FormDisplay::on_lineEdit_LOADUART_A_textChanged(const QString &arg1)
                 comTest = comLoadA;
             } else if (arg1.right(1) == ui->lineEdit_TRCUART->text().right(1)) {
                 ui->lineEdit_TRCUART->setText(QString("COM%1").arg(comLoadA));
-                comTRC = comLoadA;
+                switch (mTRType) {
+                case YOKOGAWA_GP10:
+                    comTR_YOKOGAWAGP10 = comLoadA;
+                    break;
+                case AGILENT_34970:
+                    comTR_AGILENT34970 = comLoadA;
+                    break;
+                }
             } else if (arg1.right(1) == ui->lineEdit_VOLTUART->text().right(1)) {
                 ui->lineEdit_VOLTUART->setText(QString("COM%1").arg(comLoadA));
                 comVolt = comLoadA;
@@ -3669,11 +3774,16 @@ void FormDisplay::on_lineEdit_LOADUART_A_textChanged(const QString &arg1)
             } else if (arg1.right(1) == ui->lineEdit_LOADUART_C->text().right(1)) {
                 ui->lineEdit_LOADUART_C->setText(QString("COM%1").arg(comLoadA));
                 comLoadC = comLoadA;
+            } else if (mTRType == YOKOGAWA_GP10 && arg1.right(1) == QString::number(comTR_AGILENT34970)) {
+                comTR_AGILENT34970 = comLoadA;
+            } else if (mTRType == AGILENT_34970 && arg1.right(1) == QString::number(comTR_YOKOGAWAGP10)) {
+                comTR_YOKOGAWAGP10 = comLoadA;
             }
             comLoadA = arg1.right(1).toInt();
         }
     }
     ui->pushButton_4->setEnabled(true);
+    ui->pushButton_5->setEnabled(false);
 }
 
 void FormDisplay::on_lineEdit_LOADUART_B_textChanged(const QString &arg1)
@@ -3685,7 +3795,14 @@ void FormDisplay::on_lineEdit_LOADUART_B_textChanged(const QString &arg1)
                 comTest = comLoadB;
             } else if (arg1.right(1) == ui->lineEdit_TRCUART->text().right(1)) {
                 ui->lineEdit_TRCUART->setText(QString("COM%1").arg(comLoadB));
-                comTRC = comLoadB;
+                switch (mTRType) {
+                case YOKOGAWA_GP10:
+                    comTR_YOKOGAWAGP10 = comLoadB;
+                    break;
+                case AGILENT_34970:
+                    comTR_AGILENT34970 = comLoadB;
+                    break;
+                }
             } else if (arg1.right(1) == ui->lineEdit_LOADUART_A->text().right(1)) {
                 ui->lineEdit_LOADUART_A->setText(QString("COM%1").arg(comLoadB));
                 comLoadA = comLoadB;
@@ -3695,11 +3812,16 @@ void FormDisplay::on_lineEdit_LOADUART_B_textChanged(const QString &arg1)
             } else if (arg1.right(1) == ui->lineEdit_LOADUART_C->text().right(1)) {
                 ui->lineEdit_LOADUART_C->setText(QString("COM%1").arg(comLoadB));
                 comLoadC = comLoadB;
+            } else if (mTRType == YOKOGAWA_GP10 && arg1.right(1) == QString::number(comTR_AGILENT34970)) {
+                comTR_AGILENT34970 = comLoadB;
+            } else if (mTRType == AGILENT_34970 && arg1.right(1) == QString::number(comTR_YOKOGAWAGP10)) {
+                comTR_YOKOGAWAGP10 = comLoadB;
             }
             comLoadB = arg1.right(1).toInt();
         }
     }
     ui->pushButton_4->setEnabled(true);
+    ui->pushButton_5->setEnabled(false);
 }
 
 void FormDisplay::on_lineEdit_LOADUART_C_textChanged(const QString &arg1)
@@ -3711,7 +3833,14 @@ void FormDisplay::on_lineEdit_LOADUART_C_textChanged(const QString &arg1)
                 comTest = comLoadC;
             } else if (arg1.right(1) == ui->lineEdit_TRCUART->text().right(1)) {
                 ui->lineEdit_TRCUART->setText(QString("COM%1").arg(comLoadC));
-                comTRC = comLoadC;
+                switch (mTRType) {
+                case YOKOGAWA_GP10:
+                    comTR_YOKOGAWAGP10 = comLoadC;
+                    break;
+                case AGILENT_34970:
+                    comTR_AGILENT34970 = comLoadC;
+                    break;
+                }
             } else if (arg1.right(1) == ui->lineEdit_LOADUART_A->text().right(1)) {
                 ui->lineEdit_LOADUART_A->setText(QString("COM%1").arg(comLoadC));
                 comLoadA = comLoadC;
@@ -3721,11 +3850,16 @@ void FormDisplay::on_lineEdit_LOADUART_C_textChanged(const QString &arg1)
             } else if (arg1.right(1) == ui->lineEdit_VOLTUART->text().right(1)) {
                 ui->lineEdit_VOLTUART->setText(QString("COM%1").arg(comLoadC));
                 comVolt = comLoadC;
+            } else if (mTRType == YOKOGAWA_GP10 && arg1.right(1) == QString::number(comTR_AGILENT34970)) {
+                comTR_AGILENT34970 = comLoadC;
+            } else if (mTRType == AGILENT_34970 && arg1.right(1) == QString::number(comTR_YOKOGAWAGP10)) {
+                comTR_YOKOGAWAGP10 = comLoadC;
             }
             comLoadC = arg1.right(1).toInt();
         }
     }
     ui->pushButton_4->setEnabled(true);
+    ui->pushButton_5->setEnabled(false);
 }
 
 void FormDisplay::on_pushButton_clicked()
@@ -3886,13 +4020,13 @@ void FormDisplay::on_lineEdit_normalTVn_t_textChanged(const QString &arg1)
 
 void FormDisplay::on_toolButtonSave_clicked()
 {
-    if (mServo == servoA) {
+    if (mServo == Servo_A) {
         while (mPiecesPowerListA->count())
             itemRestore(mPiecesPowerListA->item(0));
-    } else if (mServo == servoB) {
+    } else if (mServo == Servo_B) {
         while (mPiecesPowerListB->count())
             itemRestore(mPiecesPowerListB->item(0));
-    } else if (mServo == servoC) {
+    } else if (mServo == Servo_C) {
         while (mPiecesPowerListC->count())
             itemRestore(mPiecesPowerListC->item(0));
     }
@@ -3907,21 +4041,21 @@ void FormDisplay::on_toolButtonSave_clicked()
     isAuto = true;
     on_toolButton_save22_clicked();
 
-    if (mServo == servoA) {
+    if (mServo == Servo_A) {
         moveToZone(mPiecesViewListA->item(mFileNameListA.indexOf("clause19_A0")));
         moveToZone(mPiecesViewListA->item(mFileNameListA.indexOf("clause20_A0")-1));
         moveToZone(mPiecesViewListA->item(mFileNameListA.indexOf("clause21_A0")-2));
         moveToZone(mPiecesViewListA->item(mFileNameListA.indexOf("clause22_A0")-3));
 
 //        on_toolButton_start_clicked();
-    } else if (mServo == servoB) {
+    } else if (mServo == Servo_B) {
         moveToZone(mPiecesViewListB->item(mFileNameListB.indexOf("clause19_B0")));
         moveToZone(mPiecesViewListB->item(mFileNameListB.indexOf("clause20_B0")-1));
         moveToZone(mPiecesViewListB->item(mFileNameListB.indexOf("clause21_B0")-2));
         moveToZone(mPiecesViewListB->item(mFileNameListB.indexOf("clause22_B0")-3));
 
 //        on_toolButton_start_2_clicked();
-    } else if (mServo == servoC) {
+    } else if (mServo == Servo_C) {
         moveToZone(mPiecesViewListC->item(mFileNameListC.indexOf("clause19_C0")));
         moveToZone(mPiecesViewListC->item(mFileNameListC.indexOf("clause20_C0")-1));
         moveToZone(mPiecesViewListC->item(mFileNameListC.indexOf("clause21_C0")-2));
@@ -4013,13 +4147,13 @@ void FormDisplay::on_lineEdit_normalRn_2_textChanged(const QString &arg1)
 
 void FormDisplay::on_toolButtonSave_2_clicked()
 {
-    if (mServo == servoA) {
+    if (mServo == Servo_A) {
         while (mPiecesPowerListA->count())
             itemRestore(mPiecesPowerListA->item(0));
-    } else if (mServo == servoB) {
+    } else if (mServo == Servo_B) {
         while (mPiecesPowerListB->count())
             itemRestore(mPiecesPowerListB->item(0));
-    } else if (mServo == servoC) {
+    } else if (mServo == Servo_C) {
         while (mPiecesPowerListC->count())
             itemRestore(mPiecesPowerListC->item(0));
     }
@@ -4032,19 +4166,19 @@ void FormDisplay::on_toolButtonSave_2_clicked()
     isAuto = true;
     on_toolButton_save21_2_clicked();
 
-    if (mServo == servoA) {
+    if (mServo == Servo_A) {
         moveToZone(mPiecesViewListA->item(mFileNameListA.indexOf("clause19_A0")));
         moveToZone(mPiecesViewListA->item(mFileNameListA.indexOf("clause20_A0")-1));
         moveToZone(mPiecesViewListA->item(mFileNameListA.indexOf("clause21_A0")-2));
 
 //        on_toolButton_start_clicked();
-    } else if (mServo == servoB) {
+    } else if (mServo == Servo_B) {
         moveToZone(mPiecesViewListB->item(mFileNameListB.indexOf("clause19_B0")));
         moveToZone(mPiecesViewListB->item(mFileNameListB.indexOf("clause20_B0")-1));
         moveToZone(mPiecesViewListB->item(mFileNameListB.indexOf("clause21_B0")-2));
 
 //        on_toolButton_start_2_clicked();
-    } else if (mServo == servoC) {
+    } else if (mServo == Servo_C) {
         moveToZone(mPiecesViewListC->item(mFileNameListC.indexOf("clause19_C0")));
         moveToZone(mPiecesViewListC->item(mFileNameListC.indexOf("clause20_C0")-1));
         moveToZone(mPiecesViewListC->item(mFileNameListC.indexOf("clause21_C0")-2));
@@ -4555,10 +4689,21 @@ void FormDisplay::on_checkBox_TRC_toggled(bool checked)
 {
     Q_UNUSED(checked);
 
-    if (devInformation.at(1).data.isEmpty() || devInformation.at(1).data.size() < 27){
-        ui->checkBox_TRC->setChecked(false);
-    } else {
-        ui->checkBox_TRC->setChecked(true);
+    switch (mTRType) {
+    case YOKOGAWA_GP10:
+        if (devInformation.at(1).data.isEmpty() || devInformation.at(1).data.size() < 27){
+            ui->checkBox_TRC->setChecked(false);
+        } else {
+            ui->checkBox_TRC->setChecked(true);
+        }
+        break;
+    case AGILENT_34970:
+        if (devInformation.at(8).data.isEmpty() || devInformation.at(8).data.size() < 27){
+            ui->checkBox_TRC->setChecked(false);
+        } else {
+            ui->checkBox_TRC->setChecked(true);
+        }
+        break;
     }
 }
 
@@ -4675,7 +4820,6 @@ void FormDisplay::on_pushButton_4_clicked()
     devInformation.removeAt(0);
     UART_t voltUart;
     voltUart.data = volt;
-    comVolt = ui->lineEdit_VOLTUART->text().right(1).toInt();
     voltUart.com = comVolt;
     devInformation.insert(0,voltUart);
     if (volt.isEmpty() || volt.size() != 14) {
@@ -4684,24 +4828,36 @@ void FormDisplay::on_pushButton_4_clicked()
         ui->checkBox_VOLT->setChecked(true);
     }
 
-    QString tc = CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 1000);
-    devInformation.removeAt(1);
-    UART_t trUart;
-    trUart.data = tc;
-    comTRC = ui->lineEdit_TRCUART->text().right(1).toInt();
-    trUart.com = comTRC;
-    devInformation.insert(1,trUart);
-    if (tc.isEmpty() || tc.size() != 723) {
-        ui->checkBox_TRC->setChecked(false);
-    } else {
-        ui->checkBox_TRC->setChecked(true);
+    if (mTRType == YOKOGAWA_GP10) {
+        QString tc = CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 1000);
+        devInformation.removeAt(1);
+        UART_t trUart;
+        trUart.data = tc;
+        trUart.com = comTR_YOKOGAWAGP10;
+        devInformation.insert(1,trUart);
+        if (tc.isEmpty() || tc.size() != 723) {
+            ui->checkBox_TRC->setChecked(false);
+        } else {
+            ui->checkBox_TRC->setChecked(true);
+        }
+    } else {//AGILENT_34970
+        QString tc = CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 1000);
+        devInformation.removeAt(8);
+        UART_t trUart;
+        trUart.data = tc;
+        trUart.com = comTR_AGILENT34970;
+        devInformation.insert(8,trUart);
+        if (tc.isEmpty() || tc.size() != 723) {
+            ui->checkBox_TRC->setChecked(false);
+        } else {
+            ui->checkBox_TRC->setChecked(true);
+        }
     }
 
     QString loadA = CollectControl::HardSend(ui->lineEdit_LOADUART_A->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 1000);
     devInformation.removeAt(2);
     UART_t loadAUart;
     loadAUart.data = loadA;
-    comLoadA = ui->lineEdit_LOADUART_A->text().right(1).toInt();
     loadAUart.com = comLoadA;
     devInformation.insert(2,loadAUart);
     if (loadA.isEmpty() || loadA.size() < 16) {
@@ -4714,7 +4870,6 @@ void FormDisplay::on_pushButton_4_clicked()
     devInformation.removeAt(3);
     UART_t loadBUart;
     loadBUart.data = loadB;
-    comLoadB = ui->lineEdit_LOADUART_B->text().right(1).toInt();
     loadBUart.com = comLoadB;
     devInformation.insert(3,loadBUart);
     if (loadB.isEmpty() || loadB.size() < 16) {
@@ -4727,7 +4882,6 @@ void FormDisplay::on_pushButton_4_clicked()
     devInformation.removeAt(4);
     UART_t loadCUart;
     loadCUart.data = loadC;
-    comLoadC = ui->lineEdit_LOADUART_C->text().right(1).toInt();
     loadCUart.com = comLoadC;
     devInformation.insert(4,loadCUart);
     if (loadC.isEmpty() || loadC.size() < 16) {
@@ -4740,7 +4894,6 @@ void FormDisplay::on_pushButton_4_clicked()
     devInformation.removeAt(5);
     UART_t testAUart;
     testAUart.data = testA;
-    comTest = ui->lineEdit_TESTUART->text().right(1).toInt();
     testAUart.com = comTest;
     devInformation.insert(5,testAUart);
     if (testA.isEmpty() || testA.size() != 13) {
@@ -4755,7 +4908,6 @@ void FormDisplay::on_pushButton_4_clicked()
     devInformation.removeAt(6);
     UART_t testBUart;
     testBUart.data = testB;
-    comTest = ui->lineEdit_TESTUART->text().right(1).toInt();
     testBUart.com = comTest;
     devInformation.insert(6,testBUart);
     if (testB.isEmpty() || testB.size() != 13) {
@@ -4770,7 +4922,6 @@ void FormDisplay::on_pushButton_4_clicked()
     devInformation.removeAt(7);
     UART_t testCUart;
     testCUart.data = testC;
-    comTest = ui->lineEdit_TESTUART->text().right(1).toInt();
     testCUart.com = comTest;
     devInformation.insert(7,testCUart);
     if (testC.isEmpty() || testC.size() != 13) {
@@ -4785,14 +4936,16 @@ void FormDisplay::on_pushButton_4_clicked()
     ui->tabWidget->setTabEnabled(1, true);
     ui->tabWidget->setTabEnabled(2, true);
     ui->pushButton_4->setEnabled(false);
+    ui->pushButton_5->setEnabled(true);
 
     QSettings *configIniWrite = new QSettings("EATconfig.ini", QSettings::IniFormat);
-    configIniWrite->setValue("Voltage Uart", ui->lineEdit_VOLTUART->text().right(1));
-    configIniWrite->setValue("Temperature Rise Uart", ui->lineEdit_TRCUART->text().right(1));
-    configIniWrite->setValue("Load(ServoA) Uart", ui->lineEdit_LOADUART_A->text().right(1));
-    configIniWrite->setValue("Load(ServoB) Uart", ui->lineEdit_LOADUART_B->text().right(1));
-    configIniWrite->setValue("Load(ServoC) Uart", ui->lineEdit_LOADUART_C->text().right(1));
-    configIniWrite->setValue("Life Tester Uart", ui->lineEdit_TESTUART->text().right(1));
+    configIniWrite->setValue("Voltage Uart", QString::number(comVolt));
+    configIniWrite->setValue("Temperature Rise Uart1", QString::number(comTR_YOKOGAWAGP10));
+    configIniWrite->setValue("Temperature Rise Uart2", QString::number(comTR_AGILENT34970));
+    configIniWrite->setValue("Load(ServoA) Uart", QString::number(comLoadA));
+    configIniWrite->setValue("Load(ServoB) Uart", QString::number(comLoadB));
+    configIniWrite->setValue("Load(ServoC) Uart", QString::number(comLoadC));
+    configIniWrite->setValue("Life Tester Uart", QString::number(comTest));
     delete configIniWrite;
 
     uartTips();
@@ -4836,7 +4989,7 @@ void FormDisplay::on_tabWidget_tabBarClicked(int index)
 {
     if (oldTabWidgetIndex == 3) {
         if (ui->pushButton_4->isEnabled()) {
-            QMessageBox msgBox(QMessageBox::Question,tr(" Electrical Accessories Test Automation Program"),tr("The UART data has changed, please update."));
+            QMessageBox msgBox(QMessageBox::Question,tr(" Electrical Accessories Test Automation Program"),tr("The UART data has changed, please click save."));
             msgBox.setStandardButtons(QMessageBox::Ok);
             msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
             msgBox.setWindowIcon(QIcon(WINDOW_ICON));
@@ -4866,37 +5019,32 @@ void FormDisplay::on_pushButton_5_clicked()
 
     CollectControl::HardSend(ui->lineEdit_VOLTUART->text().right(1).toInt(), QString("RDW VF").toLatin1().data(), 2000);
     QString volt = CollectControl::HardSend(ui->lineEdit_VOLTUART->text().right(1).toInt(), QString("RDW VF").toLatin1().data(), 2000);
-    devInformation.removeAt(0);
-    UART_t voltUart;
-    voltUart.data = volt;
-    voltUart.com = comVolt;
-    devInformation.insert(0,voltUart);
     if (volt.isEmpty() || volt.size() < 14) {
         ui->checkBox_VOLT->setChecked(false);
     } else {
         ui->checkBox_VOLT->setChecked(true);
     }
 
-    CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 2000);
-    QString tc = CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 2000);
-    devInformation.removeAt(1);
-    UART_t trUart;
-    trUart.data = tc;
-    trUart.com = comTRC;
-    devInformation.insert(1,trUart);
-    if (tc.isEmpty() || tc.size() < 720) {
-        ui->checkBox_TRC->setChecked(false);
+    if (mTRType == YOKOGAWA_GP10) {
+        CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 2000);
+        QString tc = CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 2000);
+        if (tc.isEmpty() || tc.size() < 720) {
+            ui->checkBox_TRC->setChecked(false);
+        } else {
+            ui->checkBox_TRC->setChecked(true);
+        }
     } else {
-        ui->checkBox_TRC->setChecked(true);
+        CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 2000);
+        QString tc = CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 2000);
+        if (tc.isEmpty() || tc.size() < 720) {
+            ui->checkBox_TRC->setChecked(false);
+        } else {
+            ui->checkBox_TRC->setChecked(true);
+        }
     }
 
     CollectControl::HardSend(ui->lineEdit_LOADUART_A->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
     QString loadA = CollectControl::HardSend(ui->lineEdit_LOADUART_A->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
-    devInformation.removeAt(2);
-    UART_t loadAUart;
-    loadAUart.data = loadA;
-    loadAUart.com = comLoadA;
-    devInformation.insert(2,loadAUart);
     if (loadA.isEmpty() || loadA.size() < 16) {
         ui->checkBox_A->setChecked(false);
     } else {
@@ -4905,11 +5053,6 @@ void FormDisplay::on_pushButton_5_clicked()
 
     CollectControl::HardSend(ui->lineEdit_LOADUART_B->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
     QString loadB = CollectControl::HardSend(ui->lineEdit_LOADUART_B->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
-    devInformation.removeAt(3);
-    UART_t loadBUart;
-    loadBUart.data = loadB;
-    loadBUart.com = comLoadB;
-    devInformation.insert(3,loadBUart);
     if (loadB.isEmpty() || loadB.size() < 16) {
         ui->checkBox_B->setChecked(false);
     } else {
@@ -4918,11 +5061,6 @@ void FormDisplay::on_pushButton_5_clicked()
 
     CollectControl::HardSend(ui->lineEdit_LOADUART_C->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
     QString loadC = CollectControl::HardSend(ui->lineEdit_LOADUART_C->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
-    devInformation.removeAt(4);
-    UART_t loadCUart;
-    loadCUart.data = loadC;
-    loadCUart.com = comLoadC;
-    devInformation.insert(4,loadCUart);
     if (loadC.isEmpty() || loadC.size() < 16) {
         ui->checkBox_C->setChecked(false);
     } else {
@@ -4931,11 +5069,6 @@ void FormDisplay::on_pushButton_5_clicked()
 
     CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD020603").toLatin1().data(), 2000);
     QString testA = CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD020603").toLatin1().data(), 2000);
-    devInformation.removeAt(5);
-    UART_t testAUart;
-    testAUart.data = testA;
-    testAUart.com = comTest;
-    devInformation.insert(5,testAUart);
     if (testA.isEmpty() || testA.size() != 13) {
         ui->checkBox_TEST->setChecked(false);
         ui->checkBox_TEST_A->setChecked(false);
@@ -4945,11 +5078,6 @@ void FormDisplay::on_pushButton_5_clicked()
     }
 
     QString testB = CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD030603").toLatin1().data(), 2000);
-    devInformation.removeAt(6);
-    UART_t testBUart;
-    testBUart.data = testB;
-    testBUart.com = comTest;
-    devInformation.insert(6,testBUart);
     if (testB.isEmpty() || testB.size() != 13) {
         ui->checkBox_TEST->setChecked(false);
         ui->checkBox_TEST_B->setChecked(false);
@@ -4959,11 +5087,6 @@ void FormDisplay::on_pushButton_5_clicked()
     }
 
     QString testC = CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD040603").toLatin1().data(), 2000);
-    devInformation.removeAt(7);
-    UART_t testCUart;
-    testCUart.data = testC;
-    testCUart.com = comTest;
-    devInformation.insert(7,testCUart);
     if (testC.isEmpty() || testC.size() != 13) {
         ui->checkBox_TEST->setChecked(false);
         ui->checkBox_TEST_C->setChecked(false);
@@ -5101,5 +5224,25 @@ void FormDisplay::on_checkBox_normal_2_toggled(bool checked)
         ui->lineEdit_normalVn_t_2->setReadOnly(true);
         ui->lineEdit_normalIn_t_2->setReadOnly(true);
         ui->lineEdit_normal_handleNum_2->setReadOnly(true);
+    }
+}
+
+void FormDisplay::on_comboBox_currentIndexChanged(int index)
+{
+    switch (index) {
+    case 0:
+        isManual = true;
+        mTRType = YOKOGAWA_GP10;
+        ui->lineEdit_TRCUART->setText(QString("COM%1").arg(comTR_YOKOGAWAGP10));
+        on_checkBox_TRC_toggled(true);
+        break;
+    case 1:
+        isManual = true;
+        mTRType = AGILENT_34970;
+        ui->lineEdit_TRCUART->setText(QString("COM%1").arg(comTR_AGILENT34970));
+        on_checkBox_TRC_toggled(true);
+        break;
+    default:
+        break;
     }
 }

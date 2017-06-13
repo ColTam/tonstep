@@ -1,5 +1,6 @@
 ﻿#include "mtrcrthread.h"
 #include "Collect.h"
+#include "formdisplay.h"
 
 #include <QMutex>
 #include <QTimer>
@@ -25,11 +26,11 @@ bool mTRCRThread::mtRCRIsActive()
 void mTRCRThread::readData()
 {
     _trTimer = new QTimer;
-    connect(_trTimer, SIGNAL(timeout()), this, SLOT(updaeTRCR())/*, Qt::DirectConnection*/);
+    connect(_trTimer, SIGNAL(timeout()), this, SLOT(updateTRCR())/*, Qt::DirectConnection*/);
 }
 
 int i = 0;
-void mTRCRThread::updaeTRCR()
+void mTRCRThread::updateTRCR()
 {
     QMutex mutex;
     mutex.lock();
@@ -38,18 +39,21 @@ void mTRCRThread::updaeTRCR()
     QString tc;
 
     readList.clear();
-    str = "FData,0,0001,0110";
-    tc = CollectControl::HardSend(devInformation.at(1).com, str.toLatin1().data(), COM_DELAY);
-    qDebug() << tc.size();
-    if (tc.size() < 723 && !oldTc.isEmpty()) {
-        QThread::msleep(1000);
-        qDebug() << "GGGGGGGGGGGGGGGGGGGG@@@@@@@@@@@@@ tc receive failed @@@@@@@@@@@@@GGGGGGGGGGGGGGGGGG";
-        tc = oldTc;
-    }
-    oldTc = tc;
+    FormDisplay f;
+    if (f.mTRType == FormDisplay::YOKOGAWA_GP10) {
+        str = "FData,0,0001,0110";
+        tc = CollectControl::HardSend(devInformation.at(1).com, str.toLatin1().data(), COM_DELAY);
+        qDebug() << tc.size();
+        if (tc.size() < 723 && !oldTc.isEmpty()) {
+            QThread::msleep(1000);
+            qDebug() << "GGGGGGGGGGGGGGGGGGGG@@@@@@@@@@@@@ tc receive failed @@@@@@@@@@@@@GGGGGGGGGGGGGGGGGG";
+            tc = oldTc;
+        }
+        oldTc = tc;
 
-    readList << tc.split("TT");
-    Collect::getTemperatureRise(&readList);
+        readList << tc.split("TT");
+        Collect::getTemperatureRise(&readList);
+    }
     emit tRCRData(readList);
     mutex.unlock();
 }

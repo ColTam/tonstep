@@ -34,37 +34,47 @@
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget {background-color: #FFFFFF;}
+    <string notr="true">QWidget {
+	background-color: #FFFFFF;
+}
+
+QLabel {
+	background: transparent;
+}
+
+QLabel#label_login {
+	image: url(:/image/image/SGS.png);
+}
 
 QLineEdit{
-	border: 1px solid #727272;
-	border-radius: 3px;
-	min-height: 19px;
-	selection-color:rgb(240,240,240);
-	selection-background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
+    border: 1px solid #727272;
+    border-radius: 3px;
+    min-height: 19px;
+    selection-color:rgb(240,240,240);
+    selection-background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
 }
 
 QPushButton 
 {
-	color: #F0F0F0;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
     border: 1px solid #727272;
     border-bottom-width:1px;
     border-radius: 4px;
+    color: #F0F0F0;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
 }
 
 QPushButton:hover
 {
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);
     border-bottom-color: #F46320;
     border-bottom-width: 2px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);
 }
 
 QPushButton:pressed 
 {
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
     border-bottom-color: #727272;
     border-bottom-width: 1px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
 }
 
 QPushButton:!enabled 
@@ -72,73 +82,98 @@ QPushButton:!enabled
     color: #ADADAD;
 }
 
+QPushButton#pushButton_6 {
+	border: 1px solid #AAAAAA;
+	border-top-color: #727272;
+	border-right-color: #727272;
+	border-radius: 0px;
+	border-top-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	height: 21px;
+	width: 21px;
+    background: #FAFAFA;
+	image: url(:/icon/icon/arrow_down_black.png);
+}
+
+QPushButton#pushButton_6:hover {
+	background: #E7E7E7;
+}
+
+QPushButton#pushButton_6:pressed {
+	background: #FDFDFD;
+}
+
+QPushButton#pushButton_6::menu-indicator{
+	image:none;
+}
+
 QToolButton 
 {
-	  color: #F0F0F0;
-      background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
-      border: 1px solid #727272;
-      border-bottom-width:1px;
-      border-radius: 4px;
+    border: 1px solid #727272;
+    border-bottom-width:1px;
+    border-radius: 4px;
+    color: #F0F0F0;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
 }
 
 QToolButton:hover
 {
-      background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);
-      border-bottom-color: #F46320;
-      border-bottom-width: 2px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);
+    border-bottom-color: #F46320;
+    border-bottom-width: 2px;
 }
 
 QToolButton:pressed 
 {
-      background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
-      border-bottom-color: #727272;
-      border-bottom-width: 1px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
+    border-bottom-color: #727272;
+    border-bottom-width: 1px;
 }
 
 QToolButton:!enabled 
 {
-      color: #ADADAD;
+    color: #ADADAD;
 }
 
 QToolButton#toolButton_close{
-	border: none;
-	border-radius: 0px;
-	background: #FAFAFA;
-	image:url(:/icon/icon/return.png);
+    border: none;
+    border-radius: 0px;
+    background: #FAFAFA;
+    image:url(:/icon/icon/return.png);
 }
 
 QToolButton#toolButton_close:hover{
-	background: #E7E7E7;
-	border-bottom: 2px solid #F46320;
+    background: #E7E7E7;
+    border-bottom: 2px solid #F46320;
 }
 
 QToolButton#toolButton_close:pressed{
-	background: #FDFDFD;
+    background: #FDFDFD;
 }
 
 QToolButton#toolButton{
-	border: none;
-	border-left: 1px solid #727272;
-	border-radius: 0px;
-	color: black;
-	background: #FAFAFA;
+    border: none;
+    border-left: 1px solid #727272;
+    border-radius: 0px;
+    color: black;
+    background: #FAFAFA;
 }
 
 QToolButton#toolButton:hover{
-	background: #E7E7E7;
-	border-bottom: 2px solid #F46320;
+    background: #E7E7E7;
+    border-bottom: 2px solid #F46320;
 }
 
 QToolButton#toolButton:pressed{
-	background: #FDFDFD;
+    background: #FDFDFD;
 }
 
 QTableWidget {
-	border: 1px solid #727272;
-	border-left: 2px solid #727272;
-	border-radius: 3px;
-	selection-color:#F0F0F0;
-	selection-background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
+    border: 1px solid #727272;
+    border-left: 2px solid #727272;
+    border-radius: 3px;
+    selection-color:#F0F0F0;
+    selection-background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
 }
 
 QTableView::indicator:unchecked {
@@ -150,43 +185,43 @@ QTableView::indicator:unchecked:hover {
 }
 
 QTableWidget::item{
-	border:none;   
-	border-right: 1px solid #545454;
+    border:none;   
+    border-right: 1px solid #545454;
     border-bottom: 1px solid #545454;
-	background: #FFFFFF;
+    background: #FFFFFF;
 }
 
 QTableWidget::item:hover{
-	color:#F0F0F0;
-	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #545454);
+    color:#F0F0F0;
+    background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #545454);
 }
 
 QTableWidget::item:selected{
-	color:#F0F0F0;
-	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
+    color:#F0F0F0;
+    background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
 }
 
 QHeaderView::section{
-	border:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:0.5 #646464, stop:1 #545454);;
-	padding: 3px;
-	color:#F0F0F0;
-	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:0.5 #646464, stop:1 #545454);
+    border:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:1 #646464);;
+    padding: 3px;
+    color:#F0F0F0;
+    background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:1 #646464);
 }
 
 QScrollBar:vertical {
     width: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #545454, stop:1 #646464);
-	margin: 13px 0 13px 0;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #4B4B4B);
+    margin: 13px 0 13px 0;
 }
 
 QScrollBar::handle:vertical {
     width: 13px;
     min-height: 30px;
-	border-radius: 4px;
-	margin-left:2px;
-	margin-right:2px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+    border-radius: 4px;
+    margin-left:2px;
+    margin-right:2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #AAAAAA, stop:1 #7B7B7B);
 }
 
@@ -195,23 +230,23 @@ QScrollBar::handle:vertical:hover {
 }
 
 QScrollBar::sub-line:vertical {
-	height: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #545454, stop:1 #646464);
+    height: 13px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #4B4B4B);
     image: url(:/icon/icon/arrow_up.png);
     subcontrol-position: top;
-	subcontrol-origin: margin;
-	padding-top:5px;
-	padding-bottom:5px;
+    subcontrol-origin: margin;
+    padding-top:5px;
+    padding-bottom:5px;
 }
 
 QScrollBar::add-line:vertical {
     height: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #545454, stop:1 #646464);
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #4B4B4B);
     image: url(:/icon/icon/arrow_down.png);
     subcontrol-position: bottom;
     subcontrol-origin: margin;
-	padding-top:5px;
-	padding-bottom:5px;
+    padding-top:5px;
+    padding-bottom:5px;
 }
 
 QScrollBar::sub-line:vertical:hover {
@@ -228,18 +263,18 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 
 QScrollBar:horizontal {
     height: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:1 #646464);
-	margin: 0 13px 0 13px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #4B4B4B);
+    margin: 0 13px 0 13px;
 }
 
 QScrollBar::handle:horizontal {
     height: 13px;
     min-width: 30px;
-	border-radius: 4px;
-	margin-top:2px;
-	margin-bottom:2px;
-	margin-left: 10px;
-	margin-right: 10px;
+    border-radius: 4px;
+    margin-top:2px;
+    margin-bottom:2px;
+    margin-left: 10px;
+    margin-right: 10px;
     background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #AAAAAA, stop:1 #7B7B7B);
 }
 
@@ -248,23 +283,23 @@ QScrollBar::handle:horizontal:hover {
 }
 
 QScrollBar::sub-line:horizontal {
-	width: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:1 #646464);
+    width: 13px;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #4B4B4B);
     image: url(:/icon/icon/arrow_left.png);
     subcontrol-position: left;
-	subcontrol-origin: margin;
-	padding-left:5px;
-	padding-right:5px;
+    subcontrol-origin: margin;
+    padding-left:5px;
+    padding-right:5px;
 }
 
 QScrollBar::add-line:horizontal {
     width: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:1 #646464);
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #4B4B4B);
     image: url(:/icon/icon/arrow_right.png);
     subcontrol-position: right;
     subcontrol-origin: margin;
-	padding-left:5px;
-	padding-right:5px;
+    padding-left:5px;
+    padding-right:5px;
 }
 
 QScrollBar::sub-line:horizontal:hover {
@@ -279,6 +314,75 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
     background: transparent;
 }
 
+QTabWidget QLabel {
+	background: #FFFFFF;
+}
+
+QTabWidget::pane {
+	border: none;
+	border-top: 1px solid #727272;
+	border-right: 2px solid #727272;
+}
+
+QTabWidget::tab-bar {
+    border: none;
+}
+QTabBar::tab {
+    color: #E0E0E0;
+    background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #545454);
+    width: 20px;
+    height: 73px;
+    border: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    margin-right: 3px;
+    margin-bottom: 1px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+QTabBar::tab:hover {
+    border-left: 1px solid #F46320;
+    background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
+}
+QTabBar::tab:selected {
+    width:21px;
+    color: #F0F0F0;
+    border-left: 2px solid #F46320;
+    background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
+}
+
+QComboBox {
+    color: #F0F0F0;
+    font-size: 18px;
+    max-height:20px;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
+    border:1px solid #727272;
+    border-radius: 3px;
+    padding-left: 2px;
+}
+
+QComboBox::drop-down {
+    width: 26px;
+    border: none;
+    background: transparent;
+}
+
+QComboBox::down-arrow {
+    border-image: url(:/icon/icon/arrow_down);
+}
+
+QComboBox QAbstractItemView {
+    border: 1px solid #727272;
+    color: #F0F0F0;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
+    outline: none;
+    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);
+}
+
+QComboBox:on {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF2B2B2B, stop:1 #FF202020);
+}
+
 #page_login {border-image: url(:/image/image/wlite.jpg);}
 /*#page_main {border-image: url(:/image/);}
 #page_19 {border-image: url(:/image/);}
@@ -286,21 +390,50 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
 #page_21 {border-image: url(:/image/);}
 #page_22 {border-image: url(:/image/);}*/
 
-QGroupBox {
-border:1px solid #727272;
-border-radius: 5px;
-margin-top: 1.5ex;
+.QGroupBox {
+    border:1px solid #727272;
+    border-radius: 5px;
+    margin-top: 1.5ex;
+	font-weight:normal;
 }
 
-QGroupBox::title { 
-subcontrol-origin: margin;
-subcontrol-position: top left;
-left:10px;      
-margin-left: 0px;
-padding:0 1px;
+.QGroupBox QWidget#mPiecesViewListA{
+	border:1px;
+	border-radius: 5px;
+}
+.QGroupBox QWidget#mPiecesViewListB{
+	border:1px;
+	border-radius: 5px;
+}
+.QGroupBox QWidget#mPiecesViewListC{
+	border:1px;
+	border-radius: 5px;
+}
+.QGroupBox QWidget#mPiecesPowerListA{
+	border:1px;
+	border-radius: 5px;
+}
+.QGroupBox QWidget#mPiecesPowerListB{
+	border:1px;
+	border-radius: 5px;
+}
+.QGroupBox QWidget#mPiecesPowerListC{
+	border:1px;
+	border-radius: 5px;
 }
 
-QGroupBox::{}
+.QGroupBox::title { 
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    left:10px;
+    margin-left: 0px;
+    padding:0 1px;
+}
+
+.QGroupBox#groupBox_login {
+background: rgba(70,70,70,30%);
+}
+
 
 </string>
    </property>
@@ -314,7 +447,7 @@ QGroupBox::{}
     <number>1</number>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QGroupBox" name="groupBox_login">
@@ -328,16 +461,15 @@ QGroupBox::{}
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="autoFillBackground">
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">QGroupBox#groupBox_login {background: rgba(70,70,70,30%);}
-QGroupBox#groupBox_login:: {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Login</string>
@@ -357,10 +489,7 @@ QGroupBox#groupBox_login:: {background-color: rgb();}</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">
-QLabel {
-	background: transparent;
-}</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Project ID：</string>
@@ -384,7 +513,7 @@ QLabel {
        <enum>Qt::StrongFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string/>
@@ -411,6 +540,11 @@ QLabel {
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
@@ -429,6 +563,11 @@ QLabel {
         <width>84</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <property name="acceptDrops">
        <bool>false</bool>
@@ -468,29 +607,7 @@ QLabel {
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#pushButton_6 {
-	border: 1px solid #AAAAAA;
-	border-top-color: #727272;
-	border-right-color: #727272;
-	border-radius: 0px;
-	border-top-right-radius: 4px;
-	border-bottom-left-radius: 4px;
-	height: 21px;
-	width: 21px;
-    background: rgb(225,225,225);
-    /*image:url(:/icon/icon/up_arrow2.png);*/
-	image: url(:/icon/icon/arrow_down_black.png);
-}
-
-QPushButton#pushButton_6:hover {
-	background: rgb(229,241,251);
-}
-
-QPushButton#pushButton_6:pressed {
-	background: rgb(225,225,225);
-}
-
-QPushButton::menu-indicator{image:none;}</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string/>
@@ -502,18 +619,17 @@ QPushButton::menu-indicator{image:none;}</string>
      <zorder>pushButton_login1</zorder>
      <zorder>pushButton_login2</zorder>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_login">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>250</y>
-       <width>961</width>
-       <height>221</height>
+       <x>480</x>
+       <y>230</y>
+       <width>480</width>
+       <height>270</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background: transparent;
-border-image: url(:/image/image/SGS.png);</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string/>
@@ -558,8 +674,7 @@ border-image: url(:/image/image/SGS.png);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;
-color:#323232;</string>
+      <string notr="true"/>
      </property>
      <property name="lineWidth">
       <number>1</number>
@@ -574,7 +689,7 @@ color:#323232;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <zorder>label</zorder>
+    <zorder>label_login</zorder>
     <zorder>groupBox_login</zorder>
     <zorder>label_2</zorder>
     <zorder>label_3</zorder>
@@ -617,39 +732,7 @@ color:#323232;</string>
       <enum>Qt::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">QTabWidget::pane {
-	border: none;
-	border-top: 1px solid #727272;
-	border-right: 2px solid #727272;
-}
-
-QTabWidget::tab-bar {
-    border: none;
-}
-QTabBar::tab {
-    border: none;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 4px;
-    color: #E0E0E0;
-	background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #525252);
-    height: 80px;
-    width: 20px;
-    margin-right: 3px;
-	margin-bottom: 1px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-}
-QTabBar::tab:hover {
-    border-left: 1px solid #fd6228;
-	background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
-}
-QTabBar::tab:selected {
-	width:23px;
-    color: #F0F0F0;
-    border-left: 2px solid #fd6228;
-	background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);
-}
-</string>
+      <string notr="true"/>
      </property>
      <property name="tabPosition">
       <enum>QTabWidget::East</enum>
@@ -703,10 +786,7 @@ QTabBar::tab:selected {
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QGroupBox QWidget{
-border:1px;
-border-radius: 5px;}</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string/>
@@ -743,7 +823,7 @@ border-radius: 5px;}</string>
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -769,10 +849,7 @@ border-radius: 5px;}</string>
         <bool>true</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QGroupBox QWidget{
-border:1px;
-border-radius: 5px;}</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string/>
@@ -807,8 +884,8 @@ border-radius: 5px;}</string>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -927,6 +1004,11 @@ border-radius: 5px;}</string>
          <height>31</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Auto</string>
        </property>
@@ -947,7 +1029,7 @@ border-radius: 5px;}</string>
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -973,10 +1055,7 @@ border-radius: 5px;}</string>
         <bool>true</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QGroupBox QWidget{
-border:1px;
-border-radius: 5px;}</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string/>
@@ -1035,10 +1114,7 @@ border-radius: 5px;}</string>
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QGroupBox QWidget{
-border:1px;
-border-radius: 5px;}</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string/>
@@ -1073,8 +1149,8 @@ border-radius: 5px;}</string>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -1190,6 +1266,11 @@ border-radius: 5px;}</string>
          <height>31</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Auto</string>
        </property>
@@ -1210,7 +1291,7 @@ border-radius: 5px;}</string>
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -1236,10 +1317,7 @@ border-radius: 5px;}</string>
         <bool>true</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QGroupBox QWidget{
-border:1px;
-border-radius: 5px;}</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string/>
@@ -1298,10 +1376,7 @@ border-radius: 5px;}</string>
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QGroupBox QWidget{
-border:1px;
-border-radius: 5px;}</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string/>
@@ -1336,19 +1411,12 @@ border-radius: 5px;}</string>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">/*QToolButton {
- background-color: rgb(184, 184, 184);} 
-
-QToolButton:hover { 
-background-color: rgb(199, 199, 199);}
-
-QToolButton:pressed { 
-background-color: rgb(155, 155, 155);}*/</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string>GroupBox</string>
@@ -1466,6 +1534,11 @@ background-color: rgb(155, 155, 155);}*/</string>
          <height>31</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Auto</string>
        </property>
@@ -1481,18 +1554,11 @@ background-color: rgb(155, 155, 155);}*/</string>
          <x>490</x>
          <y>80</y>
          <width>271</width>
-         <height>311</height>
+         <height>331</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-QLineEdit {
-	border: none;
-	border-bottom: 1px solid #727272;
-	border-radius: 0px;
-	border-bottom-right-radius: 2px;
-	padding-left: 5px;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string/>
@@ -1501,7 +1567,7 @@ QLineEdit {
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>20</y>
+          <y>10</y>
           <width>251</width>
           <height>81</height>
          </rect>
@@ -1550,7 +1616,7 @@ QLineEdit {
            <x>50</x>
            <y>50</y>
            <width>191</width>
-           <height>20</height>
+           <height>21</height>
           </rect>
          </property>
          <property name="alignment">
@@ -1598,9 +1664,9 @@ QLineEdit {
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>120</y>
+          <y>110</y>
           <width>251</width>
-          <height>80</height>
+          <height>111</height>
          </rect>
         </property>
         <property name="title">
@@ -1663,7 +1729,7 @@ QLineEdit {
            <x>50</x>
            <y>50</y>
            <width>191</width>
-           <height>20</height>
+           <height>21</height>
           </rect>
          </property>
          <property name="alignment">
@@ -1686,15 +1752,54 @@ QLineEdit {
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
+        <widget class="QLabel" name="label_VOLT_7">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>80</y>
+           <width>41</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Type：</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>80</y>
+           <width>191</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>Yokogawa GP10</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Agilent 34970A</string>
+          </property>
+         </item>
+        </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_41">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>220</y>
+          <y>240</y>
           <width>251</width>
           <height>81</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
         </property>
         <property name="title">
          <string>Life Tester</string>
@@ -1750,7 +1855,7 @@ QLineEdit {
            <x>50</x>
            <y>50</y>
            <width>191</width>
-           <height>20</height>
+           <height>21</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -2199,10 +2304,15 @@ QLineEdit {
        <property name="geometry">
         <rect>
          <x>660</x>
-         <y>410</y>
+         <y>420</y>
          <width>91</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>Save</string>
@@ -2212,10 +2322,15 @@ QLineEdit {
        <property name="geometry">
         <rect>
          <x>560</x>
-         <y>410</y>
+         <y>420</y>
          <width>91</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>Update</string>
@@ -2234,7 +2349,7 @@ QLineEdit {
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>15</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -2260,7 +2375,7 @@ QLineEdit {
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -2284,7 +2399,7 @@ QLineEdit {
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="focusPolicy">
@@ -2324,8 +2439,8 @@ QLineEdit {
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -3458,8 +3573,8 @@ Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -3922,7 +4037,7 @@ Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="text">
@@ -3940,7 +4055,7 @@ Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="text">
@@ -3974,8 +4089,8 @@ Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -4158,8 +4273,8 @@ Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -4450,7 +4565,7 @@ Breake CapacityArguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="text">
@@ -4471,7 +4586,7 @@ Breake CapacityArguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="text">
@@ -4533,8 +4648,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -4746,8 +4861,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -5121,7 +5236,7 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -5145,7 +5260,7 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="text">
@@ -5201,8 +5316,8 @@ After the Operation Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -5357,8 +5472,8 @@ After the Operation Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -6701,7 +6816,7 @@ After the Operation Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="focusPolicy">
@@ -6728,7 +6843,7 @@ After the Operation Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="text">
@@ -6787,8 +6902,8 @@ Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -7892,8 +8007,8 @@ Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -8053,7 +8168,7 @@ Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="text">
@@ -8071,7 +8186,7 @@ Temperature Rise Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -8133,8 +8248,8 @@ Breake Capacity Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -8305,8 +8420,8 @@ Breake Capacity Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -8578,7 +8693,7 @@ Breake Capacity Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -8602,7 +8717,7 @@ Breake Capacity Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="text">
@@ -8645,8 +8760,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -8808,8 +8923,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -9065,7 +9180,7 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="focusPolicy">
@@ -9116,8 +9231,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -9240,8 +9355,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -9473,8 +9588,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -9826,7 +9941,7 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -9850,8 +9965,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -11420,8 +11535,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -11566,7 +11681,7 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="focusPolicy">
@@ -11623,8 +11738,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -11862,8 +11977,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -12097,8 +12212,8 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -12262,7 +12377,7 @@ Normal Operation Arguments</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>19</pointsize>
       </font>
      </property>
      <property name="styleSheet">

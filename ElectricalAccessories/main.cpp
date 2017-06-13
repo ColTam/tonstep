@@ -38,7 +38,8 @@ int main(int argc, char *argv[])
     QSettings *configIniRead = new QSettings("EATconfig.ini", QSettings::IniFormat);
 
     QString voltageU    = configIniRead->value("Voltage Uart").toString();
-    QString TRU         = configIniRead->value("Temperature Rise Uart").toString();
+    QString TRU1        = configIniRead->value("Temperature Rise Uart1").toString();
+    QString TRU2        = configIniRead->value("Temperature Rise Uart2").toString();
     QString LoadAU      = configIniRead->value("Load(ServoA) Uart").toString();
     QString LoadBU      = configIniRead->value("Load(ServoB) Uart").toString();
     QString LoadCU      = configIniRead->value("Load(ServoC) Uart").toString();
@@ -54,15 +55,18 @@ int main(int argc, char *argv[])
     }
 
     splash->show();
-    splash->setGeometry((QApplication::desktop()->width()-480)/2,(QApplication::desktop()->height()-270)/2,485,275);
+    splash->setGeometry((QApplication::desktop()->width()-480)/2,(QApplication::desktop()->height()-270)/2,480,270);
     splash->setLabelTest(QObject::tr("Is connecting STAS and Configure the local file"));
     splash->setProgress(1);     //
 
     if (!voltageU.isEmpty()){
         comVolt  = voltageU.toInt();
     }
-    if (!TRU.isEmpty()){
-        comTRC   = TRU.toInt();
+    if (!TRU1.isEmpty()){
+        comTR_YOKOGAWAGP10 = TRU1.toInt();
+    }
+    if (!TRU2.isEmpty()){
+        comTR_AGILENT34970 = TRU2.toInt();
     }
     if (!LoadAU.isEmpty()){
         comLoadA = LoadAU.toInt();
@@ -84,7 +88,7 @@ int main(int argc, char *argv[])
     Sleep(2000);
     //voltage               0
     splash->setLabelTest(QObject::tr("Checking the Power Supply UART..."));
-    splash->setProgress(100/9+(qrand()%10-5));
+    splash->setProgress(100/10+(qrand()%10-5));
 
     CollectControl::HardSend(comVolt, QString("RDW VF").toLatin1().data(),200);
     QString volt = CollectControl::HardSend(comVolt, QString("RDW VF").toLatin1().data(),900);
@@ -97,11 +101,11 @@ int main(int argc, char *argv[])
     }
     voltUart.com = comVolt;
     devInformation << voltUart;
-    //temperature rise      1
-    splash->setLabelTest(QObject::tr("Checking the Paperless Recorder UART...."));
-    splash->setProgress(200/9+(qrand()%10-5));
+    //temperature rise      1       yokogawa Gp10
+    splash->setLabelTest(QObject::tr("Checking the Yokogawa Paperless Recorder UART...."));
+    splash->setProgress(200/10+(qrand()%10-5));
 
-    QString trcr = CollectControl::HardSend(comTRC, QString("FData,0,0001,0110").toLatin1().data(),1100);
+    QString trcr = CollectControl::HardSend(comTR_YOKOGAWAGP10, QString("FData,0,0001,0110").toLatin1().data(),1100);
     UART_t trcrUart;
     if (!trcr.isEmpty() && trcr.size() == 723) {
         Sleep(700);
@@ -109,11 +113,11 @@ int main(int argc, char *argv[])
     } else {
         trcrUart.data = "";
     }
-    trcrUart.com = comTRC;
+    trcrUart.com = comTR_YOKOGAWAGP10;
     devInformation << trcrUart;
     //loadA                 2
     splash->setLabelTest(QObject::tr("Checking the Load(ServoA) UART..."));
-    splash->setProgress(300/9+(qrand()%10-5));
+    splash->setProgress(300/10+(qrand()%10-5));
 
     QString loadA = CollectControl::HardSend(comLoadA, QString("RDM%101%102%\r").toLatin1().data(),1100);
     UART_t loadAUart;
@@ -127,7 +131,7 @@ int main(int argc, char *argv[])
     devInformation << loadAUart;
     //loadB                 3
     splash->setLabelTest(QObject::tr("Checking the Load(ServoB) UART...."));
-    splash->setProgress(400/9+(qrand()%10-5));
+    splash->setProgress(400/10+(qrand()%10-5));
 
     QString loadB = CollectControl::HardSend(comLoadB, QString("RDM%101%102%\r").toLatin1().data(),1100);
     UART_t loadBUart;
@@ -141,7 +145,7 @@ int main(int argc, char *argv[])
     devInformation << loadBUart;
     //loadC                 4
     splash->setLabelTest(QObject::tr("Checking the Load(ServoC) UART..."));
-    splash->setProgress(500/9+(qrand()%10-5));
+    splash->setProgress(500/10+(qrand()%10-5));
 
     QString loadC = CollectControl::HardSend(comLoadC, QString("RDM%101%102%\r").toLatin1().data(),1100);
     UART_t loadCUart;
@@ -155,7 +159,7 @@ int main(int argc, char *argv[])
     devInformation << loadCUart;
     //test servoA           5
     splash->setLabelTest(QObject::tr("Checking the Life Tester ServoA UART...."));
-    splash->setProgress(600/9+(qrand()%10-5));
+    splash->setProgress(600/10+(qrand()%10-5));
 
     QString testA = CollectControl::HardSend(comTest, QString("RDWD020603").toLatin1().data(),1100);
     UART_t testAUart;
@@ -169,7 +173,7 @@ int main(int argc, char *argv[])
     devInformation << testAUart;
     //test servoB           6
     splash->setLabelTest(QObject::tr("Checking the Life Tester ServoB UART..."));
-    splash->setProgress(700/9+(qrand()%10-5));
+    splash->setProgress(700/10+(qrand()%10-5));
 
     QString testB = CollectControl::HardSend(comTest, QString("RDWD030603").toLatin1().data(),1100);
     UART_t testBUart;
@@ -183,7 +187,7 @@ int main(int argc, char *argv[])
     devInformation << testBUart;
     //test servoC           7
     splash->setLabelTest(QObject::tr("Checking the Life Tester ServoC UART...."));
-    splash->setProgress(800/9+(qrand()%10-5));
+    splash->setProgress(800/10+(qrand()%10-5));
 
     QString testC = CollectControl::HardSend(comTest, QString("RDWD040603").toLatin1().data(),1100);
     UART_t testCUart;
@@ -195,6 +199,21 @@ int main(int argc, char *argv[])
     }
     testCUart.com = comTest;
     devInformation << testCUart;
+
+    //temperature rise      8       //agilent 34970a  !!!!!待测试 命令 返回数据大小 判断正常条件
+    splash->setLabelTest(QObject::tr("Checking the Agilent Paperless Recorder UART...."));
+    splash->setProgress(900/10+(qrand()%10-5));
+
+    QString trcr2 = CollectControl::HardSend(comTR_AGILENT34970, QString("FData,0,0001,0110").toLatin1().data(),1100);
+    UART_t trcrUart2;
+    if (!trcr2.isEmpty() && trcr2.size() == 723) {
+        Sleep(700);
+        trcrUart2.data = trcr2;
+    } else {
+        trcrUart2.data = "";
+    }
+    trcrUart2.com = comTR_AGILENT34970;
+    devInformation << trcrUart2;
 
     if (connectSTAS) {
         splash->setLabelTest(QObject::tr("Connect STAS Sucess! Entering the login screen..."));

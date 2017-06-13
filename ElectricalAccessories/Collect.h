@@ -52,7 +52,8 @@ extern unsigned int comLoadA;           //伺服A对应负载串口号
 extern unsigned int comLoadB;           //伺服B对应负载串口号
 extern unsigned int comLoadC;           //伺服C对应负载串口号
 extern unsigned int comVolt;            //电源对应串口号
-extern unsigned int comTRC;             //无纸记录仪对应串口号
+extern unsigned int comTR_YOKOGAWAGP10; //横河无纸记录仪对应串口号
+extern unsigned int comTR_AGILENT34970; //安捷伦无纸记录仪对应串口号
 extern unsigned int comTest;            //寿命测试机对应串口号
 
 namespace CollectControl {

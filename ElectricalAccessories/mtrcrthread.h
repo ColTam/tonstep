@@ -26,7 +26,7 @@ signals:
 
 public slots:
     void readData();            /*!* \brief 线程初始化槽函数 */
-    void updaeTRCR();           /*!* \brief 接收无纸记录仪数据槽函数 */
+    void updateTRCR();           /*!* \brief 接收无纸记录仪数据槽函数 */
     void mTRCRTimerStart();     /*!* \brief 定时器启动 */
     void mTRCRTimerStop();      /*!* \brief 定时器停止 */
 

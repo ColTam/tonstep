@@ -5,12 +5,13 @@
 
 QList<UART_t> devInformation;
 bool connectSTAS = false;
-unsigned int comLoadA = 2;
-unsigned int comLoadB = 1;
-unsigned int comLoadC = 0;
-unsigned int comVolt  = 4;
-unsigned int comTRC   = 5;
-unsigned int comTest  = 6;
+unsigned int comLoadA           = 2;
+unsigned int comLoadB           = 1;
+unsigned int comLoadC           = 0;
+unsigned int comVolt            = 4;
+unsigned int comTR_YOKOGAWAGP10 = 5;
+unsigned int comTR_AGILENT34970 = 7;
+unsigned int comTest            = 6;
 
 bool Collect::IsTestServoA = false;
 bool Collect::IsTestServoB = false;

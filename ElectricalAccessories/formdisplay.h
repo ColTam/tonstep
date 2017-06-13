@@ -82,8 +82,16 @@ public:
     explicit FormDisplay(QWidget *parent = 0);
     ~FormDisplay();
 
-    enum plugType{IEC60320, IEC60884};          /*!* \brief IEC模块 */
-    enum servo{servoA, servoB, servoC};         /*!* \brief 工作伺服对象 */
+    enum PlugType { IEC60320
+                    ,IEC60884
+                  };                            /*!* \brief IEC模块 */
+    enum LifeTesterServo { Servo_A
+                           ,Servo_B
+                           ,Servo_C
+                         };                     /*!* \brief 工作伺服对象 */
+    enum TRType { YOKOGAWA_GP10
+                 ,AGILENT_34970
+                };                              /*!* \brief 无纸记录仪对象 */
 
     static QString dirName;                     /*!* \brief 当前工作目录 */
 
@@ -258,8 +266,18 @@ private slots:
     void on_checkBox_breaking_2_toggled(bool checked);/*!* \brief  */
     void on_checkBox_normal_2_toggled(bool checked);/*!* \brief  */
 
+    void on_comboBox_currentIndexChanged(int index);
+
 private:
     Ui::FormDisplay     *ui;
+
+    bool                isOld;                  /*!* \brief 判断项目时候为旧项目 */
+    bool                isAuto;                 /*!* \brief 判断是否为懒人一键设定 */
+    bool                isManual;               /*!* \brief 判断是否手动更新串口情况 */
+
+    PlugType            mPlug;                  /*!* \brief IEC对象 */
+    LifeTesterServo     mServo;                 /*!* \brief 伺服对象 */
+    TRType              mTRType;                /*!* \brief 无纸记录仪对象 */
 
     QPixmap             mImage;                 /*!* \brief 拖拉框项目图标 */
     QMenu*              popMenu;                /*!* \brief 下拉菜单 */
@@ -279,10 +297,6 @@ private:
     pathDialog*         mPathDialog;            /*!* \brief 路径编辑界面 */
     RegistrationCode*   mRegistration;          /*!* \brief 注册码编辑界面 */
 
-    bool                isOld;                  /*!* \brief 判断项目时候为旧项目 */
-    bool                isAuto;                 /*!* \brief 判断是否为懒人一键设定 */
-    bool                isManual;               /*!* \brief 判断是否手动更新串口情况 */
-
     int                 mAttachmentType;        /*!* \brief 附件类型 */
     int                 fileSize;               /*!* \brief 工作目录初始路径长度 */
 
@@ -295,8 +309,7 @@ private:
     QStringList         dirNameListB;           /*!* \brief  */
     QStringList         dirNameListC;           /*!* \brief  */
 
-    plugType            mPlug;                  /*!* \brief IEC对象 */
-    servo               mServo;                 /*!* \brief 伺服对象 */
+    friend class mTRCRThread;
 };
 
 #endif // FORMDISPLAY_H
