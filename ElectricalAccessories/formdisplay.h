@@ -164,7 +164,6 @@ private slots:
     void on_toolButton_start_2_clicked();       /*!* \brief 伺服B启动测试按钮 */
     void on_toolButton_start_3_clicked();       /*!* \brief 伺服C启动测试按钮 */
     void on_toolButton_TRCR_clicked();          /*!* \brief 显示温升参数设置界面 */
-    void on_toolButton_TRCR_2_clicked();
     void on_toolButton_clicked();               /*!* \brief 显示帮助界面 */
     void on_tabWidget_currentChanged(int index);/*!* \brief 改变当前伺服 */
     void on_tabWidget_tabBarClicked(int index); /*!* \brief 判断串口数据是否改变后未保存 */
@@ -177,8 +176,6 @@ private slots:
     void on_tableWidget_4_itemChanged(QTableWidgetItem *item);
     void on_tableWidget_5_itemChanged(QTableWidgetItem *item);
     void on_tableWidget_6_itemChanged(QTableWidgetItem *item);
-    void on_radioButtonSwitch_toggled(bool checked);/*!* \brief 改变884标准界面L-N/L-E切换参数 */
-    void on_radioButtonIC_toggled(bool checked);/*!* \brief 改变884标准界面短路开关参数 */
     void on_lineEdit_tempVn_textChanged(const QString &arg1);/*!* \brief 884标准温升额定电压参数处理 */
     void on_lineEdit_tempVn_t_textChanged(const QString &arg1);/*!* \brief 884标准温升测试电压参数处理 */
     void on_lineEdit_tempIn_textChanged(const QString &arg1);/*!* \brief 884标准温升额定电流参数处理 */
@@ -248,6 +245,8 @@ private slots:
     void on_lineEditRate_2_textChanged(const QString &arg1);/*!* \brief 320标准懒人模式伺服速度参数处理 */
     void on_lineEditPosition_2_textChanged(const QString &arg1);/*!* \brief 320标准懒人模式伺服行程参数处理 */
     void on_lineEditMaxValue_2_textChanged(const QString &arg1);/*!* \brief 320标准懒人模式备用室温参数处理 */
+    void on_checkBoxSwitch_toggled(bool checked);/*!* \brief 改变884标准界面L-N/L-E切换参数 */
+    void on_checkBoxIC_toggled(bool checked);/*!* \brief 改变884标准界面短路开关参数 */
     void on_checkBox_tempIC_toggled(bool checked);/*!* \brief 884标准温升短路开关处理 */
     void on_checkBox_A_toggled(bool checked);   /*!* \brief 串口通讯情况处理 */
     void on_checkBox_B_toggled(bool checked);   /*!* \brief  */
@@ -258,13 +257,13 @@ private slots:
     void on_checkBox_TEST_A_toggled(bool checked);/*!* \brief  */
     void on_checkBox_TEST_B_toggled(bool checked);/*!* \brief  */
     void on_checkBox_TEST_C_toggled(bool checked);/*!* \brief  */
-    void on_checkBox_temp_toggled(bool checked);/*!* \brief 特殊模式选择框 */
-    void on_checkBox_breaking_toggled(bool checked);/*!* \brief  */
-    void on_checkBox_normal_toggled(bool checked);/*!* \brief  */
-    void on_checkBox_normalTemp_toggled(bool checked);/*!* \brief  */
-    void on_checkBox_temp_2_toggled(bool checked);/*!* \brief  */
-    void on_checkBox_breaking_2_toggled(bool checked);/*!* \brief  */
-    void on_checkBox_normal_2_toggled(bool checked);/*!* \brief  */
+    void on_radioButton_temp_toggled(bool checked);/*!* \brief 特殊模式选择框 */
+    void on_radioButton_breaking_toggled(bool checked);/*!* \brief  */
+    void on_radioButton_normal_toggled(bool checked);/*!* \brief  */
+    void on_radioButton_normalTemp_toggled(bool checked);/*!* \brief  */
+    void on_radioButton_temp_2_toggled(bool checked);/*!* \brief  */
+    void on_radioButton_breaking_2_toggled(bool checked);/*!* \brief  */
+    void on_radioButton_normal_2_toggled(bool checked);/*!* \brief  */
 
     void on_comboBox_currentIndexChanged(int index);
 

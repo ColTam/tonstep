@@ -13,6 +13,11 @@
   <property name="windowTitle">
    <string/>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#FormDisplay {
+	border-radius: 5px;
+}</string>
+  </property>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="enabled">
     <bool>true</bool>
@@ -21,8 +26,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>958</width>
-     <height>693</height>
+     <width>960</width>
+     <height>694</height>
     </rect>
    </property>
    <property name="font">
@@ -34,408 +39,7 @@
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget {
-	background-color: #FFFFFF;
-}
-
-QLabel {
-	background: transparent;
-}
-
-QLabel#label_login {
-	image: url(:/image/image/SGS.png);
-}
-
-QLineEdit{
-    border: 1px solid #727272;
-    border-radius: 3px;
-    min-height: 19px;
-    selection-color:rgb(240,240,240);
-    selection-background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
-}
-
-QPushButton 
-{
-    border: 1px solid #727272;
-    border-bottom-width:1px;
-    border-radius: 4px;
-    color: #F0F0F0;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
-}
-
-QPushButton:hover
-{
-    border-bottom-color: #F46320;
-    border-bottom-width: 2px;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);
-}
-
-QPushButton:pressed 
-{
-    border-bottom-color: #727272;
-    border-bottom-width: 1px;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
-}
-
-QPushButton:!enabled 
-{
-    color: #ADADAD;
-}
-
-QPushButton#pushButton_6 {
-	border: 1px solid #AAAAAA;
-	border-top-color: #727272;
-	border-right-color: #727272;
-	border-radius: 0px;
-	border-top-right-radius: 4px;
-	border-bottom-left-radius: 4px;
-	height: 21px;
-	width: 21px;
-    background: #FAFAFA;
-	image: url(:/icon/icon/arrow_down_black.png);
-}
-
-QPushButton#pushButton_6:hover {
-	background: #E7E7E7;
-}
-
-QPushButton#pushButton_6:pressed {
-	background: #FDFDFD;
-}
-
-QPushButton#pushButton_6::menu-indicator{
-	image:none;
-}
-
-QToolButton 
-{
-    border: 1px solid #727272;
-    border-bottom-width:1px;
-    border-radius: 4px;
-    color: #F0F0F0;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
-}
-
-QToolButton:hover
-{
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);
-    border-bottom-color: #F46320;
-    border-bottom-width: 2px;
-}
-
-QToolButton:pressed 
-{
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
-    border-bottom-color: #727272;
-    border-bottom-width: 1px;
-}
-
-QToolButton:!enabled 
-{
-    color: #ADADAD;
-}
-
-QToolButton#toolButton_close{
-    border: none;
-    border-radius: 0px;
-    background: #FAFAFA;
-    image:url(:/icon/icon/return.png);
-}
-
-QToolButton#toolButton_close:hover{
-    background: #E7E7E7;
-    border-bottom: 2px solid #F46320;
-}
-
-QToolButton#toolButton_close:pressed{
-    background: #FDFDFD;
-}
-
-QToolButton#toolButton{
-    border: none;
-    border-left: 1px solid #727272;
-    border-radius: 0px;
-    color: black;
-    background: #FAFAFA;
-}
-
-QToolButton#toolButton:hover{
-    background: #E7E7E7;
-    border-bottom: 2px solid #F46320;
-}
-
-QToolButton#toolButton:pressed{
-    background: #FDFDFD;
-}
-
-QTableWidget {
-    border: 1px solid #727272;
-    border-left: 2px solid #727272;
-    border-radius: 3px;
-    selection-color:#F0F0F0;
-    selection-background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
-}
-
-QTableView::indicator:unchecked {
-    border: 1px solid #787878;
-}
-
-QTableView::indicator:unchecked:hover {
-    border: 1px solid #787878;
-}
-
-QTableWidget::item{
-    border:none;   
-    border-right: 1px solid #545454;
-    border-bottom: 1px solid #545454;
-    background: #FFFFFF;
-}
-
-QTableWidget::item:hover{
-    color:#F0F0F0;
-    background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #545454);
-}
-
-QTableWidget::item:selected{
-    color:#F0F0F0;
-    background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
-}
-
-QHeaderView::section{
-    border:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:1 #646464);;
-    padding: 3px;
-    color:#F0F0F0;
-    background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #545454, stop:1 #646464);
-}
-
-QScrollBar:vertical {
-    width: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #4B4B4B);
-    margin: 13px 0 13px 0;
-}
-
-QScrollBar::handle:vertical {
-    width: 13px;
-    min-height: 30px;
-    border-radius: 4px;
-    margin-left:2px;
-    margin-right:2px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #AAAAAA, stop:1 #7B7B7B);
-}
-
-QScrollBar::handle:vertical:hover {
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #9C9C9C, stop:1 #6D6D6D);
-}
-
-QScrollBar::sub-line:vertical {
-    height: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #4B4B4B);
-    image: url(:/icon/icon/arrow_up.png);
-    subcontrol-position: top;
-    subcontrol-origin: margin;
-    padding-top:5px;
-    padding-bottom:5px;
-}
-
-QScrollBar::add-line:vertical {
-    height: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #4B4B4B);
-    image: url(:/icon/icon/arrow_down.png);
-    subcontrol-position: bottom;
-    subcontrol-origin: margin;
-    padding-top:5px;
-    padding-bottom:5px;
-}
-
-QScrollBar::sub-line:vertical:hover {
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #585858);
-}
-
-QScrollBar::add-line:vertical:hover {
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #484848, stop:1 #585858);
-}
-
-QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-    background: transparent;
-}
-
-QScrollBar:horizontal {
-    height: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #4B4B4B);
-    margin: 0 13px 0 13px;
-}
-
-QScrollBar::handle:horizontal {
-    height: 13px;
-    min-width: 30px;
-    border-radius: 4px;
-    margin-top:2px;
-    margin-bottom:2px;
-    margin-left: 10px;
-    margin-right: 10px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #AAAAAA, stop:1 #7B7B7B);
-}
-
-QScrollBar::handle:horizontal:hover {
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #9C9C9C, stop:1 #6D6D6D);
-}
-
-QScrollBar::sub-line:horizontal {
-    width: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #4B4B4B);
-    image: url(:/icon/icon/arrow_left.png);
-    subcontrol-position: left;
-    subcontrol-origin: margin;
-    padding-left:5px;
-    padding-right:5px;
-}
-
-QScrollBar::add-line:horizontal {
-    width: 13px;
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #4B4B4B);
-    image: url(:/icon/icon/arrow_right.png);
-    subcontrol-position: right;
-    subcontrol-origin: margin;
-    padding-left:5px;
-    padding-right:5px;
-}
-
-QScrollBar::sub-line:horizontal:hover {
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #585858, stop:1 #484848);
-}
-
-QScrollBar::add-line:horizontal:hover {
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #585858, stop:1 #484848);
-}
-
-QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
-    background: transparent;
-}
-
-QTabWidget QLabel {
-	background: #FFFFFF;
-}
-
-QTabWidget::pane {
-	border: none;
-	border-top: 1px solid #727272;
-	border-right: 2px solid #727272;
-}
-
-QTabWidget::tab-bar {
-    border: none;
-}
-QTabBar::tab {
-    color: #E0E0E0;
-    background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #646464, stop:1 #545454);
-    width: 20px;
-    height: 73px;
-    border: none;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    margin-right: 3px;
-    margin-bottom: 1px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-}
-QTabBar::tab:hover {
-    border-left: 1px solid #F46320;
-    background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
-}
-QTabBar::tab:selected {
-    width:21px;
-    color: #F0F0F0;
-    border-left: 2px solid #F46320;
-    background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
-}
-
-QComboBox {
-    color: #F0F0F0;
-    font-size: 18px;
-    max-height:20px;
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
-    border:1px solid #727272;
-    border-radius: 3px;
-    padding-left: 2px;
-}
-
-QComboBox::drop-down {
-    width: 26px;
-    border: none;
-    background: transparent;
-}
-
-QComboBox::down-arrow {
-    border-image: url(:/icon/icon/arrow_down);
-}
-
-QComboBox QAbstractItemView {
-    border: 1px solid #727272;
-    color: #F0F0F0;
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
-    outline: none;
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);
-}
-
-QComboBox:on {
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF2B2B2B, stop:1 #FF202020);
-}
-
-#page_login {border-image: url(:/image/image/wlite.jpg);}
-/*#page_main {border-image: url(:/image/);}
-#page_19 {border-image: url(:/image/);}
-#page_20 {border-image: url(:/image/);}
-#page_21 {border-image: url(:/image/);}
-#page_22 {border-image: url(:/image/);}*/
-
-.QGroupBox {
-    border:1px solid #727272;
-    border-radius: 5px;
-    margin-top: 1.5ex;
-	font-weight:normal;
-}
-
-.QGroupBox QWidget#mPiecesViewListA{
-	border:1px;
-	border-radius: 5px;
-}
-.QGroupBox QWidget#mPiecesViewListB{
-	border:1px;
-	border-radius: 5px;
-}
-.QGroupBox QWidget#mPiecesViewListC{
-	border:1px;
-	border-radius: 5px;
-}
-.QGroupBox QWidget#mPiecesPowerListA{
-	border:1px;
-	border-radius: 5px;
-}
-.QGroupBox QWidget#mPiecesPowerListB{
-	border:1px;
-	border-radius: 5px;
-}
-.QGroupBox QWidget#mPiecesPowerListC{
-	border:1px;
-	border-radius: 5px;
-}
-
-.QGroupBox::title { 
-    subcontrol-origin: margin;
-    subcontrol-position: top left;
-    left:10px;
-    margin-left: 0px;
-    padding:0 1px;
-}
-
-.QGroupBox#groupBox_login {
-background: rgba(70,70,70,30%);
-}
-
-
-</string>
+    <string notr="true"/>
    </property>
    <property name="frameShape">
     <enum>QFrame::NoFrame</enum>
@@ -447,7 +51,7 @@ background: rgba(70,70,70,30%);
     <number>1</number>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>9</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QGroupBox" name="groupBox_login">
@@ -536,7 +140,7 @@ background: rgba(70,70,70,30%);
        <rect>
         <x>100</x>
         <y>140</y>
-        <width>84</width>
+        <width>91</width>
         <height>31</height>
        </rect>
       </property>
@@ -560,7 +164,7 @@ background: rgba(70,70,70,30%);
        <rect>
         <x>200</x>
         <y>140</y>
-        <width>84</width>
+        <width>91</width>
         <height>31</height>
        </rect>
       </property>
@@ -588,22 +192,22 @@ background: rgba(70,70,70,30%);
      <widget class="QPushButton" name="pushButton_6">
       <property name="geometry">
        <rect>
-        <x>278</x>
+        <x>274</x>
         <y>5</y>
         <width>23</width>
-        <height>23</height>
+        <height>19</height>
        </rect>
       </property>
       <property name="minimumSize">
        <size>
         <width>23</width>
-        <height>23</height>
+        <height>19</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
         <width>23</width>
-        <height>23</height>
+        <height>19</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -650,7 +254,7 @@ background: rgba(70,70,70,30%);
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>SGS-CSTC Standards Technical Services Co., Ltd.</string>
@@ -698,7 +302,7 @@ background: rgba(70,70,70,30%);
     <widget class="QToolButton" name="toolButton_close">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>1</x>
        <y>0</y>
        <width>51</width>
        <height>33</height>
@@ -722,10 +326,10 @@ background: rgba(70,70,70,30%);
     <widget class="QTabWidget" name="tabWidget">
      <property name="geometry">
       <rect>
-       <x>-1</x>
+       <x>1</x>
        <y>33</y>
-       <width>961</width>
-       <height>661</height>
+       <width>958</width>
+       <height>660</height>
       </rect>
      </property>
      <property name="focusPolicy">
@@ -741,7 +345,7 @@ background: rgba(70,70,70,30%);
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideNone</enum>
@@ -815,15 +419,15 @@ background: rgba(70,70,70,30%);
       <widget class="QToolButton" name="toolButton_start">
        <property name="geometry">
         <rect>
-         <x>820</x>
-         <y>200</y>
-         <width>101</width>
-         <height>61</height>
+         <x>830</x>
+         <y>210</y>
+         <width>91</width>
+         <height>51</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <pointsize>26</pointsize>
+         <pointsize>23</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -998,9 +602,9 @@ background: rgba(70,70,70,30%);
       <widget class="QPushButton" name="pushButton">
        <property name="geometry">
         <rect>
-         <x>820</x>
+         <x>830</x>
          <y>160</y>
-         <width>101</width>
+         <width>91</width>
          <height>31</height>
         </rect>
        </property>
@@ -1021,15 +625,15 @@ background: rgba(70,70,70,30%);
       <widget class="QToolButton" name="toolButton_start_2">
        <property name="geometry">
         <rect>
-         <x>820</x>
-         <y>200</y>
-         <width>101</width>
-         <height>61</height>
+         <x>830</x>
+         <y>210</y>
+         <width>91</width>
+         <height>51</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <pointsize>26</pointsize>
+         <pointsize>23</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -1260,9 +864,9 @@ background: rgba(70,70,70,30%);
       <widget class="QPushButton" name="pushButton_2">
        <property name="geometry">
         <rect>
-         <x>820</x>
+         <x>830</x>
          <y>160</y>
-         <width>101</width>
+         <width>91</width>
          <height>31</height>
         </rect>
        </property>
@@ -1283,15 +887,15 @@ background: rgba(70,70,70,30%);
       <widget class="QToolButton" name="toolButton_start_3">
        <property name="geometry">
         <rect>
-         <x>820</x>
-         <y>200</y>
-         <width>101</width>
-         <height>61</height>
+         <x>830</x>
+         <y>210</y>
+         <width>91</width>
+         <height>51</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <pointsize>26</pointsize>
+         <pointsize>23</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -1528,9 +1132,9 @@ background: rgba(70,70,70,30%);
       <widget class="QPushButton" name="pushButton_3">
        <property name="geometry">
         <rect>
-         <x>820</x>
+         <x>830</x>
          <y>160</y>
-         <width>101</width>
+         <width>91</width>
          <height>31</height>
         </rect>
        </property>
@@ -2341,7 +1945,7 @@ background: rgba(70,70,70,30%);
     <widget class="QToolButton" name="toolButton">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>51</x>
        <y>0</y>
        <width>51</width>
        <height>33</height>
@@ -2353,7 +1957,7 @@ background: rgba(70,70,70,30%);
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">/*border-image: url(:/icon/icon/9.png);*/</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>?</string>
@@ -2367,10 +1971,10 @@ background: rgba(70,70,70,30%);
     <widget class="QToolButton" name="toolButton_close_19">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>540</y>
-       <width>101</width>
-       <height>41</height>
+       <x>800</x>
+       <y>550</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -2391,10 +1995,10 @@ background: rgba(70,70,70,30%);
     <widget class="QToolButton" name="toolButton_save19">
      <property name="geometry">
       <rect>
-       <x>680</x>
-       <y>540</y>
-       <width>101</width>
-       <height>41</height>
+       <x>700</x>
+       <y>550</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -2444,8 +2048,7 @@ background: rgba(70,70,70,30%);
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Show</string>
@@ -2605,7 +2208,7 @@ background: rgba(70,70,70,30%);
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Plug Socket
@@ -2817,7 +2420,7 @@ Temperature Rise Arguments</string>
        <enum>Checked</enum>
       </property>
       <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="0" column="2">
@@ -3578,9 +3181,7 @@ Temperature Rise Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}
-</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Setting</string>
@@ -4008,17 +3609,20 @@ Temperature Rise Arguments</string>
       </item>
      </layout>
     </widget>
-    <widget class="QCheckBox" name="checkBox_temp">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QRadioButton" name="radioButton_temp">
      <property name="geometry">
       <rect>
        <x>80</x>
        <y>140</y>
-       <width>101</width>
+       <width>81</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Specific</string>
@@ -4029,10 +3633,10 @@ Temperature Rise Arguments</string>
     <widget class="QToolButton" name="toolButton_save20">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>550</y>
-       <width>101</width>
-       <height>41</height>
+       <x>630</x>
+       <y>560</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -4047,10 +3651,10 @@ Temperature Rise Arguments</string>
     <widget class="QToolButton" name="toolButton_close_20">
      <property name="geometry">
       <rect>
-       <x>720</x>
-       <y>550</y>
-       <width>101</width>
-       <height>41</height>
+       <x>730</x>
+       <y>560</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -4094,8 +3698,7 @@ Temperature Rise Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Setting</string>
@@ -4278,8 +3881,7 @@ Temperature Rise Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Show</string>
@@ -4522,7 +4124,7 @@ Temperature Rise Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Plug Socket
@@ -4532,14 +4134,20 @@ Breake CapacityArguments</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_breaking">
+    <widget class="QRadioButton" name="radioButton_breaking">
      <property name="geometry">
       <rect>
        <x>140</x>
        <y>140</y>
-       <width>101</width>
+       <width>81</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Specific</string>
@@ -4551,16 +4159,16 @@ Breake CapacityArguments</string>
     <zorder>groupBox_3</zorder>
     <zorder>label_5</zorder>
     <zorder>groupBox_2</zorder>
-    <zorder>checkBox_breaking</zorder>
+    <zorder>radioButton_breaking</zorder>
    </widget>
    <widget class="QWidget" name="page_21">
     <widget class="QToolButton" name="toolButton_close_21">
      <property name="geometry">
       <rect>
-       <x>800</x>
-       <y>470</y>
-       <width>101</width>
-       <height>41</height>
+       <x>810</x>
+       <y>480</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -4578,10 +4186,10 @@ Breake CapacityArguments</string>
     <widget class="QToolButton" name="toolButton_save21">
      <property name="geometry">
       <rect>
-       <x>690</x>
-       <y>470</y>
-       <width>101</width>
-       <height>41</height>
+       <x>710</x>
+       <y>480</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -4621,7 +4229,7 @@ Breake CapacityArguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Plug Socket
@@ -4653,8 +4261,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Show</string>
@@ -4866,8 +4473,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Setting</string>
@@ -5210,14 +4816,20 @@ Normal Operation Arguments</string>
       </layout>
      </widget>
     </widget>
-    <widget class="QCheckBox" name="checkBox_normal">
+    <widget class="QRadioButton" name="radioButton_normal">
      <property name="geometry">
       <rect>
        <x>60</x>
        <y>160</y>
-       <width>101</width>
+       <width>81</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Specific</string>
@@ -5228,10 +4840,10 @@ Normal Operation Arguments</string>
     <widget class="QToolButton" name="toolButton_close_22">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>540</y>
-       <width>101</width>
-       <height>41</height>
+       <x>800</x>
+       <y>550</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -5252,10 +4864,10 @@ Normal Operation Arguments</string>
     <widget class="QToolButton" name="toolButton_save22">
      <property name="geometry">
       <rect>
-       <x>680</x>
-       <y>540</y>
-       <width>101</width>
-       <height>41</height>
+       <x>700</x>
+       <y>550</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -5295,7 +4907,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Plug Socket
@@ -5321,8 +4933,7 @@ After the Operation Temperature Rise Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Show</string>
@@ -5477,8 +5088,7 @@ After the Operation Temperature Rise Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Setting</string>
@@ -5801,19 +5411,6 @@ After the Operation Temperature Rise Arguments</string>
        <string>L-N/L-E </string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_normalTemp">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>101</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Specific</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
@@ -6058,7 +5655,7 @@ After the Operation Temperature Rise Arguments</string>
        <enum>Checked</enum>
       </property>
       <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="0" column="2">
@@ -6803,15 +6400,43 @@ After the Operation Temperature Rise Arguments</string>
       </property>
      </item>
     </widget>
+    <widget class="QRadioButton" name="radioButton_normalTemp">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>140</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Specific</string>
+     </property>
+    </widget>
+    <zorder>label_7</zorder>
+    <zorder>toolButton_close_22</zorder>
+    <zorder>toolButton_save22</zorder>
+    <zorder>line_5</zorder>
+    <zorder>groupBox_12</zorder>
+    <zorder>groupBox_22</zorder>
+    <zorder>layoutWidget</zorder>
+    <zorder>tableWidget_normalTemp</zorder>
+    <zorder>radioButton_normalTemp</zorder>
    </widget>
-   <widget class="QWidget" name="page_2">
+   <widget class="QWidget" name="page_19_2">
     <widget class="QToolButton" name="toolButton_save19_2">
      <property name="geometry">
       <rect>
-       <x>660</x>
-       <y>480</y>
-       <width>101</width>
-       <height>41</height>
+       <x>680</x>
+       <y>490</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -6835,10 +6460,10 @@ After the Operation Temperature Rise Arguments</string>
     <widget class="QToolButton" name="toolButton_close_23">
      <property name="geometry">
       <rect>
-       <x>770</x>
-       <y>480</y>
-       <width>101</width>
-       <height>41</height>
+       <x>780</x>
+       <y>490</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -6881,7 +6506,7 @@ After the Operation Temperature Rise Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Connector
@@ -6907,8 +6532,7 @@ Temperature Rise Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Setting</string>
@@ -7034,19 +6658,6 @@ Temperature Rise Arguments</string>
         </widget>
        </item>
       </layout>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_temp_2">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>101</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Specific</string>
-      </property>
      </widget>
      <widget class="QTableWidget" name="tableWidget_temp_2">
       <property name="geometry">
@@ -7250,7 +6861,7 @@ Temperature Rise Arguments</string>
         <enum>Checked</enum>
        </property>
        <property name="flags">
-        <set>ItemIsUserCheckable|ItemIsEnabled</set>
+        <set>ItemIsEnabled</set>
        </property>
       </item>
       <item row="0" column="2">
@@ -8012,8 +7623,7 @@ Temperature Rise Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Show</string>
@@ -8155,15 +7765,34 @@ Temperature Rise Arguments</string>
       </layout>
      </widget>
     </widget>
+    <widget class="QRadioButton" name="radioButton_temp_2">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>130</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Specific</string>
+     </property>
+    </widget>
    </widget>
-   <widget class="QWidget" name="page_3">
+   <widget class="QWidget" name="page_20_2">
     <widget class="QToolButton" name="toolButton_save20_2">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>550</y>
-       <width>101</width>
-       <height>41</height>
+       <x>630</x>
+       <y>560</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -8178,10 +7807,10 @@ Temperature Rise Arguments</string>
     <widget class="QToolButton" name="toolButton_close_24">
      <property name="geometry">
       <rect>
-       <x>720</x>
-       <y>550</y>
-       <width>101</width>
-       <height>41</height>
+       <x>730</x>
+       <y>560</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -8227,7 +7856,7 @@ Temperature Rise Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Connector
@@ -8253,8 +7882,7 @@ Breake Capacity Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Setting</string>
@@ -8425,8 +8053,7 @@ Breake Capacity Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Show</string>
@@ -8654,21 +8281,27 @@ Breake Capacity Arguments</string>
       </layout>
      </widget>
     </widget>
-    <widget class="QCheckBox" name="checkBox_breaking_2">
+    <widget class="QRadioButton" name="radioButton_breaking_2">
      <property name="geometry">
       <rect>
        <x>140</x>
        <y>140</y>
-       <width>101</width>
+       <width>81</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Specific</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="page_4">
+   <widget class="QWidget" name="page_21_2">
     <widget class="Line" name="line_8">
      <property name="geometry">
       <rect>
@@ -8685,10 +8318,10 @@ Breake Capacity Arguments</string>
     <widget class="QToolButton" name="toolButton_close_25">
      <property name="geometry">
       <rect>
-       <x>720</x>
+       <x>730</x>
        <y>550</y>
-       <width>101</width>
-       <height>41</height>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -8709,10 +8342,10 @@ Breake Capacity Arguments</string>
     <widget class="QToolButton" name="toolButton_save21_2">
      <property name="geometry">
       <rect>
-       <x>610</x>
+       <x>630</x>
        <y>550</y>
-       <width>101</width>
-       <height>41</height>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -8739,7 +8372,7 @@ Breake Capacity Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Connector
@@ -8765,8 +8398,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Setting</string>
@@ -8928,8 +8560,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Show</string>
@@ -9154,28 +8785,34 @@ Normal Operation Arguments</string>
       </layout>
      </widget>
     </widget>
-    <widget class="QCheckBox" name="checkBox_normal_2">
+    <widget class="QRadioButton" name="radioButton_normal_2">
      <property name="geometry">
       <rect>
        <x>140</x>
        <y>140</y>
-       <width>101</width>
+       <width>81</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Specific</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="page">
+   <widget class="QWidget" name="page_plugsocket">
     <widget class="QToolButton" name="toolButtonSave">
      <property name="geometry">
       <rect>
        <x>840</x>
-       <y>540</y>
+       <y>560</y>
        <width>91</width>
-       <height>41</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -9211,7 +8848,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Plug Socket Auto Arguments</string>
@@ -9236,8 +8873,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Temperature Rise</string>
@@ -9360,8 +8996,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Breake Capacity</string>
@@ -9593,8 +9228,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Normal Operation</string>
@@ -9825,8 +9459,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>After the Operation Temperature Rise</string>
@@ -9934,9 +9567,9 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>840</x>
-       <y>590</y>
+       <y>600</y>
        <width>91</width>
-       <height>41</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -9970,8 +9603,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Setting</string>
@@ -10398,56 +10030,32 @@ Normal Operation Arguments</string>
        </item>
       </layout>
      </widget>
-     <widget class="QRadioButton" name="radioButtonSwitch">
+     <widget class="QCheckBox" name="checkBoxIC">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>21</y>
+        <y>50</y>
         <width>181</width>
         <height>22</height>
        </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>22</height>
-       </size>
-      </property>
-      <property name="toolTip">
-       <string/>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>L-N/L-E</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButtonIC">
-      <property name="geometry">
-       <rect>
-        <x>11</x>
-        <y>49</y>
-        <width>181</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>22</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
       </property>
       <property name="text">
        <string>Incorporated Components</string>
       </property>
-      <property name="autoExclusive">
+     </widget>
+     <widget class="QCheckBox" name="checkBoxSwitch">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>181</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>L-N/L-E</string>
+      </property>
+      <property name="checked">
        <bool>false</bool>
       </property>
      </widget>
@@ -10759,7 +10367,7 @@ Normal Operation Arguments</string>
        <enum>Checked</enum>
       </property>
       <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="0" column="2">
@@ -11517,7 +11125,7 @@ Normal Operation Arguments</string>
     <zorder>toolButton_TRCR</zorder>
     <zorder>tableWidget</zorder>
    </widget>
-   <widget class="QWidget" name="page_5">
+   <widget class="QWidget" name="page_connector">
     <widget class="QGroupBox" name="groupBox_14">
      <property name="geometry">
       <rect>
@@ -11540,8 +11148,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Normal Operation</string>
@@ -11674,9 +11281,9 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>680</x>
-       <y>570</y>
+       <y>580</y>
        <width>91</width>
-       <height>41</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -11712,7 +11319,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:transparent;</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Connector Auto Arguments</string>
@@ -11743,8 +11350,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Temperature Rise</string>
@@ -11982,8 +11588,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Breake Capacity</string>
@@ -12217,8 +11822,7 @@ Normal Operation Arguments</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-#groupBox_login * {background-color: rgb();}</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Setting</string>
@@ -12370,9 +11974,9 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>790</x>
-       <y>570</y>
+       <y>580</y>
        <width>91</width>
-       <height>41</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -12385,34 +11989,6 @@ Normal Operation Arguments</string>
      </property>
      <property name="text">
       <string>Back</string>
-     </property>
-     <property name="autoRaise">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="toolButton_TRCR_2">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>308</y>
-       <width>261</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>31</height>
-      </size>
-     </property>
-     <property name="toolTip">
-      <string>C</string>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string>Upper Of Temperature Rise</string>
      </property>
      <property name="autoRaise">
       <bool>false</bool>
@@ -12447,7 +12023,7 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>350</y>
+       <y>310</y>
        <width>261</width>
        <height>31</height>
       </rect>
@@ -12488,9 +12064,9 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>73</x>
-       <y>390</y>
+       <y>350</y>
        <width>261</width>
-       <height>221</height>
+       <height>261</height>
       </rect>
      </property>
      <property name="toolTip">
@@ -12686,7 +12262,7 @@ Normal Operation Arguments</string>
        <enum>Checked</enum>
       </property>
       <property name="flags">
-       <set>ItemIsUserCheckable|ItemIsEnabled</set>
+       <set>ItemIsEnabled</set>
       </property>
      </item>
      <item row="0" column="2">
@@ -13438,8 +13014,8 @@ Normal Operation Arguments</string>
   <tabstop>lineEdit_itemId</tabstop>
   <tabstop>pushButton_login1</tabstop>
   <tabstop>pushButton_login2</tabstop>
-  <tabstop>toolButton_close</tabstop>
-  <tabstop>tabWidget</tabstop>
+  <tabstop>pushButton_6</tabstop>
+  <tabstop>toolButton</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>toolButton_start</tabstop>
   <tabstop>toolButton_19</tabstop>
@@ -13458,62 +13034,87 @@ Normal Operation Arguments</string>
   <tabstop>toolButton_28</tabstop>
   <tabstop>toolButton_29</tabstop>
   <tabstop>toolButton_30</tabstop>
-  <tabstop>lineEdit_VOLTUART</tabstop>
-  <tabstop>lineEdit_TRCUART</tabstop>
-  <tabstop>lineEdit_TESTUART</tabstop>
   <tabstop>lineEdit_LOADUART_A</tabstop>
   <tabstop>lineEdit_LOADUART_B</tabstop>
   <tabstop>lineEdit_LOADUART_C</tabstop>
+  <tabstop>lineEdit_VOLTUART</tabstop>
+  <tabstop>lineEdit_TRCUART</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>lineEdit_TESTUART</tabstop>
+  <tabstop>pushButton_5</tabstop>
   <tabstop>pushButton_4</tabstop>
-  <tabstop>toolButton_close_19</tabstop>
-  <tabstop>lineEdit_tempVn</tabstop>
-  <tabstop>lineEdit_tempIn</tabstop>
-  <tabstop>lineEdit_tempH</tabstop>
+  <tabstop>toolButton_close</tabstop>
   <tabstop>checkBox_tempSwitch</tabstop>
   <tabstop>checkBox_tempIC</tabstop>
   <tabstop>lineEdit_tempIm</tabstop>
+  <tabstop>lineEdit_tempVn</tabstop>
+  <tabstop>lineEdit_tempIn</tabstop>
+  <tabstop>lineEdit_tempH</tabstop>
+  <tabstop>tableWidget_3</tabstop>
   <tabstop>lineEdit_tempMaxValue2</tabstop>
-  <tabstop>textEdit</tabstop>
+  <tabstop>tableWidget_temp</tabstop>
   <tabstop>toolButton_save19</tabstop>
-  <tabstop>toolButton_close_20</tabstop>
+  <tabstop>toolButton_close_19</tabstop>
+  <tabstop>radioButton_temp</tabstop>
   <tabstop>lineEdit_breakingVn</tabstop>
   <tabstop>lineEdit_breakingIn</tabstop>
   <tabstop>lineEdit_breaking_rate_t</tabstop>
   <tabstop>lineEdit_breaking_position_t</tabstop>
   <tabstop>toolButton_save20</tabstop>
-  <tabstop>toolButton_close_21</tabstop>
+  <tabstop>toolButton_close_20</tabstop>
+  <tabstop>radioButton_breaking</tabstop>
   <tabstop>lineEdit_normalVn</tabstop>
   <tabstop>lineEdit_normalIn</tabstop>
   <tabstop>lineEdit_normal_rate_t</tabstop>
   <tabstop>lineEdit_normal_position_t</tabstop>
+  <tabstop>tableWidget_4</tabstop>
   <tabstop>toolButton_save21</tabstop>
-  <tabstop>toolButton_close_22</tabstop>
+  <tabstop>toolButton_close_21</tabstop>
+  <tabstop>radioButton_normal</tabstop>
+  <tabstop>checkBox_normalTSwitch</tabstop>
   <tabstop>lineEdit_normalTVn</tabstop>
   <tabstop>lineEdit_normalTIn</tabstop>
   <tabstop>lineEdit_normalTH</tabstop>
-  <tabstop>checkBox_normalTSwitch</tabstop>
+  <tabstop>tableWidget_5</tabstop>
   <tabstop>lineEdit_normalMaxValue2</tabstop>
+  <tabstop>tableWidget_normalTemp</tabstop>
   <tabstop>toolButton_save22</tabstop>
-  <tabstop>toolButton_close_23</tabstop>
+  <tabstop>toolButton_close_22</tabstop>
+  <tabstop>radioButton_normalTemp</tabstop>
+  <tabstop>lineEdit_tempMaxValue2_2</tabstop>
+  <tabstop>lineEdit_tempVn_2</tabstop>
+  <tabstop>lineEdit_tempIn_2</tabstop>
+  <tabstop>lineEdit_tempH_2</tabstop>
+  <tabstop>tableWidget_temp_2</tabstop>
   <tabstop>toolButton_save19_2</tabstop>
-  <tabstop>toolButton_close_24</tabstop>
+  <tabstop>toolButton_close_23</tabstop>
+  <tabstop>radioButton_temp_2</tabstop>
   <tabstop>lineEdit_breakingVn_2</tabstop>
   <tabstop>lineEdit_breakingIn_2</tabstop>
   <tabstop>lineEdit_breaking_rate_t_2</tabstop>
   <tabstop>lineEdit_breaking_position_t_2</tabstop>
   <tabstop>toolButton_save20_2</tabstop>
-  <tabstop>toolButton_close_25</tabstop>
+  <tabstop>toolButton_close_24</tabstop>
+  <tabstop>radioButton_breaking_2</tabstop>
   <tabstop>lineEdit_normalVn_2</tabstop>
   <tabstop>lineEdit_normalIn_2</tabstop>
   <tabstop>lineEdit_normal_rate_t_2</tabstop>
   <tabstop>lineEdit_normal_position_t_2</tabstop>
   <tabstop>toolButton_save21_2</tabstop>
+  <tabstop>toolButton_close_25</tabstop>
+  <tabstop>radioButton_normal_2</tabstop>
+  <tabstop>checkBoxSwitch</tabstop>
+  <tabstop>checkBoxIC</tabstop>
+  <tabstop>lineEditIm</tabstop>
   <tabstop>lineEditVn</tabstop>
   <tabstop>lineEditIn</tabstop>
   <tabstop>lineEditH</tabstop>
   <tabstop>lineEditRate</tabstop>
   <tabstop>lineEditPosition</tabstop>
   <tabstop>tableWidget_6</tabstop>
+  <tabstop>toolButton_TRCR</tabstop>
+  <tabstop>lineEditMaxValue</tabstop>
+  <tabstop>tableWidget</tabstop>
   <tabstop>toolButtonSave</tabstop>
   <tabstop>toolButton_close_26</tabstop>
   <tabstop>lineEditVn_2</tabstop>
@@ -13521,8 +13122,8 @@ Normal Operation Arguments</string>
   <tabstop>lineEditH_2</tabstop>
   <tabstop>lineEditRate_2</tabstop>
   <tabstop>lineEditPosition_2</tabstop>
-  <tabstop>toolButton_TRCR_2</tabstop>
   <tabstop>lineEditMaxValue_2</tabstop>
+  <tabstop>tableWidget_2</tabstop>
   <tabstop>toolButtonSave_2</tabstop>
   <tabstop>toolButton_close_27</tabstop>
  </tabstops>

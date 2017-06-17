@@ -16,7 +16,7 @@ void HelpWidget::initForm()
 {
     setFixedSize(943, 633);
 //    setAutoFillBackground(true);
-    setStyleSheet("background: rgba(50, 50, 50, 20%)");
+    setStyleSheet("background: rgba(50, 50, 70, 20%)");
 }
 
 void HelpWidget::initWidget()
@@ -54,13 +54,13 @@ void HelpWidget::initWidget()
     m_lastPageButton->setText(tr("<"));
     m_lastPageButton->setGeometry(m_frame->width()-55,0, 26, 26);
     m_lastPageButton->setAutoRaise(true);
-    m_lastPageButton->setStyleSheet("background:transparent;");
+    m_lastPageButton->setStyleSheet("border:none; background:transparent;");
     m_lastPageButton->setEnabled(false);
     m_nextPageButton = new QToolButton(m_frame);
     m_nextPageButton->setText(tr(">"));
     m_nextPageButton->setGeometry(m_frame->width()-26,0, 26, 26);
     m_nextPageButton->setAutoRaise(true);
-    m_nextPageButton->setStyleSheet("background:transparent;");
+    m_nextPageButton->setStyleSheet("border:none; background:transparent;");
 }
 
 void HelpWidget::initConnect()

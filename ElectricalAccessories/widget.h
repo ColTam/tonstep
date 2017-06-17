@@ -19,10 +19,6 @@
 class QPropertyAnimation;
 class QThread;
 
-namespace Ui {
-class Widget;
-}
-
 /*!
  * \brief The widget class
  */
@@ -89,8 +85,6 @@ protected:
     void linkerNormalOperation(QString fileName);   /*!* \brief 320标准 正常操作参数设置 */
 
 private:
-    Ui::Widget *ui;
-
     Collect*            _collect;       /*!* \brief  */
     TitleBar*           _titleBar;      /*!* \brief 标题栏 */
     FormDisplay*        _formDisplay;   /*!* \brief 主界面 */

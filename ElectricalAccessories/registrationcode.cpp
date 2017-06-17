@@ -21,7 +21,7 @@ RegistrationCode::RegistrationCode(QWidget *parent) : QDialog(parent)
 
     m_label = new QLabel(this);
     m_label->setText(tr("Registration Code:"));
-    m_label->setGeometry(10, 30, 131, 22);
+    m_label->setGeometry(10, 37, 131, 22);
 
     m_computerNumberLineEdit = new QLineEdit(this);
     m_computerNumberLineEdit->setGeometry(140, 10, 131, 21);
@@ -29,7 +29,7 @@ RegistrationCode::RegistrationCode(QWidget *parent) : QDialog(parent)
     m_computerNumberLineEdit->setReadOnly(true);
 
     m_lineEdit = new QLineEdit(this);
-    m_lineEdit->setGeometry(140, 30, 131, 21);
+    m_lineEdit->setGeometry(140, 37, 131, 21);
     m_lineEdit->setMaxLength(20);
 
     QSettings *configIniRead = new QSettings("EATconfig.ini", QSettings::IniFormat);

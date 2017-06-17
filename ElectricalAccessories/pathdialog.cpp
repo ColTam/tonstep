@@ -37,7 +37,7 @@ pathDialog::pathDialog(QWidget *parent) : QDialog(parent)
     pathPushButton_2->setGeometry(400, 79, 75, 23);
 
     savePushButton = new QPushButton(tr("save"),this);
-    savePushButton->setGeometry(290, 120, 75, 23);
+    savePushButton->setGeometry(295, 120, 75, 23);
 
     closePushButton = new QPushButton(tr("close"),this);
     closePushButton->setGeometry(380, 120, 75, 23);

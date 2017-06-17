@@ -1,5 +1,4 @@
 ﻿#include "widget.h"
-#include "ui_widget.h"
 #include "Collect.h"
 #include "titlebar.h"
 #include "formdisplay.h"
@@ -17,25 +16,21 @@
 #include <QDebug>
 
 Widget::Widget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Widget)
+    QWidget(parent)
+  ,_collect(new Collect)
+  ,_titleBar(new TitleBar(this))
+  ,_formDisplay(new FormDisplay(this))
+  ,_animation(new QPropertyAnimation(this, "windowOpacity"))
+  ,_testThread(new QThread())
+  ,_mTestThread(new mTestThread())
+  ,_tRCRThread(new QThread())
+  ,_mTRCRThread(new mTRCRThread())
+  ,_isTR(false)
+  ,_isIngA(false)
+  ,_isIngB(false)
+  ,_isIngC(false)
 {
-    ui->setupUi(this);
-
-    //set the language
-    QSettings *configIniRead = new QSettings("EATconfig.ini", QSettings::IniFormat);
-    int language = configIniRead->value("Language").toInt();
-
-    QTranslator translator;
-    translator.load( ":/other/zh_CN.qm" );
-
-    if (language == 1) {
-        qApp->installTranslator( &translator );
-    }
-    delete configIniRead;
-
     //init STAS
-    _collect = new Collect();
     connectSTAS = _collect->ConnectToSTAS();
     Collect::CutToLN("A");
     Collect::CutToLN("B");
@@ -45,41 +40,22 @@ Widget::Widget(QWidget *parent) :
 
     //init widget
     initWidget();
-    _isTR = false;
-    _isIngA = false;
-    _isIngB = false;
-    _isIngC = false;
 
-    _testThread  = new QThread();
-    _mTestThread = new mTestThread();
     _mTestThread->moveToThread(_testThread);
-
     connect(_testThread, SIGNAL(started()), _mTestThread, SLOT(readData()));
     connect(_mTestThread, SIGNAL(testDataA(QString)), this, SIGNAL(testDataA(QString)), Qt::DirectConnection);
     connect(_mTestThread, SIGNAL(testDataB(QString)), this, SIGNAL(testDataB(QString)), Qt::DirectConnection);
     connect(_mTestThread, SIGNAL(testDataC(QString)), this, SIGNAL(testDataC(QString)), Qt::DirectConnection);
-
     connect(this, SIGNAL(testTimerStart()), _mTestThread, SLOT(mTestTimerStart()));
     connect(this, SIGNAL(testTimerStop()), _mTestThread, SLOT(mTestTimerStop()));
-
     _testThread->start();
 
-    _tRCRThread  = new QThread();
-    _mTRCRThread = new mTRCRThread();
     _mTRCRThread->moveToThread(_tRCRThread);
-
     connect(_tRCRThread, SIGNAL(started()), _mTRCRThread, SLOT(readData()));
     connect(_mTRCRThread, SIGNAL(tRCRData(QStringList)), this, SIGNAL(tRCRData(QStringList)), Qt::DirectConnection);
-
     connect(this, SIGNAL(tRCRTimerStart()), _mTRCRThread, SLOT(mTRCRTimerStart()));
     connect(this, SIGNAL(tRCRTimerStop()), _mTRCRThread, SLOT(mTRCRTimerStop()));
-
     _tRCRThread->start();
-
-    QMessageWidget mMessage(this);
-    mMessage.setMinimumSize(958,26);
-    mMessage.setGeometry(1,646,958,26);
-    mMessage.show();
 }
 
 Widget::~Widget()
@@ -95,17 +71,13 @@ Widget::~Widget()
 
     _collect = NULL;
     delete _collect;
-
-    delete ui;
 }
 
 void Widget::initWidgetTitle()
 {
     this->setWindowFlags(Qt::FramelessWindowHint);
 
-    _titleBar = new TitleBar(this);
     this->installEventFilter(_titleBar);
-
     this->resize(WINDOW_WIDTH, WINDOW_HEIGHT);
     this->setWindowTitle(tr(" Electrical Accessories Test Automation Program"));
     this->setWindowIcon(QIcon(WINDOW_ICON));
@@ -114,8 +86,10 @@ void Widget::initWidgetTitle()
 //    mPalette.setColor(QPalette::Background, QColor(64,66,68));
 //    this->setAutoFillBackground(true);
 //    this->setPalette(mPalette);
-    this->setStyleSheet("QWidget{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);}");
-
+//    this->setStyleSheet("QWidget{"
+//                        "background-color: qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,"
+//                        "stop:0 #484848,stop:1 #383838);"
+//                        "}");
 
     QVBoxLayout *titleVBoxLayout = new QVBoxLayout();
     titleVBoxLayout->addWidget(_titleBar);
@@ -132,8 +106,7 @@ void Widget::initWidget()
 {
     initWidgetTitle();
 
-    _formDisplay = new FormDisplay(this);
-    _formDisplay->setGeometry(1, 26, 958, 694);
+    _formDisplay->setGeometry(0, 26, 960, 694);
 
     connect(_formDisplay, SIGNAL(isSectionFileName(QString,int)), this, SLOT(selectClause(QString,int)));
     connect(this, SIGNAL(finishedItem(QString, int)), _formDisplay, SLOT(finishedItem(QString, int)));
@@ -183,13 +156,6 @@ void Widget::newTemperatureDialog(time_t hours, QString fileName, QStringList tc
 
 void Widget::newLifeTesterDialog(QString fileName, QString servo)
 {
-//    if (In) {
-//        AdjustWidget *a = new AdjustWidget(servo, In, NULL);
-//        connect(a, SIGNAL(stopBeforeTest(QString)), this, SLOT(testError(QString)));
-//        connect(a, SIGNAL(startBeforeTest(QString)), this, SLOT(testNoError(QString)));
-//        a->exec();
-//    }
-
 #if 1
     if (servo == "A") {
         LifeTesterDialog *lifeTesterDialogA = new LifeTesterDialog(NULL);
@@ -274,7 +240,6 @@ void Widget::closeWidget()
     _testThread->deleteLater();
 
     //widget close effect
-    _animation = new QPropertyAnimation(this, "windowOpacity");
     _animation->setDuration(999); //time /ms
     _animation->setStartValue(1);
     _animation->setEndValue(0);

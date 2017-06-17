@@ -52,13 +52,13 @@ FormDisplay::FormDisplay(QWidget *parent) :
     ui->lineEdit_itemId->setFocus();
     ui->lineEdit_itemId->selectAll();
     {//special mode --unused
-        ui->checkBox_breaking->setEnabled(false);
-        ui->checkBox_temp->setEnabled(false);
-        ui->checkBox_breaking_2->setEnabled(false);
-        ui->checkBox_temp_2->setEnabled(false);
-        ui->checkBox_normal->setEnabled(false);
-        ui->checkBox_normal_2->setEnabled(false);
-        ui->checkBox_normalTemp->setEnabled(false);
+        ui->radioButton_breaking->setEnabled(false);
+        ui->radioButton_temp->setEnabled(false);
+        ui->radioButton_breaking_2->setEnabled(false);
+        ui->radioButton_temp_2->setEnabled(false);
+        ui->radioButton_normal->setEnabled(false);
+        ui->radioButton_normal_2->setEnabled(false);
+        ui->radioButton_normalTemp->setEnabled(false);
     }
     //clause 19
     ui->label_tempIm->hide();
@@ -139,14 +139,7 @@ FormDisplay::FormDisplay(QWidget *parent) :
     mRegistration = new RegistrationCode();
 
     popMenu = new QMenu(this);
-    popMenu->setStyleSheet("QMenu {background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);"
-                           "border:1px solid #727272; border-radius: 3px;"
-                           "}"
-                           "QMenu::item {color: #F0F0F0;height: 21px;padding: 0px 23px 0px 10px;"
-                           "}"
-                           "QMenu::item:selected {"
-                           "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF646464, stop:1 #FF545454);"
-                           "}");
+    popMenu->setObjectName("mainMenu");
 
     englishAction = new QAction(this);
     englishAction->setText(tr("English"));
@@ -747,6 +740,7 @@ void FormDisplay::uartTips()
         ui->checkBox_TEST->setChecked(true);
         ui->checkBox_TEST_C->setChecked(true);
     }
+    ui->pushButton_5->setEnabled(true);
     ui->pushButton_4->setEnabled(false);
 
     if (!tips.isEmpty()) {
@@ -1371,7 +1365,7 @@ void FormDisplay::clause19_out(QIODevice *device)
         if (t2.isEmpty()) {
             t2 = "1";
         }
-        out << ui->checkBox_temp_2->isChecked()
+        out << ui->radioButton_temp_2->isChecked()
             << '\n' << ui->lineEdit_tempVn_2->text()
             << '\n' << ui->lineEdit_tempIn_2->text()
             << '\n' << ui->lineEdit_tempH_2->text()
@@ -1393,7 +1387,7 @@ void FormDisplay::clause19_out(QIODevice *device)
         if (t2.isEmpty()) {
             t2 = "1";
         }
-        out << ui->checkBox_temp->isChecked()
+        out << ui->radioButton_temp->isChecked()
             << '\n' << ui->lineEdit_tempVn->text()
             << '\n' << ui->lineEdit_tempIn->text()
             << '\n' << ui->lineEdit_tempH->text()
@@ -1423,7 +1417,7 @@ void FormDisplay::clause20_out(QIODevice *device)
     switch (mPlug) {
     case IEC60320:
     {
-        out << ui->checkBox_breaking_2->isChecked()
+        out << ui->radioButton_breaking_2->isChecked()
             << '\n' << ui->lineEdit_breakingVn_2->text()
             << '\n' << ui->lineEdit_breakingIn_2->text()
             << '\n' << ui->lineEdit_breaking_rate_t_2->text()
@@ -1437,7 +1431,7 @@ void FormDisplay::clause20_out(QIODevice *device)
     }
     case IEC60884:
     {
-        out << ui->checkBox_breaking->isChecked()
+        out << ui->radioButton_breaking->isChecked()
             << '\n' << ui->lineEdit_breakingVn->text()
             << '\n' << ui->lineEdit_breakingIn->text()
             << '\n' << ui->lineEdit_breaking_rate_t->text()
@@ -1458,7 +1452,7 @@ void FormDisplay::clause21_out(QIODevice *device)
     switch (mPlug) {
     case IEC60320:
     {
-        out << ui->checkBox_normal_2->isChecked()
+        out << ui->radioButton_normal_2->isChecked()
             << '\n' << ui->lineEdit_normalVn_2->text()
             << '\n' << ui->lineEdit_normalIn_2->text()
             << '\n' << ui->lineEdit_normal_rate_t_2->text()
@@ -1471,7 +1465,7 @@ void FormDisplay::clause21_out(QIODevice *device)
     }
     case IEC60884:
     {
-        out << ui->checkBox_normal->isChecked()
+        out << ui->radioButton_normal->isChecked()
             << '\n' << ui->lineEdit_normalVn->text()
             << '\n' << ui->lineEdit_normalIn->text()
             << '\n' << ui->lineEdit_normal_rate_t->text()
@@ -1495,7 +1489,7 @@ void FormDisplay::clause22_out(QIODevice *device)
     if (t2.isEmpty()) {
         t2 = "1";
     }
-    out << ui->checkBox_normalTemp->isChecked()
+    out << ui->radioButton_normalTemp->isChecked()
         << '\n' << ui->lineEdit_normalTVn->text()
         << '\n' << ui->lineEdit_normalTIn->text()
         << '\n' << ui->lineEdit_normalTH->text()
@@ -1520,11 +1514,11 @@ void FormDisplay::clause19_in(QIODevice *device)
     switch (mPlug) {
     case IEC60320:
     {
-        ui->checkBox_temp_2->setChecked(in.readLine().toInt());
+        ui->radioButton_temp_2->setChecked(in.readLine().toInt());
         ui->lineEdit_tempVn_2->setText(in.readLine());
         ui->lineEdit_tempIn_2->setText(in.readLine());
         ui->lineEdit_tempH_2->setText(in.readLine());
-        if (ui->checkBox_temp_2->isChecked()) {
+        if (ui->radioButton_temp_2->isChecked()) {
             ui->lineEdit_tempVn_t_2->setText(in.readLine());
             ui->lineEdit_tempIn_t_2->setText(in.readLine());
         } else {
@@ -1547,7 +1541,7 @@ void FormDisplay::clause19_in(QIODevice *device)
     }
     case IEC60884:
     {
-        ui->checkBox_temp->setChecked(in.readLine().toInt());
+        ui->radioButton_temp->setChecked(in.readLine().toInt());
         ui->lineEdit_tempVn->setText(in.readLine());
         ui->lineEdit_tempIn->setText(in.readLine());
         ui->lineEdit_tempH->setText(in.readLine());
@@ -1557,7 +1551,7 @@ void FormDisplay::clause19_in(QIODevice *device)
         mAttachmentType = in.readLine().toInt();
         ui->tableWidget_3->item(mAttachmentType,0)->setCheckState(Qt::Checked);
         ui->tableWidget_3->item(mAttachmentType,1)->setText(in.readLine());
-        if (ui->checkBox_temp->isChecked()) {
+        if (ui->radioButton_temp->isChecked()) {
             ui->lineEdit_tempVn_t->setText(in.readLine());
             ui->lineEdit_tempIn_t->setText(in.readLine());
         } else {
@@ -1586,12 +1580,12 @@ void FormDisplay::clause20_in(QIODevice *device)
     switch (mPlug) {
     case IEC60320:
     {
-        ui->checkBox_breaking_2->setChecked(in.readLine().toInt());
+        ui->radioButton_breaking_2->setChecked(in.readLine().toInt());
         ui->lineEdit_breakingVn_2->setText(in.readLine());
         ui->lineEdit_breakingIn_2->setText(in.readLine());
         ui->lineEdit_breaking_rate_t_2->setText(in.readLine());
         ui->lineEdit_breaking_position_t_2->setText(in.readLine());
-        if (ui->checkBox_breaking_2->isChecked()) {
+        if (ui->radioButton_breaking_2->isChecked()) {
             ui->lineEdit_breakingVn_t_2->setText(in.readLine());
             ui->lineEdit_breakingIn_t_2->setText(in.readLine());
             ui->lineEdit_breaking_handleNum_2->setText(in.readLine());
@@ -1600,12 +1594,12 @@ void FormDisplay::clause20_in(QIODevice *device)
     }
     case IEC60884:
     {
-        ui->checkBox_breaking->setChecked(in.readLine().toInt());
+        ui->radioButton_breaking->setChecked(in.readLine().toInt());
         ui->lineEdit_breakingVn->setText(in.readLine());
         ui->lineEdit_breakingIn->setText(in.readLine());
         ui->lineEdit_breaking_rate_t->setText(in.readLine());
         ui->lineEdit_breaking_position_t->setText(in.readLine());
-        if (ui->checkBox_breaking->isChecked()) {
+        if (ui->radioButton_breaking->isChecked()) {
             ui->lineEdit_breakingVn_t->setText(in.readLine());
             ui->lineEdit_breakingIn_t->setText(in.readLine());
             ui->lineEdit_breaking_handleNum->setText(in.readLine());
@@ -1621,12 +1615,12 @@ void FormDisplay::clause21_in(QIODevice *device)
     switch (mPlug) {
     case IEC60320:
     {
-        ui->checkBox_normal_2->setChecked(in.readLine().toInt());
+        ui->radioButton_normal_2->setChecked(in.readLine().toInt());
         ui->lineEdit_normalVn_2->setText(in.readLine());
         ui->lineEdit_normalIn_2->setText(in.readLine());
         ui->lineEdit_normal_rate_t_2->setText(in.readLine());
         ui->lineEdit_normal_position_t_2->setText(in.readLine());
-        if (ui->checkBox_normal_2->isChecked()) {
+        if (ui->radioButton_normal_2->isChecked()) {
             ui->lineEdit_normalVn_t_2->setText(in.readLine());
             ui->lineEdit_normalIn_t_2->setText(in.readLine());
             ui->lineEdit_normal_handleNum_2->setText(in.readLine());
@@ -1635,7 +1629,7 @@ void FormDisplay::clause21_in(QIODevice *device)
     }
     case IEC60884:
     {
-        ui->checkBox_normal->setChecked(in.readLine().toInt());
+        ui->radioButton_normal->setChecked(in.readLine().toInt());
         ui->lineEdit_normalVn->setText(in.readLine());
         ui->lineEdit_normalIn->setText(in.readLine());
         ui->lineEdit_normal_rate_t->setText(in.readLine());
@@ -1643,7 +1637,7 @@ void FormDisplay::clause21_in(QIODevice *device)
         mAttachmentType = in.readLine().toInt();
         ui->tableWidget_4->item(mAttachmentType,0)->setCheckState(Qt::Checked);
         ui->tableWidget_4->item(mAttachmentType, 1)->setText(in.readLine());
-        if (ui->checkBox_normal->isChecked()) {
+        if (ui->radioButton_normal->isChecked()) {
             ui->lineEdit_normalVn_t->setText(in.readLine());
             ui->lineEdit_normalIn_t->setText(in.readLine());
             ui->lineEdit_normal_handleNum->setText(in.readLine());
@@ -1656,7 +1650,7 @@ void FormDisplay::clause21_in(QIODevice *device)
 void FormDisplay::clause22_in(QIODevice *device)
 {
     QTextStream in(device);
-    ui->checkBox_normalTemp->setChecked(in.readLine().toInt());
+    ui->radioButton_normalTemp->setChecked(in.readLine().toInt());
     ui->lineEdit_normalTVn->setText(in.readLine());
     ui->lineEdit_normalTIn->setText(in.readLine());
     ui->lineEdit_normalTH->setText(in.readLine());
@@ -1664,7 +1658,7 @@ void FormDisplay::clause22_in(QIODevice *device)
     mAttachmentType = in.readLine().toInt();
     ui->tableWidget_5->item(mAttachmentType,0)->setCheckState(Qt::Checked);
     ui->tableWidget_5->item(mAttachmentType,1)->setText(in.readLine());
-    if (ui->checkBox_normalTemp->isChecked()) {
+    if (ui->radioButton_normalTemp->isChecked()) {
         ui->lineEdit_normalTVn_t->setText(in.readLine());
         ui->lineEdit_normalTIn_t->setText(in.readLine());
     } else {
@@ -1690,7 +1684,7 @@ void FormDisplay::clause22_in(QIODevice *device)
 
 void FormDisplay::clause19_clear()
 {
-    ui->checkBox_temp->setChecked(0);
+    ui->radioButton_temp->setChecked(0);
     ui->lineEdit_tempVn->clear();
     ui->lineEdit_tempIn->clear();
     ui->lineEdit_tempH->clear();
@@ -1714,7 +1708,7 @@ void FormDisplay::clause19_clear()
 
 void FormDisplay::clause20_clear()
 {
-    ui->checkBox_breaking->setChecked(0);
+    ui->radioButton_breaking->setChecked(0);
     ui->lineEdit_breakingVn->clear();
     ui->lineEdit_breakingIn->clear();
     ui->lineEdit_breaking_rate_t->clear();
@@ -1725,7 +1719,7 @@ void FormDisplay::clause20_clear()
 
 void FormDisplay::clause21_clear()
 {
-    ui->checkBox_normal->setChecked(0);
+    ui->radioButton_normal->setChecked(0);
     ui->lineEdit_normalVn->clear();
     ui->lineEdit_normalIn->clear();
     ui->lineEdit_normal_rate_t->clear();
@@ -1738,7 +1732,7 @@ void FormDisplay::clause21_clear()
 
 void FormDisplay::clause22_clear()
 {
-    ui->checkBox_normalTemp->setChecked(0);
+    ui->radioButton_normalTemp->setChecked(0);
     ui->lineEdit_normalTVn->clear();
     ui->lineEdit_normalTIn->clear();
     ui->lineEdit_normalTH->clear();
@@ -1761,7 +1755,7 @@ void FormDisplay::clause22_clear()
 
 void FormDisplay::clause19_2_clear()
 {
-    ui->checkBox_temp_2->setChecked(0);
+    ui->radioButton_temp_2->setChecked(0);
     ui->lineEdit_tempVn_2->clear();
     ui->lineEdit_tempIn_2->clear();
     ui->lineEdit_tempH_2->clear();
@@ -1781,7 +1775,7 @@ void FormDisplay::clause19_2_clear()
 
 void FormDisplay::clause20_2_clear()
 {
-    ui->checkBox_breaking_2->setChecked(0);
+    ui->radioButton_breaking_2->setChecked(0);
     ui->lineEdit_breakingVn_2->clear();
     ui->lineEdit_breakingIn_2->clear();
     ui->lineEdit_breaking_rate_t_2->clear();
@@ -1791,7 +1785,7 @@ void FormDisplay::clause20_2_clear()
 
 void FormDisplay::clause21_2_clear()
 {
-    ui->checkBox_normal_2->setChecked(0);
+    ui->radioButton_normal_2->setChecked(0);
     ui->lineEdit_normalVn_2->clear();
     ui->lineEdit_normalIn_2->clear();
     ui->lineEdit_normal_rate_t_2->clear();
@@ -1835,8 +1829,8 @@ void FormDisplay::IEC884_clear()
     ui->lineEditVn->clear();
     ui->lineEditIn->clear();
     ui->lineEditH->clear();
-    ui->radioButtonSwitch->setChecked(0);
-    ui->radioButtonIC->setChecked(0);
+    ui->checkBoxSwitch->setChecked(0);
+    ui->checkBoxIC->setChecked(0);
     mAttachmentType = 0;
     ui->tableWidget_6->item(0,0)->setCheckState(Qt::Checked);
     ui->lineEditRate->clear();
@@ -1900,12 +1894,12 @@ void FormDisplay::on_toolButton_save19_clicked()
     //    mItemTextList << ui->tableWidget_temp_2->item(i, 0)->text();
     //    out << '\n' << this->isChecked(ui->tableWidget_temp_2->item(i, 0))
     //        << mItemTextList.at(i);
-    if (!this->isChecked(ui->tableWidget_temp->item(ui->lineEdit_tempMaxValue2->text().toInt()-1, 0))) {
-        ui->tableWidget_temp->item(ui->lineEdit_tempMaxValue2->text().toInt()-1, 0)->setCheckState(Qt::Checked);
+    if (!this->isChecked(ui->tableWidget_temp->item(ui->lineEdit_tempMaxValue2->text().toInt()-1, 1))) {
+        ui->tableWidget_temp->item(ui->lineEdit_tempMaxValue2->text().toInt()-1, 1)->setCheckState(Qt::Checked);
     }
 
-    if (ui->tableWidget_temp->item(ui->lineEdit_tempMaxValue2->text().toInt()-1, 0)->text().toInt() != 25) {
-        ui->tableWidget_temp->item(ui->lineEdit_tempMaxValue2->text().toInt()-1, 0)->setText("25");
+    if (ui->tableWidget_temp->item(ui->lineEdit_tempMaxValue2->text().toInt()-1, 1)->text().toInt() != 25) {
+        ui->tableWidget_temp->item(ui->lineEdit_tempMaxValue2->text().toInt()-1, 1)->setText("25");
     }
 
     addItemIcon(IMAGE_CLAUSE19, CLAUSE_19);
@@ -1923,12 +1917,12 @@ void FormDisplay::on_toolButton_save21_clicked()
 
 void FormDisplay::on_toolButton_save22_clicked()
 {
-    if (!this->isChecked(ui->tableWidget_normalTemp->item(ui->lineEdit_normalMaxValue2->text().toInt()-1, 0))) {
-        ui->tableWidget_normalTemp->item(ui->lineEdit_normalMaxValue2->text().toInt()-1, 0)->setCheckState(Qt::Checked);
+    if (!this->isChecked(ui->tableWidget_normalTemp->item(ui->lineEdit_normalMaxValue2->text().toInt()-1, 1))) {
+        ui->tableWidget_normalTemp->item(ui->lineEdit_normalMaxValue2->text().toInt()-1, 1)->setCheckState(Qt::Checked);
     }
 
-    if (ui->tableWidget_normalTemp->item(ui->lineEdit_normalMaxValue2->text().toInt()-1, 0)->text().toInt() != 25) {
-        ui->tableWidget_normalTemp->item(ui->lineEdit_normalMaxValue2->text().toInt()-1, 0)->setText("25");
+    if (ui->tableWidget_normalTemp->item(ui->lineEdit_normalMaxValue2->text().toInt()-1, 1)->text().toInt() != 25) {
+        ui->tableWidget_normalTemp->item(ui->lineEdit_normalMaxValue2->text().toInt()-1, 1)->setText("25");
     }
 
     addItemIcon(IMAGE_CLAUSE22, CLAUSE_22);
@@ -2046,6 +2040,8 @@ void FormDisplay::on_toolButton_close_clicked()
     ui->stackedWidget->setCurrentIndex(STACKWIDGET_LOGIN);
 
     dirName = dirName.left(fileSize);
+    ui->lineEdit_itemId->setFocus();
+    ui->lineEdit_itemId->selectAll();
 }
 
 void FormDisplay::onCloseEditClicked()
@@ -2152,7 +2148,7 @@ void FormDisplay::on_toolButton_start_clicked()
 
 void FormDisplay::on_lineEdit_tempIn_textChanged(const QString &arg1)
 {
-    if (!ui->checkBox_temp->isChecked()) {
+    if (!ui->radioButton_temp->isChecked()) {
         if (arg1 == RATED_CURRENT_2_5A) {
             if (ui->lineEdit_tempVn->text() >= RARED_VOLTAGE_130V &&
                     ui->lineEdit_tempVn->text() <= RARED_VOLTAGE_250V) {
@@ -2281,7 +2277,7 @@ void FormDisplay::on_lineEdit_tempIn_textChanged(const QString &arg1)
 
 void FormDisplay::on_lineEdit_tempVn_textChanged(const QString &arg1)
 {
-    if (!ui->checkBox_temp->isChecked()) {
+    if (!ui->radioButton_temp->isChecked()) {
         if (!arg1.isEmpty()) {
             ui->lineEdit_tempVn_t->setText(arg1);
         } else {
@@ -2440,7 +2436,7 @@ void FormDisplay::on_lineEdit_breakingVn_textChanged(const QString &arg1)
         ui->lineEdit_breaking_handleRate->setText(HANDLE_RATE_15_MIN);
     }
 
-    if (!ui->checkBox_breaking->isChecked()) {
+    if (!ui->radioButton_breaking->isChecked()) {
         if (!arg1.isEmpty()){
             ui->lineEdit_breakingVn_t->setText(QString::number(arg1.toDouble() * 1.1));
         } else {
@@ -2462,7 +2458,7 @@ void FormDisplay::on_lineEdit_breakingIn_textChanged(const QString &arg1)
         ui->lineEdit_breaking_handleRate->setText(HANDLE_RATE_15_MIN);
     }
 
-    if (!ui->checkBox_breaking->isChecked()) {
+    if (!ui->radioButton_breaking->isChecked()) {
         if (!arg1.isEmpty()){
             ui->lineEdit_breakingIn_t->setText(QString::number(arg1.toDouble()*1.25));
         } else {
@@ -2566,7 +2562,7 @@ void FormDisplay::on_lineEdit_normalVn_textChanged(const QString &arg1)
         ui->lineEdit_normal_handleRate->setText(HANDLE_RATE_15_MIN);
     }
 
-    if (!ui->checkBox_normal->isChecked()) {
+    if (!ui->radioButton_normal->isChecked()) {
         if (!arg1.isEmpty()){
             ui->lineEdit_normalVn_t->setText(arg1);
         } else {
@@ -2591,7 +2587,7 @@ void FormDisplay::on_lineEdit_normalIn_textChanged(const QString &arg1)
     }
 
 
-    if (!ui->checkBox_normal->isChecked()) {
+    if (!ui->radioButton_normal->isChecked()) {
         if (!arg1.isEmpty()) {
             if (arg1 == RATED_CURRENT_2_5A) {
                 if (ui->lineEdit_normalVn->text() >= RARED_VOLTAGE_130V &&
@@ -2807,7 +2803,7 @@ void FormDisplay::on_lineEdit_normal_position_t_textChanged(const QString &arg1)
 
 void FormDisplay::on_lineEdit_normalTVn_textChanged(const QString &arg1)
 {
-    if (!ui->checkBox_normalTemp->isChecked()) {
+    if (!ui->radioButton_normalTemp->isChecked()) {
         ui->lineEdit_normalTVn_t->setText(arg1);
         on_lineEdit_normalTIn_textChanged(ui->lineEdit_normalTIn->text());
     }
@@ -2815,7 +2811,7 @@ void FormDisplay::on_lineEdit_normalTVn_textChanged(const QString &arg1)
 
 void FormDisplay::on_lineEdit_normalTIn_textChanged(const QString &arg1)
 {
-    if (!ui->checkBox_normalTemp->isChecked()) {
+    if (!ui->radioButton_normalTemp->isChecked()) {
         if (arg1 == RATED_CURRENT_2_5A) {
             if (ui->lineEdit_normalTVn->text() >= RARED_VOLTAGE_130V &&
                     ui->lineEdit_normalTVn->text() <= RARED_VOLTAGE_250V) {
@@ -3055,7 +3051,7 @@ void FormDisplay::on_tableWidget_temp_2_cellChanged(int row, int column)
 
 void FormDisplay::on_lineEdit_tempVn_2_textChanged(const QString &arg1)
 {
-    if (!ui->checkBox_temp_2->isChecked()) {
+    if (!ui->radioButton_temp_2->isChecked()) {
         if (!arg1.isEmpty()){
             ui->lineEdit_tempVn_t_2->setText(arg1);
         } else {
@@ -3066,7 +3062,7 @@ void FormDisplay::on_lineEdit_tempVn_2_textChanged(const QString &arg1)
 
 void FormDisplay::on_lineEdit_tempIn_2_textChanged(const QString &arg1)
 {
-    if (!ui->checkBox_temp_2->isChecked()) {
+    if (!ui->radioButton_temp_2->isChecked()) {
         if (!arg1.isEmpty()){
             ui->lineEdit_tempIn_t_2->setText(QString::number(arg1.toDouble()*1.25));
         } else {
@@ -3136,12 +3132,12 @@ void FormDisplay::on_lineEdit_tempIn_t_2_textChanged(const QString &arg1)
 
 void FormDisplay::on_toolButton_save19_2_clicked()
 {
-    if (!this->isChecked(ui->tableWidget_temp_2->item(ui->lineEdit_tempMaxValue2_2->text().toInt()-1, 0))) {
-        ui->tableWidget_temp_2->item(ui->lineEdit_tempMaxValue2_2->text().toInt()-1, 0)->setCheckState(Qt::Checked);
+    if (!this->isChecked(ui->tableWidget_temp_2->item(ui->lineEdit_tempMaxValue2_2->text().toInt()-1, 1))) {
+        ui->tableWidget_temp_2->item(ui->lineEdit_tempMaxValue2_2->text().toInt()-1, 1)->setCheckState(Qt::Checked);
     }
 
-    if (ui->tableWidget_temp_2->item(ui->lineEdit_tempMaxValue2_2->text().toInt()-1, 0)->text().toInt() != 25) {
-        ui->tableWidget_temp_2->item(ui->lineEdit_tempMaxValue2_2->text().toInt()-1, 0)->setText("25");
+    if (ui->tableWidget_temp_2->item(ui->lineEdit_tempMaxValue2_2->text().toInt()-1, 1)->text().toInt() != 25) {
+        ui->tableWidget_temp_2->item(ui->lineEdit_tempMaxValue2_2->text().toInt()-1, 1)->setText("25");
     }
 
     addItemIcon(IMAGE_CLAUSE19, CLAUSE_19);
@@ -3149,7 +3145,7 @@ void FormDisplay::on_toolButton_save19_2_clicked()
 
 void FormDisplay::on_lineEdit_breakingVn_2_textChanged(const QString &arg1)
 {
-    if (!ui->checkBox_breaking_2->isChecked()) {
+    if (!ui->radioButton_breaking_2->isChecked()) {
         if (!arg1.isEmpty()){
             ui->lineEdit_breakingVn_t_2->setText(QString::number(arg1.toDouble() * 1.1));
         } else {
@@ -3162,7 +3158,7 @@ void FormDisplay::on_lineEdit_breakingIn_2_textChanged(const QString &arg1)
 {
     if (!arg1.isEmpty()){
         if (arg1.toDouble() > 0.2)
-            if (!ui->checkBox_breaking_2->isChecked()) {
+            if (!ui->radioButton_breaking_2->isChecked()) {
                 ui->lineEdit_breakingIn_t_2->setText(QString::number(arg1.toDouble() * 1.25));
             }
 
@@ -3214,7 +3210,7 @@ void FormDisplay::on_lineEdit_breaking_position_t_2_textChanged(const QString &a
 
 void FormDisplay::on_lineEdit_breakingVn_t_2_textChanged(const QString &arg1)
 {
-    if (ui->checkBox_breaking_2->isChecked()) {
+    if (ui->radioButton_breaking_2->isChecked()) {
         ui->lineEdit_breakingVn_2->setText(arg1);
     }
 
@@ -3240,7 +3236,7 @@ void FormDisplay::on_lineEdit_breakingVn_t_2_textChanged(const QString &arg1)
 
 void FormDisplay::on_lineEdit_breakingIn_t_2_textChanged(const QString &arg1)
 {
-    if (ui->checkBox_breaking_2->isChecked()) {
+    if (ui->radioButton_breaking_2->isChecked()) {
         ui->lineEdit_breakingIn_2->setText(arg1);
     }
 
@@ -3270,7 +3266,7 @@ void FormDisplay::on_toolButton_save20_2_clicked()
 
 void FormDisplay::on_lineEdit_normalVn_2_textChanged(const QString &arg1)
 {
-    if (!ui->checkBox_normal_2->isChecked()) {
+    if (!ui->radioButton_normal_2->isChecked()) {
         if (!ui->lineEdit_normalIn_2->text().isEmpty()) {
             if (0 < ui->lineEdit_normalIn_2->text().toDouble() && ui->lineEdit_normalIn_2->text().toDouble() <= 0.2) {
                 ui->lineEdit_normalVn_t_2->setText("0");
@@ -3288,14 +3284,14 @@ void FormDisplay::on_lineEdit_normalVn_2_textChanged(const QString &arg1)
 void FormDisplay::on_lineEdit_normalIn_2_textChanged(const QString &arg1)
 {
     if (0 < arg1.toDouble() && arg1.toDouble() <= 0.2) {
-        if (!ui->checkBox_normal_2->isChecked()) {
+        if (!ui->radioButton_normal_2->isChecked()) {
             ui->lineEdit_normalVn_t_2->setText("0");
             ui->lineEdit_normalIn_t_2->setText("0");
             ui->lineEdit_normal_handleNum_2->setText(tr("4000"));
             ui->lineEdit_normalRn_2->setText("-");
         }
     } else if (0.2 < arg1.toDouble() && arg1.toDouble() < 10) {
-        if (!ui->checkBox_normal->isChecked()) {
+        if (!ui->radioButton_normal->isChecked()) {
             ui->lineEdit_normalIn_t_2->setText(ui->lineEdit_normalIn_2->text());
             ui->lineEdit_normal_handleNum_2->setText("8000");
             if (!ui->lineEdit_normalVn_2->text().isEmpty()){
@@ -3304,7 +3300,7 @@ void FormDisplay::on_lineEdit_normalIn_2_textChanged(const QString &arg1)
         }
         ui->lineEdit_normalRn_2->setText(tr("Inductive Load(0.6)"));
     } else if (10 <= arg1.toDouble()) {
-        if (!ui->checkBox_normal->isChecked()) {
+        if (!ui->radioButton_normal->isChecked()) {
             ui->lineEdit_normalIn_t_2->setText(ui->lineEdit_normalIn_2->text());
             ui->lineEdit_normal_handleNum_2->setText("8000");
             if (!ui->lineEdit_normalVn_2->text().isEmpty()){
@@ -3900,13 +3896,13 @@ void FormDisplay::on_pushButton_clicked()
     }
 }
 
-void FormDisplay::on_radioButtonSwitch_toggled(bool checked)
+void FormDisplay::on_checkBoxSwitch_toggled(bool checked)
 {
     ui->checkBox_tempSwitch->setChecked(checked);
     ui->checkBox_normalTSwitch->setChecked(checked);
 }
 
-void FormDisplay::on_radioButtonIC_toggled(bool checked)
+void FormDisplay::on_checkBoxIC_toggled(bool checked)
 {
     ui->checkBox_tempIC->setChecked(checked);
 
@@ -4108,15 +4104,6 @@ void FormDisplay::on_lineEditPosition_2_textChanged(const QString &arg1)
 {
     ui->lineEdit_breaking_position_t_2->setText(arg1);
     ui->lineEdit_normal_position_t_2->setText(arg1);
-}
-
-void FormDisplay::on_toolButton_TRCR_2_clicked()
-{
-    if (ui->tableWidget_2->isHidden()){
-        ui->tableWidget_2->show();
-    } else {
-        ui->tableWidget_2->hide();
-    }
 }
 
 void FormDisplay::on_lineEditMaxValue_2_textChanged(const QString &arg1)
@@ -5014,9 +5001,6 @@ void FormDisplay::on_tabWidget_tabBarClicked(int index)
 
 void FormDisplay::on_pushButton_5_clicked()
 {
-//    Collect c;
-//    connectSTAS = c.ConnectToSTAS();
-
     CollectControl::HardSend(ui->lineEdit_VOLTUART->text().right(1).toInt(), QString("RDW VF").toLatin1().data(), 2000);
     QString volt = CollectControl::HardSend(ui->lineEdit_VOLTUART->text().right(1).toInt(), QString("RDW VF").toLatin1().data(), 2000);
     if (volt.isEmpty() || volt.size() < 14) {
@@ -5139,10 +5123,13 @@ void FormDisplay::on_lineEdit_tempMaxValue2_2_textChanged(const QString &arg1)
 
 void FormDisplay::on_toolButton_clicked()
 {
-    m_helpWidget->show();
+    if (m_helpWidget->isHidden())
+        m_helpWidget->show();
+    else
+        m_helpWidget->hide();
 }
 
-void FormDisplay::on_checkBox_temp_toggled(bool checked)
+void FormDisplay::on_radioButton_temp_toggled(bool checked)
 {
     if (checked) {
         ui->lineEdit_tempVn_t->setReadOnly(false);
@@ -5153,7 +5140,7 @@ void FormDisplay::on_checkBox_temp_toggled(bool checked)
     }
 }
 
-void FormDisplay::on_checkBox_normalTemp_toggled(bool checked)
+void FormDisplay::on_radioButton_normalTemp_toggled(bool checked)
 {
     if (checked) {
         ui->lineEdit_normalTVn_t->setReadOnly(false);
@@ -5164,7 +5151,7 @@ void FormDisplay::on_checkBox_normalTemp_toggled(bool checked)
     }
 }
 
-void FormDisplay::on_checkBox_temp_2_toggled(bool checked)
+void FormDisplay::on_radioButton_temp_2_toggled(bool checked)
 {
     if (checked) {
         ui->lineEdit_tempVn_t_2->setReadOnly(false);
@@ -5175,7 +5162,7 @@ void FormDisplay::on_checkBox_temp_2_toggled(bool checked)
     }
 }
 
-void FormDisplay::on_checkBox_breaking_toggled(bool checked)
+void FormDisplay::on_radioButton_breaking_toggled(bool checked)
 {
     if (checked) {
         ui->lineEdit_breakingVn_t->setReadOnly(false);
@@ -5188,7 +5175,7 @@ void FormDisplay::on_checkBox_breaking_toggled(bool checked)
     }
 }
 
-void FormDisplay::on_checkBox_normal_toggled(bool checked)
+void FormDisplay::on_radioButton_normal_toggled(bool checked)
 {
     if (checked) {
         ui->lineEdit_normalVn_t->setReadOnly(false);
@@ -5201,7 +5188,7 @@ void FormDisplay::on_checkBox_normal_toggled(bool checked)
     }
 }
 
-void FormDisplay::on_checkBox_breaking_2_toggled(bool checked)
+void FormDisplay::on_radioButton_breaking_2_toggled(bool checked)
 {
     if (checked) {
         ui->lineEdit_breakingVn_t_2->setReadOnly(false);
@@ -5214,7 +5201,7 @@ void FormDisplay::on_checkBox_breaking_2_toggled(bool checked)
     }
 }
 
-void FormDisplay::on_checkBox_normal_2_toggled(bool checked)
+void FormDisplay::on_radioButton_normal_2_toggled(bool checked)
 {
     if (checked) {
         ui->lineEdit_normalVn_t_2->setReadOnly(false);

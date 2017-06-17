@@ -38,22 +38,13 @@ TitleBar::TitleBar(QWidget *parent, int flags) :
     mRestoreButton->setAutoRaise(true);
     mCloseButton->setAutoRaise(true);
 
+    this->setObjectName("titleBar");
+    mIconLabel->setObjectName("iconLabel");
     mTitleLabel->setObjectName("titleLabel");
     mMinimizeButton->setObjectName("minimizeButton");
     mMaximizeButton->setObjectName("maximizeButton");
     mRestoreButton->setObjectName("restoreButton");
     mCloseButton->setObjectName("closeButton");
-
-    setStyleSheet("QLabel#titleLabel {color: #F0F0F0;padding-left: 2px;}"
-                  "QToolButton {border: none;background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #484848, stop:1 #383838);}"
-                  "QToolButton:hover {background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #686868, stop:1 #585858);;}"
-                  "QToolButton:pressed {background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);}"
-                  "QToolButton#minimizeButton {image: url(:/icon/icon/minimize.png);}"
-                  "QToolButton#maximizeButton {image: url(:/icon/icon/maximize.png);}"
-                  "QToolButton#restoreButton {image: url(:/icon/icon/restore.png);}"
-                  "QToolButton#closeButton {image: url(:/icon/icon/close.png);}"
-                  "QToolButton#closeButton:hover {background: rgb(232,17,35);}"
-                  "QToolButton#closeButton:pressed {background: rgb(241,112,122);}");
 
     mMinimizeButton->setToolTip(tr("Minimize"));
     mMaximizeButton->setToolTip(tr("Maximize"));

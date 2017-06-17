@@ -21,6 +21,7 @@
 #include <Windows.h>
 #include <QSettings>
 #include <QDebug>
+#include <QFile>
 
 #pragma execution_character_set("utf-8")
 
@@ -29,13 +30,14 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
 
-    Widget w;
-//    QCoreApplication coreApp(argc, argv);
-//    FormDisplay::dirName = a.applicationDirPath();
-    FormDisplay::dirName = QCoreApplication::applicationDirPath();
+    QFile qss(":/other/dark.qss");
+    qss.open(QFile::ReadOnly);
+    qApp->setStyleSheet(qss.readAll());
+    qss.close();
+
+    FormDisplay::dirName = QCoreApplication::applicationDirPath();//获取当前程序执行目录路径
     //read setting .ini
-    mSplashScreen *splash = new mSplashScreen(QPixmap(":/image/image/SGS01.jpg"));
-    QSettings *configIniRead = new QSettings("EATconfig.ini", QSettings::IniFormat);
+    QSettings *configIniRead = new QSettings("EATconfig.ini", QSettings::IniFormat);//获取本地配置文件
 
     QString voltageU    = configIniRead->value("Voltage Uart").toString();
     QString TRU1        = configIniRead->value("Temperature Rise Uart1").toString();
@@ -49,17 +51,11 @@ int main(int argc, char *argv[])
 
     //load language  cn/en
     QTranslator translator;
-    translator.load( ":/other/zh_CN.qm" );
-    if (language == 1) {
+    translator.load( ":/other/zh_CN.qm" );//加载汉化包
+    if (language == 1) {//判断是否安装汉化包
         a.installTranslator( &translator );
     }
-
-    splash->show();
-    splash->setGeometry((QApplication::desktop()->width()-480)/2,(QApplication::desktop()->height()-270)/2,480,270);
-    splash->setLabelTest(QObject::tr("Is connecting STAS and Configure the local file"));
-    splash->setProgress(1);     //
-
-    if (!voltageU.isEmpty()){
+    if (!voltageU.isEmpty()){//更新串口号
         comVolt  = voltageU.toInt();
     }
     if (!TRU1.isEmpty()){
@@ -80,17 +76,25 @@ int main(int argc, char *argv[])
     if (!lifeTestU.isEmpty()){
         comTest  = lifeTestU.toInt();
     }
-    if (!path.isEmpty()) {
+    if (!path.isEmpty()) {//更新保存路径
         FormDisplay::dirName = path;
     }
-    delete configIniRead;
+    delete configIniRead;//释放加载的本地文件
 
-    Sleep(2000);
+    Widget w;//初始化界面
+    mSplashScreen *splash = new mSplashScreen(QPixmap(":/image/image/SGS01.jpg"));//设置加载界面
+
+    splash->show();//显示加载界面
+    splash->setGeometry((QApplication::desktop()->width()-480)/2,(QApplication::desktop()->height()-270)/2,480,270);
+    splash->setLabelTest(QObject::tr("Is connecting STAS and Configure the local file"));
+    splash->setProgress(1);     //
+
+    Sleep(2000);//停留两秒表示前面加载工作 然后开始对STAS的各个串口连接情况进行判断
     //voltage               0
-    splash->setLabelTest(QObject::tr("Checking the Power Supply UART..."));
-    splash->setProgress(100/10+(qrand()%10-5));
+    splash->setLabelTest(QObject::tr("Checking the Power Supply UART..."));//设置加载界面进度条文字 下同
+    splash->setProgress(100/10+(qrand()%10-5));//设置进度条进度 下同
 
-    CollectControl::HardSend(comVolt, QString("RDW VF").toLatin1().data(),200);
+    CollectControl::HardSend(comVolt, QString("RDW VF").toLatin1().data(),200);//串口数据对比判断 下同
     QString volt = CollectControl::HardSend(comVolt, QString("RDW VF").toLatin1().data(),900);
     UART_t voltUart;
     if (!volt.isEmpty() && volt.size() == 14) {
@@ -100,7 +104,7 @@ int main(int argc, char *argv[])
         voltUart.data = "";
     }
     voltUart.com = comVolt;
-    devInformation << voltUart;
+    devInformation << voltUart;//保留判断结果 下同
     //temperature rise      1       yokogawa Gp10
     splash->setLabelTest(QObject::tr("Checking the Yokogawa Paperless Recorder UART...."));
     splash->setProgress(200/10+(qrand()%10-5));
@@ -215,7 +219,7 @@ int main(int argc, char *argv[])
     trcrUart2.com = comTR_AGILENT34970;
     devInformation << trcrUart2;
 
-    if (connectSTAS) {
+    if (!connectSTAS) {//对STAS连接函数的返回结果进行判断
         splash->setLabelTest(QObject::tr("Connect STAS Sucess! Entering the login screen..."));
         splash->setProgress(100);
     } else {
@@ -225,11 +229,11 @@ int main(int argc, char *argv[])
     }
     Sleep(1600);
 
-    w.show();
+    w.show();//显示主界面
     w.move((QApplication::desktop()->width()-w.width())/2,
            (QApplication::desktop()->height()-w.height())/2);
 
-    splash->finish(&w); //
+    splash->finish(&w); //释放加载界面
     delete splash;
 
     return a.exec();

@@ -64,7 +64,7 @@ HEADERS  += widget.h \
     helpWidget/helpwidget.h \
     nofocusdelegate.h
 
-FORMS    += widget.ui \
+FORMS    += \
     formdisplay.ui \
     lifetesterdialog.ui \
     temperaturerisedialog.ui
