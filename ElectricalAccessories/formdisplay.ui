@@ -51,7 +51,7 @@
     <number>1</number>
    </property>
    <property name="currentIndex">
-    <number>9</number>
+    <number>10</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QGroupBox" name="groupBox_login">
@@ -10169,7 +10169,7 @@ Normal Operation Arguments</string>
      <property name="geometry">
       <rect>
        <x>670</x>
-       <y>193</y>
+       <y>190</y>
        <width>261</width>
        <height>208</height>
       </rect>

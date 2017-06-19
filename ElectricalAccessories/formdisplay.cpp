@@ -44,10 +44,13 @@ FormDisplay::FormDisplay(QWidget *parent) :
     mFileNameListB.clear();
     mFileNameListC.clear();
     //widget
+    QRegExp regExp = QRegExp("(^[^\\\\/:/*/?/\"/</>/|]{1,255}$)");//匹配Windows文件名规则，避免输入非法字符
+    QValidator *validator = new QRegExpValidator(regExp, this);
+    ui->lineEdit_itemId->setValidator(validator);
     ui->lineEdit_itemId->setContextMenuPolicy(Qt::NoContextMenu);
     ui->lineEdit_itemId->setMaxLength(ITEM_ID_LENGTH);
+
     ui->tabWidget->setCurrentIndex(TABWIDGET_SERVOA);
-    //login
     ui->stackedWidget->setCurrentIndex(STACKWIDGET_LOGIN);
     ui->lineEdit_itemId->setFocus();
     ui->lineEdit_itemId->selectAll();
@@ -766,7 +769,7 @@ void FormDisplay::enterMain()
 
     fileSize = dirName.size();//判断目录情况，是否存在，存在则提示进入，否则直接创建
     QDir workDir(dirName);
-    if (workDir.exists(ui->lineEdit_itemId->text())){
+    if (workDir.exists(ui->lineEdit_itemId->text().remove(" "))){
         QMessageBox msgBox(QMessageBox::Question,tr("Question"),tr("Project has been in existence, whether to continue?"));
         msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
         msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
@@ -1846,6 +1849,8 @@ void FormDisplay::IEC884_clear()
         ui->tableWidget->item(i, 3)->setText("");
     }
     ui->tableWidget->scrollToTop();
+    ui->tableWidget->hide();
+    ui->textEdit_5->show();
 
     ui->lineEditVn_t_1->clear();
     ui->lineEditVn_t_2->clear();
