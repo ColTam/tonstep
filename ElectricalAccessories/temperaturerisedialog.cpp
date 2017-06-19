@@ -721,6 +721,7 @@ void TemperatureRiseDialog::closeWidget()
     msgBox.setStandardButtons(QMessageBox::Save|QMessageBox::Ignore|QMessageBox::Close|QMessageBox::Cancel);
     msgBox.setButtonText(QMessageBox::Save,tr("Save"));
     msgBox.setButtonText(QMessageBox::Ignore,tr("Ignore"));
+    msgBox.setButtonText(QMessageBox::Close,tr("Close All"));
     msgBox.setButtonText(QMessageBox::Cancel,tr("Cancel"));
     msgBox.setWindowIcon(QIcon(WINDOW_ICON));
 
