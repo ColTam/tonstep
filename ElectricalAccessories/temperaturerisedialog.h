@@ -1,4 +1,4 @@
-#ifndef TEMPERATURERISEDIALOG_H
+﻿#ifndef TEMPERATURERISEDIALOG_H
 #define TEMPERATURERISEDIALOG_H
 
 /*!* \brief 对应按钮切换界面页数 */
