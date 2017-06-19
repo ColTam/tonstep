@@ -115,8 +115,8 @@ void Widget::initWidget()
 //    LifeTesterDialog *lifeTesterDialogA = new LifeTesterDialog(NULL);
 //    lifeTesterDialogA->show();
 
-//    TemperatureRiseDialog *temperatureRiseA = new TemperatureRiseDialog();
-//    temperatureRiseA->show();
+    TemperatureRiseDialog *temperatureRiseA = new TemperatureRiseDialog();
+    temperatureRiseA->show();
 }
 
 void Widget::newTemperatureDialog(time_t hours, QString fileName, QStringList tc_list, int roomT2, QString servo, int num, QString Im)

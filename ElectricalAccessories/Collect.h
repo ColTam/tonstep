@@ -4,6 +4,8 @@
 #define WINDOW_ICON                             ":/icon/icon/14"    /*!* \brief 界面图标 */
 
 #define COM_DELAY                               2000            /*!* \brief 串口命令最大延时[0,5000](0-5000s) */
+#define COM_TRDELAY                             10000
+#define COM_TRDELAYS                            COM_TRDELAY / 1000
 
 #define CLAUSE_19                               19              /*!* \brief 第19章节 */
 #define CLAUSE_20                               20              /*!* \brief 第20章节 */
