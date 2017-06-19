@@ -12,7 +12,6 @@ MiniDateWidget::MiniDateWidget(QWidget *parent) : QWidget(parent)
 {
     resize(196, 121);
     setAutoFillBackground(true);
-    setStyleSheet("");
 
     groupbox = new QGroupBox(this);
     groupbox->setGeometry(4, 1, 188, 117);
