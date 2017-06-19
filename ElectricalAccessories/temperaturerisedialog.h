@@ -6,10 +6,9 @@
 #define TRISE_STACKWIDGET_LOAD      1
 #define TRISE_STACKWIDGET_VOLT      2
 /*!* \brief 按钮样式表 */
-#define TRISE_BUTTON_RESET          "QToolButton { border-radius: 0px;color: rgb(221,221,221);background-color: rgb(120,120,120);}\
-                                    QToolButton:hover {background-color: rgb(120,120,120);}"
-#define TRISE_BUTTON_INIT           "QToolButton { border-radius: 0px;color: rgb(0,0,0);background-color: rgb(165,165,165);}\
-                                    QToolButton:hover {color: rgb(230,230,230);background-color: rgb(120,120,120);}"
+#define TRISE_BUTTON_RESET          "QToolButton { border: none;border-radius: 0px;border-bottom-style: solid;border-bottom-color: #F46320;border-bottom-width: 2px;color: #F0F0F0;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);}QToolButton:hover {color: #F46320;}QToolButton:pressed {color: #C84E19;border-bottom-color: #C84E19;}"
+#define TRISE_BUTTON_INIT           "QToolButton { border: none;border-radius: 0px;color: #F0F0F0;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);}QToolButton:hover {color: #F46320;border-bottom-style: solid;border-bottom-color: #F46320;border-bottom-width: 2px;}QToolButton:pressed {color: #C84E19;border-bottom-color: #C84E19;}"
+
 typedef int row_t;
 typedef int column_t;
 
@@ -40,7 +39,7 @@ class TemperatureRiseDialog : public QDialog
     Q_OBJECT
 
 public:             /*!* \brief hour:单次测试时长;num:测试次数;Im:短路后电流 */
-    explicit TemperatureRiseDialog(time_t hour, int num = 1, QString Im = "0", QWidget *parent = 0);
+    explicit TemperatureRiseDialog(time_t hour  = 1, int num = 1, QString Im = "0", QWidget *parent = 0);
     ~TemperatureRiseDialog();
 
     int loadCount;                                  /*!* \brief 数据计数器 */

@@ -120,8 +120,30 @@ void TemperatureRiseDialog::initCustomPlot()
     this->loadCount = 0;
 
     ui->customplot->clearGraphs();
+
+    ui->customplot->xAxis->setLabelColor(QColor("#F0F0F0"));
+    ui->customplot->xAxis->setTickLabelColor(QColor("#B8B8B8"));
+    ui->customplot->xAxis->setBasePen(QPen(QColor("#F0F0F0")));
+    ui->customplot->xAxis->setTickPen(QPen(QColor("#B8B8B8")));
+    ui->customplot->xAxis->setSubTickPen(QPen(QColor("#B8B8B8")));
+    ui->customplot->xAxis->setSelectedBasePen(QPen(QColor("#F46320")));
+    ui->customplot->xAxis->setSelectedTickPen(QPen(QColor("#F46320")));
+    ui->customplot->xAxis->setSelectedTickLabelColor(QColor("#F46320"));
+    ui->customplot->xAxis->setSelectedSubTickPen(QPen(QColor("#F46320")));
+
+    ui->customplot->yAxis->setLabelColor(QColor("#F0F0F0"));
+    ui->customplot->yAxis->setTickLabelColor(QColor("#B8B8B8"));
+    ui->customplot->yAxis->setBasePen(QPen(QColor("#F0F0F0")));
+    ui->customplot->yAxis->setTickPen(QPen(QColor("#B8B8B8")));
+    ui->customplot->yAxis->setSubTickPen(QPen(QColor("#B8B8B8")));
+    ui->customplot->yAxis->setSelectedBasePen(QPen(QColor("#F46320")));
+    ui->customplot->yAxis->setSelectedTickPen(QPen(QColor("#F46320")));
+    ui->customplot->yAxis->setSelectedTickLabelColor(QColor("#F46320"));
+    ui->customplot->yAxis->setSelectedSubTickPen(QPen(QColor("#F46320")));
+
     ui->customplot->xAxis->setLabel(tr("Time ( 5s )"));
     ui->customplot->yAxis->setLabel(tr("Temperatur Rise ( °C )"));
+
     ui->customplot->legend->setVisible(true);
     ui->customplot->legend->setFont(QFont("Helvetica", 9));
     ui->customplot->legend->setRowSpacing(-3);
@@ -139,11 +161,11 @@ void TemperatureRiseDialog::initCustomPlot()
     }
 
     QBrush backRole;
-    backRole.setColor(QColor(50,50,50));
+    backRole.setColor(QColor(40,40,40));
     backRole.setStyle(Qt::SolidPattern);
     ui->customplot->setBackground(backRole);
 
-    ui->customplot->xAxis->setRange(-77,5);
+    ui->customplot->xAxis->setRange(-2.5,79.5);
     ui->customplot->yAxis->setRange(-2.5,100.25);
 
     connect(ui->customplot, SIGNAL(legendDoubleClick(QCPLegend*,QCPAbstractLegendItem*,QMouseEvent*)), this, SLOT(legendDoubleClick(QCPLegend*,QCPAbstractLegendItem*)));
@@ -888,7 +910,8 @@ void TemperatureRiseDialog::updateTC(QStringList list)
     }
 
     ui->customplot->rescaleAxes();
-    ui->customplot->xAxis->setRange(this->loadCount+7.25,77,Qt::AlignRight);
+    if (loadCount >= 68)
+        ui->customplot->xAxis->setRange(this->loadCount-64.5,82,Qt::AlignRight);
     ui->customplot->yAxis->setRange(-2.5,100.25);
     ui->customplot->replot();
 
@@ -1098,6 +1121,9 @@ void TemperatureRiseDialog::closeEvent(QCloseEvent *event)
 
 void TemperatureRiseDialog::on_toolButton_tc_clicked()
 {
+    if (_miniDateWidget->isHidden())
+        _miniDateWidget->show();
+
     ui->stackedWidget->setCurrentIndex(TRISE_STACKWIDGET_TC);
 
     ui->toolButton_tc->setStyleSheet(TRISE_BUTTON_RESET);
@@ -1107,6 +1133,9 @@ void TemperatureRiseDialog::on_toolButton_tc_clicked()
 
 void TemperatureRiseDialog::on_toolButton_load_clicked()
 {
+    if (!_miniDateWidget->isHidden())
+        _miniDateWidget->hide();
+
     ui->stackedWidget->setCurrentIndex(TRISE_STACKWIDGET_LOAD);
 
     ui->toolButton_load->setStyleSheet(TRISE_BUTTON_RESET);
@@ -1116,6 +1145,9 @@ void TemperatureRiseDialog::on_toolButton_load_clicked()
 
 void TemperatureRiseDialog::on_toolButton_volt_clicked()
 {
+    if (_miniDateWidget->isHidden())
+        _miniDateWidget->show();
+
     ui->stackedWidget->setCurrentIndex(TRISE_STACKWIDGET_VOLT);
 
     ui->toolButton_volt->setStyleSheet(TRISE_BUTTON_RESET);

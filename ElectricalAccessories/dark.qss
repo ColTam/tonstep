@@ -658,3 +658,64 @@ QToolButton#closeTipButton:hover {
 QToolButton#closeTipButton:pressed {
     color: #C84E19;
 }
+/*temperature rise dialog*/
+QWidget#page_temperatureRiseDialog_recorder {
+border: 1px solid #7F000000;
+border-top-width: 0px;
+}
+
+QWidget#page_temperatureRiseDialog_load {
+border: 1px solid #7F000000;
+border-top-width: 0px;
+}
+
+QWidget#page_temperatureRiseDialog_power {
+border: 1px solid #7F000000;
+border-top-width: 0px;
+}
+
+QWidget#LifeTesterDialog {
+border: 1px solid #7F000000;
+border-top-width: 0px;
+}
+/*minidate widget*/
+QGroupBox#minidateGroupBox {
+color: white;
+background: #33333333;
+}
+
+QLabel#minidateLabel_overTime{
+color: white;
+}
+
+QLabel#minidateLabel_volt{
+color: white;
+}
+
+QLabel#minidateLabel_LPF{
+color: white;
+}
+
+QLabel#minidateLabel_current{
+color: white;
+}
+
+QLineEdit#minidateLineEdit_overTime{
+color: white;
+background: transparent;
+}
+
+QLineEdit#minidateLineEdit_volt{
+color: white;
+background: transparent;
+}
+
+QLineEdit#minidateLineEdit_LPF{
+color: white;
+background: transparent;
+}
+
+QLineEdit#minidateLineEdit_current{
+color: white;
+background: transparent;
+}

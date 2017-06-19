@@ -78,7 +78,7 @@ DEPENDPATH += $$PWD/.
 
 TRANSLATIONS += zh_CN.ts
 
-#win32:QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
+win32:QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
 
 RC_ICONS = EATA.ico
 

@@ -12,12 +12,12 @@ MiniDateWidget::MiniDateWidget(QWidget *parent) : QWidget(parent)
 {
     resize(196, 121);
     setAutoFillBackground(true);
-    setStyleSheet("background: rgba(20, 20, 20, 30%)");
+    setStyleSheet("");
 
     groupbox = new QGroupBox(this);
     groupbox->setGeometry(4, 1, 188, 117);
-    groupbox->setTitle(tr(" Electrical Accessories Test Automation Program"));
-    groupbox->setStyleSheet("color: white");
+    groupbox->setTitle(tr("Electrical Accessories Test"));
+    groupbox->setObjectName("minidateGroupBox");
 
     QLabel *overTimeLabel = new QLabel(this);
     QLabel *voltLabel = new QLabel(this);
@@ -27,6 +27,15 @@ MiniDateWidget::MiniDateWidget(QWidget *parent) : QWidget(parent)
     voltLineEdit = new QLineEdit(this);
     LPFLineEdit = new QLineEdit(this);
     currentLineEdit = new QLineEdit(this);
+
+    overTimeLabel->setObjectName("minidateLabel_overTime");
+    voltLabel->setObjectName("minidateLabel_volt");
+    LPFLabel->setObjectName("minidateLabel_LPF");
+    currentLabel->setObjectName("minidateLabel_current");
+    overTimeLineEdit->setObjectName("minidateLineEdit_overTime");
+    voltLineEdit->setObjectName("minidateLineEdit_volt");
+    LPFLineEdit->setObjectName("minidateLineEdit_LPF");
+    currentLineEdit->setObjectName("minidateLineEdit_current");
 
     overTimeLabel->setGeometry(8, 16, 100, 20);
     voltLabel->setGeometry(8, 41, 100, 20);
@@ -50,15 +59,6 @@ MiniDateWidget::MiniDateWidget(QWidget *parent) : QWidget(parent)
     voltLineEdit->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     LPFLineEdit->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     currentLineEdit->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-
-    overTimeLabel->setStyleSheet("background: transparent; color: white");
-    voltLabel->setStyleSheet("background: transparent; color: white");
-    LPFLabel->setStyleSheet("background: transparent; color: white");
-    currentLabel->setStyleSheet("background: transparent; color: white");
-    overTimeLineEdit->setStyleSheet("color: white");
-    voltLineEdit->setStyleSheet("color: white");
-    LPFLineEdit->setStyleSheet("color: white");
-    currentLineEdit->setStyleSheet("color: white");
 
     overTimeLineEdit->setReadOnly(true);
     voltLineEdit->setReadOnly(true);

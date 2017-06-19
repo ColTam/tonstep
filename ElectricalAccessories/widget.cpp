@@ -111,6 +111,12 @@ void Widget::initWidget()
     connect(_formDisplay, SIGNAL(isSectionFileName(QString,int)), this, SLOT(selectClause(QString,int)));
     connect(this, SIGNAL(finishedItem(QString, int)), _formDisplay, SLOT(finishedItem(QString, int)));
     connect(_formDisplay, SIGNAL(tTimerStop(int,int)), this, SLOT(tTimerStop(int,int)));
+//    //use on test.
+//    LifeTesterDialog *lifeTesterDialogA = new LifeTesterDialog(NULL);
+//    lifeTesterDialogA->show();
+
+//    TemperatureRiseDialog *temperatureRiseA = new TemperatureRiseDialog();
+//    temperatureRiseA->show();
 }
 
 void Widget::newTemperatureDialog(time_t hours, QString fileName, QStringList tc_list, int roomT2, QString servo, int num, QString Im)
