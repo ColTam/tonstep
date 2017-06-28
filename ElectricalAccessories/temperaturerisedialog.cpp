@@ -789,27 +789,26 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
         ui->tableWidget->scrollToBottom();
 #if 1
         if (vol.toDouble() == 0 || cur.toDouble() == 0) {
-            QDateTime temp = _objectTime;
-
-            if (3599 - QDateTime::currentDateTime().msecsTo(temp)/1000 < 60) {
+            if (3599 - QDateTime::currentDateTime().msecsTo(_objectTime)/1000 < 60) {
                 return;//一小时秒数 - 当前时间到目标时间的秒数 = 测试了多久......
             }
 
             emit loadStop();
+//            disconnect(_mLoadThreadA, SIGNAL(updateData(QString,QString)), this, SLOT(updateLoad(QString,QString)));
             //            emit temperatureRiseStop();
-            _objectTime = QDateTime::currentDateTime();
+            QDateTime nowTime = QDateTime::currentDateTime();
             Collect::stateWarning();
             Collect::LoadStop(servo);
 
-            if (QDateTime::currentDateTime().msecsTo(temp)/1000/60 >= 56){
+            if (QDateTime::currentDateTime().msecsTo(_objectTime)/1000/60 >= 56){
                 QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Not detected current!\nPlease check the sample!"));
                 msgBox.setStandardButtons(QMessageBox::Ok);
                 msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
                 msgBox.setWindowIcon(QIcon(WINDOW_ICON));
 
                 msgBox.exec();
-                //                emit temperatureRiseStart();
-                _objectTime = temp.addSecs(_objectTime.time().secsTo(QTime::currentTime()));
+                //emit temperatureRiseStart();
+                _objectTime = _objectTime.addSecs(nowTime.time().secsTo(QTime::currentTime()));
 
                 _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
                 Collect::SetLoad(SET_LPF_RESISTIVE_884, m_currentIn, servo);
@@ -826,7 +825,7 @@ void TemperatureRiseDialog::updateLoad(QString volt, QString load)
 
                 if (ret == QMessageBox::Yes) {
                     //                    emit temperatureRiseStart();
-                   _objectTime = temp.addSecs(_objectTime.time().secsTo(QTime::currentTime()));
+                    _objectTime = _objectTime.addSecs(nowTime.time().secsTo(QTime::currentTime()));
 
                     _miniDateWidget->overTimeLineEdit->setText(_objectTime.time().toString());
                     Collect::SetLoad(SET_LPF_RESISTIVE_884, m_currentIn, servo);
@@ -855,7 +854,6 @@ void TemperatureRiseDialog::updateTC(QStringList list)
         _mMessage->show();
 
     if (QDateTime::currentDateTime().operator >=(_objectTime)) {
-//        qDebug() << "432";
         oldTemperatureRise_list.clear();
         return;
     }

@@ -1,9 +1,6 @@
 ﻿#ifndef HELPWIDGET_H
 #define HELPWIDGET_H
 
-/*!* \brief 说明便签样式表 */
-#define LABELSTYLESHEET "background: transparent; color: rgb(235, 125, 46)"
-
 #include <QWidget>
 
 #ifdef _MSC_BUILD

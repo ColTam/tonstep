@@ -126,8 +126,9 @@ FormDisplay::FormDisplay(QWidget *parent) :
     //    mMessage->hide();
 
     m_helpWidget = new HelpWidget(this);
-    m_helpWidget->setGeometry(7, 7, 943, 633);
+    m_helpWidget->setGeometry(7, 7, m_helpWidget->width(), m_helpWidget->height());
     m_helpWidget->hide();
+
     if (connectSTAS) {
         mMessage->show();
         mMessage->setText(tr("Connect STAS Sucess !"));
@@ -1181,10 +1182,11 @@ void FormDisplay::moveToZone(QListWidgetItem *item)
 
 void FormDisplay::finishedItem(QString fileName, int number)//fail number
 {
-    QString _servo = fileName.right(2).mid(0,1);
+    QString _itemServo = fileName.right(2).mid(0,1);//当前通道
+    QString _itemNumber = fileName.right(5).mid(0,2);//当前项目分支号
 
     if (number == -1) {//用户中断测试
-        if (_servo == "A") {
+        if (_itemServo == "A") {//判断被中断的通道 并关闭后续测试 如果存在的话
             for (int i = dirNameListA.count(); i > 0; i--) {
                 dirNameListA.removeFirst();
                 itemRestore(mPiecesPowerListA->item(0));
@@ -1192,7 +1194,7 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
             ui->toolButton_start->setEnabled(true);
             mPiecesPowerListA->setAcceptDrops(true);
             mPiecesPowerListA->setDragEnabled(true);
-        } else if (_servo == "B") {
+        } else if (_itemServo == "B") {
             for (int i = dirNameListB.count(); i > 0; i--) {
                 dirNameListB.removeFirst();
                 itemRestore(mPiecesPowerListB->item(0));
@@ -1200,7 +1202,7 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
             ui->toolButton_start_2->setEnabled(true);
             mPiecesPowerListB->setAcceptDrops(true);
             mPiecesPowerListB->setDragEnabled(true);
-        } else if (_servo == "C") {
+        } else if (_itemServo == "C") {
             for (int i = dirNameListC.count(); i > 0; i--) {
                 dirNameListC.removeFirst();
                 itemRestore(mPiecesPowerListC->item(0));
@@ -1209,55 +1211,65 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
             mPiecesPowerListC->setAcceptDrops(true);
             mPiecesPowerListC->setDragEnabled(true);
         }
-    } else {//继续项目测试
-        if (fileName.right(5).mid(0,2) == "19" && mPlug == 1) {
-            Collect::AlarmOpen();
-            QMessageBox msgBox(QMessageBox::Warning,tr(" Electrical Accessories Test Automation Program"),
-                               tr("End of the test, please replace the test gauge or plug socket!"));
-            msgBox.setStandardButtons(QMessageBox::Ok);
-            msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
-            msgBox.setWindowIcon(QIcon(WINDOW_ICON));
-
-            msgBox.exec();
-            Collect::AlarmClose();
+        //全部通道都已停止测试 则关闭电源并改变状态灯 停止线程接收
+        if (ui->toolButton_start->isEnabled() &&
+                ui->toolButton_start_2->isEnabled() &&
+                ui->toolButton_start_3->isEnabled()) {
+            Collect::PowerStop();
+            Collect::stateStand();
+            emit tTimerStop(0,0);
         }
+        return;
+    }
+    //单个测试项目完成
+    if (_itemNumber == "19" && mPlug == IEC60884) {//IEC60884测试前温升测试完成后需要提示更换量规
+        Collect::AlarmOpen();
+        QMessageBox msgBox(QMessageBox::Warning,tr(" Electrical Accessories Test Automation Program"),
+                           tr("End of the test, please replace the test gauge or plug socket!"));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
+        msgBox.setWindowIcon(QIcon(WINDOW_ICON));
 
-        if (_servo == "A") {
-            dirNameListA.removeFirst();
-            itemRestore(mPiecesPowerListA->item(0));
-            if (dirNameListA.count() <= 0){
-                ui->toolButton_start->setEnabled(true);
-                mPiecesPowerListA->setAcceptDrops(true);
-                mPiecesPowerListA->setDragEnabled(true);
-            }
-        } else if (_servo == "B") {
-            dirNameListB.removeFirst();
-            itemRestore(mPiecesPowerListB->item(0));
-            if (dirNameListB.count() <= 0){
-                ui->toolButton_start_2->setEnabled(true);
-                mPiecesPowerListB->setAcceptDrops(true);
-                mPiecesPowerListB->setDragEnabled(true);
-            }
-        } else if (_servo == "C") {
-            dirNameListC.removeFirst();
-            itemRestore(mPiecesPowerListC->item(0));
-            if (dirNameListC.count() <= 0){
-                ui->toolButton_start_3->setEnabled(true);
-                mPiecesPowerListC->setAcceptDrops(true);
-                mPiecesPowerListC->setDragEnabled(true);
-            }
+        msgBox.exec();
+        Collect::AlarmClose();
+    }
+
+    if (_itemServo == "A") {//移除当前完成的项目
+        dirNameListA.removeFirst();
+        itemRestore(mPiecesPowerListA->item(0));
+        if (dirNameListA.count() <= 0){//未测试项目不存在 恢复对应通道交互界面使用功能
+            ui->toolButton_start->setEnabled(true);
+            mPiecesPowerListA->setAcceptDrops(true);
+            mPiecesPowerListA->setDragEnabled(true);
+        }
+    } else if (_itemServo == "B") {
+        dirNameListB.removeFirst();
+        itemRestore(mPiecesPowerListB->item(0));
+        if (dirNameListB.count() <= 0){
+            ui->toolButton_start_2->setEnabled(true);
+            mPiecesPowerListB->setAcceptDrops(true);
+            mPiecesPowerListB->setDragEnabled(true);
+        }
+    } else if (_itemServo == "C") {
+        dirNameListC.removeFirst();
+        itemRestore(mPiecesPowerListC->item(0));
+        if (dirNameListC.count() <= 0){
+            ui->toolButton_start_3->setEnabled(true);
+            mPiecesPowerListC->setAcceptDrops(true);
+            mPiecesPowerListC->setDragEnabled(true);
         }
     }
 
+    //全部通道都已停止测试 则关闭电源并改变状态灯 停止线程接收
     if (ui->toolButton_start->isEnabled() &&
             ui->toolButton_start_2->isEnabled() &&
-            ui->toolButton_start_3->isEnabled()) {//所有测试完成 停止线程读取
+            ui->toolButton_start_3->isEnabled()) {
         Collect::PowerStop();
         Collect::stateStand();
         emit tTimerStop(0,0);
     } else {//判断未测试项目，只保留未测试数据读取
         int r = 0, e = 0;
-        if (dirNameListA.count() > 0 && _servo != "A") {
+        if (dirNameListA.count() > 0 && _itemServo != "A") {//当前通道为B或C时 判断通道A是否存在未测试项目
             if (dirNameListA.count()>0)
             {
                 QString s = dirNameListA.at(0);
@@ -1273,7 +1285,7 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
                 }
             }
         }
-        if (dirNameListB.count() && _servo != "B") {
+        if (dirNameListB.count() && _itemServo != "B") {//当前通道为A或C时 判断通道B是否存在未测试项目
             if (dirNameListB.count()>0) {
                 QString s = dirNameListB.at(0);
                 if (s.right(5).mid(0,2) == "19" || s.right(5).mid(0,2) == "22") {
@@ -1287,7 +1299,7 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
                 }
             }
         }
-        if (dirNameListC.count() && _servo != "C") {
+        if (dirNameListC.count() && _itemServo != "C") {//当前通道为A或B时 判断通道C是否存在未测试项目
             if (dirNameListC.count()>0) {
                 QString s = dirNameListC.at(0);
                 if (s.right(5).mid(0,2) == "19" || s.right(5).mid(0,2) == "22") {
@@ -1302,14 +1314,11 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
             }
         }
 
-//        qDebug() << "finished r:" << r
-//                 << "finished e:" << e
-//                 << "finished ...:" << dirNameListA.count() << dirNameListB.count() << dirNameListC.count();
         emit tTimerStop(r, e);
 
-        if ((_servo == "A" && dirNameListA.count() > 0) ||
-                (_servo == "B" && dirNameListB.count() > 0) ||
-                (_servo == "C" && dirNameListC.count() > 0)) {
+        if ((_itemServo == "A" && dirNameListA.count() > 0) ||
+                (_itemServo == "B" && dirNameListB.count() > 0) ||
+                (_itemServo == "C" && dirNameListC.count() > 0)) {
             if (number > 0) {//温升测试number端口Fail， 用户选择是否继续测试
                 QMessageBox msgBox(QMessageBox::Warning,tr("Fail"),tr("Temperature rise test result is: Fail!\nWhether to continue to operate?"));
                 msgBox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
@@ -1320,37 +1329,37 @@ void FormDisplay::finishedItem(QString fileName, int number)//fail number
                 int ret = msgBox.exec();
 
                 if (ret == QMessageBox::Cancel) {
-                    if (_servo == "A") {
+                    if (_itemServo == "A") {
                         for (int i = dirNameListA.count(); i > 0; i--) {
                             dirNameListA.removeFirst();
                             itemRestore(mPiecesPowerListA->item(0));
                         }
-                    } else if (_servo == "B") {
+                    } else if (_itemServo == "B") {
                         for (int i = dirNameListB.count(); i > 0; i--) {
                             dirNameListB.removeFirst();
                             itemRestore(mPiecesPowerListB->item(0));
                         }
-                    } else if (_servo == "C") {
+                    } else if (_itemServo == "C") {
                         for (int i = dirNameListC.count(); i > 0; i--) {
                             dirNameListC.removeFirst();
                             itemRestore(mPiecesPowerListC->item(0));
                         }
                     }
                 } else {
-                    if (_servo == "A") {
+                    if (_itemServo == "A") {
                         emit isSectionFileName(dirNameListA.at(0), mPlug);
-                    } else if (_servo == "B") {
+                    } else if (_itemServo == "B") {
                         emit isSectionFileName(dirNameListB.at(0), mPlug);
-                    } else if (_servo == "C") {
+                    } else if (_itemServo == "C") {
                         emit isSectionFileName(dirNameListC.at(0), mPlug);
                     }
                 }
             } else {
-                if (_servo == "A") {
+                if (_itemServo == "A") {
                     emit isSectionFileName(dirNameListA.at(0), mPlug);
-                } else if (_servo == "B") {
+                } else if (_itemServo == "B") {
                     emit isSectionFileName(dirNameListB.at(0), mPlug);
-                } else if (_servo == "C") {
+                } else if (_itemServo == "C") {
                     emit isSectionFileName(dirNameListC.at(0), mPlug);
                 }
             }
@@ -1377,7 +1386,11 @@ void FormDisplay::clause19_out(QIODevice *device)
             << '\n' << t2;
         for (int i = 0; i<20; i++)
         {
-            mItemTextList << ui->tableWidget_temp_2->item(i, 1)->text();
+            if (ui->tableWidget_temp_2->item(i, 1)->text().isEmpty())
+                mItemTextList << "45";
+            else
+                mItemTextList << ui->tableWidget_temp_2->item(i, 1)->text();
+
             out << '\n' << this->isChecked(ui->tableWidget_temp_2->item(i, 1))
                 << mItemTextList.at(i)
                 << "#" << ui->tableWidget_temp_2->item(i, 3)->text();
@@ -1404,7 +1417,11 @@ void FormDisplay::clause19_out(QIODevice *device)
             << '\n' << t2;
         for (int i = 0; i<20; i++)
         {
-            mItemTextList << ui->tableWidget_temp->item(i, 1)->text();
+            if (ui->tableWidget_temp->item(i, 1)->text().isEmpty())
+                mItemTextList << "45";
+            else
+                mItemTextList << ui->tableWidget_temp->item(i, 1)->text();
+
             out << '\n' << this->isChecked(ui->tableWidget_temp->item(i, 1))
                 << mItemTextList.at(i)
                 << "#" << ui->tableWidget_temp->item(i, 3)->text();
@@ -1504,7 +1521,11 @@ void FormDisplay::clause22_out(QIODevice *device)
         << '\n' << t2;
     for (int i = 0; i<20; i++)
     {
-        mItemTextList << ui->tableWidget_normalTemp->item(i, 1)->text();
+        if (ui->tableWidget_normalTemp->item(i, 1)->text().isEmpty())
+            mItemTextList << "45";
+        else
+            mItemTextList << ui->tableWidget_normalTemp->item(i, 1)->text();
+
         out << '\n' << this->isChecked(ui->tableWidget_normalTemp->item(i, 1))
             << mItemTextList.at(i)
             << "#" << ui->tableWidget_normalTemp->item(i, 3)->text();

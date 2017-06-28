@@ -203,7 +203,7 @@ void Collect::SetLoad(const QString LPFactor, const QString current, const QStri
         }
         lpf = "1.0";
     } else if (LPFactor == "109") {
-        if (current.toInt() == 20) {//In == 16A
+        if (current.toInt() == 20) {//In == 16A  //额定电流*1.25
             _load = "SET%106%184%\r";
         } else {                    //In == 10A
             _load = "SET%106%112%\r";

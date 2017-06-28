@@ -40,7 +40,7 @@ Widget::Widget(QWidget *parent) :
 
     //init widget
     initWidget();
-
+    //init thread
     _mTestThread->moveToThread(_testThread);
     connect(_testThread, SIGNAL(started()), _mTestThread, SLOT(readData()));
     connect(_mTestThread, SIGNAL(testDataA(QString)), this, SIGNAL(testDataA(QString)), Qt::DirectConnection);
@@ -75,28 +75,19 @@ Widget::~Widget()
 
 void Widget::initWidgetTitle()
 {
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::FramelessWindowHint);//设置无边框
 
-    this->installEventFilter(_titleBar);
+    this->installEventFilter(_titleBar);//设置标题栏
     this->resize(WINDOW_WIDTH, WINDOW_HEIGHT);
     this->setWindowTitle(tr(" Electrical Accessories Test Automation Program"));
     this->setWindowIcon(QIcon(WINDOW_ICON));
-
-//    QPalette mPalette(palette());
-//    mPalette.setColor(QPalette::Background, QColor(64,66,68));
-//    this->setAutoFillBackground(true);
-//    this->setPalette(mPalette);
-//    this->setStyleSheet("QWidget{"
-//                        "background-color: qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,"
-//                        "stop:0 #484848,stop:1 #383838);"
-//                        "}");
 
     QVBoxLayout *titleVBoxLayout = new QVBoxLayout();
     titleVBoxLayout->addWidget(_titleBar);
     titleVBoxLayout->addStretch(0);
     titleVBoxLayout->setSpacing(0);
     titleVBoxLayout->setContentsMargins(0, 0, 0, 0);
-
+    //链接关闭信号
     connect(_titleBar, SIGNAL(closeClicked()), this, SLOT(closeWidget()));
 
     this->setLayout(titleVBoxLayout);
@@ -105,7 +96,7 @@ void Widget::initWidgetTitle()
 void Widget::initWidget()
 {
     initWidgetTitle();
-
+    //加载主界面
     _formDisplay->setGeometry(0, 26, 960, 694);
 
     connect(_formDisplay, SIGNAL(isSectionFileName(QString,int)), this, SLOT(selectClause(QString,int)));

@@ -129,7 +129,7 @@ private:
     int flag;                                       /*!* \brief 短路开关切换标识 */
     int widgetCount;                                /*!* \brief 测试次数 */
     int roomTemperatureRiseC;                       /*!* \brief 备用室温变量 */
-    int failNumber;                                 /*!* \brief 温升结果fail计数器 */
+    int failNumber;                                 /*!* \brief 温升结果fail计数器 fail>0: fail;fail=0: normal;fail<0: user close test;*/
 
     bool savePngSecess;                             /*!* \brief png保存结果 */
 
