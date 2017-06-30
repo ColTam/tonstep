@@ -58,7 +58,7 @@ Whether or not to continue to leave?</source>
     </message>
     <message>
         <location filename="formdisplay.ui" line="132"/>
-        <location filename="formdisplay.cpp" line="761"/>
+        <location filename="formdisplay.cpp" line="766"/>
         <source>Please Enter The Project ID.</source>
         <translation>请输入项目编号.</translation>
     </message>
@@ -551,8 +551,8 @@ Whether or not to continue to leave?</source>
         <location filename="formdisplay.ui" line="8968"/>
         <location filename="formdisplay.ui" line="9487"/>
         <location filename="formdisplay.ui" line="11172"/>
-        <location filename="formdisplay.cpp" line="3168"/>
-        <location filename="formdisplay.cpp" line="3310"/>
+        <location filename="formdisplay.cpp" line="3202"/>
+        <location filename="formdisplay.cpp" line="3344"/>
         <source>Resistive Load</source>
         <translation>阻性负载</translation>
     </message>
@@ -863,382 +863,400 @@ Whether or not to continue to leave?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="130"/>
+        <location filename="formdisplay.cpp" line="134"/>
         <source>Connect STAS Sucess !</source>
         <translation>STAS连接成功!</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="133"/>
+        <location filename="formdisplay.cpp" line="137"/>
         <source>Connect STAS False !</source>
         <translation>STAS连接失败!</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="145"/>
+        <location filename="formdisplay.cpp" line="149"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="149"/>
+        <location filename="formdisplay.cpp" line="153"/>
         <source>Chinese</source>
         <translation>中 文</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="152"/>
+        <location filename="formdisplay.cpp" line="156"/>
         <source>Path</source>
         <translation>路 径</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="155"/>
+        <location filename="formdisplay.cpp" line="159"/>
         <source>Registration Code</source>
         <translation>注册码</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="660"/>
-        <location filename="formdisplay.cpp" line="661"/>
-        <location filename="formdisplay.cpp" line="662"/>
-        <location filename="formdisplay.cpp" line="663"/>
         <location filename="formdisplay.cpp" line="664"/>
-        <location filename="formdisplay.cpp" line="687"/>
-        <location filename="formdisplay.cpp" line="688"/>
-        <location filename="formdisplay.cpp" line="689"/>
-        <location filename="formdisplay.cpp" line="690"/>
+        <location filename="formdisplay.cpp" line="665"/>
+        <location filename="formdisplay.cpp" line="666"/>
+        <location filename="formdisplay.cpp" line="667"/>
+        <location filename="formdisplay.cpp" line="668"/>
         <location filename="formdisplay.cpp" line="691"/>
+        <location filename="formdisplay.cpp" line="692"/>
+        <location filename="formdisplay.cpp" line="693"/>
+        <location filename="formdisplay.cpp" line="694"/>
+        <location filename="formdisplay.cpp" line="695"/>
         <source>disabled</source>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="720"/>
+        <location filename="formdisplay.cpp" line="724"/>
         <source>Life Tester (servoA),</source>
         <translation>寿命测试仪(servoA),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="729"/>
+        <location filename="formdisplay.cpp" line="733"/>
         <source>Life Tester (servoB),</source>
         <translation>寿命测试仪(servoB),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="738"/>
+        <location filename="formdisplay.cpp" line="742"/>
         <source>Life Tester (servoC),</source>
         <translation>寿命测试仪(servoC),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="747"/>
-        <location filename="formdisplay.cpp" line="1212"/>
-        <location filename="formdisplay.cpp" line="3863"/>
-        <location filename="formdisplay.cpp" line="4735"/>
-        <location filename="formdisplay.cpp" line="4747"/>
-        <location filename="formdisplay.cpp" line="4759"/>
-        <location filename="formdisplay.cpp" line="4771"/>
-        <location filename="formdisplay.cpp" line="4783"/>
-        <location filename="formdisplay.cpp" line="4795"/>
-        <location filename="formdisplay.cpp" line="4979"/>
+        <location filename="formdisplay.cpp" line="752"/>
+        <location filename="formdisplay.cpp" line="1228"/>
+        <location filename="formdisplay.cpp" line="3897"/>
+        <location filename="formdisplay.cpp" line="4773"/>
+        <location filename="formdisplay.cpp" line="4785"/>
+        <location filename="formdisplay.cpp" line="4797"/>
+        <location filename="formdisplay.cpp" line="4809"/>
+        <location filename="formdisplay.cpp" line="4821"/>
+        <location filename="formdisplay.cpp" line="4833"/>
+        <location filename="formdisplay.cpp" line="5017"/>
         <source> Electrical Accessories Test Automation Program</source>
         <translation>电器附件测试自动化程序</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="770"/>
+        <location filename="formdisplay.cpp" line="775"/>
         <source>Question</source>
         <translation>请 求</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="770"/>
+        <location filename="formdisplay.cpp" line="775"/>
         <source>Project has been in existence, whether to continue?</source>
         <translation>项目已存在, 是否继续?</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="960"/>
+        <location filename="formdisplay.cpp" line="965"/>
         <source>Please make sure to delete the item!</source>
         <translation>请确认删除项目!</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1213"/>
+        <location filename="formdisplay.cpp" line="1229"/>
         <source>End of the test, please replace the test gauge or plug socket!</source>
         <translation>测试结束, 请更换测试用量规或插头插座!</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1311"/>
+        <location filename="formdisplay.cpp" line="1324"/>
         <source>Fail</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1311"/>
+        <location filename="formdisplay.cpp" line="1324"/>
         <source>Temperature rise test result is: Fail!
 Whether to continue to operate?</source>
         <translation>温升测试结果: Fail
 是否继续操作?</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1313"/>
+        <location filename="formdisplay.cpp" line="1326"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1314"/>
+        <location filename="formdisplay.cpp" line="1327"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1870"/>
-        <location filename="formdisplay.cpp" line="1884"/>
+        <location filename="formdisplay.cpp" line="1900"/>
+        <location filename="formdisplay.cpp" line="1914"/>
         <source>Language</source>
         <translation>语 言</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="1870"/>
-        <location filename="formdisplay.cpp" line="1884"/>
+        <location filename="formdisplay.cpp" line="1900"/>
+        <location filename="formdisplay.cpp" line="1914"/>
         <source>The language change will take effect after a restart of program.</source>
         <translation>语言变更会在程序重启后生效.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2015"/>
+        <location filename="formdisplay.cpp" line="2046"/>
         <source>Whether out of the project?</source>
         <translation>是否退出本项目?</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4979"/>
+        <location filename="formdisplay.cpp" line="2138"/>
+        <source>Load(servoA) UART was disabled!
+Please check and update the UART Set.</source>
+        <translation>负载(伺服A)串口不可用！
+请检测及更新串口设置.</translation>
+    </message>
+    <message>
+        <location filename="formdisplay.cpp" line="3514"/>
+        <source>Load(servoB) UART was disabled!
+Please check and update the UART Set.</source>
+        <translation>负载(伺服B)串口不可用！
+请检测及更新串口设置.</translation>
+    </message>
+    <message>
+        <location filename="formdisplay.cpp" line="3593"/>
+        <source>Load(servoC) UART was disabled!
+Please check and update the UART Set.</source>
+        <translation>负载(伺服C)串口不可用！
+请检测及更新串口设置.</translation>
+    </message>
+    <message>
+        <location filename="formdisplay.cpp" line="5017"/>
         <source>The UART data has changed, please click save.</source>
         <translation>串口线已更改，请点击保存.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2006"/>
-        <location filename="formdisplay.cpp" line="2074"/>
-        <location filename="formdisplay.cpp" line="2084"/>
-        <location filename="formdisplay.cpp" line="2105"/>
-        <location filename="formdisplay.cpp" line="2121"/>
-        <location filename="formdisplay.cpp" line="2131"/>
-        <location filename="formdisplay.cpp" line="3454"/>
-        <location filename="formdisplay.cpp" line="3470"/>
-        <location filename="formdisplay.cpp" line="3480"/>
-        <location filename="formdisplay.cpp" line="3502"/>
-        <location filename="formdisplay.cpp" line="3512"/>
-        <location filename="formdisplay.cpp" line="3533"/>
-        <location filename="formdisplay.cpp" line="3549"/>
-        <location filename="formdisplay.cpp" line="3559"/>
-        <location filename="formdisplay.cpp" line="3581"/>
-        <location filename="formdisplay.cpp" line="3591"/>
+        <location filename="formdisplay.cpp" line="2037"/>
+        <location filename="formdisplay.cpp" line="2107"/>
+        <location filename="formdisplay.cpp" line="2117"/>
+        <location filename="formdisplay.cpp" line="2138"/>
+        <location filename="formdisplay.cpp" line="2154"/>
+        <location filename="formdisplay.cpp" line="2164"/>
+        <location filename="formdisplay.cpp" line="3488"/>
+        <location filename="formdisplay.cpp" line="3504"/>
+        <location filename="formdisplay.cpp" line="3514"/>
+        <location filename="formdisplay.cpp" line="3536"/>
+        <location filename="formdisplay.cpp" line="3546"/>
+        <location filename="formdisplay.cpp" line="3567"/>
+        <location filename="formdisplay.cpp" line="3583"/>
+        <location filename="formdisplay.cpp" line="3593"/>
+        <location filename="formdisplay.cpp" line="3615"/>
+        <location filename="formdisplay.cpp" line="3625"/>
         <source>Error</source>
         <translation>错 误</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="643"/>
+        <location filename="formdisplay.cpp" line="647"/>
         <source>Yokogawa Paperless Recorder,</source>
         <translation>Yokogawa 无纸记录仪,</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="670"/>
+        <location filename="formdisplay.cpp" line="674"/>
         <source>Agilent Paperless Recorder,</source>
         <translation>安捷伦无纸记录仪, </translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2074"/>
-        <location filename="formdisplay.cpp" line="3454"/>
-        <location filename="formdisplay.cpp" line="3533"/>
+        <location filename="formdisplay.cpp" line="2107"/>
+        <location filename="formdisplay.cpp" line="3488"/>
+        <location filename="formdisplay.cpp" line="3567"/>
         <source>Connect STAS False!
 Please after the restart to try again.</source>
         <translation>连接STAS失败！
 请重启后再试.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2084"/>
-        <location filename="formdisplay.cpp" line="3470"/>
-        <location filename="formdisplay.cpp" line="3549"/>
+        <location filename="formdisplay.cpp" line="2117"/>
+        <location filename="formdisplay.cpp" line="3504"/>
+        <location filename="formdisplay.cpp" line="3583"/>
         <source>Power Supply UART was disabled!
 Please check and update the UART Set.</source>
         <translation>电源串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2105"/>
         <source>Load(#4) UART was disabled!
 Please check and update the UART Set.</source>
-        <translation>负载(#4)串口不可用！
+        <translation type="vanished">负载(#4)串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2121"/>
-        <location filename="formdisplay.cpp" line="3502"/>
-        <location filename="formdisplay.cpp" line="3581"/>
+        <location filename="formdisplay.cpp" line="2154"/>
+        <location filename="formdisplay.cpp" line="3536"/>
+        <location filename="formdisplay.cpp" line="3615"/>
         <source>Paperless Recorder UART was disabled!
 Please check and update the UART Set.</source>
         <translation>无纸记录仪串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2131"/>
-        <location filename="formdisplay.cpp" line="3512"/>
-        <location filename="formdisplay.cpp" line="3591"/>
+        <location filename="formdisplay.cpp" line="2164"/>
+        <location filename="formdisplay.cpp" line="3546"/>
+        <location filename="formdisplay.cpp" line="3625"/>
         <source>Life Tester UART was disabled!
 Please check and update the UART Set.</source>
         <translation>寿命测试机串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="3480"/>
         <source>Load(#5) UART was disabled!
 Please check and update the UART Set.</source>
-        <translation>负载(#5)串口不可用！
+        <translation type="vanished">负载(#5)串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="3559"/>
         <source>Load(#3) UART was disabled!
 Please check and update the UART Set.</source>
-        <translation>负载(#3)串口不可用！
+        <translation type="vanished">负载(#3)串口不可用！
 请检测及更新串口设置.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4772"/>
+        <location filename="formdisplay.cpp" line="4810"/>
         <source>Please enter the correct Load(servoA) parameters!
 E.g, COM0</source>
         <translation>请输入正确的负载(伺服A)串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4784"/>
+        <location filename="formdisplay.cpp" line="4822"/>
         <source>Please enter the correct Load(servoB) parameters!
 E.g, COM0</source>
         <translation>请输入正确的负载(伺服B)串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4796"/>
+        <location filename="formdisplay.cpp" line="4834"/>
         <source>Please enter the correct Load(servoC) parameters!
 E.g, COM0</source>
         <translation>请输入正确的负载(伺服C)串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="750"/>
-        <location filename="formdisplay.cpp" line="772"/>
-        <location filename="formdisplay.cpp" line="962"/>
-        <location filename="formdisplay.cpp" line="1215"/>
-        <location filename="formdisplay.cpp" line="1872"/>
-        <location filename="formdisplay.cpp" line="1886"/>
-        <location filename="formdisplay.cpp" line="2008"/>
-        <location filename="formdisplay.cpp" line="2017"/>
-        <location filename="formdisplay.cpp" line="2051"/>
-        <location filename="formdisplay.cpp" line="2076"/>
-        <location filename="formdisplay.cpp" line="2086"/>
-        <location filename="formdisplay.cpp" line="2107"/>
-        <location filename="formdisplay.cpp" line="2123"/>
-        <location filename="formdisplay.cpp" line="2133"/>
-        <location filename="formdisplay.cpp" line="3456"/>
-        <location filename="formdisplay.cpp" line="3472"/>
-        <location filename="formdisplay.cpp" line="3482"/>
-        <location filename="formdisplay.cpp" line="3504"/>
-        <location filename="formdisplay.cpp" line="3514"/>
-        <location filename="formdisplay.cpp" line="3535"/>
-        <location filename="formdisplay.cpp" line="3551"/>
-        <location filename="formdisplay.cpp" line="3561"/>
-        <location filename="formdisplay.cpp" line="3583"/>
-        <location filename="formdisplay.cpp" line="3593"/>
-        <location filename="formdisplay.cpp" line="3865"/>
-        <location filename="formdisplay.cpp" line="4738"/>
-        <location filename="formdisplay.cpp" line="4750"/>
-        <location filename="formdisplay.cpp" line="4762"/>
-        <location filename="formdisplay.cpp" line="4774"/>
-        <location filename="formdisplay.cpp" line="4786"/>
-        <location filename="formdisplay.cpp" line="4798"/>
-        <location filename="formdisplay.cpp" line="4981"/>
+        <location filename="formdisplay.cpp" line="755"/>
+        <location filename="formdisplay.cpp" line="777"/>
+        <location filename="formdisplay.cpp" line="967"/>
+        <location filename="formdisplay.cpp" line="1231"/>
+        <location filename="formdisplay.cpp" line="1902"/>
+        <location filename="formdisplay.cpp" line="1916"/>
+        <location filename="formdisplay.cpp" line="2039"/>
+        <location filename="formdisplay.cpp" line="2048"/>
+        <location filename="formdisplay.cpp" line="2083"/>
+        <location filename="formdisplay.cpp" line="2109"/>
+        <location filename="formdisplay.cpp" line="2119"/>
+        <location filename="formdisplay.cpp" line="2140"/>
+        <location filename="formdisplay.cpp" line="2156"/>
+        <location filename="formdisplay.cpp" line="2166"/>
+        <location filename="formdisplay.cpp" line="3490"/>
+        <location filename="formdisplay.cpp" line="3506"/>
+        <location filename="formdisplay.cpp" line="3516"/>
+        <location filename="formdisplay.cpp" line="3538"/>
+        <location filename="formdisplay.cpp" line="3548"/>
+        <location filename="formdisplay.cpp" line="3569"/>
+        <location filename="formdisplay.cpp" line="3585"/>
+        <location filename="formdisplay.cpp" line="3595"/>
+        <location filename="formdisplay.cpp" line="3617"/>
+        <location filename="formdisplay.cpp" line="3627"/>
+        <location filename="formdisplay.cpp" line="3899"/>
+        <location filename="formdisplay.cpp" line="4776"/>
+        <location filename="formdisplay.cpp" line="4788"/>
+        <location filename="formdisplay.cpp" line="4800"/>
+        <location filename="formdisplay.cpp" line="4812"/>
+        <location filename="formdisplay.cpp" line="4824"/>
+        <location filename="formdisplay.cpp" line="4836"/>
+        <location filename="formdisplay.cpp" line="5019"/>
         <source>Ok</source>
         <translation>确 定</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="636"/>
+        <location filename="formdisplay.cpp" line="640"/>
         <source>Power Supply,</source>
         <translation>电源,</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="698"/>
+        <location filename="formdisplay.cpp" line="702"/>
         <source>Load (Servo-A),</source>
         <translation>负载(伺服A),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="705"/>
+        <location filename="formdisplay.cpp" line="709"/>
         <source>Load (Servo-B),</source>
         <translation>负载(伺服B),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="712"/>
+        <location filename="formdisplay.cpp" line="716"/>
         <source>Load (Servo-C),</source>
         <translation>负载(伺服C),</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="748"/>
+        <location filename="formdisplay.cpp" line="753"/>
         <source>Connection fail! Check the serial port, please.</source>
         <translation>连接失败! 请检查串口.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="773"/>
-        <location filename="formdisplay.cpp" line="963"/>
-        <location filename="formdisplay.cpp" line="2018"/>
-        <location filename="formdisplay.cpp" line="2052"/>
-        <location filename="formdisplay.cpp" line="3866"/>
+        <location filename="formdisplay.cpp" line="778"/>
+        <location filename="formdisplay.cpp" line="968"/>
+        <location filename="formdisplay.cpp" line="2049"/>
+        <location filename="formdisplay.cpp" line="2084"/>
+        <location filename="formdisplay.cpp" line="3900"/>
         <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="960"/>
+        <location filename="formdisplay.cpp" line="965"/>
         <source>Delete</source>
         <translation>删 除</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2006"/>
+        <location filename="formdisplay.cpp" line="2037"/>
         <source>The project is testing.
 Please be patient.</source>
         <translation>本工程测试中.
 请耐心等待.</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2015"/>
+        <location filename="formdisplay.cpp" line="2046"/>
         <source>Exit</source>
         <translation>退 出</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2049"/>
+        <location filename="formdisplay.cpp" line="2081"/>
         <source>Quit</source>
         <translation>退 出</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2049"/>
+        <location filename="formdisplay.cpp" line="2081"/>
         <source>Whether out of the editor?</source>
         <translation>是否离开当前工程?</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="2069"/>
-        <location filename="formdisplay.cpp" line="3465"/>
-        <location filename="formdisplay.cpp" line="3493"/>
-        <location filename="formdisplay.cpp" line="3544"/>
-        <location filename="formdisplay.cpp" line="3572"/>
+        <location filename="formdisplay.cpp" line="2102"/>
+        <location filename="formdisplay.cpp" line="3499"/>
+        <location filename="formdisplay.cpp" line="3527"/>
+        <location filename="formdisplay.cpp" line="3578"/>
+        <location filename="formdisplay.cpp" line="3606"/>
         <source>Please Add Item!</source>
         <translation>请添加项目!</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="3290"/>
+        <location filename="formdisplay.cpp" line="3324"/>
         <source>4000</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="3863"/>
+        <location filename="formdisplay.cpp" line="3897"/>
         <source>Whether to start Auto?</source>
         <translation>是否启动一键式操作?</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4736"/>
+        <location filename="formdisplay.cpp" line="4774"/>
         <source>Please enter the correct Power Supply parameters!
 E.g, COM0</source>
         <translation>请输入正确的电源串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4748"/>
+        <location filename="formdisplay.cpp" line="4786"/>
         <source>Please enter the correct Paperless Recorder parameters!
 E.g, COM0</source>
         <translation>请输入正确的无纸记录仪串口参数!
 例如， COM0</translation>
     </message>
     <message>
-        <location filename="formdisplay.cpp" line="4760"/>
+        <location filename="formdisplay.cpp" line="4798"/>
         <source>Please enter the correct life tester parameters!
 E.g, COM0</source>
         <translation>请输入正确的寿命测试机串口参数!
@@ -1466,10 +1484,10 @@ Normal Operation Arguments</source>
         <location filename="formdisplay.ui" line="9164"/>
         <location filename="formdisplay.ui" line="11413"/>
         <location filename="formdisplay.ui" line="11656"/>
-        <location filename="formdisplay.cpp" line="1823"/>
-        <location filename="formdisplay.cpp" line="1824"/>
-        <location filename="formdisplay.cpp" line="3166"/>
-        <location filename="formdisplay.cpp" line="3301"/>
+        <location filename="formdisplay.cpp" line="1851"/>
+        <location filename="formdisplay.cpp" line="1852"/>
+        <location filename="formdisplay.cpp" line="3200"/>
+        <location filename="formdisplay.cpp" line="3335"/>
         <source>Inductive Load(0.6)</source>
         <translation>感性负载(0.6)</translation>
     </message>
@@ -1593,12 +1611,12 @@ Breake Capacity Arguments</source>
 <context>
     <name>HelpWidget</name>
     <message>
-        <location filename="helpWidget/helpwidget.cpp" line="54"/>
+        <location filename="helpWidget/helpwidget.cpp" line="31"/>
         <source>&lt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="helpWidget/helpwidget.cpp" line="60"/>
+        <location filename="helpWidget/helpwidget.cpp" line="37"/>
         <source>&gt;</source>
         <translation></translation>
     </message>
@@ -2018,7 +2036,7 @@ Are you sure break off test?</source>
         <translation>关 闭</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="807"/>
+        <location filename="temperaturerisedialog.cpp" line="806"/>
         <source>Ok</source>
         <translation>确 定</translation>
     </message>
@@ -2050,20 +2068,20 @@ Whether to save the data ?</source>
         <translation>关闭项目</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="805"/>
-        <location filename="temperaturerisedialog.cpp" line="819"/>
+        <location filename="temperaturerisedialog.cpp" line="804"/>
+        <location filename="temperaturerisedialog.cpp" line="818"/>
         <source>Error</source>
         <translation>错 误</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="805"/>
+        <location filename="temperaturerisedialog.cpp" line="804"/>
         <source>Not detected current!
 Please check the sample!</source>
         <translation>未检测到电流!
 请检查样品!</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="819"/>
+        <location filename="temperaturerisedialog.cpp" line="818"/>
         <source>Not detected current!
 Please check the sample!
 Continue test on &apos;Yes&apos;!</source>
@@ -2072,22 +2090,22 @@ Continue test on &apos;Yes&apos;!</source>
 按&apos;是&apos;继续测试!</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="821"/>
+        <location filename="temperaturerisedialog.cpp" line="820"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="822"/>
+        <location filename="temperaturerisedialog.cpp" line="821"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="853"/>
+        <location filename="temperaturerisedialog.cpp" line="852"/>
         <source>Test Time :</source>
         <translation>测试时间:</translation>
     </message>
     <message>
-        <location filename="temperaturerisedialog.cpp" line="949"/>
+        <location filename="temperaturerisedialog.cpp" line="947"/>
         <source> Servo-</source>
         <translation> 伺服-</translation>
     </message>
@@ -2123,12 +2141,12 @@ Continue test on &apos;Yes&apos;!</source>
         <translation>电器附件测试自动化程序</translation>
     </message>
     <message>
-        <location filename="widget.cpp" line="128"/>
-        <location filename="widget.cpp" line="140"/>
-        <location filename="widget.cpp" line="152"/>
-        <location filename="widget.cpp" line="170"/>
-        <location filename="widget.cpp" line="188"/>
-        <location filename="widget.cpp" line="206"/>
+        <location filename="widget.cpp" line="120"/>
+        <location filename="widget.cpp" line="134"/>
+        <location filename="widget.cpp" line="146"/>
+        <location filename="widget.cpp" line="165"/>
+        <location filename="widget.cpp" line="187"/>
+        <location filename="widget.cpp" line="205"/>
         <source> Electrical Accessories Test Automation Program-</source>
         <translation>电器附件测试自动化程序-</translation>
     </message>

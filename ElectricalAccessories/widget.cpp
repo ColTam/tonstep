@@ -87,7 +87,7 @@ void Widget::initWidgetTitle()
     titleVBoxLayout->addStretch(0);
     titleVBoxLayout->setSpacing(0);
     titleVBoxLayout->setContentsMargins(0, 0, 0, 0);
-    //链接关闭信号
+    //链接关闭按钮点击信号
     connect(_titleBar, SIGNAL(closeClicked()), this, SLOT(closeWidget()));
 
     this->setLayout(titleVBoxLayout);
@@ -112,14 +112,17 @@ void Widget::initWidget()
 
 void Widget::newTemperatureDialog(time_t hours, QString fileName, QStringList tc_list, int roomT2, QString servo, int num, QString Im)
 {
+    //新的温升测试窗口
     if (servo == "A") {
         TemperatureRiseDialog *temperatureRiseA = new TemperatureRiseDialog(hours, num, Im, NULL);
         temperatureRiseA->move((QApplication::desktop()->width() - temperatureRiseA->width())/2,
                                    (QApplication::desktop()->height() - temperatureRiseA->height())/2);
         temperatureRiseA->setWindowTitle(tr(" Electrical Accessories Test Automation Program-")+fileName);
-
+        //发送需要的温升端口号、最大K值、备注
         connect(this, SIGNAL(temperatureRiseUpperA(QStringList,int)), temperatureRiseA, SLOT(temprtatureRiseUpper(QStringList,int)));
+        //接收温升数据
         connect(this, SIGNAL(tRCRData(QStringList)), temperatureRiseA, SLOT(updateTC(QStringList)));
+        //返回项目测试结果
         connect(temperatureRiseA, SIGNAL(clauseFinishedA(int)), this, SLOT(finishedClauseA(int)));
 
         emit temperatureRiseUpperA(tc_list, roomT2);
@@ -154,6 +157,7 @@ void Widget::newTemperatureDialog(time_t hours, QString fileName, QStringList tc
 void Widget::newLifeTesterDialog(QString fileName, QString servo)
 {
 #if 1
+    //新的寿命测试窗口
     if (servo == "A") {
         LifeTesterDialog *lifeTesterDialogA = new LifeTesterDialog(NULL);
         lifeTesterDialogA->move((QApplication::desktop()->width() - lifeTesterDialogA->width())/2,
@@ -161,13 +165,17 @@ void Widget::newLifeTesterDialog(QString fileName, QString servo)
         lifeTesterDialogA->setWindowTitle(tr(" Electrical Accessories Test Automation Program-")+fileName);
 
         connect(lifeTesterDialogA, SIGNAL(clauseFinishedA(int)), this, SLOT(finishedClauseA(int)));
+        //数据接收定时器控制信号
         connect(lifeTesterDialogA, SIGNAL(testTimerStart()), this, SLOT(testStartRead()));
         connect(lifeTesterDialogA, SIGNAL(testTimerStop()), this, SLOT(testStopRead()));
         connect(lifeTesterDialogA, SIGNAL(tRcrTimerStart()), this, SLOT(tTimerStart()));
         connect(lifeTesterDialogA, SIGNAL(tRcrTimerStop()), this, SIGNAL(tRCRTimerStop()));
+        //样品出错信号
         connect(lifeTesterDialogA, SIGNAL(errorStart(QString)), this, SLOT(testError(QString)));
         connect(lifeTesterDialogA, SIGNAL(errorStop(QString)), this, SLOT(testNoError(QString)));
+        //接收寿命测试数据
         connect(this, SIGNAL(testDataA(QString)), lifeTesterDialogA, SLOT(updateTest(QString)), Qt::DirectConnection);
+        //其他样品出错时 控制本通道样品动态
         connect(this, SIGNAL(testAThreadStart()), lifeTesterDialogA, SLOT(errorLoadStart()));
         connect(this, SIGNAL(testAThreadStop()), lifeTesterDialogA, SLOT(errorLoadStop()));
 
@@ -256,8 +264,8 @@ void Widget::selectClause(QString fileName, int iec)
         mFileNameC = fileName;
     }
 
-    if (iec) {
-        switch (fileName.right(5).mid(0, 2).toInt()) {
+    if (iec) {//判断IEC类型
+        switch (fileName.right(5).mid(0, 2).toInt()) {//IEX60884
         case CLAUSE_19:
         {
             temperatureRise(fileName);
@@ -281,7 +289,7 @@ void Widget::selectClause(QString fileName, int iec)
             break;
         }
         }
-    } else {
+    } else {//IEX60320
         switch (fileName.right(5).mid(0, 2).toInt()) {
         case CLAUSE_19:
         {
@@ -434,9 +442,6 @@ void Widget::temperatureRise(QString fileName)
     if (!_mTRCRThread->mtRCRIsActive()) {
         emit tRCRTimerStart();
     }
-
-    //cut to L-N
-    //??
 }
 
 //clause 20 / break capacity

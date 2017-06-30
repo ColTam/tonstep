@@ -202,7 +202,7 @@ FormDisplay::~FormDisplay()
     delete mPathDialog;
     delete ui;
 }
-
+//添加项目模块图标 并保存对应参数到本地
 void FormDisplay::addItemIcon(QString Image, int goal)
 {
     mImage = QPixmap(Image);
@@ -214,7 +214,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
     {
         while (1)
         {
-            if (isOld) {
+            if (isOld) {//判断是否已存在项目图标
                 QFile itemFile_19(dirName+oldItemName);
                 itemFile_19.open(QIODevice::Text | QFile::WriteOnly | QIODevice::Truncate);
                 if (itemFile_19.isOpen()) {
@@ -225,9 +225,9 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                 break;
             }
 
-            if (mServo == Servo_A) {
+            if (mServo == Servo_A) {//通道A项目
                 QString name;
-                if (isAuto) {
+                if (isAuto) {//区分一键式自动生成与单模块设置 定义文件名（主要以文件名区分）
                     name = "clause19_A0";
                     int i = mFileNameListA.indexOf(name);
                     if (i >= 0) {
@@ -242,7 +242,7 @@ void FormDisplay::addItemIcon(QString Image, int goal)
                     mFileNameListA << name;
                     mPiecesViewListA->addPiece(mImage, name);
 
-                    QFile itemFile_19(dirName+name);
+                    QFile itemFile_19(dirName+name);//保存数据
                     itemFile_19.open(QIODevice::Text | QFile::WriteOnly | QIODevice::Truncate);
                     if (itemFile_19.isOpen()) {
                         clause19_out(&itemFile_19);
@@ -590,10 +590,10 @@ void FormDisplay::addItemIcon(QString Image, int goal)
 
     if (isAuto) isAuto = false;
 
-    qSort(mFileNameListA.begin(), mFileNameListA.end());
+    qSort(mFileNameListA.begin(), mFileNameListA.end());//使备选区所有模块从新排列顺序
     qSort(mFileNameListB.begin(), mFileNameListB.end());
     qSort(mFileNameListC.begin(), mFileNameListC.end());
-    ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
+    ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);//界面跳转到主界面
 }
 
 bool FormDisplay::isChecked(QTableWidgetItem *item)
@@ -744,10 +744,11 @@ void FormDisplay::uartTips()
         ui->checkBox_TEST->setChecked(true);
         ui->checkBox_TEST_C->setChecked(true);
     }
+    /*/ agilent 34970 uart /*/
     ui->pushButton_5->setEnabled(true);
     ui->pushButton_4->setEnabled(false);
 
-    if (!tips.isEmpty()) {
+    if (!tips.isEmpty()) {//提示用户不可使用的串口
         QMessageBox msgBox(QMessageBox::Warning,tr(" Electrical Accessories Test Automation Program"),
                            tips + tr("Connection fail! Check the serial port, please."));
         msgBox.setStandardButtons(QMessageBox::Ok);
@@ -785,7 +786,7 @@ void FormDisplay::enterMain()
 
         workDir.cd(ui->lineEdit_itemId->text());
 
-        if (mPlug == 0) {
+        if (mPlug == 0) {//切换到项目配置文件目录
             if (workDir.exists("IEC60320/cfg")){
                 workDir.cd("IEC60320/cfg");
             }else {
@@ -803,7 +804,7 @@ void FormDisplay::enterMain()
 
         initMPiece();
 
-        QStringList oldFile = workDir.entryList(workDir.filter());
+        QStringList oldFile = workDir.entryList(workDir.filter());//添加项目模块图标到界面
         QListIterator<QString> i(oldFile);
 
         while(i.hasNext())
@@ -897,9 +898,9 @@ void FormDisplay::enterMain()
         initMPiece();
     }
 
-    dirName = workDir.path() + "/";
+    dirName = workDir.path() + "/";//记录当前工作目录
 
-    switch (mPlug) {
+    switch (mPlug) {//初始化单选模块界面
     case IEC60320:
     {
         ui->toolButton_22->hide();
@@ -925,7 +926,7 @@ void FormDisplay::enterMain()
         break;
     }
     }
-
+    //连接项目图标信号与槽
     connect(mPiecesViewListA, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(setTheItem(QListWidgetItem*)));
     connect(mPiecesViewListA, SIGNAL(moveItem(QListWidgetItem*)), this, SLOT(moveToZone(QListWidgetItem*)));
     connect(mPiecesViewListA, SIGNAL(changeItem(QListWidgetItem*)), this, SLOT(setTheItem(QListWidgetItem*)));
@@ -947,7 +948,7 @@ void FormDisplay::enterMain()
     //main
     ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
     ui->tabWidget->setCurrentIndex(0);
-
+    //初始化加载的串口号
     ui->lineEdit_LOADUART_A->setText("COM"+QString::number(comLoadA));
     ui->lineEdit_LOADUART_B->setText("COM"+QString::number(comLoadB));
     ui->lineEdit_LOADUART_C->setText("COM"+QString::number(comLoadC));
@@ -955,7 +956,7 @@ void FormDisplay::enterMain()
     ui->lineEdit_TESTUART->setText("COM"+QString::number(comTest));
     ui->lineEdit_TRCUART->setText("COM"+QString::number(comTR_YOKOGAWAGP10));
 
-    m_helpWidget->show();
+//    m_helpWidget->show();
     uartTips();
 }
 
@@ -972,7 +973,7 @@ void FormDisplay::delItem(QListWidgetItem *item)
     if (ret == QMessageBox::Cancel) {
         return;
     }
-
+    //确认用户需要删除模块 移除本地文件 缓存记录 清除模块图标
     QFile delFile(dirName+item->text());
     delFile.remove();
 
@@ -1041,20 +1042,20 @@ void FormDisplay::itemRestore(QListWidgetItem *item)
 
 void FormDisplay::setTheItem(QListWidgetItem *item)
 {
-    isOld = PROJECT_CONDITION_OLD;
+    isOld = PROJECT_CONDITION_OLD;//设置保存判断条件
     oldItemName = item->text();
     QFile itemFile(dirName+item->text());
     switch (item->text().mid(6,2).toInt()) {
     case 19:
     {
-        clause19_clear();
+        clause19_clear();//清除界面旧参数 加载新的参数
         clause19_2_clear();
         itemFile.open(QFile::ReadOnly | QIODevice::Text);
         if (itemFile.isOpen()) {
             clause19_in(&itemFile);
             itemFile.close();
         }
-        switch (mPlug) {
+        switch (mPlug) {//跳转界面
         case IEC60320:
         {
             ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE19_320);
@@ -1386,7 +1387,8 @@ void FormDisplay::clause19_out(QIODevice *device)
             << '\n' << t2;
         for (int i = 0; i<20; i++)
         {
-            if (ui->tableWidget_temp_2->item(i, 1)->text().isEmpty())
+            bool checkedNoText = ui->tableWidget_temp_2->item(i, 1)->text().isEmpty() && isChecked(ui->tableWidget_temp_2->item(i, 1));
+            if (checkedNoText)
                 mItemTextList << "45";
             else
                 mItemTextList << ui->tableWidget_temp_2->item(i, 1)->text();
@@ -1417,7 +1419,8 @@ void FormDisplay::clause19_out(QIODevice *device)
             << '\n' << t2;
         for (int i = 0; i<20; i++)
         {
-            if (ui->tableWidget_temp->item(i, 1)->text().isEmpty())
+            bool checkedNoText = ui->tableWidget_temp->item(i, 1)->text().isEmpty() && isChecked(ui->tableWidget_temp->item(i, 1));
+            if (checkedNoText)
                 mItemTextList << "45";
             else
                 mItemTextList << ui->tableWidget_temp->item(i, 1)->text();
@@ -1521,7 +1524,8 @@ void FormDisplay::clause22_out(QIODevice *device)
         << '\n' << t2;
     for (int i = 0; i<20; i++)
     {
-        if (ui->tableWidget_normalTemp->item(i, 1)->text().isEmpty())
+        bool checkedNoText = ui->tableWidget_normalTemp->item(i, 1)->text().isEmpty() && isChecked(ui->tableWidget_normalTemp->item(i, 1));
+        if (checkedNoText)
             mItemTextList << "45";
         else
             mItemTextList << ui->tableWidget_normalTemp->item(i, 1)->text();
@@ -2028,6 +2032,7 @@ void FormDisplay::on_toolButton_22_clicked()
 
 void FormDisplay::on_toolButton_close_clicked()
 {
+    //检测到正在测试 阻止用户退出本项目
     if (!ui->toolButton_start->isEnabled()||!ui->toolButton_start_2->isEnabled()||!ui->toolButton_start_3->isEnabled()) {
         QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("The project is testing.\nPlease be patient."));
         msgBox.setStandardButtons(QMessageBox::Ok);
@@ -2049,7 +2054,7 @@ void FormDisplay::on_toolButton_close_clicked()
     if (ret == QMessageBox::Cancel) {
         return;
     }
-
+    //确认退出 清除提示信息 项目模块拖拉窗口
     mMessage->show();
     mMessage->setText(" ");
 
@@ -2063,8 +2068,9 @@ void FormDisplay::on_toolButton_close_clicked()
     mPiecesPowerListB->close();
     mPiecesViewListC->close();
     mPiecesPowerListC->close();
+    //跳转到登陆界面
     ui->stackedWidget->setCurrentIndex(STACKWIDGET_LOGIN);
-
+    //更新退出项目的路径
     dirName = dirName.left(fileSize);
     ui->lineEdit_itemId->setFocus();
     ui->lineEdit_itemId->selectAll();
@@ -2083,19 +2089,20 @@ void FormDisplay::onCloseEditClicked()
     if (ret == QMessageBox::Cancel) {
         return;
     }
-
+    //确认退出模块编辑 初始化文件状态
     isOld = PROJECT_CONDITION_NEW;
     ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
 }
 
 void FormDisplay::on_toolButton_start_clicked()
 {
+    //检测待运行区 存在测试模块
     if (!mPiecesPowerListA->count()) {
         mMessage->show();
         mMessage->setText(tr("Please Add Item!"));
         return;
     }
-
+    //判断程序与STAS通讯情况
     if (!connectSTAS) {
         QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Connect STAS False!\nPlease after the restart to try again."));
         msgBox.setStandardButtons(QMessageBox::Ok);
@@ -2105,7 +2112,7 @@ void FormDisplay::on_toolButton_start_clicked()
         msgBox.exec();
         return;
     }
-
+    //判断程序与电源通讯情况
     if (!ui->checkBox_VOLT->isChecked()) {
         QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Power Supply UART was disabled!\nPlease check and update the UART Set."));
         msgBox.setStandardButtons(QMessageBox::Ok);
@@ -2126,9 +2133,9 @@ void FormDisplay::on_toolButton_start_clicked()
             ui->checkBox_VOLT->setChecked(false);
         }
     }*/
-
+    //判断对应通道负载通讯情况
     if (!ui->checkBox_A->isChecked()) {
-        QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Load(#4) UART was disabled!\nPlease check and update the UART Set."));
+        QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Load(servoA) UART was disabled!\nPlease check and update the UART Set."));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
         msgBox.setWindowIcon(QIcon(WINDOW_ICON));
@@ -2136,12 +2143,12 @@ void FormDisplay::on_toolButton_start_clicked()
         msgBox.exec();
         return;
     }
-
+    //将待测试模块添加到链表
     dirNameListA.clear();
 
     for (int i = 0; i < mPiecesPowerListA->count(); i++)
     {
-        QString fileName = mPiecesPowerListA->item(i)->text();
+        QString fileName = mPiecesPowerListA->item(i)->text();//根据待测试模块判断温升记录仪及寿命测试机通讯情况
         if (fileName.right(5).mid(0,2).toInt() == 19 || fileName.right(5).mid(0,2).toInt() == 22) {
             if (!ui->checkBox_TRC->isChecked()) {
                 QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Paperless Recorder UART was disabled!\nPlease check and update the UART Set."));
@@ -2165,10 +2172,11 @@ void FormDisplay::on_toolButton_start_clicked()
         }
         dirNameListA << dirName+fileName;
     }
-
+    //取消本模块拖拉功能 启动按钮点击功能
     ui->toolButton_start->setEnabled(false);
     mPiecesPowerListA->setAcceptDrops(false);
     mPiecesPowerListA->setDragEnabled(false);
+    //发送第一个待测试模块 完成后移除第一个， 并再次发送第一个待测试模块
     emit isSectionFileName(dirNameListA.at(0), mPlug);
 }
 
@@ -3503,7 +3511,7 @@ void FormDisplay::on_toolButton_start_2_clicked()
     }
 
     if (!ui->checkBox_B->isChecked()) {
-        QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Load(#5) UART was disabled!\nPlease check and update the UART Set."));
+        QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Load(servoB) UART was disabled!\nPlease check and update the UART Set."));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
         msgBox.setWindowIcon(QIcon(WINDOW_ICON));
@@ -3582,7 +3590,7 @@ void FormDisplay::on_toolButton_start_3_clicked()
     }
 
     if (!ui->checkBox_C->isChecked()) {
-        QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Load(#3) UART was disabled!\nPlease check and update the UART Set."));
+        QMessageBox msgBox(QMessageBox::Warning,tr("Error"),tr("Load(servoC) UART was disabled!\nPlease check and update the UART Set."));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setButtonText(QMessageBox::Ok,tr("Ok"));
         msgBox.setWindowIcon(QIcon(WINDOW_ICON));
@@ -4089,12 +4097,14 @@ void FormDisplay::on_toolButtonSave_clicked()
 
 void FormDisplay::on_tableWidget_itemChanged(QTableWidgetItem *item)
 {
-    if (isChecked(item)) {
-        ui->tableWidget_temp->item(item->row(), item->column())->setCheckState(Qt::Checked);
-        ui->tableWidget_normalTemp->item(item->row(), item->column())->setCheckState(Qt::Checked);
-    } else {
-        ui->tableWidget_temp->item(item->row(), item->column())->setCheckState(Qt::Unchecked);
-        ui->tableWidget_normalTemp->item(item->row(), item->column())->setCheckState(Qt::Unchecked);
+    if (item->column() == 1) {
+        if (isChecked(item)) {
+            ui->tableWidget_temp->item(item->row(), item->column())->setCheckState(Qt::Checked);
+            ui->tableWidget_normalTemp->item(item->row(), item->column())->setCheckState(Qt::Checked);
+        } else {
+            ui->tableWidget_temp->item(item->row(), item->column())->setCheckState(Qt::Unchecked);
+            ui->tableWidget_normalTemp->item(item->row(), item->column())->setCheckState(Qt::Unchecked);
+        }
     }
 
     ui->tableWidget_temp->item(item->row(), item->column())->setText(item->text());
@@ -4139,10 +4149,12 @@ void FormDisplay::on_lineEditMaxValue_2_textChanged(const QString &arg1)
 
 void FormDisplay::on_tableWidget_2_itemChanged(QTableWidgetItem *item)
 {
-    if (isChecked(item)) {
-        ui->tableWidget_temp_2->item(item->row(), item->column())->setCheckState(Qt::Checked);
-    } else {
-        ui->tableWidget_temp_2->item(item->row(), item->column())->setCheckState(Qt::Unchecked);
+    if (item->column() == 1) {
+        if (isChecked(item)) {
+            ui->tableWidget_temp_2->item(item->row(), item->column())->setCheckState(Qt::Checked);
+        } else {
+            ui->tableWidget_temp_2->item(item->row(), item->column())->setCheckState(Qt::Unchecked);
+        }
     }
 
     ui->tableWidget_temp_2->item(item->row(), item->column())->setText(item->text());
