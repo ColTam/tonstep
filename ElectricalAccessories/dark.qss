@@ -520,29 +520,9 @@ QComboBox:on {
 	font-weight:normal;
 }
 
-.QGroupBox QWidget#mPiecesViewListA{
-	border:1px;
-	border-radius: 5px;
-}
-.QGroupBox QWidget#mPiecesViewListB{
-	border:1px;
-	border-radius: 5px;
-}
-.QGroupBox QWidget#mPiecesViewListC{
-	border:1px;
-	border-radius: 5px;
-}
-.QGroupBox QWidget#mPiecesPowerListA{
-	border:1px;
-	border-radius: 5px;
-}
-.QGroupBox QWidget#mPiecesPowerListB{
-	border:1px;
-	border-radius: 5px;
-}
-.QGroupBox QWidget#mPiecesPowerListC{
-	border:1px;
-	border-radius: 5px;
+QListWidget {
+        border:1px;
+        border-radius: 5px;
 }
 
 .QGroupBox::title { 
@@ -627,7 +607,7 @@ QRadioButton::indicator:enabled:checked:pressed{
 /*菜单栏*/
 QMenu {
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
-    border:1px solid #727272;
+/*    border:1px solid #727272;*/
 }
 
 QMenu::item {

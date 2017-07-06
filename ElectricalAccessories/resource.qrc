@@ -37,8 +37,8 @@
         <file>image/help.png</file>
         <file>image/help_first.png</file>
         <file>image/help_second.png</file>
-        <file>image/help_thrid.png</file>
         <file>image/SGS.png</file>
+        <file>image/help_third.png</file>
     </qresource>
     <qresource prefix="/other">
         <file>zh_CN.qm</file>

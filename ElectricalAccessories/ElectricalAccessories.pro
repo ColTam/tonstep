@@ -42,7 +42,7 @@ SOURCES += main.cpp\
     registrationcode.cpp \
     temperaturerisedialog.cpp \
     titlebar.cpp \
-    helpWidget/helpwidget.cpp
+    helpWidget/mHelper.cpp \
 
 HEADERS  += widget.h \
     Collect.h \
@@ -61,8 +61,8 @@ HEADERS  += widget.h \
     registrationcode.h \
     temperaturerisedialog.h \
     titlebar.h \
-    helpWidget/helpwidget.h \
-    nofocusdelegate.h
+    nofocusdelegate.h \
+    helpWidget/mHelper.h \
 
 FORMS    += \
     formdisplay.ui \
@@ -78,7 +78,7 @@ DEPENDPATH += $$PWD/.
 
 TRANSLATIONS += zh_CN.ts
 
-win32:QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
+CONFIG(release, debug|release): QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
 
 RC_ICONS = EATA.ico
 

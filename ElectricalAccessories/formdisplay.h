@@ -29,6 +29,7 @@
 #define TABWIDGET_SERVOA            0               /*!* \brief 伺服切换页数 */
 #define TABWIDGET_SERVOB            1
 #define TABWIDGET_SERVOC            2
+#define TABWIDGET_SETTING           3
 
 #define REWIRABLE_FIXED_ACCESSORIES             0    /*!* \brief 样品附加类型选择页数 */
 #define REWIRABLE_PORTABLE_ACCESSORIES          1
@@ -65,7 +66,7 @@
 #pragma execution_character_set("utf-8")
 #endif
 
-class HelpWidget;
+class mHelper;
 
 namespace Ui {
 class FormDisplay;
@@ -266,6 +267,7 @@ private slots:
     void on_radioButton_normal_2_toggled(bool checked);/*!* \brief  */
 
     void on_comboBox_currentIndexChanged(int index);
+    void changedStackedWidget(int ind);
 
 private:
     Ui::FormDisplay     *ui;
@@ -291,7 +293,7 @@ private:
     piecesList*         mPiecesViewListC;       /*!* \brief  */
     piecesList*         mPiecesPowerListC;      /*!* \brief  */
     QMessageWidget*     mMessage;               /*!* \brief 底部小提示窗口 */
-    HelpWidget*         m_helpWidget;           /*!* \brief 帮助界面 */
+    mHelper*         m_helpWidget;           /*!* \brief 帮助界面 */
 
     pathDialog*         mPathDialog;            /*!* \brief 路径编辑界面 */
     RegistrationCode*   mRegistration;          /*!* \brief 注册码编辑界面 */

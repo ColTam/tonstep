@@ -107,9 +107,6 @@ void piecesList::contextMenuEvent(QContextMenuEvent *event)
     }
 
     QMenu *popMenu = new QMenu(this);
-    popMenu->setStyleSheet("color: rgb(50, 50, 50);"
-                           "selection-background-color: rgb(50,50,50);"
-                           "selection-color: white;");
 
     QAction *MI = new QAction();
     MI->setText(tr("Move To Waiting Zone"));
@@ -129,6 +126,11 @@ void piecesList::contextMenuEvent(QContextMenuEvent *event)
         popMenu->addAction(DI);
         popMenu->exec(QCursor::pos());
     }
+
+    delete DI;
+    delete CI;
+    delete MI;
+    delete popMenu;
 }
 
 void piecesList::clickedMI()

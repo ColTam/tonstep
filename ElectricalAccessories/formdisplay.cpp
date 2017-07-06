@@ -18,7 +18,7 @@
 #include <QMenu>
 #include <QTranslator>
 
-#include <helpWidget/helpwidget.h>
+#include <helpWidget/mHelper.h>
 
 QString FormDisplay::dirName = "";
 
@@ -125,9 +125,11 @@ FormDisplay::FormDisplay(QWidget *parent) :
     mMessage->setGeometry(1,646,958,26);
     //    mMessage->hide();
 
-    m_helpWidget = new HelpWidget(this);
-    m_helpWidget->setGeometry(7, 7, m_helpWidget->width(), m_helpWidget->height());
+    m_helpWidget = new mHelper(this);
+    m_helpWidget->setGeometry(0, 7, m_helpWidget->width(), m_helpWidget->height());
     m_helpWidget->hide();
+
+    connect(m_helpWidget, &mHelper::changeStackedWidget, this, &FormDisplay::changedStackedWidget);
 
     if (connectSTAS) {
         mMessage->show();
@@ -5012,7 +5014,7 @@ void FormDisplay::on_checkBox_TEST_C_toggled(bool checked)
 int oldTabWidgetIndex = 0;
 void FormDisplay::on_tabWidget_tabBarClicked(int index)
 {
-    if (oldTabWidgetIndex == 3) {
+    if (oldTabWidgetIndex == TABWIDGET_SETTING) {
         if (ui->pushButton_4->isEnabled()) {
             QMessageBox msgBox(QMessageBox::Question,tr(" Electrical Accessories Test Automation Program"),tr("The UART data has changed, please click save."));
             msgBox.setStandardButtons(QMessageBox::Ok);
@@ -5021,16 +5023,16 @@ void FormDisplay::on_tabWidget_tabBarClicked(int index)
 
             msgBox.exec();
 
-            ui->tabWidget->setCurrentIndex(3);
-            ui->tabWidget->setTabEnabled(0, false);
-            ui->tabWidget->setTabEnabled(1, false);
-            ui->tabWidget->setTabEnabled(2, false);
+            ui->tabWidget->setCurrentIndex(TABWIDGET_SETTING);
+            ui->tabWidget->setTabEnabled(TABWIDGET_SERVOA, false);
+            ui->tabWidget->setTabEnabled(TABWIDGET_SERVOB, false);
+            ui->tabWidget->setTabEnabled(TABWIDGET_SERVOC, false);
             oldTabWidgetIndex = index;
             return;
         } else {
-            ui->tabWidget->setTabEnabled(0, true);
-            ui->tabWidget->setTabEnabled(1, true);
-            ui->tabWidget->setTabEnabled(2, true);
+            ui->tabWidget->setTabEnabled(TABWIDGET_SERVOA, true);
+            ui->tabWidget->setTabEnabled(TABWIDGET_SERVOB, true);
+            ui->tabWidget->setTabEnabled(TABWIDGET_SERVOC, true);
         }
     }
 
@@ -5267,6 +5269,49 @@ void FormDisplay::on_comboBox_currentIndexChanged(int index)
         ui->lineEdit_TRCUART->setText(QString("COM%1").arg(comTR_AGILENT34970));
         on_checkBox_TRC_toggled(true);
         break;
+    default:
+        break;
+    }
+}
+
+void FormDisplay::changedStackedWidget(int ind)
+{
+    switch (ind) {
+    case 0:
+        ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
+        ui->tabWidget->setCurrentIndex(TABWIDGET_SERVOA);
+        break;
+    case 1:
+        if (mPlug == IEC60884)
+            ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE19_884);
+        else
+            ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE19_320);
+        break;
+    case 2:
+        if (mPlug == IEC60884)
+            ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE20_884);
+        else
+            ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE20_320);
+        break;
+    case 3:
+        if (mPlug == IEC60884)
+            ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE21_884);
+        else
+            ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE21_320);
+        break;
+    case 4:
+        if (mPlug == IEC60884)
+            ui->stackedWidget->setCurrentIndex(STACKWIDGET_CLAUSE22_884);
+        break;
+    case 5:
+        if (mPlug == IEC60884)
+            ui->stackedWidget->setCurrentIndex(STACKWIDGET_884AUTO);
+        else
+            ui->stackedWidget->setCurrentIndex(STACKWIDGET_320AUTO);
+        break;
+    case 6:
+        ui->stackedWidget->setCurrentIndex(STACKWIDGET_MAIN);
+        ui->tabWidget->setCurrentIndex(TABWIDGET_SETTING);
     default:
         break;
     }
