@@ -50,6 +50,10 @@ void mHelper::initForm()
     m_prevBtn->setText("<");
     m_nextBtn->setText(">");
 
+    m_prevBtn->setToolTip(tr(""));
+    m_nextBtn->setToolTip(tr(""));
+    m_mainWidget->setToolTip(tr("Right-click to close this window."));
+
     m_mainWidget->addWidget(m_stack1);
     m_mainWidget->addWidget(m_stack2);
     m_mainWidget->addWidget(m_stack3);
