@@ -1185,9 +1185,9 @@
          </property>
          <property name="geometry">
           <rect>
-           <x>38</x>
+           <x>50</x>
            <y>20</y>
-           <width>201</width>
+           <width>191</width>
            <height>21</height>
           </rect>
          </property>
@@ -1199,10 +1199,6 @@
          </property>
          <property name="text">
           <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="resource.qrc">
-           <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
          </property>
          <property name="checkable">
           <bool>true</bool>
@@ -1298,9 +1294,9 @@
          </property>
          <property name="geometry">
           <rect>
-           <x>38</x>
+           <x>50</x>
            <y>20</y>
-           <width>201</width>
+           <width>191</width>
            <height>21</height>
           </rect>
          </property>
@@ -1312,10 +1308,6 @@
          </property>
          <property name="text">
           <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="resource.qrc">
-           <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
          </property>
          <property name="checkable">
           <bool>true</bool>
@@ -1414,9 +1406,9 @@
          </property>
          <property name="geometry">
           <rect>
-           <x>38</x>
+           <x>50</x>
            <y>20</y>
-           <width>201</width>
+           <width>191</width>
            <height>21</height>
           </rect>
          </property>
@@ -1426,12 +1418,8 @@
          <property name="text">
           <string/>
          </property>
-         <property name="icon">
-          <iconset resource="resource.qrc">
-           <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
-         </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="tristate">
           <bool>false</bool>
@@ -1553,9 +1541,9 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>78</x>
+          <x>90</x>
           <y>20</y>
-          <width>201</width>
+          <width>191</width>
           <height>21</height>
          </rect>
         </property>
@@ -1564,10 +1552,6 @@
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -1595,9 +1579,9 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>78</x>
+          <x>90</x>
           <y>50</y>
-          <width>201</width>
+          <width>191</width>
           <height>21</height>
          </rect>
         </property>
@@ -1606,10 +1590,6 @@
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -1659,9 +1639,9 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>78</x>
+          <x>90</x>
           <y>50</y>
-          <width>201</width>
+          <width>191</width>
           <height>21</height>
          </rect>
         </property>
@@ -1670,10 +1650,6 @@
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -1736,9 +1712,9 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>78</x>
+          <x>90</x>
           <y>20</y>
-          <width>201</width>
+          <width>191</width>
           <height>21</height>
          </rect>
         </property>
@@ -1747,10 +1723,6 @@
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -1784,9 +1756,9 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>78</x>
+          <x>90</x>
           <y>20</y>
-          <width>201</width>
+          <width>191</width>
           <height>21</height>
          </rect>
         </property>
@@ -1795,10 +1767,6 @@
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -1874,9 +1842,9 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>78</x>
+          <x>90</x>
           <y>50</y>
-          <width>201</width>
+          <width>191</width>
           <height>21</height>
          </rect>
         </property>
@@ -1885,10 +1853,6 @@
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/icon/icon/off.png</normaloff>:/icon/icon/off.png</iconset>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -13127,9 +13091,7 @@ Normal Operation Arguments</string>
   <tabstop>toolButtonSave_2</tabstop>
   <tabstop>toolButton_close_27</tabstop>
  </tabstops>
- <resources>
-  <include location="resource.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>toolButton_23</sender>

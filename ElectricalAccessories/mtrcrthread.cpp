@@ -39,20 +39,20 @@ void mTRCRThread::updateTRCR()
     QString tc;
 
     readList.clear();
-    FormDisplay f;
-    if (f.mTRType == FormDisplay::YOKOGAWA_GP10) {
+    if (FormDisplay::mTRType == FormDisplay::YOKOGAWA_GP10) {
         str = "FData,0,0001,0110";
         tc = CollectControl::HardSend(devInformation.at(1).com, str.toLatin1().data(), COM_DELAY);
-        qDebug() << tc.size();
         if (tc.size() < 723 && !oldTc.isEmpty()) {
             QThread::msleep(1000);
-            qDebug() << "GGGGGGGGGGGGGGGGGGGG@@@@@@@@@@@@@ tc receive failed @@@@@@@@@@@@@GGGGGGGGGGGGGGGGGG";
+            qDebug() << "GGGGGGGGGGGGGGGGGGGG@@@@@@@@@@@@@ receive failed @@@@@@@@@@@@@GGGGGGGGGGGGGGGGGG";
             tc = oldTc;
         }
         oldTc = tc;
 
         readList << tc.split("TT");
         Collect::getTemperatureRise(&readList);
+    } else {
+
     }
     emit tRCRData(readList);
     mutex.unlock();

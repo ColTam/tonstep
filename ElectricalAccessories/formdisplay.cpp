@@ -21,6 +21,7 @@
 #include <helpWidget/mHelper.h>
 
 QString FormDisplay::dirName = "";
+FormDisplay::TRType FormDisplay::mTRType = FormDisplay::YOKOGAWA_GP10;
 
 FormDisplay::FormDisplay(QWidget *parent) :
     QWidget(parent)
@@ -30,13 +31,13 @@ FormDisplay::FormDisplay(QWidget *parent) :
   , isManual(false)
   , mPlug(IEC60320)
   , mServo(Servo_A)
-  , mTRType(YOKOGAWA_GP10)
   , mPiecesViewListA(nullptr)
   , mPiecesPowerListA(nullptr)
   , mPiecesViewListB(nullptr)
   , mPiecesPowerListB(nullptr)
   , mPiecesViewListC(nullptr)
   , mPiecesPowerListC(nullptr)
+  , _updateController(new mUpdateController)
 {
     ui->setupUi(this);
     //value
@@ -178,6 +179,10 @@ FormDisplay::FormDisplay(QWidget *parent) :
     popMenu->addAction(RegistrationAction);
 
     ui->pushButton_6->setMenu(popMenu);
+
+    connect(this, &FormDisplay::btn4Clicked, _updateController, &mUpdateController::updateUart);
+    connect(ui->pushButton_5, &QPushButton::clicked, _updateController, &mUpdateController::updateUart);
+    connect(_updateController, &mUpdateController::getUpdateUart, this, &FormDisplay::updateUart);
 }
 
 FormDisplay::~FormDisplay()
@@ -200,6 +205,7 @@ FormDisplay::~FormDisplay()
     if (mPiecesViewListA != NULL)
         delete mPiecesViewListA;
 
+    delete _updateController;
     delete mRegistration;
     delete mPathDialog;
     delete ui;
@@ -638,114 +644,96 @@ void FormDisplay::uartTips()
 {
     QString tips;
     if (devInformation.at(0).data.isEmpty()){
-        ui->checkBox_VOLT->setChecked(false);
         tips += tr("Power Supply,");
-    } else {
-        ui->checkBox_VOLT->setChecked(true);
     }
 
-    if (devInformation.at(1).data.isEmpty()){
-        ui->checkBox_TRC->setChecked(false);
-        tips += tr("Yokogawa Paperless Recorder,");
-    } else {
-        ui->checkBox_TRC->setChecked(true);
-        QStringList readList;
-        readList << devInformation.at(1).data.split("TT");
+    if (mTRType == YOKOGAWA_GP10) {
+        if (devInformation.at(1).data.isEmpty()){
+            tips += tr("Yokogawa Paperless Recorder,");
+        } else {
+            QStringList readList;
+            readList << devInformation.at(1).data.split("TT");
 
-        ui->textEdit->clear();
-        ui->textEdit_2->clear();
-        ui->textEdit_3->clear();
-        ui->textEdit_4->clear();
-        ui->textEdit_5->clear();
-        Collect::getTemperatureRise(&readList);
-        for (int i = 0; i < readList.count(); i++)
-        {
-            QString tc = readList.at(i);
-            double value = tc.mid(19).toDouble();
-            if (value < 0 || value >= 80) {
-                ui->textEdit->append("CH"+tc.mid(2,4)+tr("disabled"));
-                ui->textEdit_2->append("CH"+tc.mid(2,4)+tr("disabled"));
-                ui->textEdit_3->append("CH"+tc.mid(2,4)+tr("disabled"));
-                ui->textEdit_4->append("CH"+tc.mid(2,4)+tr("disabled"));
-                ui->textEdit_5->append("CH"+tc.mid(2,4)+tr("disabled"));
+            ui->textEdit->clear();
+            ui->textEdit_2->clear();
+            ui->textEdit_3->clear();
+            ui->textEdit_4->clear();
+            ui->textEdit_5->clear();
+            Collect::getTemperatureRise(&readList);
+            for (int i = 0; i < readList.count(); i++)
+            {
+                QString tc = readList.at(i);
+                double value = tc.mid(19).toDouble();
+                if (value < 0 || value >= 80) {
+                    ui->textEdit->append("CH"+tc.mid(2,4)+tr("disabled"));
+                    ui->textEdit_2->append("CH"+tc.mid(2,4)+tr("disabled"));
+                    ui->textEdit_3->append("CH"+tc.mid(2,4)+tr("disabled"));
+                    ui->textEdit_4->append("CH"+tc.mid(2,4)+tr("disabled"));
+                    ui->textEdit_5->append("CH"+tc.mid(2,4)+tr("disabled"));
+                }
             }
         }
-    }
-    if (devInformation.at(8).data.isEmpty()){
-        ui->checkBox_TRC->setChecked(false);
-        tips += tr("Agilent Paperless Recorder,");
     } else {
-        ui->checkBox_TRC->setChecked(true);
-        QStringList readList;
-        readList << devInformation.at(8).data.split("TT");//
+        if (devInformation.at(8).data.isEmpty()){
+            tips += tr("Agilent Paperless Recorder,");
+        } else {
+            QStringList readList;
+            readList << devInformation.at(8).data.split("TT");//
 
-        ui->textEdit->clear();
-        ui->textEdit_2->clear();
-        ui->textEdit_3->clear();
-        ui->textEdit_4->clear();
-        ui->textEdit_5->clear();
-        Collect::getTemperatureRise(&readList);
-        for (int i = 0; i < readList.count(); i++)
-        {
-            QString tc = readList.at(i);
-            double value = tc.mid(19).toDouble();
-            if (value < 0 || value >= 80) {
-                ui->textEdit->append("CH"+tc.mid(2,4)+tr("disabled"));//
-                ui->textEdit_2->append("CH"+tc.mid(2,4)+tr("disabled"));
-                ui->textEdit_3->append("CH"+tc.mid(2,4)+tr("disabled"));
-                ui->textEdit_4->append("CH"+tc.mid(2,4)+tr("disabled"));
-                ui->textEdit_5->append("CH"+tc.mid(2,4)+tr("disabled"));
+            ui->textEdit->clear();
+            ui->textEdit_2->clear();
+            ui->textEdit_3->clear();
+            ui->textEdit_4->clear();
+            ui->textEdit_5->clear();
+            Collect::getTemperatureRise(&readList);
+            for (int i = 0; i < readList.count(); i++)
+            {
+                QString tc = readList.at(i);
+                double value = tc.mid(19).toDouble();
+                if (value < 0 || value >= 80) {
+                    ui->textEdit->append("CH"+tc.mid(2,4)+tr("disabled"));//
+                    ui->textEdit_2->append("CH"+tc.mid(2,4)+tr("disabled"));
+                    ui->textEdit_3->append("CH"+tc.mid(2,4)+tr("disabled"));
+                    ui->textEdit_4->append("CH"+tc.mid(2,4)+tr("disabled"));
+                    ui->textEdit_5->append("CH"+tc.mid(2,4)+tr("disabled"));
+                }
             }
         }
     }
 
     if (devInformation.at(2).data.isEmpty()){
-        ui->checkBox_A->setChecked(false);
         tips += tr("Load (Servo-A),");
-    } else {
-        ui->checkBox_A->setChecked(true);
     }
 
     if (devInformation.at(3).data.isEmpty()){
-        ui->checkBox_B->setChecked(false);
         tips += tr("Load (Servo-B),");
-    } else {
-        ui->checkBox_B->setChecked(true);
     }
 
     if (devInformation.at(4).data.isEmpty()){
-        ui->checkBox_C->setChecked(false);
         tips += tr("Load (Servo-C),");
-    } else {
-        ui->checkBox_C->setChecked(true);
     }
 
     if (devInformation.at(5).data.isEmpty()){
-        ui->checkBox_TEST->setChecked(false);
-        ui->checkBox_TEST_A->setChecked(false);
         tips += tr("Life Tester (servoA),");
-    } else {
-        ui->checkBox_TEST->setChecked(true);
-        ui->checkBox_TEST_A->setChecked(true);
     }
 
     if (devInformation.at(6).data.isEmpty()){
-        ui->checkBox_TEST->setChecked(false);
-        ui->checkBox_TEST_B->setChecked(false);
         tips += tr("Life Tester (servoB),");
-    } else {
-        ui->checkBox_TEST->setChecked(true);
-        ui->checkBox_TEST_B->setChecked(true);
     }
 
     if (devInformation.at(7).data.isEmpty()){
-        ui->checkBox_TEST->setChecked(false);
-        ui->checkBox_TEST_C->setChecked(false);
         tips += tr("Life Tester (servoC),");
-    } else {
-        ui->checkBox_TEST->setChecked(true);
-        ui->checkBox_TEST_C->setChecked(true);
     }
+
+    ui->checkBox_VOLT->setChecked(false);
+    ui->checkBox_TRC->setChecked(false);
+    ui->checkBox_A->setChecked(false);
+    ui->checkBox_B->setChecked(false);
+    ui->checkBox_C->setChecked(false);
+    ui->checkBox_TEST_A->setChecked(false);
+    ui->checkBox_TEST_B->setChecked(false);
+    ui->checkBox_TEST_C->setChecked(false);
+    ui->checkBox_TEST->setChecked(false);
     /*/ agilent 34970 uart /*/
     ui->pushButton_5->setEnabled(true);
     ui->pushButton_4->setEnabled(false);
@@ -956,7 +944,19 @@ void FormDisplay::enterMain()
     ui->lineEdit_LOADUART_C->setText("COM"+QString::number(comLoadC));
     ui->lineEdit_VOLTUART->setText("COM"+QString::number(comVolt));
     ui->lineEdit_TESTUART->setText("COM"+QString::number(comTest));
-    ui->lineEdit_TRCUART->setText("COM"+QString::number(comTR_YOKOGAWAGP10));
+
+    QSettings *configIniRead = new QSettings("EATconfig.ini", QSettings::IniFormat);//获取本地配置文件
+    int _mode    = configIniRead->value("Temperature Rise mode").toInt();
+    delete configIniRead;//释放加载的本地文件
+
+    ui->comboBox->setCurrentIndex(_mode);
+    if (_mode) {
+        mTRType = AGILENT_34970;
+        ui->lineEdit_TRCUART->setText("COM"+QString::number(comTR_AGILENT34970));
+    } else {
+        mTRType = YOKOGAWA_GP10;
+        ui->lineEdit_TRCUART->setText("COM"+QString::number(comTR_YOKOGAWAGP10));
+    }
 
 //    m_helpWidget->show();
     uartTips();
@@ -4738,11 +4738,10 @@ void FormDisplay::on_checkBox_TEST_toggled(bool checked)
 {
     Q_UNUSED(checked);
 
-    if (devInformation.at(5).data.isEmpty() || devInformation.at(5).data.size() != 13){
-        ui->checkBox_TEST->setChecked(false);
-    } else {
+    if (ui->checkBox_TEST_A->isChecked() || ui->checkBox_TEST_B->isChecked() || ui->checkBox_TEST_C->isChecked())
         ui->checkBox_TEST->setChecked(true);
-    }
+    else
+        ui->checkBox_TEST->setChecked(false);
 }
 
 void FormDisplay::on_checkBox_C_toggled(bool checked)
@@ -4843,139 +4842,7 @@ void FormDisplay::on_pushButton_4_clicked()
         return;
     }
 
-    QString volt = CollectControl::HardSend(ui->lineEdit_VOLTUART->text().right(1).toInt(), QString("RDW VF").toLatin1().data(), 1000);
-    devInformation.removeAt(0);
-    UART_t voltUart;
-    voltUart.data = volt;
-    voltUart.com = comVolt;
-    devInformation.insert(0,voltUart);
-    if (volt.isEmpty() || volt.size() != 14) {
-        ui->checkBox_VOLT->setChecked(false);
-    } else {
-        ui->checkBox_VOLT->setChecked(true);
-    }
-
-    if (mTRType == YOKOGAWA_GP10) {
-        QString tc = CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 1000);
-        devInformation.removeAt(1);
-        UART_t trUart;
-        trUart.data = tc;
-        trUart.com = comTR_YOKOGAWAGP10;
-        devInformation.insert(1,trUart);
-        if (tc.isEmpty() || tc.size() != 723) {
-            ui->checkBox_TRC->setChecked(false);
-        } else {
-            ui->checkBox_TRC->setChecked(true);
-        }
-    } else {//AGILENT_34970
-        QString tc = CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 1000);
-        devInformation.removeAt(8);
-        UART_t trUart;
-        trUart.data = tc;
-        trUart.com = comTR_AGILENT34970;
-        devInformation.insert(8,trUart);
-        if (tc.isEmpty() || tc.size() != 723) {
-            ui->checkBox_TRC->setChecked(false);
-        } else {
-            ui->checkBox_TRC->setChecked(true);
-        }
-    }
-
-    QString loadA = CollectControl::HardSend(ui->lineEdit_LOADUART_A->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 1000);
-    devInformation.removeAt(2);
-    UART_t loadAUart;
-    loadAUart.data = loadA;
-    loadAUart.com = comLoadA;
-    devInformation.insert(2,loadAUart);
-    if (loadA.isEmpty() || loadA.size() < 16) {
-        ui->checkBox_A->setChecked(false);
-    } else {
-        ui->checkBox_A->setChecked(true);
-    }
-
-    QString loadB = CollectControl::HardSend(ui->lineEdit_LOADUART_B->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 1000);
-    devInformation.removeAt(3);
-    UART_t loadBUart;
-    loadBUart.data = loadB;
-    loadBUart.com = comLoadB;
-    devInformation.insert(3,loadBUart);
-    if (loadB.isEmpty() || loadB.size() < 16) {
-        ui->checkBox_B->setChecked(false);
-    } else {
-        ui->checkBox_B->setChecked(true);
-    }
-
-    QString loadC = CollectControl::HardSend(ui->lineEdit_LOADUART_C->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 1000);
-    devInformation.removeAt(4);
-    UART_t loadCUart;
-    loadCUart.data = loadC;
-    loadCUart.com = comLoadC;
-    devInformation.insert(4,loadCUart);
-    if (loadC.isEmpty() || loadC.size() < 16) {
-        ui->checkBox_C->setChecked(false);
-    } else {
-        ui->checkBox_C->setChecked(true);
-    }
-
-    QString testA = CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD020603").toLatin1().data(), 1000);
-    devInformation.removeAt(5);
-    UART_t testAUart;
-    testAUart.data = testA;
-    testAUart.com = comTest;
-    devInformation.insert(5,testAUart);
-    if (testA.isEmpty() || testA.size() != 13) {
-        ui->checkBox_TEST->setChecked(false);
-        ui->checkBox_TEST_A->setChecked(false);
-    } else {
-        ui->checkBox_TEST->setChecked(true);
-        ui->checkBox_TEST_A->setChecked(true);
-    }
-
-    QString testB = CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD030603").toLatin1().data(), 1000);
-    devInformation.removeAt(6);
-    UART_t testBUart;
-    testBUart.data = testB;
-    testBUart.com = comTest;
-    devInformation.insert(6,testBUart);
-    if (testB.isEmpty() || testB.size() != 13) {
-        ui->checkBox_TEST->setChecked(false);
-        ui->checkBox_TEST_B->setChecked(false);
-    } else {
-        ui->checkBox_TEST->setChecked(true);
-        ui->checkBox_TEST_B->setChecked(true);
-    }
-
-    QString testC = CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD040603").toLatin1().data(), 1000);
-    devInformation.removeAt(7);
-    UART_t testCUart;
-    testCUart.data = testC;
-    testCUart.com = comTest;
-    devInformation.insert(7,testCUart);
-    if (testC.isEmpty() || testC.size() != 13) {
-        ui->checkBox_TEST->setChecked(false);
-        ui->checkBox_TEST_C->setChecked(false);
-    } else {
-        ui->checkBox_TEST->setChecked(true);
-        ui->checkBox_TEST_C->setChecked(true);
-    }
-
-    ui->tabWidget->setTabEnabled(0, true);
-    ui->tabWidget->setTabEnabled(1, true);
-    ui->tabWidget->setTabEnabled(2, true);
-    ui->pushButton_4->setEnabled(false);
-    ui->pushButton_5->setEnabled(true);
-
-    QSettings *configIniWrite = new QSettings("EATconfig.ini", QSettings::IniFormat);
-    configIniWrite->setValue("Voltage Uart", QString::number(comVolt));
-    configIniWrite->setValue("Temperature Rise Uart1", QString::number(comTR_YOKOGAWAGP10));
-    configIniWrite->setValue("Temperature Rise Uart2", QString::number(comTR_AGILENT34970));
-    configIniWrite->setValue("Load(ServoA) Uart", QString::number(comLoadA));
-    configIniWrite->setValue("Load(ServoB) Uart", QString::number(comLoadB));
-    configIniWrite->setValue("Load(ServoC) Uart", QString::number(comLoadC));
-    configIniWrite->setValue("Life Tester Uart", QString::number(comTest));
-    delete configIniWrite;
-
-    uartTips();
+    emit btn4Clicked();
 }
 
 void FormDisplay::on_checkBox_TEST_A_toggled(bool checked)
@@ -5037,87 +4904,6 @@ void FormDisplay::on_tabWidget_tabBarClicked(int index)
     }
 
     oldTabWidgetIndex = index;
-}
-
-void FormDisplay::on_pushButton_5_clicked()
-{
-    CollectControl::HardSend(ui->lineEdit_VOLTUART->text().right(1).toInt(), QString("RDW VF").toLatin1().data(), 2000);
-    QString volt = CollectControl::HardSend(ui->lineEdit_VOLTUART->text().right(1).toInt(), QString("RDW VF").toLatin1().data(), 2000);
-    if (volt.isEmpty() || volt.size() < 14) {
-        ui->checkBox_VOLT->setChecked(false);
-    } else {
-        ui->checkBox_VOLT->setChecked(true);
-    }
-
-    if (mTRType == YOKOGAWA_GP10) {
-        CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 2000);
-        QString tc = CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 2000);
-        if (tc.isEmpty() || tc.size() < 720) {
-            ui->checkBox_TRC->setChecked(false);
-        } else {
-            ui->checkBox_TRC->setChecked(true);
-        }
-    } else {
-        CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 2000);
-        QString tc = CollectControl::HardSend(ui->lineEdit_TRCUART->text().right(1).toInt(), QString("FData,0,0001,0110").toLatin1().data(), 2000);
-        if (tc.isEmpty() || tc.size() < 720) {
-            ui->checkBox_TRC->setChecked(false);
-        } else {
-            ui->checkBox_TRC->setChecked(true);
-        }
-    }
-
-    CollectControl::HardSend(ui->lineEdit_LOADUART_A->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
-    QString loadA = CollectControl::HardSend(ui->lineEdit_LOADUART_A->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
-    if (loadA.isEmpty() || loadA.size() < 16) {
-        ui->checkBox_A->setChecked(false);
-    } else {
-        ui->checkBox_A->setChecked(true);
-    }
-
-    CollectControl::HardSend(ui->lineEdit_LOADUART_B->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
-    QString loadB = CollectControl::HardSend(ui->lineEdit_LOADUART_B->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
-    if (loadB.isEmpty() || loadB.size() < 16) {
-        ui->checkBox_B->setChecked(false);
-    } else {
-        ui->checkBox_B->setChecked(true);
-    }
-
-    CollectControl::HardSend(ui->lineEdit_LOADUART_C->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
-    QString loadC = CollectControl::HardSend(ui->lineEdit_LOADUART_C->text().right(1).toInt(), QString("RDM%101%102%\r").toLatin1().data(), 2000);
-    if (loadC.isEmpty() || loadC.size() < 16) {
-        ui->checkBox_C->setChecked(false);
-    } else {
-        ui->checkBox_C->setChecked(true);
-    }
-
-    CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD020603").toLatin1().data(), 2000);
-    QString testA = CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD020603").toLatin1().data(), 2000);
-    if (testA.isEmpty() || testA.size() != 13) {
-        ui->checkBox_TEST->setChecked(false);
-        ui->checkBox_TEST_A->setChecked(false);
-    } else {
-        ui->checkBox_TEST->setChecked(true);
-        ui->checkBox_TEST_A->setChecked(true);
-    }
-
-    QString testB = CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD030603").toLatin1().data(), 2000);
-    if (testB.isEmpty() || testB.size() != 13) {
-        ui->checkBox_TEST->setChecked(false);
-        ui->checkBox_TEST_B->setChecked(false);
-    } else {
-        ui->checkBox_TEST->setChecked(true);
-        ui->checkBox_TEST_B->setChecked(true);
-    }
-
-    QString testC = CollectControl::HardSend(ui->lineEdit_TESTUART->text().right(1).toInt(), QString("RDWD040603").toLatin1().data(), 2000);
-    if (testC.isEmpty() || testC.size() != 13) {
-        ui->checkBox_TEST->setChecked(false);
-        ui->checkBox_TEST_C->setChecked(false);
-    } else {
-        ui->checkBox_TEST->setChecked(true);
-        ui->checkBox_TEST_C->setChecked(true);
-    }
 }
 
 void FormDisplay::on_pushButton_6_clicked()
@@ -5269,9 +5055,11 @@ void FormDisplay::on_comboBox_currentIndexChanged(int index)
         ui->lineEdit_TRCUART->setText(QString("COM%1").arg(comTR_AGILENT34970));
         on_checkBox_TRC_toggled(true);
         break;
-    default:
-        break;
     }
+
+    QSettings *configIniWrite = new QSettings("EATconfig.ini", QSettings::IniFormat);//获取本地配置文件
+    configIniWrite->setValue("Temperature Rise mode", QString::number(ui->comboBox->currentIndex()));
+    delete configIniWrite;//释放加载的本地文件
 }
 
 void FormDisplay::changedStackedWidget(int ind)
@@ -5315,4 +5103,25 @@ void FormDisplay::changedStackedWidget(int ind)
     default:
         break;
     }
+}
+
+void FormDisplay::updateUart()
+{
+    if (ui->pushButton_4->isEnabled()) {
+        ui->tabWidget->setTabEnabled(0, true);
+        ui->tabWidget->setTabEnabled(1, true);
+        ui->tabWidget->setTabEnabled(2, true);
+
+        QSettings *configIniWrite = new QSettings("EATconfig.ini", QSettings::IniFormat);
+        configIniWrite->setValue("Voltage Uart", QString::number(comVolt));
+        configIniWrite->setValue("Temperature Rise Uart1", QString::number(comTR_YOKOGAWAGP10));
+        configIniWrite->setValue("Temperature Rise Uart2", QString::number(comTR_AGILENT34970));
+        configIniWrite->setValue("Load(ServoA) Uart", QString::number(comLoadA));
+        configIniWrite->setValue("Load(ServoB) Uart", QString::number(comLoadB));
+        configIniWrite->setValue("Load(ServoC) Uart", QString::number(comLoadC));
+        configIniWrite->setValue("Life Tester Uart", QString::number(comTest));
+        configIniWrite->setValue("Temperature Rise mode", QString::number(ui->comboBox->currentIndex()));
+        delete configIniWrite;
+    }
+    uartTips();
 }

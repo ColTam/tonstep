@@ -48,6 +48,7 @@ int main(int argc, char *argv[])
     QString lifeTestU   = configIniRead->value("Life Tester Uart").toString();
     QString path        = configIniRead->value("Default Path").toString();
     int language        = configIniRead->value("Language").toInt();
+    delete configIniRead;//释放加载的本地文件
 
     //load language  cn/en
     QTranslator translator;
@@ -79,7 +80,6 @@ int main(int argc, char *argv[])
     if (!path.isEmpty()) {//更新保存路径
         FormDisplay::dirName = path;
     }
-    delete configIniRead;//释放加载的本地文件
 
     Widget w;//初始化界面
     mSplashScreen *splash = new mSplashScreen(QPixmap(":/image/image/SGS01.jpg"));//设置加载界面

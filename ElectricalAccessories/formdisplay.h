@@ -59,6 +59,7 @@
 #include "pathdialog.h"
 #include "pieceslist.h"
 #include "qmessagewidget.h"
+#include "mupdatethread.h"
 #include <QTableWidget>
 #include <QWidget>
 
@@ -127,6 +128,7 @@ protected:
 signals:
     void isSectionFileName(QString,int);        /*!* \brief 已选择的模块名称信号 */
     void tTimerStop(int,int);                   /*!* \brief 定时器停止信号 int为未工作模块数 */
+    void btn4Clicked();
 
 public slots:
     void delItem(QListWidgetItem *item);        /*!* \brief 删除项目 */
@@ -144,7 +146,6 @@ private slots:
     void on_pushButton_login2_clicked();        /*!* \brief IEC60884选择按钮 */
     void on_pushButton_clicked();               /*!* \brief 懒人模式按钮 */
     void on_pushButton_4_clicked();             /*!* \brief 串口号保存按钮 */
-    void on_pushButton_5_clicked();             /*!* \brief 串口通讯状态刷新按钮 */
     void on_pushButton_6_clicked();             /*!* \brief 登陆界面下拉菜单按钮 */
     void on_toolButton_19_clicked();            /*!* \brief 章节19模块参数设置打开按钮 */
     void on_toolButton_20_clicked();            /*!* \brief 章节20模块参数设置打开按钮 */
@@ -268,6 +269,7 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);
     void changedStackedWidget(int ind);
+    void updateUart();
 
 private:
     Ui::FormDisplay     *ui;
@@ -278,7 +280,7 @@ private:
 
     PlugType            mPlug;                  /*!* \brief IEC对象 */
     LifeTesterServo     mServo;                 /*!* \brief 伺服对象 */
-    TRType              mTRType;                /*!* \brief 无纸记录仪对象 */
+    static TRType       mTRType;                /*!* \brief 无纸记录仪对象 */
 
     QPixmap             mImage;                 /*!* \brief 拖拉框项目图标 */
     QMenu*              popMenu;                /*!* \brief 下拉菜单 */
@@ -309,6 +311,8 @@ private:
     QStringList         dirNameListA;           /*!* \brief 要测试的项目list */
     QStringList         dirNameListB;           /*!* \brief  */
     QStringList         dirNameListC;           /*!* \brief  */
+
+    mUpdateController*  _updateController;
 
     friend class mTRCRThread;
 };

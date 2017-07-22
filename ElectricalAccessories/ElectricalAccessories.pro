@@ -43,6 +43,7 @@ SOURCES += main.cpp\
     temperaturerisedialog.cpp \
     titlebar.cpp \
     helpWidget/mHelper.cpp \
+    mupdatethread.cpp
 
 HEADERS  += widget.h \
     Collect.h \
@@ -63,6 +64,7 @@ HEADERS  += widget.h \
     titlebar.h \
     nofocusdelegate.h \
     helpWidget/mHelper.h \
+    mupdatethread.h
 
 FORMS    += \
     formdisplay.ui \

@@ -165,6 +165,7 @@ QPushButton
     border-bottom-width:1px;
     border-radius: 4px;
     color: #F0F0F0;
+    outline: none;
     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FF383838, stop:1 #FF282828);
     min-width: 48px;
     min-height: 20px;
@@ -221,6 +222,7 @@ QToolButton
     border-bottom-width:1px;
     border-radius: 4px;
     color: #F0F0F0;
+    outline: none;
     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #383838, stop:1 #282828);
 }
 
