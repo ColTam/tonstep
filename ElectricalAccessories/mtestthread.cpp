@@ -65,15 +65,12 @@ void mTestThread::updaeTest()
 
 void mTestThread::mTestTimerStart()
 {
-    _testTimer->start(250);//4-250/3-
+    if (!_testTimer->isActive())
+        _testTimer->start(250);//4-250/3-
 }
 
 void mTestThread::mTestTimerStop()
 {
-    _testTimer->stop();
-}
-
-bool mTestThread::mTestIsActive()
-{
-    return _testTimer->isActive();
+    if (_testTimer->isActive())
+        _testTimer->stop();
 }

@@ -19,8 +19,6 @@ public:
     explicit mTRCRThread(QObject *parent = 0);
     ~mTRCRThread();
 
-    bool mtRCRIsActive();       /*!* \brief 返回定时器是否启动 */
-
 signals:
     void tRCRData(QStringList); /*!* \brief 温升数据更新信号 */
 

@@ -19,8 +19,6 @@ public:
     explicit mTestThread(QObject *parent = 0);
     ~mTestThread();
 
-    bool mTestIsActive();   /*!* \brief 返回定时器是否启动 */
-
 signals:
     void testDataA(QString);/*!* \brief 伺服数据信号 */
     void testDataB(QString);/*!* \brief  */

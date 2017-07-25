@@ -18,11 +18,6 @@ mTRCRThread::~mTRCRThread()
     delete _trTimer;
 }
 
-bool mTRCRThread::mtRCRIsActive()
-{
-    return _trTimer->isActive();
-}
-
 void mTRCRThread::readData()
 {
     _trTimer = new QTimer;
@@ -60,11 +55,13 @@ void mTRCRThread::updateTRCR()
 
 void mTRCRThread::mTRCRTimerStart()
 {
-    _trTimer->start(COM_TRDELAY);
+    if (!_trTimer->isActive())
+        _trTimer->start(COM_TRDELAY);
 }
 
 void mTRCRThread::mTRCRTimerStop()
 {
-    _trTimer->stop();
+    if (_trTimer->isActive())
+        _trTimer->stop();
 }
 

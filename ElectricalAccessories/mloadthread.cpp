@@ -278,11 +278,12 @@ void mLoadThread::updateData()
 void mLoadThread::mLoadTimerStart(int time)
 {
     this->_time = time;
-    _loadTimer->start(time);
+    if (!_loadTimer->isActive())
+        _loadTimer->start(time);
 }
 
 void mLoadThread::mLoadTimerStop()
 {
-    qDebug() << servo << " stop";
-    _loadTimer->stop();
+    if (_loadTimer->isActive())
+        _loadTimer->stop();
 }

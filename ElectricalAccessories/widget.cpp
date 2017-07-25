@@ -387,7 +387,7 @@ void Widget::testNoError(QString servo)
 //clause 19 / temperature rise
 void Widget::temperatureRise(QString fileName)
 {
-    QFile itemFile(fileName);
+    QFile itemFile(fileName);//读取本地配置文件中保存的参数
     itemFile.open(QFile::ReadOnly | QIODevice::Text);
     if (itemFile.isOpen()) {
         QTextStream in(&itemFile);
@@ -408,9 +408,7 @@ void Widget::temperatureRise(QString fileName)
             list << in.readLine();
         itemFile.close();
 
-        if (_mTRCRThread->mtRCRIsActive()) {
-            emit tRCRTimerStop();
-        }
+        emit tRCRTimerStop();
         _collect->SetLoad(SET_LPF_RESISTIVE_884, In, mServo);
         _collect->LoadStart(mServo);
         _collect->SetVolt(Vn);
@@ -423,7 +421,7 @@ void Widget::temperatureRise(QString fileName)
         else if (mServo == "C")
             recordValue(4, SET_LPF_RESISTIVE_884, In, "", "", "", "");
 
-        if (Im.toInt() == 0 && !IC) {
+        if (Im.toInt() == 0 && !IC) {//根据不同参数设置不同的流程判断（详情参照开发需求文档）
             if (LN_LE_cut) {
                 newTemperatureDialog(Hours.toInt(), fileName, list, rT2, mServo, 2);
             } else {
@@ -438,10 +436,7 @@ void Widget::temperatureRise(QString fileName)
             }
         }
     }
-
-    if (!_mTRCRThread->mtRCRIsActive()) {
-        emit tRCRTimerStart();
-    }
+    emit tRCRTimerStart();
 }
 
 //clause 20 / break capacity
@@ -454,8 +449,6 @@ void Widget::breakingCapacityTest(QString fileName, int iec)
         in.readLine();
         in.readLine();
         in.readLine();
-//        QString Vn = CLAUSE_20_VN(in.readLine());
-//        QString In = CLAUSE_20_IN(in.readLine());
         QString Rate = in.readLine();
         QString Position = in.readLine();
         QString Vn = in.readLine();//Vn_t
@@ -465,9 +458,7 @@ void Widget::breakingCapacityTest(QString fileName, int iec)
         in.readLine();//s
         itemFile.close();
 
-        if (_mTestThread->mTestIsActive()) {
-            emit testTimerStop();
-        }
+        emit testTimerStop();
         _collect->TestClearNumber(mServo);
         if (iec) {
             _collect->SetLoad(SET_LPF_INDUCTIVE_0_6, In, mServo);
@@ -529,9 +520,7 @@ void Widget::normalOperation(QString fileName)
         in.readLine();//s
         itemFile.close();
 
-        if (_mTestThread->mTestIsActive()) {
-            emit testTimerStop();
-        }
+        emit testTimerStop();
         _collect->TestClearNumber(mServo);
 
         _collect->SetLoad(SET_LPF_INDUCTIVE_0_8, In, mServo);
@@ -562,7 +551,6 @@ void Widget::normalOperation(QString fileName)
             } else {
                 recordValue(5, SET_LPF_INDUCTIVE_0_8, In, Nu, Rate, Position, Time);
             }
-
         newLifeTesterDialog(fileName, mServo);
     }
 }
@@ -589,9 +577,7 @@ void Widget::normalOperationTemperatureRise(QString fileName)
             list << in.readLine();
         itemFile.close();
 
-        if (_mTRCRThread->mtRCRIsActive()) {
-            emit tRCRTimerStop();
-        }
+        emit tRCRTimerStop();
         _collect->SetLoad(SET_LPF_RESISTIVE_884, In, mServo);
         _collect->LoadStart(mServo);
         _collect->SetVolt(Vn);
@@ -609,10 +595,7 @@ void Widget::normalOperationTemperatureRise(QString fileName)
         } else {
             newTemperatureDialog(Hours.toInt(), fileName, list, rT2, mServo, 1);
         }
-
-        if (!_mTRCRThread->mtRCRIsActive()) {
-            emit tRCRTimerStart();
-        }
+        emit tRCRTimerStart();
     }
 }
 
@@ -636,9 +619,8 @@ void Widget::linkerTemperature(QString fileName)
         itemFile.close();
 
         if (In.toDouble() > 0.2) {
-            if (_mTRCRThread->mtRCRIsActive()) {
-                emit tRCRTimerStop();
-            }
+            emit tRCRTimerStop();
+
             _collect->SetLoad(SET_LPF_RESISTIVE_884, In, mServo);
             _collect->LoadStart(mServo);
             _collect->SetVolt(Vn);
@@ -652,9 +634,7 @@ void Widget::linkerTemperature(QString fileName)
                 recordValue(4, SET_LPF_RESISTIVE_884, In, "", "", "", "");
 
             newTemperatureDialog(Hours.toInt(), fileName, list, rT2, mServo, 1);
-            if (!_mTRCRThread->mtRCRIsActive()) {
-                emit tRCRTimerStart();
-            }
+            emit tRCRTimerStart();
         }
     }
 }
@@ -677,9 +657,7 @@ void Widget::linkerNormalOperation(QString fileName)
         in.readLine();
         itemFile.close();
 
-        if (_mTestThread->mTestIsActive()) {
-            emit testTimerStop();
-        }
+        emit testTimerStop();
         _collect->TestClearNumber(mServo);
 
         if (0 < In.toInt() && In.toDouble() <= 0.2) {

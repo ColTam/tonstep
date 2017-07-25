@@ -9,7 +9,12 @@
 #pragma comment(lib, "user32.lib")
 #include <qt_windows.h>
 #endif
-
+/*!
+ * \brief TitleBar::TitleBar
+ * \param parent
+ * \param 参考 一去丶二三里 --自定义标题栏
+ * http://blog.csdn.net/liang19890820/article/details/50555298
+ */
 TitleBar::TitleBar(QWidget *parent, int flags) :
     QWidget(parent),
     flag(flags),
