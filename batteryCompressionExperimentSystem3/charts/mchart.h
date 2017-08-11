@@ -21,30 +21,29 @@ public:
     ~mChart();
 
 public:
-    void writeExcel(const QString &fileName);
-
+    void writeExcel(const QString &fileName);//导出excel
+    //excel数据处理
     void rangeToWrite(const QString &itemName, const uint &column, const QVariantList &varList,
-                      const QString &head, QColor color = QColor(255,255,255));
-    void convertToColName(const int &data, QString &res);
-
-    QString to26AlphabetString(const int &data) const;
+                      const QString &head, QColor color = QColor(255,255,255));//整列数据写入
+    void convertToColName(const int &data, QString &res);//转换为excel坐标
+    QString to26AlphabetString(const int &data) const;//转换为字母
 
 signals:
-    void savep(const QString &fileName);
+    void savep(const QString &fileName);//保存图片
 
 public slots:
-    void splineClear();
+    void splineClear();//初始化曲面图界面
 
 private Q_SLOTS:
-    void saveDataSlot(const QString &file);
+    void saveDataSlot(const QString &file);//保存数据
 
-    void paintPressure(const QString &pressureData);
+    void paintPressure(const QString &pressureData);//曲线图描点处理函数
 
 private:
     friend class Widget;
 
 //    QLineSeries *m_splineSeries;
-    QSplineSeries *m_splineSeries;
+    QSplineSeries *m_splineSeries;//曲线
 //    QGraphicsSimpleTextItem *m_coordX;
 //    QGraphicsSimpleTextItem *m_coordY;
 
@@ -52,8 +51,8 @@ private:
     qreal m_y;
     qreal m_rangeY;
 
-    QList<QPointF> dataList;
-    QAxObject*     _worksheet;
+    QList<QPointF> dataList;//描点记录链表
+    QAxObject*     _worksheet;//excel操作对象
 
     QVariantList mVar;
 };

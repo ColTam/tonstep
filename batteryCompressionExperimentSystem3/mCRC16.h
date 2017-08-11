@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-unsigned int CRC16(char *buffer,char num);
-char toAscii(int number);
+unsigned int CRC16(char *buffer,char num);//CRC16 校验返回处理
+char toAscii(int number);//返回对应Ascii码
 
 #ifdef __cplusplus
 }
