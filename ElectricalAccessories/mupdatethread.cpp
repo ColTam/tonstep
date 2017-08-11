@@ -64,7 +64,7 @@ void mUpdateThread::updateState()
     testCUart.com = comTest;
     devInformation.insert(7,testCUart);
 
-    QString tc2 = CollectControl::HardSend(comTR_AGILENT34970, QString("FData,0,0001,0110").toLatin1().data(), 1000);
+    QString tc2 = CollectControl::HardSend(comTR_AGILENT34970, QString("*IDN?\r").toLatin1().data(), 1000);
     devInformation.removeAt(8);
     UART_t trUart2;
     trUart2.data = tc2;

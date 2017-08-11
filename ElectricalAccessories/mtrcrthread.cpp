@@ -39,7 +39,7 @@ void mTRCRThread::updateTRCR()
         tc = CollectControl::HardSend(devInformation.at(1).com, str.toLatin1().data(), COM_DELAY);
         if (tc.size() < 723 && !oldTc.isEmpty()) {
             QThread::msleep(1000);
-            qDebug() << "GGGGGGGGGGGGGGGGGGGG@@@@@@@@@@@@@ receive failed @@@@@@@@@@@@@GGGGGGGGGGGGGGGGGG";
+            qDebug() << "@@@@@@@@@@@@@ receive failed @@@@@@@@@@@@@";
             tc = oldTc;
         }
         oldTc = tc;
@@ -47,7 +47,7 @@ void mTRCRThread::updateTRCR()
         readList << tc.split("TT");
         Collect::getTemperatureRise(&readList);
     } else {
-
+        //agilent data;
     }
     emit tRCRData(readList);
     mutex.unlock();

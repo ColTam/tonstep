@@ -208,9 +208,9 @@ int main(int argc, char *argv[])
     splash->setLabelTest(QObject::tr("Checking the Agilent Paperless Recorder UART...."));
     splash->setProgress(900/10+(qrand()%10-5));
 
-    QString trcr2 = CollectControl::HardSend(comTR_AGILENT34970, QString("FData,0,0001,0110").toLatin1().data(),1100);
+    QString trcr2 = CollectControl::HardSend(comTR_AGILENT34970, QString("*IDN?\r").toLatin1().data(),1100);
     UART_t trcrUart2;
-    if (!trcr2.isEmpty() && trcr2.size() == 723) {
+    if (!trcr2.isEmpty() && trcr2.size() == 32) {
         Sleep(700);
         trcrUart2.data = trcr2;
     } else {
